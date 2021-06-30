@@ -18,7 +18,7 @@ VERSION "2019-02-15"  =
   /** Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
    */
   TOPIC CoreGeolAsset =
-
+	OID AS INTERLIS.UUIDOID;
     /** Strukur des Attributs Adresse
      * Street
      * Streetnumber
@@ -550,7 +550,10 @@ VERSION "2019-02-15"  =
       /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
        */
       Geom_Quality : MANDATORY (
-        /** Stellvertretergeometrie grösser 10x10 km
+        /** Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
+		 */
+		placeholder,
+		/** Stellvertretergeometrie grösser 100x100 km
          */
         placeholder100x100,
         /** Stellvertretergeometrie 10x10 km
@@ -629,19 +632,21 @@ VERSION "2019-02-15"  =
     /** Autor
      */
     ASSOCIATION Asset_Contact_Autor =
-      AssetA -- {1..*} Asset;
+      AssetAuthor -- {1..*} Asset;
+	  /** Autor, Ersteller des Assets
+      */
       Author -- {0..*} Contact;
     END Asset_Contact_Autor;
 
     ASSOCIATION Asset_Contact_Contractor =
-      AssetC -- {1..*} Asset;
+      AssetContractor -- {1..*} Asset;
       /** Auftraggeber
        */
       Contractor -- {0..*} Contact;
     END Asset_Contact_Contractor;
 
     ASSOCIATION Asset_Contact_Supplier =
-      AssetS -- {1..*} Asset;
+      AssetSupplier -- {1..*} Asset;
       /** Einlieferer des Assets
        * 
        * Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
@@ -664,7 +669,7 @@ VERSION "2019-02-15"  =
       Asset -- {1..*} Asset;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
-      RegionOfInterest -- {1..*} RegionOfInterest;
+      RegionOfInterest -- {0..*} RegionOfInterest;
     END Asset_StudyArea;
 
   END CoreGeolAsset;
