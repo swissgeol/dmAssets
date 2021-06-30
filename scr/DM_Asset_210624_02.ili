@@ -368,7 +368,7 @@ VERSION "2019-02-15"  =
         Kind <> #report OR DEFINED (AssetComposition);
     END Asset;
 
-    /**CLASS Contact_ =
+    CLASS Contact_ =
       /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkon-takt ist nach Möglichkeit immer die Bewilligungsbe-hörde.
        * 
        * Werte in externer Codeliste speichern:
@@ -379,11 +379,11 @@ VERSION "2019-02-15"  =
        * Privatwirtschaft
        * Universitäten, Fachhochschulen, etc.
        * Andere Projektverfasser
+       */
       Kind : MANDATORY OID ANY;
       Name : MANDATORY MTEXT*254;
       Adress : TEXT*20;
     END Contact_;
-	*/
 
     /** Die Klasse "AssetAdmin" bildet Eigenschaften von Assets ab, die für das Management der Assets bei der LG relevant sind. Die hier abgebildeten Eigenschaften sind nicht für den Datenaustausch bestimmt / relevant.
      */
@@ -478,16 +478,6 @@ VERSION "2019-02-15"  =
      */
     CLASS Contact =
       /** Art des Kontakts
-	   * Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkon-takt ist nach Möglichkeit immer die Bewilligungsbe-hörde.
-       * 
-       * Werte in externer Codeliste speichern:
-       * Bundesbehörde
-       * Geologische Informationsstelle swisstopo
-       * Kantonale Bewilligungsbehörde
-       * Gemeinde
-       * Privatwirtschaft
-       * Universitäten, Fachhochschulen, etc.
-       * Andere Projektverfasser
        */
       Kind : MANDATORY (
         Bundesbehoerde,
