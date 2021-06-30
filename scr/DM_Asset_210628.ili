@@ -1,0 +1,690 @@
+INTERLIS 2.3;
+
+/** Datenmodell für geologsiche Assets (Dokumente im weiteren Sinne), z.B.:
+ * - Unstrukturierte digitale Dokumente (Berichte, z.B. in  (PDF, docx, etc.)
+ * - Strukturierte digitale Dokumente (Files), wie z.B. ASCII, xlsx, shp, etc.
+ * - Analoge Dokumente
+ * Software und Konfigurationen von Software, Algorithmen, etc.
+ */
+MODEL DM_GeolAssets (de)
+AT "mailto:U80773132@localhost"
+VERSION "2019-02-15"  =
+  IMPORTS GeometryCHLV95_V1,Units;
+	  
+  STRUCTURE Coord2_ =
+    value : MANDATORY GeometryCHLV95_V1.Coord2;
+  END Coord2_;
+
+  /** Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
+   */
+  TOPIC CoreGeolAsset =
+
+    /** Strukur des Attributs Adresse
+     * Street
+     * Streetnumber
+     * ZIP
+     * Locality
+     * Country
+     */
+    STRUCTURE Adress =
+      Street : TEXT*20;
+      Housenumber : TEXT*5;
+      PLZ : TEXT*5;
+      Locality : MANDATORY TEXT*20;
+      Country : MANDATORY TEXT*20;
+    END Adress;
+
+    /** Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.)
+     */
+    CLASS Asset =
+      /** Art des Dokuments
+       */
+      Kind : MANDATORY (
+        /** undifferenziert
+         */
+        undiff(
+          /** Undifferenzierbare Daten, nicht speziell zuweisbar
+           */
+          other,
+          /** Rohdaten, z.B. für Seismische Untersuchungen
+           */
+          rawData
+        ),
+        /** Bericht
+         */
+        report,
+        /** Messungen
+         */
+        measurements(
+          /** Logs, z.B. von Bohrungen
+           */
+          log,
+          /** Geräteoutput
+           */
+          deviceOutput,
+          /** Feldaufzeichnung, -messung, z.B. aus Feldbuch
+           */
+          manualFieldRecord,
+          /** Labormessung, Laboruntersuchung (z.B. Kornverteilung, Druckfestigkeit, Ödometerversuch etc.)
+           */
+          labData
+        ),
+        /** Karte
+         */
+        map(
+          /** Schusspunktkarte (Seismik)
+           */
+          shotpointmap,
+          /** Basemap (Seismik)
+           */
+          basemap,
+          /** Bohrstandort
+           */
+          welllocationmap,
+          /** Geologische/geotechnische Karte
+           */
+          geologicalmap,
+          /** Situationsplan
+           */
+          location
+        ),
+        /** Profil und Profilschnitt
+         */
+        profileSection(
+          /** Geologischer Profilschnitt (Längen-/Querprofile etc.)
+           */
+          crossSection,
+          /** Seismische Interpretation (Profil)
+           */
+          seismicInterpretation,
+          /** Seismische Section (Profil)
+           */
+          seismicSection,
+          /** Bohrprofil
+           */
+          boreholeProfile,
+          /** Bohrpfad
+           */
+          drillPath,
+          /** Bohrlochausbau
+           */
+          boreholeCompletion
+        ),
+        /** Konfigurationen von Modellierungen oder sonstigen Berechnungen
+         */
+        configuration,
+        /** Software
+         */
+        software,
+        /** Modelle, z.B. 3D-Modell
+         */
+        model,
+        /** Multimediadateien
+         */
+        multmedia(
+          /** Foto
+           */
+          photo,
+          /** Video
+           */
+          video
+        )
+      );
+      /** Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
+       */
+      Topic : MANDATORY (
+        /** Geologie allg.
+         */
+        geology,
+        /** Geotechnik
+         */
+        geotechnics,
+        /** Geophysik
+         */
+        geophysics(
+          /** Seismik
+           */
+          seismics,
+          /** Gravimetrie
+           */
+          gravimetry,
+          /** Geoelektrik
+           */
+          geoelectricity,
+          /** Andere Geophysik (Geomagnetik, Georadar, Tomografie, etc.)
+           */
+          other
+        ),
+        /** Geologische Kartierung und Karten
+         */
+        geolMapping,
+        /** Bohrungen
+         */
+        borehole,
+        /** andere
+         */
+        other
+      );
+      /** Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
+       * 
+       * Purpose->>>
+       */
+      Purpose : MANDATORY (
+        /** Naturgefahren
+         */
+        naturalHazards,
+        /** Hydrogeologie
+         */
+        hydrogeology,
+        /** Baugrund
+         */
+        buildingGround,
+        /** Altlasten
+         */
+        pollution,
+        /** Mineralische Rohstoffe
+         */
+        mineralRessources,
+        /** Geoenergie, Geothermie, Energierohstoffe (Erdöl/Erdgas/Kohle)
+         */
+        geoenergy,
+        /** Prospektion (z.B. Rohstoffe)
+         */
+        prospection,
+        /** andere
+         */
+        other,
+        /** Exploration
+         */
+        exploration
+      );
+      /** Identifikator (ID) des Asset. Wenn möglich soll
+       * die Original-ID verwendet werden.
+       */
+      ID_Alternate : TEXT*50;
+      /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
+       */
+      ID_SGS : MANDATORY 0 .. 1000000000;
+      /** Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen!
+       */
+      ID_GUID : MANDATORY OID URI;
+      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+       */
+      Title_original : TEXT*80;
+      /** Titel, der keine datenschutzrechtlichen Informationen enthält.
+       * 
+       * Kann mit Originaltitel identisch sein.
+       * 
+       * Für Kind = Bericht muss Titel vergeben werden!
+       */
+      Title_public : MANDATORY TEXT*80;
+      /** Datum (Format: dd.mm.yyyy) der Erstellung des
+       * Assets.
+       * Bemerkung: Liegt kein Dokumentdatum vor, gilt
+       * 01.01.1111. Ist nur das Jahr bekannt, gilt:
+       * 01.01.yyyy. Ist nur Monat und Jahr bekannt, gilt:
+       * 01.mm.yyyy
+       */
+      Date_Creation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
+       */
+      Language : MANDATORY (
+        /** Englisch
+         */
+        EN,
+        /** Italienisch
+         */
+        IT,
+        /** Französisch
+         */
+        FR,
+        /** Deutsch
+         */
+        DE,
+        /** für Dokumente/Files, die nur numerisch aufgebaut sind.
+         */
+        NUM,
+        /** andere Sprachen
+         */
+        other
+      );
+      /** Angabe, ob das Asset frei verfügbar (no) oder
+       * der Zugang eingeschränkt (yes) ist
+       */
+      Restriction : MANDATORY BOOLEAN;
+      /** Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
+       * 
+       * Bemerkung: Wenn Restrict = yes, muss dieses
+       * Attribut ausgefüllt werden. Ist die
+       * Beschränkungsdauer unendlich bzw. unbestimmt,
+       * gilt: 31.12.9999. Für frei verfügbare Assets
+       * kann 01.01.1111 gesetzt werden.
+       */
+      RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Link und Name des zugehörigen Files, inkl.
+       * Dateiendung (zur Kennzeichnung des Formats).
+       * Beispiel: tiefbohrung_abc.xlsx; http://www.meine-
+       * Domaene.ch/geothermie/tiefbohrungen.pdf;
+       * \\servername\meine-ablage\bohrprofil_01.jpg
+       */
+      Path : MANDATORY TEXT*254;
+      /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+       */
+      Format : MANDATORY (
+        /** Weitere, nicht genannte Formate
+         */
+        other,
+        /** Analoge Dokumente (Papier, Mikrofichen etc.)
+         */
+        textAnalog,
+        /** Grafisch analoge Zeichnung
+         */
+        graphicAnalog,
+        /** Grafisch digitale Vektorgrafik
+         */
+        GraphicVector,
+        /** Grafisch digitale Rastergrafik
+         */
+        GraphicRaster,
+        /** Sammlung von einzelnen Assets, z.B. Rohdaten einer Seismikkampagne
+         */
+        Package,
+        /** Digitales binäres Format
+         */
+        Binaer,
+        /** Textformat (z.B.: ascii, txt, doc, docx, xls, xlsx, xml, csv etc.)
+         */
+        textDigital,
+        /** Seismikspezifische Formate (SPS, SEG2, SEGD, SEGY etc.)
+         */
+        Seismic(
+          SEGY,
+          SEGY_exported,
+          /** andere seismikspezifische Formate
+           */
+          other
+        ),
+        /** PDF-Datei
+         */
+        PDF,
+        /** ESRI Shapefile
+         */
+        SHP,
+        /** Log-Files (Log ASCII Standard)
+         */
+        LAS
+      );
+      /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll.
+       * 
+       * Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ ....
+       */
+      AuthorBiblio : TEXT*200;
+      /** Digitaler Ablageort von Daten, die mit dem jeweilien Asset in Beziehung stehen.
+       * 
+       * Beispiel:  zusätzliche Formate (.doc, xls, etc.); zusätzliche Dokumente; Proben, Handstücke, Dünnschlitte im Bohrkernlager oder Archiv der LG
+       */
+      AdditionalData : TEXT*255;
+      /** Inhalt bzw. Zusammensetzung des Dokuments/Files
+       * 
+       * Nur gültig für die Objekte mit dem Kind "Report" aus der Klasse "Asset"
+       */
+      AssetComposition : (
+        /** Probenmaterial, Dünnschliff etc.
+         */
+        Probe,
+        /** Fotos, Videos
+         */
+        Multimedia,
+        /** Software
+         */
+        Software,
+        /** Geolog. Modell (3D etc.)
+         */
+        Model,
+        /** Bohrung, Sondierung
+         */
+        Bohrung,
+        /** Seismik
+         */
+        Seismik,
+        /** Karte
+         */
+        Karte,
+        /** Geologisches Profil
+         */
+        GeolProfil,
+        /** Messung
+         */
+        Messung
+      );
+      /** Bemerkungen zum jeweiligen Asset.
+       * 
+       * 1800 Zeichen, damit die bestehenden Inhalte aus den InfoGeol-Bemerkungsfeldern übernommen werden können.
+       */
+      Remark : MTEXT*1800;
+      MANDATORY CONSTRAINT
+        Kind <> #report OR DEFINED (Title_public);
+      MANDATORY CONSTRAINT
+        Kind <> #report OR DEFINED (AssetComposition);
+    END Asset;
+
+    /**CLASS Contact_ =
+      /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkon-takt ist nach Möglichkeit immer die Bewilligungsbe-hörde.
+       * 
+       * Werte in externer Codeliste speichern:
+       * Bundesbehörde
+       * Geologische Informationsstelle swisstopo
+       * Kantonale Bewilligungsbehörde
+       * Gemeinde
+       * Privatwirtschaft
+       * Universitäten, Fachhochschulen, etc.
+       * Andere Projektverfasser
+      Kind : MANDATORY OID ANY;
+      Name : MANDATORY MTEXT*254;
+      Adress : TEXT*20;
+    END Contact_;
+	*/
+
+    /** Die Klasse "AssetAdmin" bildet Eigenschaften von Assets ab, die für das Management der Assets bei der LG relevant sind. Die hier abgebildeten Eigenschaften sind nicht für den Datenaustausch bestimmt / relevant.
+     */
+    CLASS AssetAdmin =
+      /** In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?
+       */
+      Source : TEXT*255;
+      /** Bearbeitungsstatus
+       */
+      WorkStatus : MANDATORY (
+        /** zu kontrollieren
+         */
+        toBeControled,
+        /** kontrolliert
+         */
+        controled,
+        /** pendent
+         */
+        pending,
+        /** zu bearbeiten
+         */
+        toBeEdited,
+        inProgress,
+        edited,
+        /** zurueckgestellt
+         */
+        postponed,
+        /** publiziert
+         */
+        published,
+        /** freigegeben
+         */
+        released
+      );
+      /** Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
+       */
+      RestrictionStatus : MANDATORY (
+        /** Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
+         */
+        differentStati,
+        /** Berechtigungsstatus offen (Prüfung erforderlich)
+         */
+        open,
+        /** Berechtigungsstatus geklärt
+         */
+        final
+      );
+      NationalRelevance : MANDATORY (
+        /** nicht von nationaler Bedeutung
+         */
+        keineRelevanz,
+        /** 3. Priorität
+         */
+        Prio3,
+        /** 2. Priorität
+         */
+        Prio2,
+        /** 1. Priorität
+         */
+        Prio1,
+        /** nicht einer Kategorie zugeordnet
+         */
+        nichtZugeordnet
+      );
+      /** Liegt im Asset Texterkennung vor?
+       */
+      OCR : MANDATORY BOOLEAN;
+      OCRQuality : (
+        high,
+        low,
+        medium
+      );
+      /** Physischer Standort des analogen Dokuments
+       */
+      location : TEXT*20;
+      /** Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
+       */
+      Path : TEXT*20;
+      /** Begriffe einer Indexierung (manuell und/oder automatische Indexierung)
+       * 
+       * 
+       * Dokumente/Files, die nicht automatisch indiziert werden können, werden manuell verschlagwortet.
+       */
+      Index : TEXT*255;
+      /** Eingangsdatum des Assets
+       */
+      DateDelivery : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      Remark : MTEXT*200;
+    END AssetAdmin;
+
+    /** Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
+     */
+    CLASS Contact =
+      /** Art des Kontakts
+	   * Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkon-takt ist nach Möglichkeit immer die Bewilligungsbe-hörde.
+       * 
+       * Werte in externer Codeliste speichern:
+       * Bundesbehörde
+       * Geologische Informationsstelle swisstopo
+       * Kantonale Bewilligungsbehörde
+       * Gemeinde
+       * Privatwirtschaft
+       * Universitäten, Fachhochschulen, etc.
+       * Andere Projektverfasser
+       */
+      Kind : MANDATORY (
+        Bundesbehoerde,
+        Andere,
+        Uni_Fachhochschule,
+        Gemeinde,
+        Kantonale_Bewilligungsbehoerde,
+        swisstopo
+      );
+      /** Name des Kontakts
+       */
+      Name : MANDATORY TEXT*20;
+      /** Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
+       */
+      Adress : STRUCTURE RESTRICTION ( DM_GeolAssets.CoreGeolAsset.Adress );
+      /** Telefon-Nr
+       * 
+       * gemäss definierter Struktur von Tel. Nummern
+       */
+      Telefon : TEXT*20;
+      /** e-mail
+       * 
+       * gemäss definierter Struktur von e-mail-Adressen
+       */
+      email : TEXT*20;
+      /** URL von Websites
+       * 
+       * gemäss definierter Struktur von URLs
+       */
+      Website : TEXT*20;
+    END Contact;
+
+    /** Die Klasse "Publication" bildet eine mögliche/allfällige Publikation der Assets über verschiedene Kanäle, z.B.: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc., ab.
+     */
+    CLASS Publication =
+      /** Datum der Publikation
+       */
+      Date : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
+       */
+      Channel : MANDATORY (
+        /** Konferenz
+         */
+        conference,
+        /** Fachzeitschrift
+         */
+        professionalJournal,
+        /** Monografie, z.B. Buch, Lehrbuch etc.
+         */
+        monograph,
+        /** Internet
+         */
+        internet(
+          /** Geoportal des Bundes: map.geo.admin.ch
+           */
+          mapGeoAdmin,
+          /** OpenData-Portal: https://opendata.swiss
+           */
+          openData,
+          /** nicht spezifizierte Website
+           */
+          undiff
+        )
+      );
+      /** Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
+       */
+      Description : TEXT*20;
+      /** URL oder DOI etc. zur jeweilgen Publikation
+       */
+      Link : TEXT*20;
+    END Publication;
+
+    /** Die Klasse "RegionOfInterest" beinhaltet das Gebiet resp. die räumliche Geometrie (Untersuchungsgebiet, -stelle oder -abschnitt), auf das sich das Dokument bezieht. Es müssen Multipart-Features möglich sein. Es müssen verschiedene Geometrietypen möglich sein.
+     * 
+     * Abstrakte Klasse, Objekte nur in Verbindung mit einer der Klassen StudyArea StudySection oder StudyLocation möglich!
+     */
+    CLASS RegionOfInterest (ABSTRACT) =
+      /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
+       */
+      Geom_Quality : MANDATORY (
+        /** Stellvertretergeometrie grösser 10x10 km
+         */
+        placeholder100x100,
+        /** Stellvertretergeometrie 10x10 km
+         */
+        placeholder10x10,
+        /** Stellverteretergeometrie 1x1 km
+         */
+        placeholder1x1,
+        /** Der tatsächlichen Geometrie angenähert (Vereinfachung)
+         */
+        simplification,
+        /** so digitalisiert, wie die Geometrie voliegt
+         */
+        orginal
+      );
+      /** Bemerkung zur Region of interest
+       */
+      Remark : TEXT*20;
+    END RegionOfInterest;
+
+    /** Untersuchungsgebiet (flächenhaft)
+     */
+    CLASS StudyArea
+    EXTENDS RegionOfInterest =
+      /** Flächengeometrie des Untersuchungsgebietes
+       */
+      Geometry : MANDATORY SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS>1.0;
+    END StudyArea;
+
+    /** Untersuchungsstelle (punktförmig)
+     */
+    CLASS StudyLocation
+    EXTENDS RegionOfInterest =
+      /** Punktgeometrie für Bohrung, Messung, sehr
+       * kleinräumige Untersuchung etc.
+       */
+      Geometry : BAG {1..*} OF Coord2_;
+    END StudyLocation;
+
+    /** Untersuchungsabschnitt (linienförmig)
+     */
+    CLASS StudySection
+    EXTENDS RegionOfInterest =
+      /** Liniengeometrie für Profile, Strassen-/Trassenuntersuchungen etc.
+       */
+      Geometry : MANDATORY POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
+    END StudySection;
+
+    /** Jedes Objekt kann mit einem anderen in Bezioehung stehen.
+     * Z.B.: mehrere Dokumente zu einem Projekt;
+     * 
+     * Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht) oder
+     * 
+     * Objekte verschiedener Stufen können in Beziehung stehen (Bericht - Berichtsteil (Bohrprofil))
+     * 
+     * FRAGE: Berichte und Bereichtsteil sollen in unterschiedlichen Systemen gespeichert werden.
+     */
+    ASSOCIATION Asset_Asset =
+      /** Asset X steht mit Asset Y in Beziehung
+       */
+      AssetX -- {0..*} Asset;
+      /** Asset Y steht mit Asset X in Beziehung
+       */
+      AssetY -- {0..*} Asset;
+    END Asset_Asset;
+
+    /** Ein Dokument hat eine DocAdmin und ein DocAdmin gehört zu einem Dokument
+     */
+    ASSOCIATION Asset_AssetAdmin =
+      Asset -- {1} Asset;
+      /** Administrative Metadaten zum jeweiligen Asset
+       */
+      AssetAdmin -- {1} AssetAdmin;
+    END Asset_AssetAdmin;
+
+    /** Autor
+     */
+    ASSOCIATION Asset_Contact_Autor =
+      AssetA -- {1..*} Asset;
+      Author -- {0..*} Contact;
+    END Asset_Contact_Autor;
+
+    ASSOCIATION Asset_Contact_Contractor =
+      AssetC -- {1..*} Asset;
+      /** Auftraggeber
+       */
+      Contractor -- {0..*} Contact;
+    END Asset_Contact_Contractor;
+
+    ASSOCIATION Asset_Contact_Supplier =
+      AssetS -- {1..*} Asset;
+      /** Einlieferer des Assets
+       * 
+       * Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
+       */
+      Supplier -- {0..*} Contact;
+    END Asset_Contact_Supplier;
+
+    /** Publikation eines Asset
+     */
+    ASSOCIATION Asset_Publication =
+      Asset -- {1..*} Asset;
+      /** Publikation des Assets
+       */
+      Publication -- {0..*} Publication;
+    END Asset_Publication;
+
+    /** Untersuchungsgebiet zu einem Asset
+     */
+    ASSOCIATION Asset_StudyArea =
+      Asset -- {1..*} Asset;
+      /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
+       */
+      RegionOfInterest -- {1..*} RegionOfInterest;
+    END Asset_StudyArea;
+
+  END CoreGeolAsset;
+
+END DM_GeolAssets.
