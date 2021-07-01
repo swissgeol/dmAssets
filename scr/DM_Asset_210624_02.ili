@@ -642,7 +642,7 @@ VERSION "2019-02-15"  =
     END Asset_Contact_Autor;
 
     ASSOCIATION Asset_Contact_Contractor =
-      AssetC -- {1..*} Asset;
+      ContractedAsset -- {1..*} Asset;
       /** Auftraggeber
        */
       Contractor -- {0..*} Contact;
