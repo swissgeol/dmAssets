@@ -649,7 +649,7 @@ VERSION "2019-02-15"  =
     END Asset_Contact_Contractor;
 
     ASSOCIATION Asset_Contact_Supplier =
-      AssetS -- {1..*} Asset;
+      SuppliedAsset -- {1..*} Asset;
       /** Einlieferer des Assets
        * 
        * Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
