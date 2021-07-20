@@ -34,7 +34,7 @@ VERSION "2019-02-15"  =
       Country : MANDATORY TEXT*20;
     END Adress;
 
-    /** Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.)
+    /** Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
      */
     CLASS Asset =
       /** Art des Dokuments
@@ -372,9 +372,9 @@ VERSION "2019-02-15"  =
     /** Die Klasse "AssetAdmin" bildet Eigenschaften von Assets ab, die für das Management der Assets bei der LG relevant sind. Die hier abgebildeten Eigenschaften sind nicht für den Datenaustausch bestimmt / relevant.
      */
     CLASS AssetAdmin =
-      /** In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?
+      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
        */
-      Source : TEXT*255;
+      UsedBy : TEXT*255;
       /** Bearbeitungsstatus
        */
       WorkStatus : MANDATORY (
@@ -457,7 +457,38 @@ VERSION "2019-02-15"  =
       DateDelivery : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
       Remark : MTEXT*200;
     END AssetAdmin;
-
+	
+	/** Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
+	*/
+	CLASS AssetPackage =
+	  /** Eindeutigert Identifikator des Assetpackages
+	  */
+	  ID : TEXT*50;
+	  /** Datum der erstellung des AssetPackages
+	  */
+	  CreationDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
+	  */
+	  Project : TEXT*50;
+	  /** Titel des Assetpackages. entspricht dem File- bzw. foldernamen
+	  */
+	  Title : MANDATORY TEXT*80;
+	  /** Angabe, ob das Assetpaket gesperrt oder frei verfügbar ist.
+	  */
+	  Restriction : MANDATORY BOOLEAN;
+      /** Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
+       */
+      RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Link und Name des zugehörigen Files, inkl.
+       * Dateiendung (zur Kennzeichnung des Formats).
+       */
+      Path : MANDATORY TEXT*254;	
+      /** Bemerkung
+	  */
+	  Remark : MTEXT*200;	  
+	END AssetPackage;
+	
+	
     /** Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
      */
     CLASS Contact =
@@ -603,7 +634,7 @@ VERSION "2019-02-15"  =
       Geometry : MANDATORY POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
     END StudySection;
 
-    /** Jedes Objekt kann mit einem anderen in Bezioehung stehen.
+    /** Jedes Objekt kann mit einem anderen in Beziehung stehen.
      * Z.B.: mehrere Dokumente zu einem Projekt;
      * 
      * Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht) oder
@@ -621,7 +652,29 @@ VERSION "2019-02-15"  =
       AssetY -- {0..*} Asset;
     END Asset_Asset;
 
-    /** Ein Dokument hat eine DocAdmin und ein DocAdmin gehört zu einem Dokument
+    /** Ein Asset gehört zu einerm AssetPackage und ein AssetPackage enhälrt ein oder mehrere Assets
+	*/
+    ASSOCIATION Asset_AssetPackage =
+      /** AssetPackage
+       */
+      AssetPackage -- {1} AssetPackage;
+      /** Enthaltenes Asset
+       */
+      Asset -- {1..*} Asset;
+    END Asset_AssetPackage;
+    
+	/** Ein Asset kann beliebig viele teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
+	  */
+	ASSOCIATION Asset_AssetPart =
+	  /** AssetPart
+	  */
+	  AssetPart -- {0..*} Asset;
+	  /** Asset aus dem der AssetPart extrahiert wurde
+	  */
+	  AssetMain -- {1} Asset;
+	 END Asset_AssetPart; 
+	  
+    /** Ein Dokument hat eine AssetAdmin und ein AssetAdmin gehört zu einem Dokument
      */
     ASSOCIATION Asset_AssetAdmin =
       Asset -- {1} Asset;
@@ -664,14 +717,28 @@ VERSION "2019-02-15"  =
       Publication -- {0..*} Publication;
     END Asset_Publication;
 
+    ASSOCIATION AssetPackage_Publication =
+      AssetPackage -- {1..*} AssetPackage;
+      /** Publikation des AssetPackages
+       */
+      Publication -- {0..*} Publication;
+    END AssetPackage_Publication;
+
     /** Untersuchungsgebiet zu einem Asset
      */
-    ASSOCIATION Asset_StudyArea =
+    ASSOCIATION Asset_ROI =
       Asset -- {1} Asset;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
       RegionOfInterest -- {0..*} RegionOfInterest;
-    END Asset_StudyArea;
+    END Asset_ROI;
+
+    ASSOCIATION AssetPackage_ROI =
+      AssetPackage -- {1} AssetPackage;
+      /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
+       */
+      RegionOfInterest -- {0..*} RegionOfInterest;
+    END AssetPackage_ROI;
 
   END CoreGeolAsset;
 
