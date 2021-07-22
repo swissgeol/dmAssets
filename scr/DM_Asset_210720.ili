@@ -320,44 +320,7 @@ VERSION "2019-02-15"  =
        * Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ ....
        */
       AuthorBiblio : TEXT*200;
-      /** Digitaler Ablageort von Daten, die mit dem jeweilien Asset in Beziehung stehen.
-       * 
-       * Beispiel:  zusätzliche Formate (.doc, xls, etc.); zusätzliche Dokumente; Proben, Handstücke, Dünnschlitte im Bohrkernlager oder Archiv der LG
-       */
-      AdditionalData : TEXT*255;
-      /** Inhalt bzw. Zusammensetzung des Dokuments/Files
-       * 
-       * Nur gültig für die Objekte mit dem Kind "Report" aus der Klasse "Asset"
-       */
-      AssetComposition : (
-        /** Probenmaterial, Dünnschliff etc.
-         */
-        Probe,
-        /** Fotos, Videos
-         */
-        Multimedia,
-        /** Software
-         */
-        Software,
-        /** Geolog. Modell (3D etc.)
-         */
-        Model,
-        /** Bohrung, Sondierung
-         */
-        Bohrung,
-        /** Seismik
-         */
-        Seismik,
-        /** Karte
-         */
-        Karte,
-        /** Geologisches Profil
-         */
-        GeolProfil,
-        /** Messung
-         */
-        Messung
-      );
+      
       /** Bemerkungen zum jeweiligen Asset.
        * 
        * 1800 Zeichen, damit die bestehenden Inhalte aus den InfoGeol-Bemerkungsfeldern übernommen werden können.
@@ -365,8 +328,7 @@ VERSION "2019-02-15"  =
       Remark : MTEXT*1800;
       MANDATORY CONSTRAINT
         Kind <> #report OR DEFINED (Title_public);
-      MANDATORY CONSTRAINT
-        Kind <> #report OR DEFINED (AssetComposition);
+
     END Asset;
 
     /** Die Klasse "AssetAdmin" bildet Eigenschaften von Assets ab, die für das Management der Assets bei der LG relevant sind. Die hier abgebildeten Eigenschaften sind nicht für den Datenaustausch bestimmt / relevant.
