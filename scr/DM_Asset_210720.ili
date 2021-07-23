@@ -14,31 +14,34 @@ VERSION "2019-02-15"  =
   STRUCTURE Coord2_ =
     value : MANDATORY GeometryCHLV95_V1.Coord2;
   END Coord2_;
-
-  /** Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
-   */
-  TOPIC CoreGeolAsset =
-	/** OID AS INTERLIS.UUIDOID;*/
-    /** Strukur des Attributs Adresse
+ 
+    /* Strukur des Attributs Adresse
      * Street
      * Streetnumber
      * ZIP
      * Locality
      * Country
-     */
-    STRUCTURE Adress =
-      Street : TEXT*20;
-      Housenumber : TEXT*5;
-      PLZ : TEXT*5;
-      Locality : MANDATORY TEXT*20;
-      Country : MANDATORY TEXT*20;
-    END Adress;
+     */ 
+  STRUCTURE Adress =
+    Street : TEXT*20;
+    Housenumber : TEXT*5;
+    PLZ : TEXT*5;
+    Locality : MANDATORY TEXT*20;
+    Country : MANDATORY TEXT*20;
+  END Adress;
 
+  /** Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
+   */
+  TOPIC CoreGeolAsset =
+	/* Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automiatisch für alle Klasse definiert.
+     */
+	OID AS INTERLIS.UUIDOID;
+ 
     /** Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
      */
     CLASS Asset =
       /** Art des Dokuments
-       */
+       */  
       Kind : MANDATORY (
         /** undifferenziert
          */
@@ -207,8 +210,7 @@ VERSION "2019-02-15"  =
       ID_SGS : MANDATORY 0 .. 1000000000;
       /** Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen!
        */
-      /**ID_GUID : MANDATORY OID URI;*/
-      ID_GUID :  TEXT*50;
+
 	  /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
        */
       Title_original : TEXT*80;
@@ -268,7 +270,11 @@ VERSION "2019-02-15"  =
        * Domaene.ch/geothermie/tiefbohrungen.pdf;
        * \\servername\meine-ablage\bohrprofil_01.jpg
        */
-      Path : MANDATORY TEXT*254;
+      RelativePath : MANDATORY TEXT*254;
+	  
+	  /* Pfad zu einer Online-Ressource des Files vom RelativePfad
+	  */
+	  URL : TEXT*254;
       /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
        */
       Format : MANDATORY (
@@ -534,6 +540,11 @@ VERSION "2019-02-15"  =
       /** URL oder DOI etc. zur jeweilgen Publikation
        */
       Link : TEXT*20;
+	  
+	  /*
+	  HIER eine Entweder-Oder-Prüfung für die Beziehungen Asset_Publication und AssetPackaghe_Pubication einfügen
+	  MANDATORY CONSTRAINT
+	  */
     END Publication;
 
     /** Die Klasse "RegionOfInterest" beinhaltet das Gebiet resp. die räumliche Geometrie (Untersuchungsgebiet, -stelle oder -abschnitt), auf das sich das Dokument bezieht. Es müssen Multipart-Features möglich sein. Es müssen verschiedene Geometrietypen möglich sein.
@@ -600,10 +611,7 @@ VERSION "2019-02-15"  =
      * Z.B.: mehrere Dokumente zu einem Projekt;
      * 
      * Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht) oder
-     * 
-     * Objekte verschiedener Stufen können in Beziehung stehen (Bericht - Berichtsteil (Bohrprofil))
-     * 
-     * FRAGE: Berichte und Bereichtsteil sollen in unterschiedlichen Systemen gespeichert werden.
+
      */
     ASSOCIATION Asset_Asset =
       /** Asset X steht mit Asset Y in Beziehung
@@ -673,14 +681,14 @@ VERSION "2019-02-15"  =
     /** Publikation eines Asset
      */
     ASSOCIATION Asset_Publication =
-      Asset -- {1..*} Asset;
+      Asset -- {0..*} Asset;
       /** Publikation des Assets
        */
       Publication -- {0..*} Publication;
     END Asset_Publication;
 
     ASSOCIATION AssetPackage_Publication =
-      AssetPackage -- {1..*} AssetPackage;
+      AssetPackage -- {0..*} AssetPackage;
       /** Publikation des AssetPackages
        */
       Publication -- {0..*} Publication;
@@ -692,14 +700,14 @@ VERSION "2019-02-15"  =
       Asset -- {1} Asset;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
-      RegionOfInterest -- {0..*} RegionOfInterest;
+      RegionOfInterest -- {0..1} RegionOfInterest;
     END Asset_ROI;
 
     ASSOCIATION AssetPackage_ROI =
       AssetPackage -- {1} AssetPackage;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
-      RegionOfInterest -- {0..*} RegionOfInterest;
+      RegionOfInterest -- {0..1} RegionOfInterest;
     END AssetPackage_ROI;
 
   END CoreGeolAsset;
