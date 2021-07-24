@@ -5042,9 +5042,9 @@
 </ch.ehi.umleditor.umlpresentation.Class>
 <ch.ehi.umleditor.umlpresentation.PresentationRole TID="1362">
 <Association>1346</Association>
-<MultiplicityAngle>0.0</MultiplicityAngle>
-<MultiplicityVisible>false</MultiplicityVisible>
-<MultiplicityRadius>0.0</MultiplicityRadius>
+<MultiplicityAngle>678.0</MultiplicityAngle>
+<MultiplicityVisible>true</MultiplicityVisible>
+<MultiplicityRadius>242.0</MultiplicityRadius>
 <NameRadius>0.0</NameRadius>
 <NameAngle>0.0</NameAngle>
 <NameVisible>false</NameVisible>
@@ -9610,9 +9610,9 @@
 </ch.ehi.umleditor.umlpresentation.Color>
 <ch.ehi.umleditor.umlpresentation.PresentationRole TID="1503">
 <Association>1346</Association>
-<MultiplicityAngle>0.0</MultiplicityAngle>
-<MultiplicityVisible>false</MultiplicityVisible>
-<MultiplicityRadius>0.0</MultiplicityRadius>
+<MultiplicityAngle>620.0</MultiplicityAngle>
+<MultiplicityVisible>true</MultiplicityVisible>
+<MultiplicityRadius>349.0</MultiplicityRadius>
 <NameRadius>0.0</NameRadius>
 <NameAngle>0.0</NameAngle>
 <NameVisible>false</NameVisible>
