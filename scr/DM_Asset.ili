@@ -6,22 +6,47 @@ INTERLIS 2.3;
  * - Analoge Dokumente
  * Software und Konfigurationen von Software, Algorithmen, etc.
  */
-MODEL DM_GeolAssets (de)
-AT "mailto:U80773132@localhost"
-VERSION "2019-02-15"  =
+MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
+  VERSION "2019-02-15"  =
+
   IMPORTS GeometryCHLV95_V1,Units;
-	  
-  STRUCTURE Coord2_ =
-    value : MANDATORY GeometryCHLV95_V1.Coord2;
-  END Coord2_;
- 
-    /* Strukur des Attributs Adresse
-     * Street
-     * Streetnumber
-     * ZIP
-     * Locality
-     * Country
-     */ 
+  
+  DOMAIN
+
+    Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
+    Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
+        
+    !! BAG OF with INTERLIS 2.3 only possible with STRUCTURE
+    STRUCTURE PointStructure = 
+      Point: GeometryCHLV95_V1.Coord2;
+    END PointStructure;
+        
+    !!@ili2db.mapping=MultiPoint
+    STRUCTURE MultiPoint =
+      Points: BAG {1..*} OF PointStructure;
+    END MultiPoint;
+        
+    STRUCTURE LineStructure = 
+      Line: Line;
+    END LineStructure;
+        
+    !!@ili2db.mapping=MultiLine
+    STRUCTURE MultiLine =
+      Lines: BAG {1..*} OF LineStructure;
+    END MultiLine;
+        
+    STRUCTURE SurfaceStructure = 
+      Surface: Surface;
+    END SurfaceStructure;
+        
+    !!@ili2db.mapping=MultiSurface
+    STRUCTURE MultiSurface =
+      Surfaces: BAG {1..*} OF SurfaceStructure;
+    END MultiSurface;
+
+
+  /* Strukur für die Modellierung von Adressen
+   */ 
   STRUCTURE Adress =
     Street : TEXT*20;
     Housenumber : TEXT*5;
@@ -550,8 +575,9 @@ VERSION "2019-02-15"  =
     /** Die Klasse "RegionOfInterest" beinhaltet das Gebiet resp. die räumliche Geometrie (Untersuchungsgebiet, -stelle oder -abschnitt), auf das sich das Dokument bezieht. Es müssen Multipart-Features möglich sein. Es müssen verschiedene Geometrietypen möglich sein.
      * 
      * Abstrakte Klasse, Objekte nur in Verbindung mit einer der Klassen StudyArea StudySection oder StudyLocation möglich!
+	 Alter Name. RegionOfInterest
      */
-    CLASS RegionOfInterest (ABSTRACT) =
+    CLASS GeometryOfInterest (ABSTRACT) =
       /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
        */
       Geom_Quality : MANDATORY (
@@ -577,35 +603,36 @@ VERSION "2019-02-15"  =
       /** Bemerkung zur Region of interest
        */
       Remark : TEXT*20;
-    END RegionOfInterest;
-
-    /** Untersuchungsgebiet (flächenhaft)
-     */
-    CLASS StudyArea
-    EXTENDS RegionOfInterest =
-      /** Flächengeometrie des Untersuchungsgebietes
-       */
-      Geometry : MANDATORY SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS>1.0;
-    END StudyArea;
+    END GeometryOfInterest;
 
     /** Untersuchungsstelle (punktförmig)
      */
     CLASS StudyLocation
-    EXTENDS RegionOfInterest =
+    EXTENDS GeometryOfInterest =
       /** Punktgeometrie für Bohrung, Messung, sehr
        * kleinräumige Untersuchung etc.
        */
-      Geometry : BAG {1..*} OF Coord2_;
+      Geometry : MultiPoint;
     END StudyLocation;
 
     /** Untersuchungsabschnitt (linienförmig)
      */
     CLASS StudySection
-    EXTENDS RegionOfInterest =
+    EXTENDS GeometryOfInterest =
       /** Liniengeometrie für Profile, Strassen-/Trassenuntersuchungen etc.
        */
-      Geometry : MANDATORY POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
+      Geometry : MultiLine;
     END StudySection;
+
+    /** Untersuchungsgebiet (flächenhaft)
+     */
+    CLASS StudyArea
+    EXTENDS GeometryOfInterest =
+      /** Flächengeometrie des Untersuchungsgebietes
+       */
+      Geometry : MultiSurface;
+    END StudyArea;
+
 
     /** Jedes Objekt kann mit einem anderen in Beziehung stehen.
      * Z.B.: mehrere Dokumente zu einem Projekt;
@@ -696,19 +723,19 @@ VERSION "2019-02-15"  =
 
     /** Untersuchungsgebiet zu einem Asset
      */
-    ASSOCIATION Asset_ROI =
+    ASSOCIATION Asset_GeometryOfInterest =
       Asset -- {1} Asset;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
-      RegionOfInterest -- {0..1} RegionOfInterest;
-    END Asset_ROI;
+      GeometryOfInterest -- {0..1} GeometryOfInterest;
+    END Asset_GeometryOfInterest;
 
-    ASSOCIATION AssetPackage_ROI =
+    ASSOCIATION AssetPackage_GeometryOfInterest =
       AssetPackage -- {1} AssetPackage;
       /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
        */
-      RegionOfInterest -- {0..1} RegionOfInterest;
-    END AssetPackage_ROI;
+      GeometryOfInterest -- {0..1} GeometryOfInterest;
+    END AssetPackage_GeometryOfInterest;
 
   END CoreGeolAsset;
 
