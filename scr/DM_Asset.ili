@@ -44,9 +44,7 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
       Surfaces: BAG {1..*} OF SurfaceStructure;
     END MultiSurface;
 
-
-  /* Strukur für die Modellierung von Adressen
-   */ 
+  !!Strukur für die Modellierung von Adressen
   STRUCTURE Adress =
     Street : TEXT*20;
     Housenumber : TEXT*5;
@@ -55,19 +53,54 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
     Country : MANDATORY TEXT*20;
   END Adress;
 
-  /** Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
-   */
+  !! Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
   TOPIC CoreGeolAsset =
-	/* Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automiatisch für alle Klasse definiert.
-     */
+
+    !! Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automiatisch für alle Klasse definiert.
 	OID AS INTERLIS.UUIDOID;
- 
-    /** Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
-     */
-    CLASS Asset =
-      /** Art des Dokuments
-       */  
-      Kind : MANDATORY (
+
+  !! Abstrakte Klasse die es ermöglicht die beziehung zwischen einer Publikation und einem Asset bzw. AssetPackage so zu erstellen, das mindestens ein Asset oder ein AssetPackage mit einer oder keienr Publikation in Beziehung steht.
+  CLASS AssetBase (ABSTRACT) =
+  END AssetBase;
+
+  !! Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
+  CLASS AssetPackage EXTENDS AssetBase =
+  
+    !! Eindeutigert Identifikator des Assetpackages 
+    !! NICHT mehr erforderlich, da für jedes OIbjekt einer Klasse im TOPIC "CoreGeolAsset" automatisch eine OID generiert wird
+    /**
+    ID : TEXT*50;
+    */
+
+    !! Datum der erstellung des AssetPackages
+    CreationDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+    
+    !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
+    Project : TEXT*50;
+
+    !! Titel des Assetpackages. entspricht dem File- bzw. foldernamen
+    Title : MANDATORY TEXT*80;
+
+    !! Angabe, ob das Assetpaket gesperrt oder frei verfügbar ist.
+    Restriction : MANDATORY BOOLEAN;
+
+    !! Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
+    RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+
+    !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats).
+    RelativePath : MANDATORY TEXT*254;
+
+    !! Bemerkung
+    Remark : MTEXT*200;
+
+  END AssetPackage;
+
+
+  !! Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
+  CLASS Asset EXTENDS AssetBase =
+
+    !! Art des Dokuments
+    Kind : MANDATORY (
         /** undifferenziert
          */
         undiff(
@@ -451,36 +484,6 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
       Remark : MTEXT*200;
     END AssetAdmin;
 	
-	/** Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
-	*/
-	CLASS AssetPackage =
-	  /** Eindeutigert Identifikator des Assetpackages
-	  */
-	  ID : TEXT*50;
-	  /** Datum der erstellung des AssetPackages
-	  */
-	  CreationDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-	  /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
-	  */
-	  Project : TEXT*50;
-	  /** Titel des Assetpackages. entspricht dem File- bzw. foldernamen
-	  */
-	  Title : MANDATORY TEXT*80;
-	  /** Angabe, ob das Assetpaket gesperrt oder frei verfügbar ist.
-	  */
-	  Restriction : MANDATORY BOOLEAN;
-      /** Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
-       */
-      RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Link und Name des zugehörigen Files, inkl.
-       * Dateiendung (zur Kennzeichnung des Formats).
-       */
-      Path : MANDATORY TEXT*254;	
-      /** Bemerkung
-	  */
-	  Remark : MTEXT*200;	  
-	END AssetPackage;
-	
 	
     /** Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
      */
@@ -705,21 +708,26 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
       Supplier -- {0..*} Contact;
     END Asset_Contact_Supplier;
 
-    /** Publikation eines Asset
-     */
+  !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
+  ASSOCIATION AssetBase_Publication =
+    AssetBase -- {1..*} AssetBase;
+    Publication -- {0..*} Publication;
+  END AssetBase_Publication;
+
+
+/** NICHT mehr erforderlich, wenn die Beziehung AssetBase_Publication genutzt wird
+    !! Publikation eines Asset
     ASSOCIATION Asset_Publication =
       Asset -- {0..*} Asset;
-      /** Publikation des Assets
-       */
       Publication -- {0..*} Publication;
     END Asset_Publication;
 
     ASSOCIATION AssetPackage_Publication =
       AssetPackage -- {0..*} AssetPackage;
-      /** Publikation des AssetPackages
-       */
       Publication -- {0..*} Publication;
     END AssetPackage_Publication;
+*/
+
 
     /** Untersuchungsgebiet zu einem Asset
      */
