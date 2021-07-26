@@ -6,7 +6,7 @@ INTERLIS 2.3;
  * - Analoge Dokumente
  * Software und Konfigurationen von Software, Algorithmen, etc.
  */
-MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
+MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
   VERSION "2019-02-15"  =
 
   IMPORTS GeometryCHLV95_V1,Units;
@@ -15,7 +15,7 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
 
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
     Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
-        
+
     !! BAG OF with INTERLIS 2.3 only possible with STRUCTURE
     STRUCTURE PointStructure = 
       Point: GeometryCHLV95_V1.Coord2;
@@ -44,63 +44,62 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
       Surfaces: BAG {1..*} OF SurfaceStructure;
     END MultiSurface;
 
-  !!Strukur für die Modellierung von Adressen
-  STRUCTURE Adress =
-    Street : TEXT*20;
-    Housenumber : TEXT*5;
-    PLZ : TEXT*5;
-    Locality : MANDATORY TEXT*20;
-    Country : MANDATORY TEXT*20;
-  END Adress;
+    !!Strukur für die Modellierung von Adressen
+    STRUCTURE Adress =
+      Street : TEXT*20;
+      Housenumber : TEXT*5;
+      PLZ : TEXT*5;
+      Locality : MANDATORY TEXT*20;
+      Country : MANDATORY TEXT*20;
+    END Adress;
 
   !! Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
   TOPIC CoreGeolAsset =
 
     !! Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automatisch für alle Klasse definiert.
-	OID AS INTERLIS.UUIDOID;
+    OID AS INTERLIS.UUIDOID;
 
-  !! Abstrakte Klasse die es ermöglicht die beziehung zwischen einer Publikation und einem Asset bzw. AssetPackage so zu erstellen, das mindestens ein Asset oder ein AssetPackage mit einer oder keienr Publikation in Beziehung steht.
-  CLASS AssetBase (ABSTRACT) =
-  END AssetBase;
+    !! Abstrakte Klasse die es ermöglicht die beziehung zwischen einer Publikation und einem Asset bzw. AssetPackage so zu erstellen, das mindestens ein Asset oder ein AssetPackage mit einer oder keienr Publikation in Beziehung steht.
+    CLASS AssetBase (ABSTRACT) =
+    END AssetBase;
 
-  !! Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
-  CLASS AssetPackage EXTENDS AssetBase =
-  
-    !! Eindeutigert Identifikator des Assetpackages 
-    !! NICHT mehr erforderlich, da für jedes OIbjekt einer Klasse im TOPIC "CoreGeolAsset" automatisch eine OID generiert wird
-    /**
-    ID : TEXT*50;
-    */
+    !! Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
+    CLASS AssetPackage EXTENDS AssetBase =
 
-    !! Datum der erstellung des AssetPackages
-    CreationDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      !! Eindeutigert Identifikator des Assetpackages 
+      !! NICHT mehr erforderlich, da für jedes OIbjekt einer Klasse im TOPIC "CoreGeolAsset" automatisch eine OID generiert wird
+      /**
+      ID : TEXT*50;
+      */
+
+      !! Datum der erstellung des AssetPackages
+      Date_Creation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
     
-    !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
-    Project : TEXT*50;
+      !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
+      Project : TEXT*50;
 
-    !! Titel des Assetpackages. entspricht dem File- bzw. foldernamen
-    Title : MANDATORY TEXT*80;
+      !! Titel des Assetpackages. entspricht dem File- bzw. foldernamen
+      Title : MANDATORY TEXT*80;
 
-    !! Angabe, ob das Assetpaket gesperrt oder frei verfügbar ist.
-    Restriction : MANDATORY BOOLEAN;
+      !! Angabe, ob das Assetpaket gesperrt oder frei verfügbar ist.
+      Restriction : MANDATORY BOOLEAN;
 
-    !! Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
-    RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      !! Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
+      Date_Restriction : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
-    !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats).
-    RelativePath : MANDATORY TEXT*254;
+      !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats).
+      Relative_Path : MANDATORY TEXT*254;
 
-    !! Bemerkung
-    Remark : MTEXT*200;
+      !! Bemerkung
+      Remark : MTEXT*200;
 
-  END AssetPackage;
+    END AssetPackage;
 
 
-  !! Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
-  CLASS Asset EXTENDS AssetBase =
-
-    !! Art des Dokuments
-    Kind : MANDATORY (
+    !! Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
+    CLASS Asset EXTENDS AssetBase =
+      !! Art des Dokuments
+      Kind : MANDATORY (
         /** undifferenziert
          */
         undiff(
@@ -191,8 +190,8 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
           video
         )
       );
-      /** Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
-       */
+
+      !! Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
       Topic : MANDATORY (
         /** Geologie allg.
          */
@@ -226,10 +225,8 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         other
       );
-      /** Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
-       * 
-       * Purpose->>>
-       */
+
+      !! Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
       Purpose : MANDATORY (
         /** Naturgefahren
          */
@@ -259,36 +256,23 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         exploration
       );
-      /** Identifikator (ID) des Asset. Wenn möglich soll
-       * die Original-ID verwendet werden.
-       */
-      ID_Alternate : TEXT*50;
-      /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
-       */
-      ID_SGS : MANDATORY 0 .. 1000000000;
-      /** Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen!
-       */
 
-	  /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-       */
-      Title_original : TEXT*80;
-      /** Titel, der keine datenschutzrechtlichen Informationen enthält.
-       * 
-       * Kann mit Originaltitel identisch sein.
-       * 
-       * Für Kind = Bericht muss Titel vergeben werden!
-       */
-      Title_public : MANDATORY TEXT*80;
-      /** Datum (Format: dd.mm.yyyy) der Erstellung des
-       * Assets.
-       * Bemerkung: Liegt kein Dokumentdatum vor, gilt
-       * 01.01.1111. Ist nur das Jahr bekannt, gilt:
-       * 01.01.yyyy. Ist nur Monat und Jahr bekannt, gilt:
-       * 01.mm.yyyy
-       */
+      !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
+      ID_Alternate : TEXT*50;
+
+      !! ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
+      ID_SGS : MANDATORY 0 .. 1000000000;
+
+      !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+      Title_Original : TEXT*80;
+
+      !! Titel, der keine datenschutzrechtlichen Informationen enthält. Kann mit Originaltitel identisch sein. Für Kind = Bericht muss Titel vergeben werden!
+      Title_Public : MANDATORY TEXT*80;
+
+      !! Datum (Format: dd.mm.yyyy) der Erstellung des Assets. Bemerkung: Liegt kein Dokumentdatum vor, gilt 01.01.1111. Ist nur das Jahr bekannt, gilt: 01.01.yyyy. Ist nur Monat und Jahr bekannt, gilt: 01.mm.yyyy
       Date_Creation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
-       */
+
+      !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
       Language : MANDATORY (
         /** Englisch
          */
@@ -309,32 +293,22 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         other
       );
-      /** Angabe, ob das Asset frei verfügbar (no) oder
-       * der Zugang eingeschränkt (yes) ist
-       */
+
+      !! Angabe, ob das Asset frei verfügbar (no) oder der Zugang eingeschränkt (yes) ist
       Restriction : MANDATORY BOOLEAN;
-      /** Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy)
-       * 
-       * Bemerkung: Wenn Restrict = yes, muss dieses
-       * Attribut ausgefüllt werden. Ist die
-       * Beschränkungsdauer unendlich bzw. unbestimmt,
-       * gilt: 31.12.9999. Für frei verfügbare Assets
-       * kann 01.01.1111 gesetzt werden.
-       */
-      RestrictionDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Link und Name des zugehörigen Files, inkl.
-       * Dateiendung (zur Kennzeichnung des Formats).
-       * Beispiel: tiefbohrung_abc.xlsx; http://www.meine-
-       * Domaene.ch/geothermie/tiefbohrungen.pdf;
-       * \\servername\meine-ablage\bohrprofil_01.jpg
-       */
-      RelativePath : MANDATORY TEXT*254;
-	  
-	  /* Pfad zu einer Online-Ressource des Files vom RelativePfad
-	  */
-	  URL : TEXT*254;
-      /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
-       */
+
+      !! Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy) Bemerkung: Wenn Restrict = yes, muss dieses Attribut ausgefüllt werden. Ist die Beschränkungsdauer unendlich bzw. unbestimmt, gilt: 31.12.9999. Für frei verfügbare Assets kann 01.01.1111 gesetzt werden.
+      Date_Restriction : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+
+      !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
+      Relative_Path : MANDATORY TEXT*254;
+
+      !! Pfad zu einer Online-Ressource des Files vom RelativePfad
+      URL : TEXT*254;
+
+      !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+      !! TODO: MINE-Types definieren
+
       Format : MANDATORY (
         /** Weitere, nicht genannte Formate
          */
@@ -379,31 +353,27 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         LAS
       );
-      /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll.
-       * 
-       * Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ ....
-       */
-      AuthorBiblio : TEXT*200;
-      
-      /** Bemerkungen zum jeweiligen Asset.
-       * 
-       * 1800 Zeichen, damit die bestehenden Inhalte aus den InfoGeol-Bemerkungsfeldern übernommen werden können.
-       */
+
+      !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
+      Author_Biblio : TEXT*200;
+
+      !! Bemerkungen zum jeweiligen Asset. 1800 Zeichen, damit die bestehenden Inhalte aus den InfoGeol-Bemerkungsfeldern übernommen werden können.
       Remark : MTEXT*1800;
+      
       MANDATORY CONSTRAINT
-        Kind <> #report OR DEFINED (Title_public);
+        Kind <> #report OR DEFINED (Title_Public);
 
     END Asset;
 
     /** Die Klasse "AssetAdmin" bildet Eigenschaften von Assets ab, die für das Management der Assets bei der LG relevant sind. Die hier abgebildeten Eigenschaften sind nicht für den Datenaustausch bestimmt / relevant.
      */
     CLASS AssetAdmin =
-      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
-       */
-      UsedBy : TEXT*255;
-      /** Bearbeitungsstatus
-       */
-      WorkStatus : MANDATORY (
+      !! UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
+
+      Used_By : TEXT*255;
+
+      !! Bearbeitungsstatus
+      Status_Work : MANDATORY (
         /** zu kontrollieren
          */
         toBeControled,
@@ -428,9 +398,9 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         released
       );
-      /** Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
-       */
-      RestrictionStatus : MANDATORY (
+
+      !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
+      Status_Restriction : MANDATORY (
         /** Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
          */
         differentStati,
@@ -441,7 +411,9 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         final
       );
-      NationalRelevance : MANDATORY (
+
+      !! Nationale Relevanz des Assets
+      National_Relevance : MANDATORY (
         /** nicht von nationaler Bedeutung
          */
         keineRelevanz,
@@ -458,47 +430,40 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         nichtZugeordnet
       );
-      /** Liegt im Asset Texterkennung vor?
-       */
+
+      !! Liegt im Asset Texterkennung vor?
       OCR : MANDATORY BOOLEAN;
-      OCRQuality : (
+
+      !! Qualität der Texterkennung
+      OCR_Quality : (
         high,
         low,
         medium
       );
-      /** Physischer Standort des analogen Dokuments
-       */
-      location : TEXT*20;
-      /** Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
-       */
-      Path : TEXT*20;
+
+      !! Physischer Standort des analogen Dokuments
+      Location : TEXT*20;
+
+      !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
+      Relative_Path : TEXT*20;
+
+      !!WIRD nicht mehr benötigt
       /** Begriffe einer Indexierung (manuell und/oder automatische Indexierung)
-       * 
-       * 
        * Dokumente/Files, die nicht automatisch indiziert werden können, werden manuell verschlagwortet.
        */
-      Index : TEXT*255;
-      /** Eingangsdatum des Assets
-       */
-      DateDelivery : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /**Index : TEXT*255;*/
+
+      !! Eingangsdatum des Assets
+      Date_Delivery : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+
+      !! Bemerkungen
       Remark : MTEXT*200;
+
     END AssetAdmin;
-	
-	
-    /** Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
-     */
+
+    !! Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
     CLASS Contact =
-      /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkon-takt ist nach Möglichkeit immer die Bewilligungsbe-hörde.
-       * 
-       * Werte in externer Codeliste speichern:
-       * Bundesbehörde
-       * Geologische Informationsstelle swisstopo
-       * Kantonale Bewilligungsbehörde
-       * Gemeinde
-       * Privatwirtschaft
-       * Universitäten, Fachhochschulen, etc.
-       * Andere Projektverfasser
-       */
+      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.
       Kind : MANDATORY (
         Bundesbehoerde,
         Andere,
@@ -507,37 +472,30 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
         Kantonale_Bewilligungsbehoerde,
         swisstopo
       );
-      /** Name des Kontakts
-       */
+
+      !! Name des Kontakts
       Name : MANDATORY TEXT*20;
-      /** Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
-       */
-      Adress : STRUCTURE RESTRICTION ( DM_GeolAssets.CoreGeolAsset.Adress );
-      /** Telefon-Nr
-       * 
-       * gemäss definierter Struktur von Tel. Nummern
-       */
+
+      !! Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
+      Adress : STRUCTURE RESTRICTION ( DMGeolAssets.CoreGeolAsset.Adress );
+
+      !! Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
       Telefon : TEXT*20;
-      /** e-mail
-       * 
-       * gemäss definierter Struktur von e-mail-Adressen
-       */
-      email : TEXT*20;
-      /** URL von Websites
-       * 
-       * gemäss definierter Struktur von URLs
-       */
+
+      !! e-mail-Adresse, gemäss definierter Struktur von e-mail-Adressen
+      Email : TEXT*20;
+
+      !! URL von Websites, gemäss definierter Struktur von URLs
       Website : TEXT*20;
+
     END Contact;
 
-    /** Die Klasse "Publication" bildet eine mögliche/allfällige Publikation der Assets über verschiedene Kanäle, z.B.: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc., ab.
-     */
+    !! Die Klasse "Publication" bildet eine mögliche/allfällige Publikation der Assets über verschiedene Kanäle, z.B.: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc., ab.
     CLASS Publication =
-      /** Datum der Publikation
-       */
-      Date : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
-       */
+      !! Datum der Publikation
+      Date_Publication : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+
+      !! Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
       Channel : MANDATORY (
         /** Konferenz
          */
@@ -562,32 +520,22 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
           undiff
         )
       );
-      /** Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
-       */
+      !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
       Description : TEXT*20;
-      /** URL oder DOI etc. zur jeweilgen Publikation
-       */
+
+      !! URL oder DOI etc. zur jeweilgen Publikation
       Link : TEXT*20;
-	  
-	  /*
-	  HIER eine Entweder-Oder-Prüfung für die Beziehungen Asset_Publication und AssetPackaghe_Pubication einfügen
-	  MANDATORY CONSTRAINT
-	  */
+
     END Publication;
 
-    /** Die Klasse "RegionOfInterest" beinhaltet das Gebiet resp. die räumliche Geometrie (Untersuchungsgebiet, -stelle oder -abschnitt), auf das sich das Dokument bezieht. Es müssen Multipart-Features möglich sein. Es müssen verschiedene Geometrietypen möglich sein.
-     * 
-     * Abstrakte Klasse, Objekte nur in Verbindung mit einer der Klassen StudyArea StudySection oder StudyLocation möglich!
-	 Alter Name. RegionOfInterest
-     */
+    !! Die Klasse "GeometryOfInterest" beinhaltet das Gebiet resp. die räumliche Geometrie (Untersuchungsgebiet, -stelle oder -abschnitt), auf das sich das Dokument bezieht. Es müssen Multipart-Features möglich sein. Es müssen verschiedene Geometrietypen möglich sein. Abstrakte Klasse, Objekte nur in Verbindung mit einer der Klassen StudyArea StudySection oder StudyLocation möglich! Alter Name: "RegionOfInterest"
     CLASS GeometryOfInterest (ABSTRACT) =
-      /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
-       */
+      !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       Geom_Quality : MANDATORY (
         /** Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
-		 */
-		placeholder,
-		/** Stellvertretergeometrie grösser 100x100 km
+        */
+        placeholder,
+        /** Stellvertretergeometrie grösser 100x100 km
          */
         placeholder100x100,
         /** Stellvertretergeometrie 10x10 km
@@ -603,110 +551,80 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
          */
         orginal
       );
-      /** Bemerkung zur Region of interest
-       */
+
+      !! Bemerkung zur Region of interest
       Remark : TEXT*20;
+
     END GeometryOfInterest;
 
-    /** Untersuchungsstelle (punktförmig)
-     */
+    !! Untersuchungsstelle (punktförmig)
     CLASS StudyLocation
     EXTENDS GeometryOfInterest =
-      /** Punktgeometrie für Bohrung, Messung, sehr
-       * kleinräumige Untersuchung etc.
-       */
+      !! Punktgeometrie für Bohrung, Messung, sehr kleinräumige Untersuchung etc.
       Geometry : MultiPoint;
     END StudyLocation;
 
-    /** Untersuchungsabschnitt (linienförmig)
-     */
+    !! Untersuchungsabschnitt (linienförmig)
     CLASS StudySection
     EXTENDS GeometryOfInterest =
-      /** Liniengeometrie für Profile, Strassen-/Trassenuntersuchungen etc.
-       */
+      !! Liniengeometrie für Profile, Strassen-/Trassenuntersuchungen etc.
       Geometry : MultiLine;
     END StudySection;
 
-    /** Untersuchungsgebiet (flächenhaft)
-     */
+    !! Untersuchungsgebiet (flächenhaft)
     CLASS StudyArea
     EXTENDS GeometryOfInterest =
-      /** Flächengeometrie des Untersuchungsgebietes
-       */
+      !! Flächengeometrie des Untersuchungsgebietes
       Geometry : MultiSurface;
     END StudyArea;
 
 
-    /** Jedes Objekt kann mit einem anderen in Beziehung stehen.
-     * Z.B.: mehrere Dokumente zu einem Projekt;
-     * 
-     * Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht) oder
-
-     */
+    !! Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht) oder
     ASSOCIATION Asset_Asset =
-      /** Asset X steht mit Asset Y in Beziehung
-       */
       AssetX -- {0..*} Asset;
-      /** Asset Y steht mit Asset X in Beziehung
-       */
       AssetY -- {0..*} Asset;
     END Asset_Asset;
 
-    /** Ein Asset gehört zu einerm AssetPackage und ein AssetPackage enhälrt ein oder mehrere Assets
-	*/
+    !! Ein Asset gehört zu einerm AssetPackage und ein AssetPackage enhälrt ein oder mehrere Assets
     ASSOCIATION Asset_AssetPackage =
-      /** AssetPackage
-       */
+      !! AssetPackage
       AssetPackage -- {1} AssetPackage;
-      /** Enthaltenes Asset
-       */
-      Asset -- {1..*} Asset;
+      !! Enthaltenes Asset
+      Asset -- {0..*} Asset;
     END Asset_AssetPackage;
-    
-	/** Ein Asset kann beliebig viele teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
-	  */
-	ASSOCIATION Asset_AssetPart =
-	  /** AssetPart
-	  */
-	  AssetPart -- {0..*} Asset;
-	  /** Asset aus dem der AssetPart extrahiert wurde
-	  */
-	  AssetMain -- {1} Asset;
-	 END Asset_AssetPart; 
-	  
-    /** Ein Dokument hat eine AssetAdmin und ein AssetAdmin gehört zu einem Dokument
-     */
-    ASSOCIATION Asset_AssetAdmin =
-      Asset -- {1} Asset;
-      /** Administrative Metadaten zum jeweiligen Asset
-       */
+
+    !! Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
+    ASSOCIATION Asset_AssetPart =
+      !! AssetPart
+      AssetPart -- {0..*} Asset;
+      !! Asset aus dem der AssetPart extrahiert wurde
+      AssetMain -- {1} Asset;
+    END Asset_AssetPart; 
+
+    !! Ein Asset oder AssetPackage hat ein AssetAdmin und ein AssetAdmin gehört zu einem Asset bzw. AssetPackage
+    !! FRAGE: Können die Attribute von AssetAdmin in AssetBase überführt werden?
+    ASSOCIATION AssetBase_AssetAdmin =
+      AssetBase -- {1} AssetBase;
       AssetAdmin -- {1} AssetAdmin;
-    END Asset_AssetAdmin;
+    END AssetBase_AssetAdmin;
 
-    /** Autor
-     */
-    ASSOCIATION Asset_Contact_Autor =
-      AssetAuthor -- {1..*} Asset;
-	  /** Autor, Ersteller des Assets
-      */
+    !! Autor
+    ASSOCIATION AssetBase_Contact_Author =
+      AssetAuthor -- {1..*} AssetBase;
       Author -- {0..*} Contact;
-    END Asset_Contact_Autor;
+    END AssetBase_Contact_Author;
 
-    ASSOCIATION Asset_Contact_Contractor =
-      AssetContractor -- {1..*} Asset;
-      /** Auftraggeber
-       */
+    !! Auftraggeber
+    ASSOCIATION AssetBase_Contact_Contractor =
+      AssetContractor -- {1..*} AssetBase;
       Contractor -- {0..*} Contact;
-    END Asset_Contact_Contractor;
+    END AssetBase_Contact_Contractor;
 
-    ASSOCIATION Asset_Contact_Supplier =
-      AssetSupplier -- {1..*} Asset;
-      /** Einlieferer des Assets
-       * 
-       * Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
-       */
+      !!  Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
+    ASSOCIATION AssetBase_Contact_Supplier =
+      AssetSupplier -- {1..*} AssetBase;
       Supplier -- {0..*} Contact;
-    END Asset_Contact_Supplier;
+    END AssetBase_Contact_Supplier;
 
   !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
   ASSOCIATION AssetBase_Publication =
@@ -714,37 +632,12 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
     Publication -- {0..*} Publication;
   END AssetBase_Publication;
 
-
-/** NICHT mehr erforderlich, wenn die Beziehung AssetBase_Publication genutzt wird
-    !! Publikation eines Asset
-    ASSOCIATION Asset_Publication =
-      Asset -- {0..*} Asset;
-      Publication -- {0..*} Publication;
-    END Asset_Publication;
-
-    ASSOCIATION AssetPackage_Publication =
-      AssetPackage -- {0..*} AssetPackage;
-      Publication -- {0..*} Publication;
-    END AssetPackage_Publication;
-*/
-
-
-    /** Untersuchungsgebiet zu einem Asset
-     */
-    ASSOCIATION Asset_GeometryOfInterest =
-      Asset -- {1} Asset;
-      /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
-       */
+    !! Untersuchungsgebiet zu einem Asset
+    ASSOCIATION AssetBase_GeometryOfInterest =
+      AssetBase -- {1} AssetBase;
       GeometryOfInterest -- {0..1} GeometryOfInterest;
-    END Asset_GeometryOfInterest;
-
-    ASSOCIATION AssetPackage_GeometryOfInterest =
-      AssetPackage -- {1} AssetPackage;
-      /** Region of interest. Geometrieobjekte die das jeweilige Asset behandeln.
-       */
-      GeometryOfInterest -- {0..1} GeometryOfInterest;
-    END AssetPackage_GeometryOfInterest;
+    END AssetBase_GeometryOfInterest;
 
   END CoreGeolAsset;
 
-END DM_GeolAssets.
+END DMGeolAssets.
