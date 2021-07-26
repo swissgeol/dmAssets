@@ -454,7 +454,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       /**Index : TEXT*255;*/
 
       !! Eingangsdatum des Assets
-      Date_Delivery : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      Date_Receipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
       !! Bemerkungen
       Remark : MTEXT*200;
