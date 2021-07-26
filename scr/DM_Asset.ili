@@ -56,7 +56,7 @@ MODEL DM_GeolAssets (de) AT "mailto:U80773132@localhost"
   !! Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
   TOPIC CoreGeolAsset =
 
-    !! Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automiatisch für alle Klasse definiert.
+    !! Technische ID zur Identifikation der einzelnen Asset-Objekte. Diese ID ist nicht für die Kommunikation vorgesehen! Automatisch für alle Klasse definiert.
 	OID AS INTERLIS.UUIDOID;
 
   !! Abstrakte Klasse die es ermöglicht die beziehung zwischen einer Publikation und einem Asset bzw. AssetPackage so zu erstellen, das mindestens ein Asset oder ein AssetPackage mit einer oder keienr Publikation in Beziehung steht.
