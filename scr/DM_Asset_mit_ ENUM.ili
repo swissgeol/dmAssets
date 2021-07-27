@@ -15,7 +15,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
     Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
-/**
+
     EnumAssetKind = (
         !! undifferenziert
         undiff(
@@ -99,8 +99,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
           video
         )       
       );
-*/
-/**
+
     EnumAssetTopic = (
         !! Geologie allg.
          
@@ -134,7 +133,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
          
         other
       );
-*/
+
     !! AssetPurpose = 
 
     !! ;
@@ -193,7 +192,6 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       MultiTextDescrAtt : BAG {0..*} OF StTextDescr;
     END StMultiText;
 
-/**
     STRUCTURE StAssetKind =
       AssetKind : EnumAssetKind;
     END StAssetKind;
@@ -205,7 +203,6 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
     STRUCTURE MultiAssetTopic =
       AssetKind : LIST {1..*} OF StAssetTopic;
     END MultiAssetTopic;
-*/
 
   !! Thema Core beinhaltet die minimal geforderten Metadaten für geologische Assets
   TOPIC CoreGeolAsset =
@@ -248,16 +245,15 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       !! Bemerkung
       Remark : MTEXT*200;
 
-    MANDATORY CONSTRAINT
-      Restriction <> #true OR DEFINED (DateRestriction);
-
     END AssetPackage;
 
 
     !! Die Klasse "Asset" beschreibt die minimalen Metadaten zu geologischen Assets( z.B. Berichte, Bohrprofile, Logs, Beschreibung Bohrlochverlauf, Analysen, Übersichtskarten, geol. Profilschnitte, etc.). Sie beschreibt auch Teil von Assets. Diese werden über eine Referenz auf das "Mutter-Asset" zum Asset verknüpft aus dem sie stammen.
     CLASS Asset EXTENDS AssetBase =
       !! Art des Dokuments
-      Kind : MANDATORY (
+      Kind : MANDATORY StAssetKind;
+/*  Durch ENUMERATION "AssetKind" ersetzt
+(
         !! undifferenziert
         undiff(
           !! Undifferenzierbare Daten, nicht speziell zuweisbar
@@ -340,9 +336,10 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
           video
         )
       );
-
+*/
       !! Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
-      Topic : MANDATORY (
+      Topic : MANDATORY MultiAssetTopic;
+/*  (
         !! Geologie allg.
          
         geology,
@@ -375,7 +372,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
          
         other
       );
-
+*/
       !! Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
       Purpose : MANDATORY (
         !! Naturgefahren
@@ -510,8 +507,9 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       !! Bemerkungen zum jeweiligen Asset. 1800 Zeichen, damit die bestehenden Inhalte aus den InfoGeol-Bemerkungsfeldern übernommen werden können.
       Remark : MTEXT*1800;
       
-      MANDATORY CONSTRAINT
-        Kind <> #report OR DEFINED (TitlePublic);
+!!      MANDATORY CONSTRAINT
+!!        Kind <> #report OR DEINED (TitlePublic);
+
 
     END Asset;
 
@@ -609,10 +607,10 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
       !! Bemerkungen
       Remark : MTEXT*200;
-
-    MANDATORY CONSTRAINT
-      OCR <> #true OR DEFINED (OCRQuality);
-
+/*
+      MANDATORY CONSTRAINT
+        OCR <> true OR DEFINED (OCRQuality);
+*/
     END AssetAdmin;
 
     !! Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
