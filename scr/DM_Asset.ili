@@ -598,7 +598,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       !! AssetPart
       AssetPart -- {0..*} Asset;
       !! Asset aus dem der AssetPart extrahiert wurde
-      AssetMain -<> {1} Asset;
+      AssetMain -<> {0..*} Asset;
     END Asset_AssetPart; 
 
     !! Ein Asset oder AssetPackage hat ein AssetAdmin und ein AssetAdmin gehört zu einem Asset bzw. AssetPackage
