@@ -61,6 +61,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
     !! Abstrakte Klasse die es ermöglicht die beziehung zwischen einer Publikation und einem Asset bzw. AssetPackage so zu erstellen, das mindestens ein Asset oder ein AssetPackage mit einer oder keienr Publikation in Beziehung steht.
     CLASS AssetBase (ABSTRACT) =
+      TEST_Remark : TEXT*20;
     END AssetBase;
 
     !! Datenpaket, dass zu einem Projekt gehört. Insbesondere relevant für zukünftige Lieferungen aus Geothermieprojekten etc.
@@ -458,7 +459,10 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
       !! Bemerkungen
       Remark : MTEXT*200;
-
+/*
+      MANDATORY CONSTRAINT
+        OCR <> true OR DEFINED (OCR_Quality);
+*/
     END AssetAdmin;
 
     !! Kontakt, so wie es auch im DM Bohrdaten beschrieben ist und in ZAD --> BDMS implementiert wurde.
@@ -598,7 +602,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
       !! AssetPart
       AssetPart -- {0..*} Asset;
       !! Asset aus dem der AssetPart extrahiert wurde
-      AssetMain -<> {0..*} Asset;
+      AssetMain -- {0..*} Asset;
     END Asset_AssetPart; 
 
     !! Ein Asset oder AssetPackage hat ein AssetAdmin und ein AssetAdmin gehört zu einem Asset bzw. AssetPackage
