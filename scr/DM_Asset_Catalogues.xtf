@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
+	<HEADERSECTION SENDER="ili2gpkg-4.4.4-5586f5e20f4e40fd05286ecb363ec6d450b85cfa" VERSION="2.3">
+		<MODELS>
+			<MODEL NAME="CatalogueObjects_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="CatalogueObjectTrees_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="InternationalCodes_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="Localisation_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="LocalisationCH_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="Dictionaries_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="DictionariesCH_V1" VERSION="2011-08-30" URI="http://www.geo.admin.ch"/>
+			<MODEL NAME="DMAssetsCatalogues" VERSION="2021-07-20" URI="mailto:localhost"/>
+		</MODELS>
+	</HEADERSECTION>
+	<DATASECTION>
+		<DMAssetsCatalogues.Catalogues BID="DMAssetsCatalogues.Catalogues">
+			<DMAssetsCatalogues.Catalogues.KindItem TID="1316aa51-ff79-4e2d-aa0e-8812691bfd3e">
+				<IsSuperItem>true</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>undiff</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="4f090761-aa69-40bb-89f7-14aa4f8cd71d">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="1316aa51-ff79-4e2d-aa0e-8812691bfd3e"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>other</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="5c66c1ce-19ca-427c-a542-2782ee8828ef">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="1316aa51-ff79-4e2d-aa0e-8812691bfd3e"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>rawData</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Rohdaten</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="2a2b2d8c-2ab3-4f51-9050-e3332b672f61">
+				<IsSuperItem>true</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>report</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Bericht</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>fr</Language>
+								<Text>Rapport</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="f65cce4a-fe69-4783-84df-d8bbf88010be">
+				<IsSuperItem>true</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>measurements</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Messungen</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="38eeb807-20dc-4e82-a682-978644b79ba6">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="f65cce4a-fe69-4783-84df-d8bbf88010be"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>log</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>LOG</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>fr</Language>
+								<Text>Log</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="3d92b0f1-386c-45b7-a3c9-5e0ae52370f8">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="f65cce4a-fe69-4783-84df-d8bbf88010be"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>deviceOutput</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Geräteoutput</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="fc556805-b0d9-4c1b-97be-4fc0e71b6f5f">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="f65cce4a-fe69-4783-84df-d8bbf88010be"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>manualFieldRecord</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Feldaufzeichnung</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="efcaeb0c-5c02-46cb-8e69-6e31a8a38ca8">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="f65cce4a-fe69-4783-84df-d8bbf88010be"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>labData</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Labormessung</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="6e9a3231-ab46-4d2c-90e6-3541e049846a">
+				<IsSuperItem>true</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>map</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Karte</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>fr</Language>
+								<Text>Carte</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="a690a8db-ee3b-47f4-852f-5db1199894e0">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="6e9a3231-ab46-4d2c-90e6-3541e049846a"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>shotpointmap</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Schusspunktkarte</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+			<DMAssetsCatalogues.Catalogues.KindItem TID="395bcc0f-04b8-4eb1-9ffc-a04c7aa411fc">
+				<IsSuperItem>false</IsSuperItem>
+				<IsUseable>true</IsUseable>
+				<Parent REF="6e9a3231-ab46-4d2c-90e6-3541e049846a"/>
+				<Name>
+					<LocalisationCH_V1.MultilingualText>
+						<LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Text>basemap</Text>
+							</LocalisationCH_V1.LocalisedText>
+							<LocalisationCH_V1.LocalisedText>
+								<Language>de</Language>
+								<Text>Basemap</Text>
+							</LocalisationCH_V1.LocalisedText>
+						</LocalisedText>
+					</LocalisationCH_V1.MultilingualText>
+				</Name>
+			</DMAssetsCatalogues.Catalogues.KindItem>
+		</DMAssetsCatalogues.Catalogues>
+	</DATASECTION>
+</TRANSFER>
