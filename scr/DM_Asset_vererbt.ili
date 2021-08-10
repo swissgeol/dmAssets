@@ -604,7 +604,7 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
     !! Ein Asset oder AssetPackage hat ein AssetAdmin und ein AssetAdmin gehört zu einem Asset bzw. AssetPackage
     !! FRAGE: Können die Attribute von AssetAdmin in AssetBase überführt werden?
     ASSOCIATION Admin_AdminAsset =
-      AdminAA -- {1} Admin;
+      Asset -- {1} Admin;
       AssetAdmin -- {1} AdminAsset;
     END Admin_AdminAsset;
 
@@ -628,13 +628,13 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
   !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
   ASSOCIATION Admin_Publication =
-    AssetBase -- {1..*} Admin;
+    AssetPub -- {1..*} Admin;
     Publication -- {0..*} Publication;
   END Admin_Publication;
 
     !! Untersuchungsgebiet zu einem Asset
     ASSOCIATION Admin_GeometryOfInterest =
-      AssetBase -- {1} Admin;
+      AssetGeom -- {1} Admin;
       GeometryOfInterest -- {0..1} GeometryOfInterest;
     END Admin_GeometryOfInterest;
 
