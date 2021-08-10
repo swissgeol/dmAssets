@@ -27,7 +27,6 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
     END TopicRef;
 
-
 !! Codelist für das Attribut Asset.Purpose
 	CLASS PurposeItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY TEXT;
