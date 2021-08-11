@@ -1,11 +1,60 @@
 INTERLIS 2.3;
 
+
+MODEL DMAssetsCatalogues (en)
+AT "mailto:U80773132@localhost"
+VERSION "2021-07-20"  =
+  IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+
+  TOPIC Catalogues =
+    OID AS INTERLIS.UUIDOID;
+
+    CLASS KindItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END KindItem;
+
+    STRUCTURE KindRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
+    END KindRef;
+
+    CLASS TopicItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END TopicItem;
+
+    STRUCTURE TopicRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
+    END TopicRef;
+
+    CLASS PurposeItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END PurposeItem;
+
+    STRUCTURE PurposeRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
+    END PurposeRef;
+
+  END Catalogues;
+
+END DMAssetsCatalogues.
+
+
+
 /** Datenmodell für geologsiche Assets (Dokumente im weiteren Sinne), z.B.:
  * - Unstrukturierte digitale Dokumente (Berichte, z.B. in  (PDF, docx, etc.)
  * - Strukturierte digitale Dokumente (Files), wie z.B. ASCII, xlsx, shp, etc.
  * - Analoge Dokumente
  * Software und Konfigurationen von Software, Algorithmen, etc.
  */
+
 MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
   VERSION "2019-02-15"  =
 
@@ -362,16 +411,6 @@ MODEL DMGeolAssets (de) AT "mailto:U80773132@localhost"
 
       !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
       TitleOriginal : TEXT*80;
-
-/**
-      !! Titel, der keine datenschutzrechtlichen Informationen enthält. Kann mit Originaltitel identisch sein. Für Kind = Bericht muss Titel vergeben werden!
-      TitlePublic : MANDATORY TEXT*80;
-*/
-
-/**
-      !! Datum (Format: dd.mm.yyyy) der Erstellung des Assets. Bemerkung: Liegt kein Dokumentdatum vor, gilt 01.01.1111. Ist nur das Jahr bekannt, gilt: 01.01.yyyy. Ist nur Monat und Jahr bekannt, gilt: 01.mm.yyyy
-      DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-*/
 
       !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
       Language : MANDATORY (
