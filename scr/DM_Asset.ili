@@ -186,15 +186,15 @@ VERSION "2021-08-16"  =
       !! Nationale Relevanz des Assets
       NationalRelevance : MANDATORY (
         !! nicht von nationaler Bedeutung
-        keineRelevanz,
+        notRelevant,
         !! 3. Priorität
-        Prio3,
+        prio3,
         !! 2. Priorität
-        Prio2,
+        prio2,
         !! 1. Priorität
-        Prio1,
+        prio1,
         !! nicht einer Kategorie zugeordnet
-        nichtZugeordnet
+        notAssigned
       );
 
       !! Eingangsdatum des Assets
