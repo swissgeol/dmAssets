@@ -1,88 +1,12 @@
 INTERLIS 2.3;
 
-!!****************************************
-!! MODEL
-!!****************************************
-MODEL DMBase (de)
-AT "mailto:U80773132@localhost"
-VERSION "2021-08-11"  =
-
-
-!!****************************************
-!! TOPIC 
-!!****************************************
-  TOPIC Basic =
-    OID AS INTERLIS.UUIDOID;
-
-  END Basic;
-  
-END DMBase.
-
-!!****************************************
-!! MODEL
-!!****************************************
-MODEL DMAssetsCatalogues (de)
-AT "mailto:U80773132@localhost"
-VERSION "2021-07-20"  =
-
-
-!!****************************************
-!! IMPORTS
-!!****************************************
-  IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-  IMPORTS DMBase;
-
-
-!!****************************************
-!! TOPIC 
-!!****************************************
-  TOPIC Catalogues =
-
-    !! 
-    CLASS KindItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-    END KindItem;
-
-    STRUCTURE KindRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
-    END KindRef;
-
-    CLASS TopicItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
-    END TopicItem;
-
-    STRUCTURE TopicRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
-    END TopicRef;
-
-    CLASS PurposeItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
-    END PurposeItem;
-
-    STRUCTURE PurposeRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
-    END PurposeRef;
-
-  END Catalogues;
-
-END DMAssetsCatalogues.
-
 
 !!****************************************
 !! MODEL
 !!****************************************
 MODEL DMGeolAssets (de)
 AT "mailto:U80773132@localhost"
-VERSION "2021-08-11"  =
+VERSION "2021-08-16"  =
 
 
 !!****************************************
@@ -90,8 +14,8 @@ VERSION "2021-08-11"  =
 !!****************************************
   IMPORTS GeometryCHLV95_V1,Units;
   IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-  IMPORTS DMBase;
-  IMPORTS DMAssetsCatalogues;
+!!  IMPORTS DMBase;
+!!  IMPORTS DMAssetsCatalogues;
 
 
 !!****************************************
@@ -161,8 +85,59 @@ VERSION "2021-08-11"  =
 !!****************************************
 !! TOPIC 
 !!****************************************
+  TOPIC Basic =
+    OID AS INTERLIS.UUIDOID;
+
+  END Basic;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
+  TOPIC Catalogues =
+  DEPENDS ON Basic;
+    !! 
+    CLASS KindItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END KindItem;
+
+    STRUCTURE KindRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
+    END KindRef;
+
+    CLASS TopicItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END TopicItem;
+
+    STRUCTURE TopicRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
+    END TopicRef;
+
+    CLASS PurposeItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END PurposeItem;
+
+    STRUCTURE PurposeRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
+    END PurposeRef;
+
+  END Catalogues;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
   TOPIC CoreGeolAsset =
-  DEPENDS ON DMAssetsCatalogues.Catalogues; 
+  DEPENDS ON Basic, Catalogues; 
   
 !!****************************************
 !! CLASSES
@@ -186,29 +161,20 @@ VERSION "2021-08-11"  =
       StatusWork : MANDATORY (
         !! zu kontrollieren
         toBeControled,
-
         !! kontrolliert
         controled,
-
         !! pendent
         pending,
-
         !! zu bearbeiten
         toBeEdited,
-
         !! in Bearbeitung
         inProgress,
-
         !! bearbeitet
         edited,
-
         !! zurueckgestellt
         postponed,
-
         !! publiziert
-
         published,
-
         !! freigegeben
         released
       );
@@ -217,16 +183,12 @@ VERSION "2021-08-11"  =
       NationalRelevance : MANDATORY (
         !! nicht von nationaler Bedeutung
         keineRelevanz,
-
         !! 3. Priorität
         Prio3,
-
         !! 2. Priorität
         Prio2,
-
         !! 1. Priorität
         Prio1,
-
         !! nicht einer Kategorie zugeordnet
         nichtZugeordnet
       );
@@ -273,14 +235,11 @@ VERSION "2021-08-11"  =
     EXTENDS AdminBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
       StatusRestriction : MANDATORY (
-        /** Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
-         */
+        !! Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
         differentStati,
-        /** Berechtigungsstatus offen (Prüfung erforderlich)
-         */
+        !! Berechtigungsstatus offen (Prüfung erforderlich)
         open,
-        /** Berechtigungsstatus geklärt
-         */
+        !! Berechtigungsstatus geklärt
         final
       );
 
@@ -302,13 +261,13 @@ VERSION "2021-08-11"  =
     CLASS Asset
     EXTENDS AssetBase =
       !! Art des Dokuments
-      Kind : MANDATORY DMAssetsCatalogues.Catalogues.KindRef;
+      Kind : MANDATORY DMGeolAssets.Catalogues.KindRef;
 
       !! Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
-      Topic : MANDATORY DMAssetsCatalogues.Catalogues.TopicRef;
+      Topic : BAG {1..*} OF DMGeolAssets.Catalogues.TopicRef;
 
       !! Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
-      Purpose : MANDATORY DMAssetsCatalogues.Catalogues.PurposeRef;
+      Purpose : BAG {1..*} OF DMGeolAssets.Catalogues.PurposeRef;
 
       !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
       IDAlternate : StMulitID;
@@ -322,22 +281,16 @@ VERSION "2021-08-11"  =
       !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
       Language : MANDATORY (
         !! Englisch
-         
         EN,
         !! Italienisch
-         
         IT,
         !! Französisch
-         
         FR,
         !! Deutsch
-         
         DE,
         !! für Dokumente/Files, die nur numerisch aufgebaut sind.
-         
         NUM,
         !! andere Sprachen
-         
         other
       );
 
@@ -349,53 +302,42 @@ VERSION "2021-08-11"  =
 
       Format : MANDATORY (
         !! Weitere, nicht genannte Formate
-         
         other,
         !! Analoge Dokumente (Papier, Mikrofichen etc.)
-         
         textAnalog,
         !! Grafisch analoge Zeichnung
-         
         graphicAnalog,
         !! Grafisch digitale Vektorgrafik
-         
         GraphicVector,
         !! Grafisch digitale Rastergrafik
-         
         GraphicRaster,
         !! Sammlung von einzelnen Assets, z.B. Rohdaten einer Seismikkampagne
-         
         Package,
         !! Digitales binäres Format
-         
         Binaer,
         !! Textformat (z.B.: ascii, txt, doc, docx, xls, xlsx, xml, csv etc.)
-         
         textDigital,
         !! Seismikspezifische Formate (SPS, SEG2, SEGD, SEGY etc.)
-         
         Seismic(
           SEGY,
           SEGY_exported,
           !! andere seismikspezifische Formate
-           
           other
         ),
         !! PDF-Datei
-         
         PDF,
         !! ESRI Shapefile
-         
         SHP,
         !! Log-Files (Log ASCII Standard)
-         
         LAS
       );
 
       !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
       AuthorBiblio : TEXT*200;
 
-/**    
+      AssetComposition : BAG {1..*} OF DMGeolAssets.Catalogues.KindRef;
+
+/**
       MANDATORY CONSTRAINT
         Kind <> #report OR DEFINED (TitlePublic);
 */
@@ -413,23 +355,17 @@ VERSION "2021-08-11"  =
     CLASS GeometryOfInterest =
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       GeomQuality : MANDATORY (
-        /** Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
-        */
+        !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
         placeholder,
-        /** Stellvertretergeometrie grösser 100x100 km
-         */
+        !! Stellvertretergeometrie grösser 100x100 km
         placeholder100x100,
-        /** Stellvertretergeometrie 10x10 km
-         */
+        !! Stellvertretergeometrie 10x10 km
         placeholder10x10,
-        /** Stellverteretergeometrie 1x1 km
-         */
+        !! Stellverteretergeometrie 1x1 km
         placeholder1x1,
-        /** Der tatsächlichen Geometrie angenähert (Vereinfachung)
-         */
+        !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
         simplification,
-        /** so digitalisiert, wie die Geometrie voliegt
-         */
+        !! so digitalisiert, wie die Geometrie voliegt
         orginal
       );
 
@@ -467,26 +403,19 @@ VERSION "2021-08-11"  =
 
       !! Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
       Channel : MANDATORY (
-        /** Konferenz
-         */
+        !! Konferenz
         conference,
-        /** Fachzeitschrift
-         */
+        !! Fachzeitschrift
         professionalJournal,
-        /** Monografie, z.B. Buch, Lehrbuch etc.
-         */
+        !! Monografie, z.B. Buch, Lehrbuch etc.
         monograph,
-        /** Internet
-         */
+        !! Internet
         internet(
-          /** Geoportal des Bundes: map.geo.admin.ch
-           */
+          !! Geoportal des Bundes: map.geo.admin.ch
           mapGeoAdmin,
-          /** OpenData-Portal: https://opendata.swiss
-           */
+          !! OpenData-Portal: https://opendata.swiss
           openData,
-          /** nicht spezifizierte Website
-           */
+          !! nicht spezifizierte Website
           undiff
         )
       );
@@ -547,8 +476,15 @@ VERSION "2021-08-11"  =
       !! AssetPart
       AssetPart -- {0..*} Asset;
       !! Asset aus dem der AssetPart extrahiert wurde
-      AssetMain -- {0..*} Asset;
+      AssetMain -- {1} Asset;
     END Asset_AssetPart; 
+
+
+    !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
+    ASSOCIATION Asset_AssetPackage =
+      PackagedAsset -- {0..*} Asset;
+      Package -- {1} AssetPackage;
+    END Asset_AssetPackage;
 
 
   !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
@@ -572,10 +508,10 @@ VERSION "2021-08-11"  =
     END AssetBase_Contact_Author;
 
     !! Auftraggeber
-    ASSOCIATION AssetBase_Contact_Contractor =
-      ContractoredAsset -- {1..*} AssetBase;
-      Contractor -- {0..*} Contact;
-    END AssetBase_Contact_Contractor;
+    ASSOCIATION AssetBase_Contact_Initiator =
+      InitiatedAsset -- {1..*} AssetBase;
+      Initiator -- {0..*} Contact;
+    END AssetBase_Contact_Initiator;
 
     !!  Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
     ASSOCIATION AssetBase_Contact_Supplier =
@@ -585,14 +521,14 @@ VERSION "2021-08-11"  =
 
 
     ASSOCIATION Asset_AdminAsset =
-      AdminedAsset -- {0..*} Asset;
-      AdminAsset -- {0..*} AdminAsset;
+      AdminedAsset -- {1} Asset;
+      AdminAsset -- {1} AdminAsset;
     END Asset_AdminAsset;
 
 
     ASSOCIATION AssetPackage_AdminAssetPackage =
-      AdminedAssetPackage -- {0..*} AssetPackage;
-      AdminAssetPackage -- {0..*} AdminAssetPackage;
+      AdminedAssetPackage -- {1} AssetPackage;
+      AdminAssetPackage -- {1} AdminAssetPackage;
     END AssetPackage_AdminAssetPackage;
 
   END CoreGeolAsset;

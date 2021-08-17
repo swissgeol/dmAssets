@@ -263,9 +263,11 @@
       </flags>
       <customproperties>
         <property key="dualview/previewExpressions">
+          <value>coalesce(attribute(get_feature('KindItem','t_id',parent),'aname')|| ' - ' ||"aname", "aname")</value>
           <value>aname</value>
           <value>"aname"</value>
           <value>aname</value>
+          <value>coalesce(attribute(get_feature('KindItem','t_id',parent),'aname')|| ' - ' ||"aname", "aname")</value>
         </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property key="variableNames"/>
@@ -1544,7 +1546,11 @@ def my_form_open(dialog, layer, feature):
         <Removable>1</Removable>
         <Searchable>1</Searchable>
       </flags>
-      <customproperties/>
+      <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
+      </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
           <Option value="" type="QString"/>
@@ -1667,7 +1673,18 @@ def my_form_open(dialog, layer, feature):
         <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
       <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
-        <columns/>
+        <columns>
+          <column type="field" hidden="0" width="-1" name="T_Id"/>
+          <column type="field" hidden="0" width="-1" name="T_Ili_Tid"/>
+          <column type="field" hidden="0" width="-1" name="aname"/>
+          <column type="field" hidden="0" width="-1" name="adescription"/>
+          <column type="field" hidden="0" width="-1" name="issuperitem"/>
+          <column type="field" hidden="0" width="-1" name="isuseable"/>
+          <column type="field" hidden="0" width="-1" name="parent_kinditem"/>
+          <column type="field" hidden="0" width="-1" name="parent_topicitem"/>
+          <column type="field" hidden="0" width="-1" name="parent_purposeitem"/>
+          <column type="actions" hidden="1" width="-1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -1922,6 +1939,7 @@ def my_form_open(dialog, layer, feature):
       </flags>
       <customproperties>
         <property key="dualview/previewExpressions">
+          <value>aname</value>
           <value>"aname"</value>
         </property>
       </customproperties>
