@@ -1,0 +1,42 @@
+INTERLIS 2.3;
+MODEL DMAssetsCatalogues (en) AT "mailto:U80773132@localhost" VERSION "2021-07-20" =
+
+IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+
+  TOPIC Catalogues =
+    
+	OID AS INTERLIS.UUIDOID;
+
+!! Codelist für das Attribut Asset.Kind
+	CLASS KindItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  Name : MANDATORY LocalisationCH_V1.MultilingualText;
+	  Description : LocalisationCH_V1.MultilingualMText;
+	END KindItem;
+
+    STRUCTURE KindRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
+    END KindRef;
+
+!! Codelist für das Attribut Asset.Topic
+	CLASS TopicItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END TopicItem;
+    
+    STRUCTURE TopicRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
+    END TopicRef;
+
+!! Codelist für das Attribut Asset.Purpose
+	CLASS PurposeItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY TEXT;
+      Description : TEXT;
+    END PurposeItem;
+    
+    STRUCTURE PurposeRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
+    END PurposeRef;
+	
+  END Catalogues;
+
+END DMAssetsCatalogues.
