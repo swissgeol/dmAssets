@@ -20,99 +20,101 @@
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-group expanded="1" checked="Qt::Checked" name="tables">
+    <layer-tree-group name="tables" expanded="0" checked="Qt::Checked">
       <customproperties/>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=purposeref" providerKey="ogr" checked="Qt::Checked" id="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7" name="PurposeRef">
+      <layer-tree-layer providerKey="ogr" name="PurposeRef" source="./DM_Asset_Catalogues.gpkg|layername=purposeref" id="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=topicref" providerKey="ogr" checked="Qt::Checked" id="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66" name="TopicRef">
+      <layer-tree-layer providerKey="ogr" name="TopicRef" source="./DM_Asset_Catalogues.gpkg|layername=topicref" id="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=multilingualmtext" providerKey="ogr" checked="Qt::Checked" id="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a" name="MultilingualMText">
+      <layer-tree-layer providerKey="ogr" name="MultilingualMText" source="./DM_Asset_Catalogues.gpkg|layername=multilingualmtext" id="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=multilingualtext" providerKey="ogr" checked="Qt::Checked" id="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7" name="MultilingualText">
+      <layer-tree-layer providerKey="ogr" name="MultilingualText" source="./DM_Asset_Catalogues.gpkg|layername=multilingualtext" id="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=localisedmtext" providerKey="ogr" checked="Qt::Checked" id="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394" name="LocalisedMText">
+      <layer-tree-layer providerKey="ogr" name="LocalisedMText" source="./DM_Asset_Catalogues.gpkg|layername=localisedmtext" id="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=localisedtext" providerKey="ogr" checked="Qt::Checked" id="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe" name="LocalisedText">
+      <layer-tree-layer providerKey="ogr" name="LocalisedText" source="./DM_Asset_Catalogues.gpkg|layername=localisedtext" id="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group expanded="1" checked="Qt::Checked" name="domains">
+    <layer-tree-group name="domains" expanded="1" checked="Qt::Checked">
       <customproperties/>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=languagecode_iso639_1" providerKey="ogr" checked="Qt::Checked" id="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" name="LanguageCode_ISO639_1">
+      <layer-tree-layer providerKey="ogr" name="LanguageCode_ISO639_1" source="./DM_Asset_Catalogues.gpkg|layername=languagecode_iso639_1" id="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=purposeitem" providerKey="ogr" checked="Qt::Checked" id="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" name="PurposeItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=topicitem" providerKey="ogr" checked="Qt::Checked" id="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" name="TopicItem">
+      <layer-tree-layer providerKey="ogr" name="PurposeItem" source="./DM_Asset_Catalogues.gpkg|layername=purposeitem" id="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties>
-          <property value="1" key="showFeatureCount"/>
+          <property key="showFeatureCount" value="1"/>
         </customproperties>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" legend_exp="" source="./DM_Asset_Catalogues.gpkg|layername=kinditem" providerKey="ogr" checked="Qt::Checked" id="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" name="KindItem">
+      <layer-tree-layer providerKey="ogr" name="TopicItem" source="./DM_Asset_Catalogues.gpkg|layername=topicitem" id="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" expanded="1" checked="Qt::Checked" legend_exp="">
         <customproperties>
-          <property value="1" key="showFeatureCount"/>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer providerKey="ogr" name="KindItem" source="./DM_Asset_Catalogues.gpkg|layername=kinditem" id="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" expanded="1" checked="Qt::Checked" legend_exp="">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
     <custom-order enabled="0"/>
   </layer-tree-group>
-  <snapping-settings mode="2" enabled="0" unit="1" type="1" intersection-snapping="0" tolerance="12">
+  <snapping-settings tolerance="12" unit="1" intersection-snapping="0" type="1" mode="2" enabled="0">
     <individual-layer-settings/>
   </snapping-settings>
   <relations>
-    <relation strength="Composition" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="kinditem_parent_kinditem_kinditem_T_Id" name="kinditem_parent_kinditem_kinditem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_kinditem"/>
+    <relation name="kinditem_parent_kinditem_kinditem_T_Id" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="kinditem_parent_kinditem_kinditem_T_Id" strength="Composition" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d">
+      <fieldRef referencingField="parent_kinditem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="kinditem_parent_purposeitem_purposeitem_T_Id" name="kinditem_parent_purposeitem_purposeitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_purposeitem"/>
+    <relation name="kinditem_parent_purposeitem_purposeitem_T_Id" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="kinditem_parent_purposeitem_purposeitem_T_Id" strength="Composition" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d">
+      <fieldRef referencingField="parent_purposeitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="kinditem_parent_topicitem_topicitem_T_Id" name="kinditem_parent_topicitem_topicitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_topicitem"/>
+    <relation name="kinditem_parent_topicitem_topicitem_T_Id" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="kinditem_parent_topicitem_topicitem_T_Id" strength="Composition" referencingLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d">
+      <fieldRef referencingField="parent_topicitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" referencingLayer="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394" id="localisedmtext_alanguage_languagecode_iso639_1_T_Id" name="localisedmtext_alanguage_languagecode_iso639_1_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="alanguage"/>
+    <relation name="localisedmtext_alanguage_languagecode_iso639_1_T_Id" referencedLayer="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" id="localisedmtext_alanguage_languagecode_iso639_1_T_Id" strength="Association" referencingLayer="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394">
+      <fieldRef referencingField="alanguage" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a" referencingLayer="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394" id="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id" name="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="multilingualmtext_localisedtext"/>
+    <relation name="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id" referencedLayer="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a" id="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id" strength="Association" referencingLayer="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394">
+      <fieldRef referencingField="multilingualmtext_localisedtext" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" referencingLayer="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe" id="localisedtext_alanguage_languagecode_iso639_1_T_Id" name="localisedtext_alanguage_languagecode_iso639_1_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="alanguage"/>
+    <relation name="localisedtext_alanguage_languagecode_iso639_1_T_Id" referencedLayer="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" id="localisedtext_alanguage_languagecode_iso639_1_T_Id" strength="Association" referencingLayer="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe">
+      <fieldRef referencingField="alanguage" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7" referencingLayer="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe" id="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id" name="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="multilingualtext_localisedtext"/>
+    <relation name="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id" referencedLayer="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7" id="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id" strength="Association" referencingLayer="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe">
+      <fieldRef referencingField="multilingualtext_localisedtext" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="purposeitem_parent_kinditem_kinditem_T_Id" name="purposeitem_parent_kinditem_kinditem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_kinditem"/>
+    <relation name="purposeitem_parent_kinditem_kinditem_T_Id" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="purposeitem_parent_kinditem_kinditem_T_Id" strength="Composition" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a">
+      <fieldRef referencingField="parent_kinditem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="purposeitem_parent_purposeitem_purposeitem_T_Id" name="purposeitem_parent_purposeitem_purposeitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_purposeitem"/>
+    <relation name="purposeitem_parent_purposeitem_purposeitem_T_Id" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="purposeitem_parent_purposeitem_purposeitem_T_Id" strength="Composition" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a">
+      <fieldRef referencingField="parent_purposeitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="purposeitem_parent_topicitem_topicitem_T_Id" name="purposeitem_parent_topicitem_topicitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_topicitem"/>
+    <relation name="purposeitem_parent_topicitem_topicitem_T_Id" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="purposeitem_parent_topicitem_topicitem_T_Id" strength="Composition" referencingLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a">
+      <fieldRef referencingField="parent_topicitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" referencingLayer="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7" id="purposeref_areference_purposeitem_T_Id" name="purposeref_areference_purposeitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="areference"/>
+    <relation name="purposeref_areference_purposeitem_T_Id" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="purposeref_areference_purposeitem_T_Id" strength="Association" referencingLayer="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7">
+      <fieldRef referencingField="areference" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="topicitem_parent_kinditem_kinditem_T_Id" name="topicitem_parent_kinditem_kinditem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_kinditem"/>
+    <relation name="topicitem_parent_kinditem_kinditem_T_Id" referencedLayer="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" id="topicitem_parent_kinditem_kinditem_T_Id" strength="Composition" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea">
+      <fieldRef referencingField="parent_kinditem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="topicitem_parent_purposeitem_purposeitem_T_Id" name="topicitem_parent_purposeitem_purposeitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_purposeitem"/>
+    <relation name="topicitem_parent_purposeitem_purposeitem_T_Id" referencedLayer="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" id="topicitem_parent_purposeitem_purposeitem_T_Id" strength="Composition" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea">
+      <fieldRef referencingField="parent_purposeitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Composition" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="topicitem_parent_topicitem_topicitem_T_Id" name="topicitem_parent_topicitem_topicitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="parent_topicitem"/>
+    <relation name="topicitem_parent_topicitem_topicitem_T_Id" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="topicitem_parent_topicitem_topicitem_T_Id" strength="Composition" referencingLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea">
+      <fieldRef referencingField="parent_topicitem" referencedField="T_Id"/>
     </relation>
-    <relation strength="Association" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" referencingLayer="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66" id="topicref_areference_topicitem_T_Id" name="topicref_areference_topicitem_T_Id">
-      <fieldRef referencedField="T_Id" referencingField="areference"/>
+    <relation name="topicref_areference_topicitem_T_Id" referencedLayer="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" id="topicref_areference_topicitem_T_Id" strength="Association" referencingLayer="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66">
+      <fieldRef referencingField="areference" referencedField="T_Id"/>
     </relation>
   </relations>
-  <mapcanvas annotationsVisible="1" name="theMapCanvas">
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>unknown</units>
     <extent>
       <xmin>-1</xmin>
@@ -126,57 +128,57 @@
   </mapcanvas>
   <projectModels/>
   <legend updateDrawingOrder="true">
-    <legendgroup open="true" checked="Qt::Checked" name="tables">
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="PurposeRef">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7" isInOverview="0" visible="1"/>
+    <legendgroup open="false" name="tables" checked="Qt::Checked">
+      <legendlayer showFeatureCount="0" open="true" name="PurposeRef" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="TopicRef">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="0" open="true" name="TopicRef" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="TopicRef_25948c9b_7f33_4428_9cb0_085663538f66"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="MultilingualMText">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="0" open="true" name="MultilingualMText" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="MultilingualText">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="0" open="true" name="MultilingualText" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="LocalisedMText">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="0" open="true" name="LocalisedMText" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="LocalisedText">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="0" open="true" name="LocalisedText" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="true" checked="Qt::Checked" name="domains">
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="LanguageCode_ISO639_1">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a" isInOverview="0" visible="1"/>
+    <legendgroup open="true" name="domains" checked="Qt::Checked">
+      <legendlayer showFeatureCount="0" open="true" name="LanguageCode_ISO639_1" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked" name="PurposeItem">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="1" open="true" name="PurposeItem" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="1" drawingOrder="-1" checked="Qt::Checked" name="TopicItem">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="1" open="true" name="TopicItem" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea"/>
         </filegroup>
       </legendlayer>
-      <legendlayer open="true" showFeatureCount="1" drawingOrder="-1" checked="Qt::Checked" name="KindItem">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile layerid="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d" isInOverview="0" visible="1"/>
+      <legendlayer showFeatureCount="1" open="true" name="KindItem" drawingOrder="-1" checked="Qt::Checked">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" visible="1" layerid="KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -184,7 +186,7 @@
   <mapViewDocks/>
   <mapViewDocks3D/>
   <projectlayers>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>KindItem_41e78eb5_7c3a_4d48_ad65_96e79d5c5e2d</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=kinditem</datasource>
       <keywordList>
@@ -237,7 +239,7 @@
           </spatialrefsys>
         </crs>
         <extent>
-          <spatial maxy="0" minz="0" maxx="0" dimensions="2" crs="" miny="0" minx="0" maxz="0"/>
+          <spatial crs="" maxy="0" maxx="0" miny="0" dimensions="2" minz="0" maxz="0" minx="0"/>
           <temporal>
             <period>
               <start></start>
@@ -264,16 +266,12 @@
       <customproperties>
         <property key="dualview/previewExpressions">
           <value>coalesce(attribute(get_feature('KindItem','t_id',parent),'aname')|| ' - ' ||"aname", "aname")</value>
-          <value>aname</value>
-          <value>"aname"</value>
-          <value>aname</value>
-          <value>coalesce(attribute(get_feature('KindItem','t_id',parent),'aname')|| ' - ' ||"aname", "aname")</value>
         </property>
-        <property value="0" key="embeddedWidgets/count"/>
+        <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames"/>
         <property key="variableValues"/>
       </customproperties>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks/>
         <checkConfiguration/>
       </geometryOptions>
@@ -387,8 +385,8 @@
           <editWidget type="CheckBox">
             <config>
               <Option type="Map">
-                <Option value="" type="QString" name="CheckedState"/>
-                <Option value="" type="QString" name="UncheckedState"/>
+                <Option type="QString" value="" name="CheckedState"/>
+                <Option type="QString" value="" name="UncheckedState"/>
               </Option>
             </config>
           </editWidget>
@@ -397,14 +395,14 @@
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="false" type="bool" name="AllowAddFeatures"/>
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="false" type="bool" name="MapIdentification"/>
-                <Option value="false" type="bool" name="OrderByValue"/>
-                <Option value="false" type="bool" name="ReadOnly"/>
-                <Option value="kinditem_parent_kinditem_kinditem_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="true" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="false" name="AllowAddFeatures"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="bool" value="false" name="MapIdentification"/>
+                <Option type="bool" value="false" name="OrderByValue"/>
+                <Option type="bool" value="false" name="ReadOnly"/>
+                <Option type="QString" value="kinditem_parent_kinditem_kinditem_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="true" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
@@ -413,14 +411,14 @@
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="false" type="bool" name="AllowAddFeatures"/>
-                <Option value="false" type="bool" name="AllowNULL"/>
-                <Option value="false" type="bool" name="MapIdentification"/>
-                <Option value="false" type="bool" name="OrderByValue"/>
-                <Option value="false" type="bool" name="ReadOnly"/>
-                <Option value="kinditem_parent_topicitem_topicitem_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="true" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="false" name="AllowAddFeatures"/>
+                <Option type="bool" value="false" name="AllowNULL"/>
+                <Option type="bool" value="false" name="MapIdentification"/>
+                <Option type="bool" value="false" name="OrderByValue"/>
+                <Option type="bool" value="false" name="ReadOnly"/>
+                <Option type="QString" value="kinditem_parent_topicitem_topicitem_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="true" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
@@ -434,117 +432,117 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Ili_Tid" name=""/>
-        <alias index="2" field="aname" name="Name"/>
-        <alias index="3" field="aname_de" name=""/>
-        <alias index="4" field="aname_fr" name=""/>
-        <alias index="5" field="aname_rm" name=""/>
-        <alias index="6" field="aname_it" name=""/>
-        <alias index="7" field="aname_en" name=""/>
-        <alias index="8" field="adescription" name="Description"/>
-        <alias index="9" field="adescription_de" name=""/>
-        <alias index="10" field="adescription_fr" name=""/>
-        <alias index="11" field="adescription_rm" name=""/>
-        <alias index="12" field="adescription_it" name=""/>
-        <alias index="13" field="adescription_en" name=""/>
-        <alias index="14" field="issuperitem" name="IsSuperItem"/>
-        <alias index="15" field="isuseable" name="IsUseable"/>
-        <alias index="16" field="parent_kinditem" name="Parent Kind"/>
-        <alias index="17" field="parent_topicitem" name="Parent"/>
-        <alias index="18" field="parent_purposeitem" name="Parent"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Ili_Tid" index="1" name=""/>
+        <alias field="aname" index="2" name="Name"/>
+        <alias field="aname_de" index="3" name=""/>
+        <alias field="aname_fr" index="4" name=""/>
+        <alias field="aname_rm" index="5" name=""/>
+        <alias field="aname_it" index="6" name=""/>
+        <alias field="aname_en" index="7" name=""/>
+        <alias field="adescription" index="8" name="Description"/>
+        <alias field="adescription_de" index="9" name=""/>
+        <alias field="adescription_fr" index="10" name=""/>
+        <alias field="adescription_rm" index="11" name=""/>
+        <alias field="adescription_it" index="12" name=""/>
+        <alias field="adescription_en" index="13" name=""/>
+        <alias field="issuperitem" index="14" name="IsSuperItem"/>
+        <alias field="isuseable" index="15" name="IsUseable"/>
+        <alias field="parent_kinditem" index="16" name="Parent Kind"/>
+        <alias field="parent_topicitem" index="17" name="Parent"/>
+        <alias field="parent_purposeitem" index="18" name="Parent"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="substr(uuid(), 2, 36)" field="T_Ili_Tid" applyOnUpdate="0"/>
-        <default expression="" field="aname" applyOnUpdate="0"/>
-        <default expression="" field="aname_de" applyOnUpdate="0"/>
-        <default expression="" field="aname_fr" applyOnUpdate="0"/>
-        <default expression="" field="aname_rm" applyOnUpdate="0"/>
-        <default expression="" field="aname_it" applyOnUpdate="0"/>
-        <default expression="" field="aname_en" applyOnUpdate="0"/>
-        <default expression="" field="adescription" applyOnUpdate="0"/>
-        <default expression="" field="adescription_de" applyOnUpdate="0"/>
-        <default expression="" field="adescription_fr" applyOnUpdate="0"/>
-        <default expression="" field="adescription_rm" applyOnUpdate="0"/>
-        <default expression="" field="adescription_it" applyOnUpdate="0"/>
-        <default expression="" field="adescription_en" applyOnUpdate="0"/>
-        <default expression="" field="issuperitem" applyOnUpdate="0"/>
-        <default expression="" field="isuseable" applyOnUpdate="0"/>
-        <default expression="" field="parent_kinditem" applyOnUpdate="0"/>
-        <default expression="" field="parent_topicitem" applyOnUpdate="0"/>
-        <default expression="" field="parent_purposeitem" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Ili_Tid" expression="substr(uuid(), 2, 36)" applyOnUpdate="0"/>
+        <default field="aname" expression="" applyOnUpdate="0"/>
+        <default field="aname_de" expression="" applyOnUpdate="0"/>
+        <default field="aname_fr" expression="" applyOnUpdate="0"/>
+        <default field="aname_rm" expression="" applyOnUpdate="0"/>
+        <default field="aname_it" expression="" applyOnUpdate="0"/>
+        <default field="aname_en" expression="" applyOnUpdate="0"/>
+        <default field="adescription" expression="" applyOnUpdate="0"/>
+        <default field="adescription_de" expression="" applyOnUpdate="0"/>
+        <default field="adescription_fr" expression="" applyOnUpdate="0"/>
+        <default field="adescription_rm" expression="" applyOnUpdate="0"/>
+        <default field="adescription_it" expression="" applyOnUpdate="0"/>
+        <default field="adescription_en" expression="" applyOnUpdate="0"/>
+        <default field="issuperitem" expression="" applyOnUpdate="0"/>
+        <default field="isuseable" expression="" applyOnUpdate="0"/>
+        <default field="parent_kinditem" expression="" applyOnUpdate="0"/>
+        <default field="parent_topicitem" expression="" applyOnUpdate="0"/>
+        <default field="parent_purposeitem" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Ili_Tid" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname_de" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname_fr" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname_rm" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname_it" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname_en" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription_de" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription_fr" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription_rm" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription_it" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription_en" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="issuperitem" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="isuseable" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_kinditem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_topicitem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_purposeitem" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Ili_Tid" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname_de" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname_fr" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname_rm" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname_it" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="aname_en" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription_de" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription_fr" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription_rm" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription_it" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="adescription_en" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="issuperitem" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="1" field="isuseable" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="parent_kinditem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_topicitem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_purposeitem" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Ili_Tid" desc=""/>
-        <constraint exp="" field="aname" desc=""/>
-        <constraint exp="" field="aname_de" desc=""/>
-        <constraint exp="" field="aname_fr" desc=""/>
-        <constraint exp="" field="aname_rm" desc=""/>
-        <constraint exp="" field="aname_it" desc=""/>
-        <constraint exp="" field="aname_en" desc=""/>
-        <constraint exp="" field="adescription" desc=""/>
-        <constraint exp="" field="adescription_de" desc=""/>
-        <constraint exp="" field="adescription_fr" desc=""/>
-        <constraint exp="" field="adescription_rm" desc=""/>
-        <constraint exp="" field="adescription_it" desc=""/>
-        <constraint exp="" field="adescription_en" desc=""/>
-        <constraint exp="" field="issuperitem" desc=""/>
-        <constraint exp="" field="isuseable" desc=""/>
-        <constraint exp="" field="parent_kinditem" desc=""/>
-        <constraint exp="" field="parent_topicitem" desc=""/>
-        <constraint exp="" field="parent_purposeitem" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Ili_Tid"/>
+        <constraint exp="" desc="" field="aname"/>
+        <constraint exp="" desc="" field="aname_de"/>
+        <constraint exp="" desc="" field="aname_fr"/>
+        <constraint exp="" desc="" field="aname_rm"/>
+        <constraint exp="" desc="" field="aname_it"/>
+        <constraint exp="" desc="" field="aname_en"/>
+        <constraint exp="" desc="" field="adescription"/>
+        <constraint exp="" desc="" field="adescription_de"/>
+        <constraint exp="" desc="" field="adescription_fr"/>
+        <constraint exp="" desc="" field="adescription_rm"/>
+        <constraint exp="" desc="" field="adescription_it"/>
+        <constraint exp="" desc="" field="adescription_en"/>
+        <constraint exp="" desc="" field="issuperitem"/>
+        <constraint exp="" desc="" field="isuseable"/>
+        <constraint exp="" desc="" field="parent_kinditem"/>
+        <constraint exp="" desc="" field="parent_topicitem"/>
+        <constraint exp="" desc="" field="parent_purposeitem"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig sortExpression="&quot;T_Id&quot;" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;T_Id&quot;">
         <columns>
-          <column type="field" hidden="0" width="70" name="T_Id"/>
-          <column type="field" hidden="0" width="118" name="T_Ili_Tid"/>
-          <column type="field" hidden="0" width="-1" name="aname"/>
-          <column type="field" hidden="0" width="-1" name="aname_de"/>
-          <column type="field" hidden="0" width="-1" name="aname_fr"/>
-          <column type="field" hidden="0" width="-1" name="aname_rm"/>
-          <column type="field" hidden="0" width="-1" name="aname_it"/>
-          <column type="field" hidden="0" width="-1" name="aname_en"/>
-          <column type="field" hidden="0" width="-1" name="adescription"/>
-          <column type="field" hidden="0" width="-1" name="adescription_de"/>
-          <column type="field" hidden="0" width="-1" name="adescription_fr"/>
-          <column type="field" hidden="0" width="-1" name="adescription_rm"/>
-          <column type="field" hidden="0" width="-1" name="adescription_it"/>
-          <column type="field" hidden="0" width="-1" name="adescription_en"/>
-          <column type="field" hidden="0" width="-1" name="issuperitem"/>
-          <column type="field" hidden="0" width="-1" name="isuseable"/>
-          <column type="field" hidden="0" width="301" name="parent_kinditem"/>
-          <column type="field" hidden="0" width="-1" name="parent_topicitem"/>
-          <column type="field" hidden="0" width="-1" name="parent_purposeitem"/>
-          <column type="actions" hidden="1" width="-1"/>
+          <column hidden="0" type="field" width="70" name="T_Id"/>
+          <column hidden="0" type="field" width="118" name="T_Ili_Tid"/>
+          <column hidden="0" type="field" width="-1" name="aname"/>
+          <column hidden="0" type="field" width="158" name="aname_de"/>
+          <column hidden="0" type="field" width="-1" name="aname_fr"/>
+          <column hidden="0" type="field" width="-1" name="aname_rm"/>
+          <column hidden="0" type="field" width="-1" name="aname_it"/>
+          <column hidden="0" type="field" width="-1" name="aname_en"/>
+          <column hidden="0" type="field" width="-1" name="adescription"/>
+          <column hidden="0" type="field" width="-1" name="adescription_de"/>
+          <column hidden="0" type="field" width="-1" name="adescription_fr"/>
+          <column hidden="0" type="field" width="-1" name="adescription_rm"/>
+          <column hidden="0" type="field" width="-1" name="adescription_it"/>
+          <column hidden="0" type="field" width="-1" name="adescription_en"/>
+          <column hidden="0" type="field" width="-1" name="issuperitem"/>
+          <column hidden="0" type="field" width="-1" name="isuseable"/>
+          <column hidden="0" type="field" width="301" name="parent_kinditem"/>
+          <column hidden="0" type="field" width="-1" name="parent_topicitem"/>
+          <column hidden="0" type="field" width="-1" name="parent_purposeitem"/>
+          <column hidden="1" type="actions" width="-1"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -576,7 +574,7 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="2" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="2">
           <attributeEditorField index="2" name="aname" showLabel="1"/>
           <attributeEditorField index="3" name="aname_de" showLabel="1"/>
           <attributeEditorField index="4" name="aname_fr" showLabel="1"/>
@@ -595,14 +593,14 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField index="17" name="parent_topicitem" showLabel="0"/>
           <attributeEditorField index="18" name="parent_purposeitem" showLabel="1"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="kinditem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="kinditem_parent_kinditem_kinditem_T_Id" showLinkButton="1" name="kinditem_parent_kinditem_kinditem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="kinditem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="kinditem_parent_kinditem_kinditem_T_Id" showLabel="1" showUnlinkButton="1" relation="kinditem_parent_kinditem_kinditem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="topicitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="topicitem_parent_kinditem_kinditem_T_Id" showLinkButton="1" name="topicitem_parent_kinditem_kinditem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="topicitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="topicitem_parent_kinditem_kinditem_T_Id" showLabel="1" showUnlinkButton="1" relation="topicitem_parent_kinditem_kinditem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="purposeitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="purposeitem_parent_kinditem_kinditem_T_Id" showLinkButton="1" name="purposeitem_parent_kinditem_kinditem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="purposeitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="purposeitem_parent_kinditem_kinditem_T_Id" showLabel="1" showUnlinkButton="1" relation="purposeitem_parent_kinditem_kinditem_T_Id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <editable>
@@ -627,47 +625,47 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="parent_topicitem"/>
       </editable>
       <labelOnTop>
-        <field labelOnTop="0" name="T_Id"/>
-        <field labelOnTop="0" name="T_Ili_Tid"/>
-        <field labelOnTop="0" name="adescription"/>
-        <field labelOnTop="0" name="adescription_de"/>
-        <field labelOnTop="0" name="adescription_en"/>
-        <field labelOnTop="0" name="adescription_fr"/>
-        <field labelOnTop="0" name="adescription_it"/>
-        <field labelOnTop="0" name="adescription_rm"/>
-        <field labelOnTop="0" name="aname"/>
-        <field labelOnTop="0" name="aname_de"/>
-        <field labelOnTop="0" name="aname_en"/>
-        <field labelOnTop="0" name="aname_fr"/>
-        <field labelOnTop="0" name="aname_it"/>
-        <field labelOnTop="0" name="aname_rm"/>
-        <field labelOnTop="0" name="issuperitem"/>
-        <field labelOnTop="0" name="isuseable"/>
-        <field labelOnTop="0" name="parent_kinditem"/>
-        <field labelOnTop="0" name="parent_purposeitem"/>
-        <field labelOnTop="0" name="parent_topicitem"/>
+        <field name="T_Id" labelOnTop="0"/>
+        <field name="T_Ili_Tid" labelOnTop="0"/>
+        <field name="adescription" labelOnTop="0"/>
+        <field name="adescription_de" labelOnTop="0"/>
+        <field name="adescription_en" labelOnTop="0"/>
+        <field name="adescription_fr" labelOnTop="0"/>
+        <field name="adescription_it" labelOnTop="0"/>
+        <field name="adescription_rm" labelOnTop="0"/>
+        <field name="aname" labelOnTop="0"/>
+        <field name="aname_de" labelOnTop="0"/>
+        <field name="aname_en" labelOnTop="0"/>
+        <field name="aname_fr" labelOnTop="0"/>
+        <field name="aname_it" labelOnTop="0"/>
+        <field name="aname_rm" labelOnTop="0"/>
+        <field name="issuperitem" labelOnTop="0"/>
+        <field name="isuseable" labelOnTop="0"/>
+        <field name="parent_kinditem" labelOnTop="0"/>
+        <field name="parent_purposeitem" labelOnTop="0"/>
+        <field name="parent_topicitem" labelOnTop="0"/>
       </labelOnTop>
       <widgets>
         <widget name="kinditem_parent_kinditem_kinditem_T_Id">
           <config type="Map">
-            <Option value="" type="QString" name="nm-rel"/>
+            <Option type="QString" value="" name="nm-rel"/>
           </config>
         </widget>
         <widget name="purposeitem_parent_kinditem_kinditem_T_Id">
           <config type="Map">
-            <Option value="" type="QString" name="nm-rel"/>
+            <Option type="QString" value="" name="nm-rel"/>
           </config>
         </widget>
         <widget name="topicitem_parent_kinditem_kinditem_T_Id">
           <config type="Map">
-            <Option value="" type="QString" name="nm-rel"/>
+            <Option type="QString" value="" name="nm-rel"/>
           </config>
         </widget>
       </widgets>
       <previewExpression>coalesce(attribute(get_feature('KindItem','t_id',parent),'aname')|| ' - ' ||"aname", "aname")</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="1" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>LanguageCode_ISO639_1_a6baa919_6daf_4015_8563_828b346b3e6a</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=languagecode_iso639_1</datasource>
       <keywordList>
@@ -728,9 +726,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -800,54 +798,54 @@ def my_form_open(dialog, layer, feature):
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="thisClass" name=""/>
-        <alias index="2" field="baseClass" name=""/>
-        <alias index="3" field="itfCode" name=""/>
-        <alias index="4" field="iliCode" name=""/>
-        <alias index="5" field="seq" name=""/>
-        <alias index="6" field="inactive" name=""/>
-        <alias index="7" field="dispName" name=""/>
-        <alias index="8" field="description" name=""/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="thisClass" index="1" name=""/>
+        <alias field="baseClass" index="2" name=""/>
+        <alias field="itfCode" index="3" name=""/>
+        <alias field="iliCode" index="4" name=""/>
+        <alias field="seq" index="5" name=""/>
+        <alias field="inactive" index="6" name=""/>
+        <alias field="dispName" index="7" name=""/>
+        <alias field="description" index="8" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="thisClass" applyOnUpdate="0"/>
-        <default expression="" field="baseClass" applyOnUpdate="0"/>
-        <default expression="" field="itfCode" applyOnUpdate="0"/>
-        <default expression="" field="iliCode" applyOnUpdate="0"/>
-        <default expression="" field="seq" applyOnUpdate="0"/>
-        <default expression="" field="inactive" applyOnUpdate="0"/>
-        <default expression="" field="dispName" applyOnUpdate="0"/>
-        <default expression="" field="description" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="thisClass" expression="" applyOnUpdate="0"/>
+        <default field="baseClass" expression="" applyOnUpdate="0"/>
+        <default field="itfCode" expression="" applyOnUpdate="0"/>
+        <default field="iliCode" expression="" applyOnUpdate="0"/>
+        <default field="seq" expression="" applyOnUpdate="0"/>
+        <default field="inactive" expression="" applyOnUpdate="0"/>
+        <default field="dispName" expression="" applyOnUpdate="0"/>
+        <default field="description" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="thisClass" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="baseClass" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="itfCode" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="iliCode" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="seq" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="inactive" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="dispName" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="description" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="1" field="thisClass" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="baseClass" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="itfCode" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="1" field="iliCode" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="seq" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="inactive" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="1" field="dispName" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="description" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="thisClass" desc=""/>
-        <constraint exp="" field="baseClass" desc=""/>
-        <constraint exp="" field="itfCode" desc=""/>
-        <constraint exp="" field="iliCode" desc=""/>
-        <constraint exp="" field="seq" desc=""/>
-        <constraint exp="" field="inactive" desc=""/>
-        <constraint exp="" field="dispName" desc=""/>
-        <constraint exp="" field="description" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="thisClass"/>
+        <constraint exp="" desc="" field="baseClass"/>
+        <constraint exp="" desc="" field="itfCode"/>
+        <constraint exp="" desc="" field="iliCode"/>
+        <constraint exp="" desc="" field="seq"/>
+        <constraint exp="" desc="" field="inactive"/>
+        <constraint exp="" desc="" field="dispName"/>
+        <constraint exp="" desc="" field="description"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -878,7 +876,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>LocalisedMText_3b0c36ec_ba37_4660_81c3_aa2a9f679394</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=localisedmtext</datasource>
       <keywordList>
@@ -939,9 +937,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -964,13 +962,13 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="" type="QString" name="FilterExpression"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="QString" value="" name="FilterExpression"/>
                 <Option type="invalid" name="FilterFields"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="localisedmtext_alanguage_languagecode_iso639_1_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="localisedmtext_alanguage_languagecode_iso639_1_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
@@ -979,7 +977,7 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="TextEdit">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="IsMultiline"/>
+                <Option type="bool" value="true" name="IsMultiline"/>
               </Option>
             </config>
           </editWidget>
@@ -988,50 +986,50 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowAddFeatures"/>
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="AllowAddFeatures"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="localisedmtext_multilingualmtext_localisedtext_multilingualmtext_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
-        <alias index="2" field="alanguage" name="Language"/>
-        <alias index="3" field="atext" name="Text"/>
-        <alias index="4" field="multilingualmtext_localisedtext" name="LocalisedText"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
+        <alias field="alanguage" index="2" name="Language"/>
+        <alias field="atext" index="3" name="Text"/>
+        <alias field="multilingualmtext_localisedtext" index="4" name="LocalisedText"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
-        <default expression="" field="alanguage" applyOnUpdate="0"/>
-        <default expression="" field="atext" applyOnUpdate="0"/>
-        <default expression="" field="multilingualmtext_localisedtext" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
+        <default field="alanguage" expression="" applyOnUpdate="0"/>
+        <default field="atext" expression="" applyOnUpdate="0"/>
+        <default field="multilingualmtext_localisedtext" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="alanguage" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="atext" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="multilingualmtext_localisedtext" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="alanguage" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="atext" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="multilingualmtext_localisedtext" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
-        <constraint exp="" field="alanguage" desc=""/>
-        <constraint exp="" field="atext" desc=""/>
-        <constraint exp="" field="multilingualmtext_localisedtext" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
+        <constraint exp="" desc="" field="alanguage"/>
+        <constraint exp="" desc="" field="atext"/>
+        <constraint exp="" desc="" field="multilingualmtext_localisedtext"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -1047,7 +1045,7 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
           <attributeEditorField index="2" name="alanguage" showLabel="1"/>
           <attributeEditorField index="3" name="atext" showLabel="1"/>
           <attributeEditorField index="4" name="multilingualmtext_localisedtext" showLabel="1"/>
@@ -1059,7 +1057,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>LocalisedText_24e19730_5170_4d58_8cc2_6106547cb6fe</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=localisedtext</datasource>
       <keywordList>
@@ -1120,9 +1118,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -1145,13 +1143,13 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="" type="QString" name="FilterExpression"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="QString" value="" name="FilterExpression"/>
                 <Option type="invalid" name="FilterFields"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="localisedtext_alanguage_languagecode_iso639_1_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="localisedtext_alanguage_languagecode_iso639_1_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
@@ -1167,50 +1165,50 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowAddFeatures"/>
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="AllowAddFeatures"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="localisedtext_multilingualtext_localisedtext_multilingualtext_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
-        <alias index="2" field="alanguage" name="Language"/>
-        <alias index="3" field="atext" name="Text"/>
-        <alias index="4" field="multilingualtext_localisedtext" name="LocalisedText"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
+        <alias field="alanguage" index="2" name="Language"/>
+        <alias field="atext" index="3" name="Text"/>
+        <alias field="multilingualtext_localisedtext" index="4" name="LocalisedText"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
-        <default expression="" field="alanguage" applyOnUpdate="0"/>
-        <default expression="" field="atext" applyOnUpdate="0"/>
-        <default expression="" field="multilingualtext_localisedtext" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
+        <default field="alanguage" expression="" applyOnUpdate="0"/>
+        <default field="atext" expression="" applyOnUpdate="0"/>
+        <default field="multilingualtext_localisedtext" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="alanguage" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="atext" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="multilingualtext_localisedtext" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="alanguage" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="atext" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="multilingualtext_localisedtext" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
-        <constraint exp="" field="alanguage" desc=""/>
-        <constraint exp="" field="atext" desc=""/>
-        <constraint exp="" field="multilingualtext_localisedtext" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
+        <constraint exp="" desc="" field="alanguage"/>
+        <constraint exp="" desc="" field="atext"/>
+        <constraint exp="" desc="" field="multilingualtext_localisedtext"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -1226,7 +1224,7 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
           <attributeEditorField index="2" name="alanguage" showLabel="1"/>
           <attributeEditorField index="3" name="atext" showLabel="1"/>
           <attributeEditorField index="4" name="multilingualtext_localisedtext" showLabel="1"/>
@@ -1238,7 +1236,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>MultilingualMText_e1617ae1_bbfe_4ce0_94ba_13f84dbe500a</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=multilingualmtext</datasource>
       <keywordList>
@@ -1299,9 +1297,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -1322,26 +1320,26 @@ def my_form_open(dialog, layer, feature):
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -1362,7 +1360,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>MultilingualText_c3d0b7c8_f18f_425a_a0ee_e42ec495f5e7</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=multilingualtext</datasource>
       <keywordList>
@@ -1423,9 +1421,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -1446,26 +1444,26 @@ def my_form_open(dialog, layer, feature):
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -1486,7 +1484,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>PurposeItem_e731e7cc_b308_431d_a44e_8520a50b833a</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=purposeitem</datasource>
       <keywordList>
@@ -1547,13 +1545,11 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>aname</value>
-        </property>
+        <property key="dualview/previewExpressions" value="aname"/>
       </customproperties>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -1623,67 +1619,67 @@ def my_form_open(dialog, layer, feature):
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Ili_Tid" name=""/>
-        <alias index="2" field="aname" name="Name"/>
-        <alias index="3" field="adescription" name="Description"/>
-        <alias index="4" field="issuperitem" name="IsSuperItem"/>
-        <alias index="5" field="isuseable" name="IsUseable"/>
-        <alias index="6" field="parent_kinditem" name="Parent"/>
-        <alias index="7" field="parent_topicitem" name="Parent"/>
-        <alias index="8" field="parent_purposeitem" name="Parent"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Ili_Tid" index="1" name=""/>
+        <alias field="aname" index="2" name="Name"/>
+        <alias field="adescription" index="3" name="Description"/>
+        <alias field="issuperitem" index="4" name="IsSuperItem"/>
+        <alias field="isuseable" index="5" name="IsUseable"/>
+        <alias field="parent_kinditem" index="6" name="Parent"/>
+        <alias field="parent_topicitem" index="7" name="Parent"/>
+        <alias field="parent_purposeitem" index="8" name="Parent"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="substr(uuid(), 2, 36)" field="T_Ili_Tid" applyOnUpdate="0"/>
-        <default expression="" field="aname" applyOnUpdate="0"/>
-        <default expression="" field="adescription" applyOnUpdate="0"/>
-        <default expression="" field="issuperitem" applyOnUpdate="0"/>
-        <default expression="" field="isuseable" applyOnUpdate="0"/>
-        <default expression="" field="parent_kinditem" applyOnUpdate="0"/>
-        <default expression="" field="parent_topicitem" applyOnUpdate="0"/>
-        <default expression="" field="parent_purposeitem" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Ili_Tid" expression="substr(uuid(), 2, 36)" applyOnUpdate="0"/>
+        <default field="aname" expression="" applyOnUpdate="0"/>
+        <default field="adescription" expression="" applyOnUpdate="0"/>
+        <default field="issuperitem" expression="" applyOnUpdate="0"/>
+        <default field="isuseable" expression="" applyOnUpdate="0"/>
+        <default field="parent_kinditem" expression="" applyOnUpdate="0"/>
+        <default field="parent_topicitem" expression="" applyOnUpdate="0"/>
+        <default field="parent_purposeitem" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Ili_Tid" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="issuperitem" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="isuseable" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_kinditem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_topicitem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_purposeitem" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Ili_Tid" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="aname" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="adescription" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="issuperitem" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="1" field="isuseable" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="parent_kinditem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_topicitem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_purposeitem" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Ili_Tid" desc=""/>
-        <constraint exp="" field="aname" desc=""/>
-        <constraint exp="" field="adescription" desc=""/>
-        <constraint exp="" field="issuperitem" desc=""/>
-        <constraint exp="" field="isuseable" desc=""/>
-        <constraint exp="" field="parent_kinditem" desc=""/>
-        <constraint exp="" field="parent_topicitem" desc=""/>
-        <constraint exp="" field="parent_purposeitem" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Ili_Tid"/>
+        <constraint exp="" desc="" field="aname"/>
+        <constraint exp="" desc="" field="adescription"/>
+        <constraint exp="" desc="" field="issuperitem"/>
+        <constraint exp="" desc="" field="isuseable"/>
+        <constraint exp="" desc="" field="parent_kinditem"/>
+        <constraint exp="" desc="" field="parent_topicitem"/>
+        <constraint exp="" desc="" field="parent_purposeitem"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column type="field" hidden="0" width="-1" name="T_Id"/>
-          <column type="field" hidden="0" width="-1" name="T_Ili_Tid"/>
-          <column type="field" hidden="0" width="-1" name="aname"/>
-          <column type="field" hidden="0" width="-1" name="adescription"/>
-          <column type="field" hidden="0" width="-1" name="issuperitem"/>
-          <column type="field" hidden="0" width="-1" name="isuseable"/>
-          <column type="field" hidden="0" width="-1" name="parent_kinditem"/>
-          <column type="field" hidden="0" width="-1" name="parent_topicitem"/>
-          <column type="field" hidden="0" width="-1" name="parent_purposeitem"/>
-          <column type="actions" hidden="1" width="-1"/>
+          <column hidden="0" type="field" width="-1" name="T_Id"/>
+          <column hidden="0" type="field" width="-1" name="T_Ili_Tid"/>
+          <column hidden="0" type="field" width="-1" name="aname"/>
+          <column hidden="0" type="field" width="-1" name="adescription"/>
+          <column hidden="0" type="field" width="-1" name="issuperitem"/>
+          <column hidden="0" type="field" width="-1" name="isuseable"/>
+          <column hidden="0" type="field" width="-1" name="parent_kinditem"/>
+          <column hidden="0" type="field" width="-1" name="parent_topicitem"/>
+          <column hidden="0" type="field" width="-1" name="parent_purposeitem"/>
+          <column hidden="1" type="actions" width="-1"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -1699,7 +1695,7 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="2" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="2">
           <attributeEditorField index="2" name="aname" showLabel="1"/>
           <attributeEditorField index="3" name="adescription" showLabel="1"/>
           <attributeEditorField index="4" name="issuperitem" showLabel="1"/>
@@ -1708,17 +1704,17 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField index="7" name="parent_topicitem" showLabel="1"/>
           <attributeEditorField index="8" name="parent_purposeitem" showLabel="1"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="kinditem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="kinditem_parent_purposeitem_purposeitem_T_Id" showLinkButton="1" name="kinditem_parent_purposeitem_purposeitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="kinditem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="kinditem_parent_purposeitem_purposeitem_T_Id" showLabel="1" showUnlinkButton="1" relation="kinditem_parent_purposeitem_purposeitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="topicitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="topicitem_parent_purposeitem_purposeitem_T_Id" showLinkButton="1" name="topicitem_parent_purposeitem_purposeitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="topicitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="topicitem_parent_purposeitem_purposeitem_T_Id" showLabel="1" showUnlinkButton="1" relation="topicitem_parent_purposeitem_purposeitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="purposeitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="purposeitem_parent_purposeitem_purposeitem_T_Id" showLinkButton="1" name="purposeitem_parent_purposeitem_purposeitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="purposeitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="purposeitem_parent_purposeitem_purposeitem_T_Id" showLabel="1" showUnlinkButton="1" relation="purposeitem_parent_purposeitem_purposeitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="purposeref" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="purposeref_areference_purposeitem_T_Id" showLinkButton="1" name="purposeref_areference_purposeitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="purposeref" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="purposeref_areference_purposeitem_T_Id" showLabel="1" showUnlinkButton="1" relation="purposeref_areference_purposeitem_T_Id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <editable/>
@@ -1727,7 +1723,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>aname</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>PurposeRef_b7f7695b_e379_4a8a_85f8_812c42fc3eb7</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=purposeref</datasource>
       <keywordList>
@@ -1787,10 +1783,12 @@ def my_form_open(dialog, layer, feature):
         <Removable>1</Removable>
         <Searchable>1</Searchable>
       </flags>
-      <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <customproperties>
+        <property key="dualview/previewExpressions" value="&quot;T_Id&quot;"/>
+      </customproperties>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -1813,45 +1811,45 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="" type="QString" name="FilterExpression"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="QString" value="" name="FilterExpression"/>
                 <Option type="invalid" name="FilterFields"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="purposeref_areference_purposeitem_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="purposeref_areference_purposeitem_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
-        <alias index="2" field="areference" name="Reference"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
+        <alias field="areference" index="2" name="Reference"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
-        <default expression="" field="areference" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
+        <default field="areference" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="areference" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="areference" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
-        <constraint exp="" field="areference" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
+        <constraint exp="" desc="" field="areference"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -1867,17 +1865,17 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
           <attributeEditorField index="2" name="areference" showLabel="1"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <editable/>
       <labelOnTop/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"T_Id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>TopicItem_5ab080b6_9615_4b70_a082_ad28c3bd67ea</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=topicitem</datasource>
       <keywordList>
@@ -1940,12 +1938,11 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <property key="dualview/previewExpressions">
           <value>aname</value>
-          <value>"aname"</value>
         </property>
       </customproperties>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -2015,67 +2012,67 @@ def my_form_open(dialog, layer, feature):
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Ili_Tid" name=""/>
-        <alias index="2" field="aname" name="Name"/>
-        <alias index="3" field="adescription" name="Description"/>
-        <alias index="4" field="issuperitem" name="IsSuperItem"/>
-        <alias index="5" field="isuseable" name="IsUseable"/>
-        <alias index="6" field="parent_kinditem" name="Parent"/>
-        <alias index="7" field="parent_topicitem" name="Parent"/>
-        <alias index="8" field="parent_purposeitem" name="Parent"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Ili_Tid" index="1" name=""/>
+        <alias field="aname" index="2" name="Name"/>
+        <alias field="adescription" index="3" name="Description"/>
+        <alias field="issuperitem" index="4" name="IsSuperItem"/>
+        <alias field="isuseable" index="5" name="IsUseable"/>
+        <alias field="parent_kinditem" index="6" name="Parent"/>
+        <alias field="parent_topicitem" index="7" name="Parent"/>
+        <alias field="parent_purposeitem" index="8" name="Parent"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="substr(uuid(), 2, 36)" field="T_Ili_Tid" applyOnUpdate="0"/>
-        <default expression="" field="aname" applyOnUpdate="0"/>
-        <default expression="" field="adescription" applyOnUpdate="0"/>
-        <default expression="" field="issuperitem" applyOnUpdate="0"/>
-        <default expression="" field="isuseable" applyOnUpdate="0"/>
-        <default expression="" field="parent_kinditem" applyOnUpdate="0"/>
-        <default expression="" field="parent_topicitem" applyOnUpdate="0"/>
-        <default expression="" field="parent_purposeitem" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Ili_Tid" expression="substr(uuid(), 2, 36)" applyOnUpdate="0"/>
+        <default field="aname" expression="" applyOnUpdate="0"/>
+        <default field="adescription" expression="" applyOnUpdate="0"/>
+        <default field="issuperitem" expression="" applyOnUpdate="0"/>
+        <default field="isuseable" expression="" applyOnUpdate="0"/>
+        <default field="parent_kinditem" expression="" applyOnUpdate="0"/>
+        <default field="parent_topicitem" expression="" applyOnUpdate="0"/>
+        <default field="parent_purposeitem" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Ili_Tid" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="aname" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="adescription" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="issuperitem" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="isuseable" notnull_strength="1" constraints="1"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_kinditem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_topicitem" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="parent_purposeitem" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Ili_Tid" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="aname" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="adescription" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="issuperitem" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="1" field="isuseable" unique_strength="0" exp_strength="0" constraints="1"/>
+        <constraint notnull_strength="0" field="parent_kinditem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_topicitem" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="parent_purposeitem" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Ili_Tid" desc=""/>
-        <constraint exp="" field="aname" desc=""/>
-        <constraint exp="" field="adescription" desc=""/>
-        <constraint exp="" field="issuperitem" desc=""/>
-        <constraint exp="" field="isuseable" desc=""/>
-        <constraint exp="" field="parent_kinditem" desc=""/>
-        <constraint exp="" field="parent_topicitem" desc=""/>
-        <constraint exp="" field="parent_purposeitem" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Ili_Tid"/>
+        <constraint exp="" desc="" field="aname"/>
+        <constraint exp="" desc="" field="adescription"/>
+        <constraint exp="" desc="" field="issuperitem"/>
+        <constraint exp="" desc="" field="isuseable"/>
+        <constraint exp="" desc="" field="parent_kinditem"/>
+        <constraint exp="" desc="" field="parent_topicitem"/>
+        <constraint exp="" desc="" field="parent_purposeitem"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
       </attributeactions>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns>
-          <column type="field" hidden="0" width="-1" name="T_Id"/>
-          <column type="field" hidden="0" width="-1" name="T_Ili_Tid"/>
-          <column type="field" hidden="0" width="-1" name="aname"/>
-          <column type="field" hidden="0" width="-1" name="adescription"/>
-          <column type="field" hidden="0" width="-1" name="issuperitem"/>
-          <column type="field" hidden="0" width="-1" name="isuseable"/>
-          <column type="field" hidden="0" width="-1" name="parent_kinditem"/>
-          <column type="field" hidden="0" width="-1" name="parent_topicitem"/>
-          <column type="field" hidden="0" width="-1" name="parent_purposeitem"/>
-          <column type="actions" hidden="1" width="-1"/>
+          <column hidden="0" type="field" width="-1" name="T_Id"/>
+          <column hidden="0" type="field" width="-1" name="T_Ili_Tid"/>
+          <column hidden="0" type="field" width="-1" name="aname"/>
+          <column hidden="0" type="field" width="-1" name="adescription"/>
+          <column hidden="0" type="field" width="-1" name="issuperitem"/>
+          <column hidden="0" type="field" width="-1" name="isuseable"/>
+          <column hidden="0" type="field" width="-1" name="parent_kinditem"/>
+          <column hidden="0" type="field" width="-1" name="parent_topicitem"/>
+          <column hidden="0" type="field" width="-1" name="parent_purposeitem"/>
+          <column hidden="1" type="actions" width="-1"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -2091,7 +2088,7 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="2" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="2">
           <attributeEditorField index="2" name="aname" showLabel="1"/>
           <attributeEditorField index="3" name="adescription" showLabel="1"/>
           <attributeEditorField index="4" name="issuperitem" showLabel="1"/>
@@ -2100,17 +2097,17 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorField index="7" name="parent_topicitem" showLabel="1"/>
           <attributeEditorField index="8" name="parent_purposeitem" showLabel="1"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="kinditem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="kinditem_parent_topicitem_topicitem_T_Id" showLinkButton="1" name="kinditem_parent_topicitem_topicitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="kinditem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="kinditem_parent_topicitem_topicitem_T_Id" showLabel="1" showUnlinkButton="1" relation="kinditem_parent_topicitem_topicitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="topicitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="topicitem_parent_topicitem_topicitem_T_Id" showLinkButton="1" name="topicitem_parent_topicitem_topicitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="topicitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="topicitem_parent_topicitem_topicitem_T_Id" showLabel="1" showUnlinkButton="1" relation="topicitem_parent_topicitem_topicitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="topicref" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="topicref_areference_topicitem_T_Id" showLinkButton="1" name="topicref_areference_topicitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="topicref" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="topicref_areference_topicitem_T_Id" showLabel="1" showUnlinkButton="1" relation="topicref_areference_topicitem_T_Id"/>
         </attributeEditorContainer>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="purposeitem" showLabel="1">
-          <attributeEditorRelation showUnlinkButton="1" relation="purposeitem_parent_topicitem_topicitem_T_Id" showLinkButton="1" name="purposeitem_parent_topicitem_topicitem_T_Id" showLabel="1"/>
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="purposeitem" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
+          <attributeEditorRelation showLinkButton="1" name="purposeitem_parent_topicitem_topicitem_T_Id" showLabel="1" showUnlinkButton="1" relation="purposeitem_parent_topicitem_topicitem_T_Id"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <editable/>
@@ -2119,7 +2116,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>aname</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" maxScale="0" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyEnabled="0" minScale="1e+08" type="vector" readOnly="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" geometry="No geometry">
+    <maplayer autoRefreshEnabled="0" maxScale="0" styleCategories="AllStyleCategories" type="vector" hasScaleBasedVisibilityFlag="0" autoRefreshTime="0" geometry="No geometry" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" minScale="1e+08" wkbType="NoGeometry">
       <id>TopicRef_25948c9b_7f33_4428_9cb0_085663538f66</id>
       <datasource>./DM_Asset_Catalogues.gpkg|layername=topicref</datasource>
       <keywordList>
@@ -2179,10 +2176,12 @@ def my_form_open(dialog, layer, feature):
         <Removable>1</Removable>
         <Searchable>1</Searchable>
       </flags>
-      <customproperties/>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+      <customproperties>
+        <property key="dualview/previewExpressions" value="&quot;T_Id&quot;"/>
+      </customproperties>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
-          <Option value="" type="QString"/>
+          <Option type="QString" value=""/>
         </activeChecks>
         <checkConfiguration/>
       </geometryOptions>
@@ -2205,43 +2204,43 @@ def my_form_open(dialog, layer, feature):
           <editWidget type="RelationReference">
             <config>
               <Option type="Map">
-                <Option value="true" type="bool" name="AllowNULL"/>
-                <Option value="" type="QString" name="FilterExpression"/>
+                <Option type="bool" value="true" name="AllowNULL"/>
+                <Option type="QString" value="" name="FilterExpression"/>
                 <Option type="invalid" name="FilterFields"/>
-                <Option value="true" type="bool" name="OrderByValue"/>
-                <Option value="topicref_areference_topicitem_T_Id" type="QString" name="Relation"/>
-                <Option value="false" type="bool" name="ShowForm"/>
-                <Option value="false" type="bool" name="ShowOpenFormButton"/>
+                <Option type="bool" value="true" name="OrderByValue"/>
+                <Option type="QString" value="topicref_areference_topicitem_T_Id" name="Relation"/>
+                <Option type="bool" value="false" name="ShowForm"/>
+                <Option type="bool" value="false" name="ShowOpenFormButton"/>
               </Option>
             </config>
           </editWidget>
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias index="0" field="T_Id" name=""/>
-        <alias index="1" field="T_Seq" name=""/>
-        <alias index="2" field="areference" name="Reference"/>
+        <alias field="T_Id" index="0" name=""/>
+        <alias field="T_Seq" index="1" name=""/>
+        <alias field="areference" index="2" name="Reference"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" field="T_Id" applyOnUpdate="0"/>
-        <default expression="" field="T_Seq" applyOnUpdate="0"/>
-        <default expression="" field="areference" applyOnUpdate="0"/>
+        <default field="T_Id" expression="sqlite_fetch_and_increment(@layer, 'T_KEY_OBJECT', 'T_LastUniqueId', 'T_Key', 'T_Id', map('T_LastChange','date(''now'')','T_CreateDate','date(''now'')','T_User','''' || @user_account_name || ''''))" applyOnUpdate="0"/>
+        <default field="T_Seq" expression="" applyOnUpdate="0"/>
+        <default field="areference" expression="" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint exp_strength="0" unique_strength="1" field="T_Id" notnull_strength="1" constraints="3"/>
-        <constraint exp_strength="0" unique_strength="0" field="T_Seq" notnull_strength="0" constraints="0"/>
-        <constraint exp_strength="0" unique_strength="0" field="areference" notnull_strength="0" constraints="0"/>
+        <constraint notnull_strength="1" field="T_Id" unique_strength="1" exp_strength="0" constraints="3"/>
+        <constraint notnull_strength="0" field="T_Seq" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint notnull_strength="0" field="areference" unique_strength="0" exp_strength="0" constraints="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" field="T_Id" desc=""/>
-        <constraint exp="" field="T_Seq" desc=""/>
-        <constraint exp="" field="areference" desc=""/>
+        <constraint exp="" desc="" field="T_Id"/>
+        <constraint exp="" desc="" field="T_Seq"/>
+        <constraint exp="" desc="" field="areference"/>
       </constraintExpressions>
       <expressionfields/>
       <attributeactions/>
-      <attributetableconfig sortExpression="" sortOrder="0" actionWidgetStyle="dropDown">
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
         <columns/>
       </attributetableconfig>
       <conditionalstyles>
@@ -2257,14 +2256,14 @@ def my_form_open(dialog, layer, feature):
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
-        <attributeEditorContainer columnCount="1" groupBox="0" visibilityExpression="" visibilityExpressionEnabled="0" name="General" showLabel="1">
+        <attributeEditorContainer visibilityExpression="" groupBox="0" name="General" showLabel="1" visibilityExpressionEnabled="0" columnCount="1">
           <attributeEditorField index="2" name="areference" showLabel="1"/>
         </attributeEditorContainer>
       </attributeEditorForm>
       <editable/>
       <labelOnTop/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"T_Id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
   </projectlayers>
