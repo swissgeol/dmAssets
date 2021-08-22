@@ -14,15 +14,14 @@ VERSION "2021-08-16"  =
 !!****************************************
   IMPORTS GeometryCHLV95_V1,Units;
   IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-!!  IMPORTS DMBase;
-!!  IMPORTS DMAssetsCatalogues;
+
 
 
 !!****************************************
 !! DOMAINES
 !!****************************************
   DOMAIN
-    !!
+    !! Definition of line and surface
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
     Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
 
@@ -147,7 +146,7 @@ VERSION "2021-08-16"  =
 !! CLASSES
 !!****************************************
     !! CLASS
-    CLASS AdminBase =
+    CLASS AdminAssetBase (ABSTRACT) =
 
       !! Angabe, ob das Asset frei verfügbar (no) oder der Zugang eingeschränkt (yes) ist
       Restriction : MANDATORY BOOLEAN;
@@ -206,12 +205,12 @@ VERSION "2021-08-16"  =
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
 
-    END AdminBase;
+    END AdminAssetBase;
 
 
     !! CLASS
-    CLASS AdminAsset
-    EXTENDS AdminBase =
+    CLASS AdminAssetItem
+    EXTENDS AdminAssetBase =
       !! Liegt im Asset Texterkennung vor?
       OCR : MANDATORY BOOLEAN;
 
@@ -231,12 +230,12 @@ VERSION "2021-08-16"  =
     MANDATORY CONSTRAINT
       OCR <> #true OR DEFINED (OCRQuality);
 
-    END AdminAsset;
+    END AdminAssetItem;
 
 
     !! CLASS
     CLASS AdminAssetPackage
-    EXTENDS AdminBase =
+    EXTENDS AdminAssetBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
       StatusRestriction : MANDATORY (
         !! Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
@@ -248,13 +247,13 @@ VERSION "2021-08-16"  =
       );
 
       !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
-      Project : TEXT*20;
+      Project : TEXT*80;
     
     END AdminAssetPackage;
 
 
     !! CLASS
-    CLASS AssetBase =
+    CLASS AssetBase (ABSTRACT) =
       TitlePublic : MANDATORY TEXT*80;
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
@@ -262,7 +261,7 @@ VERSION "2021-08-16"  =
 
 
     !! CLASS
-    CLASS Asset
+    CLASS AssetItem
     EXTENDS AssetBase =
       !! Art des Dokuments
       Kind : MANDATORY DMGeolAssets.Catalogues.KindRef;
@@ -315,8 +314,6 @@ VERSION "2021-08-16"  =
         GraphicVector,
         !! Grafisch digitale Rastergrafik
         GraphicRaster,
-        !! Sammlung von einzelnen Assets, z.B. Rohdaten einer Seismikkampagne
-        Package,
         !! Digitales binäres Format
         Binaer,
         !! Textformat (z.B.: ascii, txt, doc, docx, xls, xlsx, xml, csv etc.)
@@ -341,11 +338,12 @@ VERSION "2021-08-16"  =
 
       AssetComposition : BAG {1..*} OF DMGeolAssets.Catalogues.KindRef;
 
-/**
-      MANDATORY CONSTRAINT
-        Kind <> #report OR DEFINED (TitlePublic);
-*/
-    END Asset;
+      !! CONSTRAINTS
+!!    MANDATORY CONSTRAINT
+!!        Kind <> #report OR DEFINED (TitlePublic);
+!!        Kind->Reference->Name=="report" OR DEFINED (TitlePublic);
+
+    END AssetItem;
 
 
     !! CLASS
@@ -356,7 +354,7 @@ VERSION "2021-08-16"  =
 
 
     !! CLASS
-    CLASS GeometryOfInterest =
+    CLASS GeometryOfInterest (ABSTRACT)=
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       GeomQuality : MANDATORY (
         !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
@@ -374,7 +372,7 @@ VERSION "2021-08-16"  =
       );
 
       !! Bemerkung zur Region of interest
-      Remark : TEXT*20;
+      Remark : TEXT*254;
 
     END GeometryOfInterest;
 
@@ -470,25 +468,25 @@ VERSION "2021-08-16"  =
 !!****************************************
     !! Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
     ASSOCIATION Asset_Asset =
-      AssetX -- {0..*} Asset;
-      AssetY -- {0..*} Asset;
+      AssetX -- {0..*} AssetItem;
+      AssetY -- {0..*} AssetItem;
     END Asset_Asset;
 
 
     !! Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
-    ASSOCIATION Asset_AssetPart =
+    ASSOCIATION AssetItem_AssetPart =
       !! AssetPart
-      AssetPart -- {0..*} Asset;
+      AssetPart -- {0..*} AssetItem;
       !! Asset aus dem der AssetPart extrahiert wurde
-      AssetMain -- {1} Asset;
-    END Asset_AssetPart; 
+      AssetMain -- {0..1} AssetItem;
+    END AssetItem_AssetPart; 
 
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
-    ASSOCIATION Asset_AssetPackage =
-      PackagedAsset -- {0..*} Asset;
+    ASSOCIATION AssetItem_AssetPackage =
+      PackagedAsset -- {0..*} AssetItem;
       Package -- {1} AssetPackage;
-    END Asset_AssetPackage;
+    END AssetItem_AssetPackage;
 
 
   !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
@@ -524,10 +522,10 @@ VERSION "2021-08-16"  =
     END AssetBase_Contact_Supplier;
 
 
-    ASSOCIATION Asset_AdminAsset =
-      AdminedAsset -- {1} Asset;
-      AdminAsset -- {1} AdminAsset;
-    END Asset_AdminAsset;
+    ASSOCIATION AssetItem_AdminAssetItem =
+      AdminedAsset -- {1} AssetItem;
+      AdminAssetItem -- {1} AdminAssetItem;
+    END AssetItem_AdminAssetItem;
 
 
     ASSOCIATION AssetPackage_AdminAssetPackage =
