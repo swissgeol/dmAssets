@@ -112,8 +112,8 @@ VERSION "2021-08-16"  =
 !! Codelist für das Attribut Asset.Topic
     CLASS TopicItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
     END TopicItem;
 
     STRUCTURE TopicRef
@@ -124,14 +124,26 @@ VERSION "2021-08-16"  =
 !! Codelist für das Attribut Asset.Purpose
     CLASS PurposeItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
     END PurposeItem;
 
     STRUCTURE PurposeRef
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
     END PurposeRef;
+
+!! Codelist für das Attribut AdminAssetBase.TypeNationalRelevance
+	    CLASS NatRelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END NatRelItem;
+
+    STRUCTURE NatRelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
+    END NatRelRef;
 
   END Catalogues;
 
@@ -196,6 +208,8 @@ VERSION "2021-08-16"  =
         notAssigned
       );
 
+      TypeNationalRelevance : BAG {1..*} OF DMGeolAssets.Catalogues.NatRelRef;
+
       !! Eingangsdatum des Assets
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
@@ -204,6 +218,15 @@ VERSION "2021-08-16"  =
 
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
+
+!! ----------
+    MANDATORY CONSTRAINT
+	  (NationalRelevance <> #prio1 
+	   AND NationalRelevance <> #prio2
+	   AND NationalRelevance <> #prio3)
+	   OR DEFINED (TypeNationalRelevance);
+!! ----------
+
 
     END AdminAssetBase;
 
@@ -340,7 +363,7 @@ VERSION "2021-08-16"  =
 
       !! CONSTRAINTS
     MANDATORY CONSTRAINT
-        Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
+    Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
 
     END AssetItem;
 
@@ -454,10 +477,10 @@ VERSION "2021-08-16"  =
       Telefon : TEXT*20;
 
       !! e-mail-Adresse, gemäss definierter Struktur von e-mail-Adressen
-      Email : TEXT*20;
+      Email : URI;
 
       !! URL von Websites, gemäss definierter Struktur von URLs
-      Website : TEXT*20;
+      Website : URI;
 
     END Contact;
 
