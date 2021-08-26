@@ -339,9 +339,8 @@ VERSION "2021-08-16"  =
       AssetComposition : BAG {1..*} OF DMGeolAssets.Catalogues.KindRef;
 
       !! CONSTRAINTS
-!!    MANDATORY CONSTRAINT
-!!        Kind <> #report OR DEFINED (TitlePublic);
-!!        Kind->Reference->Name=="report" OR DEFINED (TitlePublic);
+    MANDATORY CONSTRAINT
+        Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
 
     END AssetItem;
 
