@@ -363,8 +363,6 @@ VERSION "2021-08-16"  =
 
       !! CONSTRAINTS
     MANDATORY CONSTRAINT
-!!        Kind <> #report OR DEFINED (TitlePublic);
-!!        Kind->Reference->Name=="report" OR DEFINED (TitlePublic);
       Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
 
     END AssetItem;
