@@ -500,8 +500,10 @@ VERSION "2021-08-16"  =
       AssetItemMain -- {0..1} AssetItem;
       !! AssetPart
       AssetItemPart -- {0..*} AssetItem;
+      !! Ein AssetPart kann keine weiteren Parts enthalten. Somit ist die Beziehung nur gültig, wenn der AssetMain nicht selbst ein AssetMain als Parent hat.
+      MANDATORY CONSTRAINT
+        NOT (DEFINED (AssetItemMain->AssetItemMain));
     END AssetItemMain_AssetItemPart; 
-
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
     ASSOCIATION AssetItem_AssetPackage =
