@@ -489,33 +489,34 @@ VERSION "2021-08-16"  =
 !! ASSOCIATIONS
 !!****************************************
     !! Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
-    ASSOCIATION Asset_Asset =
-      AssetX -- {0..*} AssetItem;
-      AssetY -- {0..*} AssetItem;
-    END Asset_Asset;
-
+    ASSOCIATION AssetItemX_AssetItemY =
+      AssetItemX -- {0..*} AssetItem;
+      AssetItemY -- {0..*} AssetItem;
+    END AssetItemX_AssetItemY;
 
     !! Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
-    ASSOCIATION AssetItem_AssetPart =
-      !! AssetPart
-      AssetPart -- {0..*} AssetItem;
+    ASSOCIATION AssetItemMain_AssetItemPart =
       !! Asset aus dem der AssetPart extrahiert wurde
-      AssetMain -- {0..1} AssetItem;
-    END AssetItem_AssetPart; 
-
+      AssetItemMain -- {0..1} AssetItem;
+      !! AssetPart
+      AssetItemPart -- {0..*} AssetItem;
+      !! Ein AssetPart kann keine weiteren Parts enthalten. Somit ist die Beziehung nur gültig, wenn der AssetMain nicht selbst ein AssetMain als Parent hat.
+      MANDATORY CONSTRAINT
+        NOT (DEFINED (AssetItemMain->AssetItemMain));
+    END AssetItemMain_AssetItemPart; 
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
     ASSOCIATION AssetItem_AssetPackage =
-      PackagedAsset -- {0..*} AssetItem;
-      Package -- {1} AssetPackage;
+      AssetItem -- {0..*} AssetItem;
+      AssetPackage -- {1} AssetPackage;
     END AssetItem_AssetPackage;
 
 
-  !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
-  ASSOCIATION AssetBase_Publication =
-    AssetBase -- {1..*} AssetBase;
-    Publication -- {0..*} Publication;
-  END AssetBase_Publication;
+    !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
+    ASSOCIATION AssetBase_Publication =
+      AssetBase -- {1..*} AssetBase;
+      Publication -- {0..*} Publication;
+    END AssetBase_Publication;
 
 
     !! Untersuchungsgebiet zu einem Asset
@@ -524,34 +525,32 @@ VERSION "2021-08-16"  =
       GeometryOfInterest -- {0..1} GeometryOfInterest;
     END AssetBase_GeometryOfInterest;
 
-
     !! Autor
     ASSOCIATION AssetBase_Contact_Author =
-      AuthoredAsset -- {1..*} AssetBase;
+      AuthoredAssetBase -- {1..*} AssetBase;
       Author -- {0..*} Contact;
     END AssetBase_Contact_Author;
 
     !! Auftraggeber
     ASSOCIATION AssetBase_Contact_Initiator =
-      InitiatedAsset -- {1..*} AssetBase;
+      InitiatedAssetBase -- {1..*} AssetBase;
       Initiator -- {0..*} Contact;
     END AssetBase_Contact_Initiator;
 
     !!  Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
     ASSOCIATION AssetBase_Contact_Supplier =
-      SuppliedAsset -- {1..*} AssetBase;
+      SuppliedAssetBase -- {1..*} AssetBase;
       Supplier -- {0..*} Contact;
     END AssetBase_Contact_Supplier;
 
-
     ASSOCIATION AssetItem_AdminAssetItem =
-      AdminedAsset -- {1} AssetItem;
+      AssetItem -- {1} AssetItem;
       AdminAssetItem -- {1} AdminAssetItem;
     END AssetItem_AdminAssetItem;
 
 
     ASSOCIATION AssetPackage_AdminAssetPackage =
-      AdminedAssetPackage -- {1} AssetPackage;
+      AssetPackage -- {1} AssetPackage;
       AdminAssetPackage -- {1} AdminAssetPackage;
     END AssetPackage_AdminAssetPackage;
 
