@@ -27,9 +27,6 @@ VERSION "2021-08-16"  =
 
     !! Seitenzahlen eines Dokuments
     PageNums = 1 .. 10000;
-
-
-
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
     ObjectCoord = COORD 0 .. 10000, 
 						0 .. 10000;
