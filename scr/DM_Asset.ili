@@ -85,15 +85,6 @@ VERSION "2021-08-16"  =
     STRUCTURE StMultiText =
       MultiTextDescrAtt : BAG {0..*} OF StTextDescr;
     END StMultiText;
-/**
-    !!Strukur für die Modellierung des Attributes "AssetPartInfo", dass informationen zur Lage der Objektextrakte (0AssetPart) im Hauptdokument(=AssetMain) angibt
-    STRUCTURE AssetPartInfo =
-      ObjectPage : MANDATORY DMGeolAssets.PageNums;
-	  ObjectCat : DMGeolAssets.ObjectCategory;
-	  ObjectBBox : SURFACE WITH (STRAIGHTS) VERTEX DMGeolAssets.ObjectCoord WITHOUT OVERLAPS > 1;
-	  ObjectScore : 0 .. 1;
-    END AssetPartInfo;
-*/
 
 !!****************************************
 !! TOPIC 
@@ -122,34 +113,6 @@ VERSION "2021-08-16"  =
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
     END KindRef;
-
-
-/**
-!! Codelist für das Attribut Asset.Topic
-    CLASS TopicItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualText;
-    END TopicItem;
-
-    STRUCTURE TopicRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
-    END TopicRef;
-
-
-!! Codelist für das Attribut Asset.Purpose
-    CLASS PurposeItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualText;
-    END PurposeItem;
-
-    STRUCTURE PurposeRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
-    END PurposeRef;
-*/
 
 	!! Codelist für das Attribut Asset.ManCatLabel. Ersetzt die Attribute Topic und Purpose
     CLASS ManCatLabelItem
@@ -369,14 +332,6 @@ VERSION "2021-08-16"  =
       !! Art des Dokuments
       Kind : MANDATORY DMGeolAssets.Catalogues.KindRef;
 
-/**
-      !! Beschreibung des Gegenstands der Thematik, in dem das Asset angesiedelt ist.
-      Topic : BAG {1..*} OF DMGeolAssets.Catalogues.TopicRef;
-
-      !! Fachlicher Grund/Zweck/Ziel, aus dem ein Asset erstellt wurde
-      Purpose : BAG {1..*} OF DMGeolAssets.Catalogues.PurposeRef;
-*/
-
       !! Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
 	  ManCatLabel : BAG {0 .. *} OF DMGeolAssets.Catalogues.ManCatLabelRef;
 
@@ -416,37 +371,6 @@ VERSION "2021-08-16"  =
       !! TODO: MINE-Types definieren
 
       Format : MANDATORY DMGeolAssets.Catalogues.AssetFormatRef;
-/**
-      Format : MANDATORY (
-        !! Weitere, nicht genannte Formate
-        other,
-        !! Analoge Dokumente (Papier, Mikrofichen etc.)
-        textAnalog,
-        !! Grafisch analoge Zeichnung
-        graphicAnalog,
-        !! Grafisch digitale Vektorgrafik
-        GraphicVector,
-        !! Grafisch digitale Rastergrafik
-        GraphicRaster,
-        !! Digitales binäres Format
-        Binaer,
-        !! Textformat (z.B.: ascii, txt, doc, docx, xls, xlsx, xml, csv etc.)
-        textDigital,
-        !! Seismikspezifische Formate (SPS, SEG2, SEGD, SEGY etc.)
-        Seismic(
-          SEGY,
-          SEGY_exported,
-          !! andere seismikspezifische Formate
-          other
-        ),
-        !! PDF-Datei
-        PDF,
-        !! ESRI Shapefile
-        SHP,
-        !! Log-Files (Log ASCII Standard)
-        LAS
-      );
-*/
 
       !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
       AuthorBiblio : TEXT*254;
