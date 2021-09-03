@@ -80,6 +80,30 @@ VERSION "2021-08-16"  =
       MultiTextDescrAtt : BAG {0..*} OF StTextDescr;
     END StMultiText;
 
+    STRUCTURE GeometryOfInterest =
+      !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
+      GeomQuality : MANDATORY (
+        !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
+        placeholder,
+        !! Stellvertretergeometrie grösser 100x100 km
+        placeholder100x100,
+        !! Stellvertretergeometrie 10x10 km
+        placeholder10x10,
+        !! Stellverteretergeometrie 1x1 km
+        placeholder1x1,
+        !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
+        simplification,
+        !! so digitalisiert, wie die Geometrie voliegt
+        orginal
+      );
+
+      !! Bemerkung zur Region of interest
+      Remark : TEXT*254;
+      StudyLocation: MultiPoint;
+      StudySection: MultiLine;
+      StudyArea: MultiSurface;
+
+    END GeometryOfInterest;
 
 !!****************************************
 !! TOPIC 
@@ -279,7 +303,7 @@ VERSION "2021-08-16"  =
     CLASS AssetBase (ABSTRACT) =
       TitlePublic : MANDATORY TEXT*80;
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-
+      GeometryOfInterest: GeometryOfInterest; 
     END AssetBase;
 
 
@@ -373,52 +397,6 @@ VERSION "2021-08-16"  =
     EXTENDS AssetBase =
 
     END AssetPackage;
-
-
-    !! CLASS
-    CLASS GeometryOfInterest (ABSTRACT)=
-      !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
-      GeomQuality : MANDATORY (
-        !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
-        placeholder,
-        !! Stellvertretergeometrie grösser 100x100 km
-        placeholder100x100,
-        !! Stellvertretergeometrie 10x10 km
-        placeholder10x10,
-        !! Stellverteretergeometrie 1x1 km
-        placeholder1x1,
-        !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
-        simplification,
-        !! so digitalisiert, wie die Geometrie voliegt
-        orginal
-      );
-
-      !! Bemerkung zur Region of interest
-      Remark : TEXT*254;
-
-    END GeometryOfInterest;
-
-
-    !! CLASS
-    CLASS StudyLocation
-    EXTENDS GeometryOfInterest =
-      Geometry : MultiPoint;
-    END StudyLocation;
-
-
-    !! CLASS
-    CLASS StudySection
-    EXTENDS GeometryOfInterest =
-      Geometry : MultiLine;
-    END StudySection;
-
-
-    !! CLASS
-    CLASS StudyArea
-    EXTENDS GeometryOfInterest =
-      Geometry : MultiSurface;
-    END StudyArea;
-
 
     !! CLASS
     CLASS Publication =
@@ -517,13 +495,6 @@ VERSION "2021-08-16"  =
       AssetBase -- {1..*} AssetBase;
       Publication -- {0..*} Publication;
     END AssetBase_Publication;
-
-
-    !! Untersuchungsgebiet zu einem Asset
-    ASSOCIATION AssetBase_GeometryOfInterest =
-      AssetBase -- {1} AssetBase;
-      GeometryOfInterest -- {0..1} GeometryOfInterest;
-    END AssetBase_GeometryOfInterest;
 
     !! Autor
     ASSOCIATION AssetBase_Contact_Author =
