@@ -324,49 +324,53 @@ VERSION "2021-08-16"  =
 	  AutoCatLabel : MANDATORY DMGeolAssets.Catalogues.AutoCatLabelRef;
 
 
-      !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
-      IDAlternate : StMulitID;
+    !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
+    IDAlternate : StMulitID;
 
-      !! ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
-      IDSGS : 0 .. 1000000000;
+    !! ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
+    IDSGS : 0 .. 1000000000;
 
-      !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-      TitleOriginal : TEXT*80;
+    !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+    TitleOriginal : TEXT*80;
 
-      !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
-      Language : MANDATORY (
-        !! Englisch
-        EN,
-        !! Italienisch
-        IT,
-        !! Französisch
-        FR,
-        !! Deutsch
-        DE,
-        !! für Dokumente/Files, die nur numerisch aufgebaut sind.
-        NUM,
-        !! andere Sprachen
-        other
-      );
+    !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
+    Language : MANDATORY (
+      !! Englisch
+      EN,
+      !! Italienisch
+      IT,
+      !! Französisch
+      FR,
+      !! Deutsch
+      DE,
+      !! für Dokumente/Files, die nur numerisch aufgebaut sind.
+      NUM,
+      !! andere Sprachen
+      other
+    );
 
-      !! Pfad zu einer Online-Ressource des Files vom RelativePfad
-      URL : TEXT*254;
+    !! Pfad zu einer Online-Ressource des Files vom RelativePfad
+    URL : TEXT*254;
 
-      !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
-      !! TODO: MINE-Types definieren
+    !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+    !! TODO: MINE-Types definieren
 
-      Format : MANDATORY DMGeolAssets.Catalogues.AssetFormatRef;
+    Format : MANDATORY DMGeolAssets.Catalogues.AssetFormatRef;
 
-      !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
-      AuthorBiblio : TEXT*254;
+    !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
+    AuthorBiblio : TEXT*254;
 
-      AssetComposition : BAG {1..*} OF DMGeolAssets.Catalogues.KindRef;
+    AssetComposition : BAG {1..*} OF DMGeolAssets.Catalogues.KindRef;
 	  
+    IsPart : MANDATORY BOOLEAN;
 	  AssetPartInfo : DMGeolAssets.CoreGeolAsset.AssetPartInfo;
 
       !! CONSTRAINTS
     MANDATORY CONSTRAINT
     Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
+
+    MANDATORY CONSTRAINT
+    NOT(IsPart) OR DEFINED (AssetPartInfo);
 
 !! Hier CONSTRAINT einfügen, der prüft, ob es sich um ein AssetPart handelt (Rolle AssetPart der rekursiven Beziehung) und wenn ja sicherstellt, dass das Attribut AssetPartInfo ausgefüllt wird.
 
@@ -505,9 +509,9 @@ VERSION "2021-08-16"  =
       AssetItemMain -- {0..1} AssetItem;
       !! AssetPart
       AssetItemPart -- {0..*} AssetItem;
-      !! Ein AssetPart kann keine weiteren Parts enthalten. Somit ist die Beziehung nur gültig, wenn der AssetMain nicht selbst ein AssetMain als Parent hat.
+      !! Ein AssetPart kann keine weiteren Parts enthalten.
       MANDATORY CONSTRAINT
-        NOT (DEFINED (AssetItemMain->AssetItemMain));
+        AssetItemPart->IsPart AND NOT (AssetItemMain->IsPart);
     END AssetItemMain_AssetItemPart; 
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
