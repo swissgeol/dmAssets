@@ -25,34 +25,6 @@ VERSION "2021-08-16"  =
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
     Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
 
-    !! BAG OF with INTERLIS 2.3 only possible with STRUCTURE
-    STRUCTURE PointStructure = 
-      Point: GeometryCHLV95_V1.Coord2;
-    END PointStructure;
-        
-    !!@ili2db.mapping=MultiPoint
-    STRUCTURE MultiPoint =
-      Points: BAG {1..*} OF PointStructure;
-    END MultiPoint;
-        
-    STRUCTURE LineStructure = 
-      Line: Line;
-    END LineStructure;
-        
-    !!@ili2db.mapping=MultiLine
-    STRUCTURE MultiLine =
-      Lines: BAG {1..*} OF LineStructure;
-    END MultiLine;
-        
-    STRUCTURE SurfaceStructure = 
-      Surface: Surface;
-    END SurfaceStructure;
-        
-    !!@ili2db.mapping=MultiSurface
-    STRUCTURE MultiSurface =
-      Surfaces: BAG {1..*} OF SurfaceStructure;
-    END MultiSurface;
-
     !!Strukur für die Modellierung von Adressen
     STRUCTURE Adress =
       Street : TEXT*20;
@@ -99,9 +71,9 @@ VERSION "2021-08-16"  =
 
       !! Bemerkung zur Region of interest
       Remark : TEXT*254;
-      StudyLocation: MultiPoint;
-      StudySection: MultiLine;
-      StudyArea: MultiSurface;
+      StudyLocation: GeometryCHLV95_V1.Coord2;
+      StudySection: Line;
+      StudyArea: Surface;
 
     END GeometryOfInterest;
 
@@ -303,7 +275,7 @@ VERSION "2021-08-16"  =
     CLASS AssetBase (ABSTRACT) =
       TitlePublic : MANDATORY TEXT*80;
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      GeometryOfInterest: GeometryOfInterest; 
+      GeometryOfInterest: BAG {0..*} OF GeometryOfInterest; 
     END AssetBase;
 
 
