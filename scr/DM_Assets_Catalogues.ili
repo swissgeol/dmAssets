@@ -3,40 +3,127 @@ MODEL DMAssetsCatalogues (en) AT "mailto:U80773132@localhost" VERSION "2021-07-2
 
 IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
+!!****************************************
+!! TOPIC 
+!!****************************************
+  TOPIC Basic =
+    !! Definition einer UUID für alles Klassen im Modell
+    OID AS INTERLIS.UUIDOID;
+
+  END Basic;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
   TOPIC Catalogues =
-    
-	OID AS INTERLIS.UUIDOID;
+  DEPENDS ON Basic;
 
 !! Codelist für das Attribut Asset.Kind
-	CLASS KindItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  Name : MANDATORY LocalisationCH_V1.MultilingualText;
-	  Description : LocalisationCH_V1.MultilingualMText;
-	END KindItem;
+    CLASS KindItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END KindItem;
 
-    STRUCTURE KindRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    STRUCTURE KindRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KindItem;
     END KindRef;
 
+
+/**
 !! Codelist für das Attribut Asset.Topic
-	CLASS TopicItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
+    CLASS TopicItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
     END TopicItem;
-    
-    STRUCTURE TopicRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+
+    STRUCTURE TopicRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) TopicItem;
     END TopicRef;
 
+
 !! Codelist für das Attribut Asset.Purpose
-	CLASS PurposeItem EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY TEXT;
-      Description : TEXT;
+    CLASS PurposeItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
     END PurposeItem;
-    
-    STRUCTURE PurposeRef EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+
+    STRUCTURE PurposeRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PurposeItem;
     END PurposeRef;
+*/
+
+	!! Codelist für das Attribut Asset.ManCatLabel. Ersetzt die Attribute Topic und Purpose
+    CLASS ManCatLabelItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END ManCatLabelItem;
+
+    STRUCTURE ManCatLabelRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ManCatLabelItem;
+    END ManCatLabelRef;
+
+	!! Codelist für das Attribut Asset.AutoCatLabel. Klasse durch GAIA zugewiesen
+    CLASS AutoCatLabelItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END AutoCatLabelItem;
+
+    STRUCTURE AutoCatLabelRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
+    END AutoCatLabelRef;
+
+
+	!! Codelist für das Attribut Asset.AutoCatLabel. Klasse durch GAIA zugewiesen
+    CLASS AutoObjectCatItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END AutoObjectCatItem;
+
+    STRUCTURE AutoObjectCatRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoObjectCatItem;
+    END AutoObjectCatRef;
+
+
+!! Codelist für das Attribut AdminAssetBase.TypeNationalRelevance
+	CLASS NatRelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END NatRelItem;
+
+    STRUCTURE NatRelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
+    END NatRelRef;
+
+
+    !! Codelist für die Foramte eines Assets
+	CLASS AssetFormatItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      MIME : TEXT*50;
+    END AssetFormatItem;
+
+    STRUCTURE AssetFormatRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetFormatItem;
+    END AssetFormatRef;
 	
+
   END Catalogues;
 
 END DMAssetsCatalogues.
