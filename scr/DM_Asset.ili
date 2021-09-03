@@ -28,31 +28,6 @@ VERSION "2021-08-16"  =
     !! Seitenzahlen eines Dokuments
     PageNums = 1 .. 10000;
 
-/**
-    !! Kategory der extrahierten Objekte aus GAIA
-    ObjectCategory = (
-      !! Bohrprofil
-	  drillProfile,
-	  !! Geologsiches Profil
-	  geologicSection,
-	  !!Stratigraphisches Profil
-	  stratiSection,
-	  !! Geotechnisches Profil
-	  geotechnicSection,
-	  !! Seismisches Profil
-	  seismicSection,
-	  !! Bohr-Log
-	  drillLog,
-	  !! Karte
-	  map,
-	  !! Grafikgrafic
-	  grafic,
-	  !! Tabelle
-	  table,
-	  !! Foto
-	  photo
-    );
-*/
 
 
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
