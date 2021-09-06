@@ -28,34 +28,6 @@ VERSION "2021-08-16"  =
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
     ObjectCoord = COORD 0 .. 10000, 0 .. 10000;
 
-    !! BAG OF with INTERLIS 2.3 only possible with STRUCTURE
-    STRUCTURE PointStructure = 
-      Point: GeometryCHLV95_V1.Coord2;
-    END PointStructure;
-        
-    !!@ili2db.mapping=MultiPoint
-    STRUCTURE MultiPoint =
-      Points: BAG {1..*} OF PointStructure;
-    END MultiPoint;
-        
-    STRUCTURE LineStructure = 
-      Line: Line;
-    END LineStructure;
-        
-    !!@ili2db.mapping=MultiLine
-    STRUCTURE MultiLine =
-      Lines: BAG {1..*} OF LineStructure;
-    END MultiLine;
-        
-    STRUCTURE SurfaceStructure = 
-      Surface: Surface;
-    END SurfaceStructure;
-        
-    !!@ili2db.mapping=MultiSurface
-    STRUCTURE MultiSurface =
-      Surfaces: BAG {1..*} OF SurfaceStructure;
-    END MultiSurface;
-
     !!Strukur für die Modellierung von Adressen
     STRUCTURE Adress =
       Street : TEXT*20;
@@ -307,7 +279,6 @@ VERSION "2021-08-16"  =
     CLASS AssetBase (ABSTRACT) =
       TitlePublic : MANDATORY TEXT*80;
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-
     END AssetBase;
 
 
@@ -398,7 +369,7 @@ VERSION "2021-08-16"  =
         orginal
       );
 
-      !! Bemerkung zur Region of interest
+      !! Bemerkung zur Geometry
       Remark : TEXT*254;
 
     END GeometryOfInterest;
@@ -407,21 +378,21 @@ VERSION "2021-08-16"  =
     !! CLASS Punktgeometrien
     CLASS StudyLocation
     EXTENDS GeometryOfInterest =
-      Geometry : MultiPoint;
+      Geometry : GeometryCHLV95_V1.Coord2;
     END StudyLocation;
 
 
     !! CLASS Liniengeometrien
     CLASS StudySection
     EXTENDS GeometryOfInterest =
-      Geometry : MultiLine;
+      Geometry : Line;
     END StudySection;
 
 
     !! CLASS Polygongeometrien
     CLASS StudyArea
     EXTENDS GeometryOfInterest =
-      Geometry : MultiSurface;
+      Geometry : Surface;
     END StudyArea;
 
 
@@ -507,7 +478,8 @@ VERSION "2021-08-16"  =
       AssetItemPart -- {0..*} AssetItem;
       !! Ein AssetPart kann keine weiteren Parts enthalten. Somit ist die Beziehung nur gültig, wenn der AssetMain nicht selbst ein AssetMain als Parent hat.
       MANDATORY CONSTRAINT
-        NOT (DEFINED (AssetItemMain->AssetItemMain));
+        NOT (AssetItemMain->IsMain)
+        AND NOT (AssetItemPart->IsMain);
     END AssetItemMain_AssetItemPart; 
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
@@ -523,11 +495,10 @@ VERSION "2021-08-16"  =
       Publication -- {0..*} Publication;
     END AssetBase_Publication;
 
-
     !! Untersuchungsgebiet zu einem Asset
     ASSOCIATION AssetBase_GeometryOfInterest =
       AssetBase -- {1} AssetBase;
-      GeometryOfInterest -- {0..1} GeometryOfInterest;
+      GeometryOfInterest -- {0..*} GeometryOfInterest;
     END AssetBase_GeometryOfInterest;
 
     !! Autor
