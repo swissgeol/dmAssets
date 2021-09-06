@@ -136,6 +136,45 @@ VERSION "2021-08-16"  =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetFormatItem;
     END AssetFormatRef;
 	
+	
+    !! Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
+	CLASS ContactKindItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END ContactKindItem;
+
+    STRUCTURE ContactKindRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ContactKindItem;
+    END ContactKindRef;	
+
+
+    !! Codelist für das Attribut Publication.Channel = Publikationskanal (internet, conference, ...)
+	CLASS PubChannelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END PubChannelItem;
+
+    STRUCTURE PubChannelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PubChannelItem;
+    END PubChannelRef;
+
+
+    !! Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
+    CLASS StatusWorkItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END StatusWorkItem;
+
+    STRUCTURE StatusWorkRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
+    END StatusWorkRef;	
+
 
   END Catalogues;
 
