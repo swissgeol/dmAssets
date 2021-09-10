@@ -1,13 +1,21 @@
+INTERLIS 2.3;
 
+!!****************************************
+!! MODEL
+!!****************************************
+MODEL DMGeolCodes (en) 
+AT "mailto:U80773132@localhost" 
+VERSION "2021-09-10" =
 
-
+IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+IMPORTS DMAssetsCatalogues;
 
 
 !!****************************************
 !! TOPIC 
 !!****************************************
   TOPIC ManageCatalogues =
-  DEPENDS ON Catalogues; 
+  DEPENDS ON DMAssetsCatalogues.Catalogues; 
 
     STRUCTURE ChangeLog =
       dateChange : FORMAT INTERLIS.XMLDateTime "2021-6-1T0:0:0.0" .. "2222-12-31T23:59:59.0";
@@ -21,7 +29,7 @@
       GeolCode_1 : TEXT*20;
       GeolCode_2 : 1 .. 10000000;
       GeolCode_recent : TEXT*200;
-      ChangeLog : DMAssetsCatalogues.ManageCatalogues.ChangeLog;
+      ChangeLog : DMGeolCodes.ManageCatalogues.ChangeLog;
       Remark : TEXT*20;
     END Admin;
 
@@ -86,3 +94,5 @@
 
 
   END ManageCatalogues;
+  
+  END DMGeolCodes.
