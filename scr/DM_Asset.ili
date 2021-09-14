@@ -319,15 +319,8 @@ VERSION "2021-09-10"  =
       !! Referenz auf einen Eintrag inder zentralen Adress-Datenbank (ZAD)
       IDZAD : TEXT*20;
 
-      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.
-      Kind : MANDATORY (
-        Bundesbehoerde,
-        Andere,
-        Uni_Fachhochschule,
-        Gemeinde,
-        Kantonale_Bewilligungsbehoerde,
-        swisstopo
-      );
+      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
+	  Kind : MANDATORY DMAssetsCatalogues.Catalogues.ContactKindRef;
 
       !! Name des Kontakts
       Name : MANDATORY TEXT*20;
