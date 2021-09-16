@@ -6,7 +6,7 @@ INTERLIS 2.3;
 !!****************************************
 MODEL DMGeolAssets (de)
 AT "mailto:U80773132@localhost"
-VERSION "2021-09-10"  =
+VERSION "2021-09-16"  =
 
 
 !!****************************************
@@ -173,8 +173,18 @@ VERSION "2021-09-10"  =
 
     !! Baisklasse der Metadaten eines Assets oder Assetpackages
     CLASS AssetBase (ABSTRACT) =
-      TitlePublic : MANDATORY TEXT*80;
+      !! Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
+	  TitlePublic : MANDATORY TEXT*80;
+	  
+      !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+      TitleOriginal : TEXT*80;
+      
+	  !! Datum des Erstellung des Assets.
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  
+      !! Bemerkung zum Asset
+      Remark : TEXT*254;
+	  
     END AssetBase;
 
 
@@ -185,10 +195,10 @@ VERSION "2021-09-10"  =
       Kind : MANDATORY DMAssetsCatalogues.Catalogues.AssetKindRef;
 
       !! Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
-	  ManCatLabel : BAG {0 .. *} OF DMAssetsCatalogues.Catalogues.ManCatLabelRef;
+	  ManCatLabel : BAG {1 .. *} OF DMAssetsCatalogues.Catalogues.ManCatLabelRef;
 
       !! Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
-	  AutoCatLabel : MANDATORY DMAssetsCatalogues.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : DMAssetsCatalogues.Catalogues.AutoCatLabelRef;
 
 
     !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
@@ -196,9 +206,6 @@ VERSION "2021-09-10"  =
 
     !! ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
     IDSGS : 0 .. 1000000000;
-
-    !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-    TitleOriginal : TEXT*80;
 
     !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
     Language : MANDATORY (
@@ -226,7 +233,7 @@ VERSION "2021-09-10"  =
     AuthorBiblio : TEXT*254;
     
 	!! Zusammensetzung eines assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
-    AssetComposition : BAG {1..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
+    AssetComposition : BAG {0..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
 	
 	!! Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
     IsPart : MANDATORY BOOLEAN;
@@ -256,7 +263,7 @@ VERSION "2021-09-10"  =
     CLASS GeometryOfInterest (ABSTRACT)=
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       GeomQuality : MANDATORY (
-        !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
+        !! Stellvertretergeometie allgemein, ohne eine konkret definierte Grösse
         placeholder,
         !! Stellvertretergeometrie grösser 100x100 km
         placeholder100x100,
@@ -267,11 +274,10 @@ VERSION "2021-09-10"  =
         !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
         simplification,
         !! so digitalisiert, wie die Geometrie voliegt
-        orginal
+        orginal,
+		!! Stellvertretergeometrie angepasst
+		revised
       );
-
-      !! Bemerkung zur Geometry
-      Remark : TEXT*254;
 
     END GeometryOfInterest;
 
