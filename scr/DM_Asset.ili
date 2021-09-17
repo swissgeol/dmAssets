@@ -63,7 +63,7 @@ VERSION "2021-09-16"  =
 	  !! Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
 	  ObjectPage : MANDATORY DMGeolAssets.PageNums;
 	  !! Boundingbox des Objekts
-	  ObjectBBox : SURFACE WITH (STRAIGHTS) VERTEX DMGeolAssets.ObjectCoord WITHOUT OVERLAPS > 1;
+	  ObjectBBox : ObjectCoord;
 	  !! Score der Vorhersage des Algorithmus
 	  ObjectScore : 0 .. 1;
     END AssetPartInfo;
