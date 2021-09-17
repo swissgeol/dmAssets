@@ -26,6 +26,7 @@ VERSION "2021-09-16"  =
 
     !! Seitenzahlen eines Dokuments
     PageNums = 1 .. 10000;
+	
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
     ObjectCoord = COORD 0 .. 10000, 0 .. 10000;
 
@@ -44,7 +45,7 @@ VERSION "2021-09-16"  =
 
 
     STRUCTURE StTextDescr =
-      TextDescrAtt : TEXT*255;
+      TextDescrAtt : TEXT*254;
     END StTextDescr;
 
 
@@ -166,7 +167,7 @@ VERSION "2021-09-16"  =
       );
 
       !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
-      Project : TEXT*80;
+      Project : TEXT*254;
     
     END AdminAssetPackage;
 
@@ -177,7 +178,7 @@ VERSION "2021-09-16"  =
 	  TitlePublic : MANDATORY TEXT*80;
 	  
       !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-      TitleOriginal : TEXT*80;
+      TitleOriginal : TEXT*254;
       
 	  !! Datum des Erstellung des Assets.
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
@@ -312,10 +313,10 @@ VERSION "2021-09-16"  =
       Channel : DMAssetsCatalogues.Catalogues.PubChannelRef;
 
       !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
-      Description : TEXT*20;
+      Description : TEXT*80;
 
       !! URL oder DOI etc. zur jeweilgen Publikation
-      Link : TEXT*20;
+      Link : TEXT*254;
 
     END Publication;
 
