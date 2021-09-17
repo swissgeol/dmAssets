@@ -28,7 +28,7 @@ VERSION "2021-09-16"  =
     PageNums = 1 .. 10000;
 	
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
-    ObjectCoord = COORD 0 .. 10000, 0 .. 10000;
+    ObjectCoord = TEXT*254;
 
     !!Strukur für die Modellierung von Adressen
     STRUCTURE Adress =
