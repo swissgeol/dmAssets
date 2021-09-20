@@ -235,6 +235,9 @@ VERSION "2021-09-16"  =
     
 	!! Zusammensetzung eines assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
     AssetComposition : BAG {0..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
+
+    !! Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
+	TextBody : TEXT;
 	
 	!! Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
     IsPart : MANDATORY BOOLEAN;
