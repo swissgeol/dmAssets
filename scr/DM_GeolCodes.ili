@@ -21,7 +21,7 @@ IMPORTS DMAssetsCatalogues;
       DateChange : FORMAT INTERLIS.XMLDateTime "2021-6-1T0:0:0.0" .. "2222-12-31T23:59:59.0";
       ChangeFrom : TEXT*20;
       ChangeTo : TEXT*20;
-      changeReason : TEXT*254;
+      ChangeReason : TEXT*254;
     END ChangeLog;
 
 
