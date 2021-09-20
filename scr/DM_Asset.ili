@@ -39,14 +39,31 @@ VERSION "2021-09-16"  =
       Country : MANDATORY TEXT*20;
     END Adress;
 
+    !! Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
     STRUCTURE StID =
       ID : TEXT*50;
     END StID;
 
-
+    !! Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
     STRUCTURE StTextDescr =
       TextDescrAtt : TEXT*254;
     END StTextDescr;
+	
+	!! Struktur zur Definition der rechtilich verbindlichen Dokumente, wie Einwilligiungsformulare oder Vertäge
+	STRUCTURE LegalDoc =
+	  Titel : TEXT*20;
+	  Type : MANDATORY (
+        !! Einwilligungsformular
+        permissionForm,
+        !! Vertrga
+        contract,
+        !! Anderer Typ
+        other
+      );
+	  !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
+      RelativePathAdmin : TEXT*20;
+	  
+	END LegalDoc;
 
 
 !!****************************************
@@ -82,6 +99,9 @@ VERSION "2021-09-16"  =
 
       !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
       RelativePath : MANDATORY TEXT*254;
+	  
+      !! Pfad zu einer Online-Ressource des Files vom RelativePfad
+      URL : TEXT*254;
 
       !! UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
       UsedBy : BAG {0..*} OF StTextDescr;
@@ -105,9 +125,25 @@ VERSION "2021-09-16"  =
       !! Grund der Zuweisung der nationalen Bedeutung
       TypeNationalRelevance : BAG {1..*} OF DMAssetsCatalogues.Catalogues.NatRelRef;
 
+      !! Rechtliche Dokumente 
+	  LegalDoc : LegalDoc;
+	  
       !! Eingangsdatum des Assets
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  
+	  !!Bearbeiter: Mitarbeiter-Nr. Identifikator des User im System
+	  Processor : TEXT;
+	  
+	  !! Letztes Bearbeitungsdatum
+	  DateLastProcessed : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
+	  
+	  !! Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
+	  InfogeolData : TEXT;
+	  
+	  !! Contaktinformationen aus Altdaten
+	  InfogeolContactData : TEXT;
+	  
       !! Bemerkungen
       Remark : MTEXT*1800;
 	
@@ -141,9 +177,6 @@ VERSION "2021-09-16"  =
 
       !! Physischer Standort des analogen Dokuments
       LocationAnalog : TEXT*20;
-
-      !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
-      RelativePathAdmin : TEXT*20;
 
     !! ----------
     MANDATORY CONSTRAINT
@@ -224,9 +257,6 @@ VERSION "2021-09-16"  =
       other
     );
 
-    !! Pfad zu einer Online-Ressource des Files vom RelativePfad
-    URL : TEXT*254;
-
     !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
     Format : MANDATORY DMAssetsCatalogues.Catalogues.AssetFormatRef;
 
@@ -294,10 +324,10 @@ VERSION "2021-09-16"  =
 
 
     !! CLASS Liniengeometrien
-    CLASS StudySection
+    CLASS StudyTrace
     EXTENDS GeometryOfInterest =
       Geometry : Line;
-    END StudySection;
+    END StudyTrace;
 
 
     !! CLASS Polygongeometrien
@@ -377,7 +407,7 @@ VERSION "2021-09-16"  =
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
     ASSOCIATION AssetItem_AssetPackage =
       AssetItem -- {0..*} AssetItem;
-      AssetPackage -- {1} AssetPackage;
+      AssetPackage -- {0..1} AssetPackage;
     END AssetItem_AssetPackage;
 
 
