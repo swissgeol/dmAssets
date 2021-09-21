@@ -65,37 +65,68 @@
     <layer-tree-group checked="Qt::Checked" expanded="1" name="domains">
       <customproperties/>
       <layer-tree-layer checked="Qt::Checked" id="LanguageCode_ISO639_1_9875ec90_360f_426d_9026_3afb8749e92c" source="./DM_Asset_Catalogues.gpkg|layername=languagecode_iso639_1" legend_exp="" providerKey="ogr" expanded="1" name="LanguageCode_ISO639_1">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c" source="./DM_Asset_Catalogues.gpkg|layername=statusworkitem" legend_exp="" providerKey="ogr" expanded="1" name="StatusWorkItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c" source="./DM_Asset_Catalogues.gpkg|layername=pubchannelitem" legend_exp="" providerKey="ogr" expanded="1" name="PubChannelItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4" source="./DM_Asset_Catalogues.gpkg|layername=contactkinditem" legend_exp="" providerKey="ogr" expanded="1" name="ContactKindItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26" source="./DM_Asset_Catalogues.gpkg|layername=assetformatitem" legend_exp="" providerKey="ogr" expanded="1" name="AssetFormatItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f" source="./DM_Asset_Catalogues.gpkg|layername=natrelitem" legend_exp="" providerKey="ogr" expanded="1" name="NatRelItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025" source="./DM_Asset_Catalogues.gpkg|layername=autoobjectcatitem" legend_exp="" providerKey="ogr" expanded="1" name="AutoObjectCatItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352" source="./DM_Asset_Catalogues.gpkg|layername=autocatlabelitem" legend_exp="" providerKey="ogr" expanded="1" name="AutoCatLabelItem">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer checked="Qt::Checked" id="ManCatLabelItem_7939c3bd_69b6_491c_a4c6_fa075e0b6938" source="./DM_Asset_Catalogues.gpkg|layername=mancatlabelitem" legend_exp="" providerKey="ogr" expanded="1" name="ManCatLabelItem">
-        <customproperties/>
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
       </layer-tree-layer>
       <layer-tree-layer checked="Qt::Checked" id="AssetKindItem_52ffca1d_c8dc_456b_b476_bb0739302f18" source="./DM_Asset_Catalogues.gpkg|layername=assetkinditem" legend_exp="" providerKey="ogr" expanded="1" name="AssetKindItem">
-        <customproperties/>
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="ManCatLabelItem_7939c3bd_69b6_491c_a4c6_fa075e0b6938" source="./DM_Asset_Catalogues.gpkg|layername=mancatlabelitem" legend_exp="" providerKey="ogr" expanded="1" name="ManCatLabelItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352" source="./DM_Asset_Catalogues.gpkg|layername=autocatlabelitem" legend_exp="" providerKey="ogr" expanded="1" name="AutoCatLabelItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025" source="./DM_Asset_Catalogues.gpkg|layername=autoobjectcatitem" legend_exp="" providerKey="ogr" expanded="1" name="AutoObjectCatItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26" source="./DM_Asset_Catalogues.gpkg|layername=assetformatitem" legend_exp="" providerKey="ogr" expanded="1" name="AssetFormatItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f" source="./DM_Asset_Catalogues.gpkg|layername=natrelitem" legend_exp="" providerKey="ogr" expanded="1" name="NatRelItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4" source="./DM_Asset_Catalogues.gpkg|layername=contactkinditem" legend_exp="" providerKey="ogr" expanded="1" name="ContactKindItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c" source="./DM_Asset_Catalogues.gpkg|layername=pubchannelitem" legend_exp="" providerKey="ogr" expanded="1" name="PubChannelItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" id="StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c" source="./DM_Asset_Catalogues.gpkg|layername=statusworkitem" legend_exp="" providerKey="ogr" expanded="1" name="StatusWorkItem">
+        <customproperties>
+          <property key="showFeatureCount" value="1"/>
+        </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <custom-order enabled="0"/>
+    <custom-order enabled="0">
+      <item>AssetKindItem_52ffca1d_c8dc_456b_b476_bb0739302f18</item>
+      <item>LanguageCode_ISO639_1_9875ec90_360f_426d_9026_3afb8749e92c</item>
+      <item>ManCatLabelItem_7939c3bd_69b6_491c_a4c6_fa075e0b6938</item>
+      <item>AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352</item>
+      <item>AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025</item>
+      <item>AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26</item>
+      <item>NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f</item>
+      <item>PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c</item>
+      <item>ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4</item>
+      <item>StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c</item>
+    </custom-order>
   </layer-tree-group>
   <snapping-settings tolerance="12" intersection-snapping="0" unit="1" mode="2" type="1" enabled="0">
     <individual-layer-settings/>
@@ -250,54 +281,54 @@
       </legendlayer>
     </legendgroup>
     <legendgroup checked="Qt::Checked" open="true" name="domains">
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="LanguageCode_ISO639_1">
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="LanguageCode_ISO639_1">
         <filegroup hidden="false" open="true">
           <legendlayerfile visible="1" layerid="LanguageCode_ISO639_1_9875ec90_360f_426d_9026_3afb8749e92c" isInOverview="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="StatusWorkItem">
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="AssetKindItem">
         <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c" isInOverview="0"/>
+          <legendlayerfile visible="1" layerid="AssetKindItem_52ffca1d_c8dc_456b_b476_bb0739302f18" isInOverview="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="PubChannelItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="ContactKindItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="AssetFormatItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="NatRelItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="AutoObjectCatItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="AutoCatLabelItem">
-        <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352" isInOverview="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="ManCatLabelItem">
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="ManCatLabelItem">
         <filegroup hidden="false" open="true">
           <legendlayerfile visible="1" layerid="ManCatLabelItem_7939c3bd_69b6_491c_a4c6_fa075e0b6938" isInOverview="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer showFeatureCount="0" checked="Qt::Checked" drawingOrder="-1" open="true" name="AssetKindItem">
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="AutoCatLabelItem">
         <filegroup hidden="false" open="true">
-          <legendlayerfile visible="1" layerid="AssetKindItem_52ffca1d_c8dc_456b_b476_bb0739302f18" isInOverview="0"/>
+          <legendlayerfile visible="1" layerid="AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="AutoObjectCatItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="AssetFormatItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="NatRelItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="ContactKindItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="PubChannelItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c" isInOverview="0"/>
+        </filegroup>
+      </legendlayer>
+      <legendlayer showFeatureCount="1" checked="Qt::Checked" drawingOrder="-1" open="true" name="StatusWorkItem">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile visible="1" layerid="StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c" isInOverview="0"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -988,6 +1019,15 @@ def my_form_open(dialog, layer, feature):
         <type>dataset</type>
         <title></title>
         <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
         <links/>
         <fees></fees>
         <encoding></encoding>
@@ -1004,7 +1044,15 @@ def my_form_open(dialog, layer, feature):
             <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
-        <extent/>
+        <extent>
+          <spatial minx="0" crs="" dimensions="2" minz="0" maxy="0" maxx="0" miny="0" maxz="0"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
       </resourceMetadata>
       <provider encoding="UTF-8">ogr</provider>
       <vectorjoins/>
@@ -1025,144 +1073,172 @@ def my_form_open(dialog, layer, feature):
         <property key="dualview/previewExpressions">
           <value>"aname"</value>
         </property>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
-        <activeChecks type="StringList">
-          <Option value="" type="QString"/>
-        </activeChecks>
+        <activeChecks/>
         <checkConfiguration/>
       </geometryOptions>
       <fieldConfiguration>
         <field name="T_Id">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="T_Ili_Tid">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname_de">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname_fr">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname_rm">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname_it">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="aname_en">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription_de">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription_fr">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription_rm">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription_it">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="adescription_en">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="issuperitem">
-          <editWidget type="">
+          <editWidget type="CheckBox">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="isuseable">
-          <editWidget type="">
+          <editWidget type="CheckBox">
             <config>
               <Option/>
             </config>
           </editWidget>
         </field>
         <field name="parent_assetkinditem">
-          <editWidget type="">
+          <editWidget type="RelationReference">
             <config>
-              <Option/>
+              <Option type="Map">
+                <Option value="false" type="bool" name="AllowAddFeatures"/>
+                <Option value="true" type="bool" name="AllowNULL"/>
+                <Option value="false" type="bool" name="MapIdentification"/>
+                <Option value="false" type="bool" name="OrderByValue"/>
+                <Option value="false" type="bool" name="ReadOnly"/>
+                <Option value="assetkinditem_parent_assetkinditem_assetkinditem_T_Id" type="QString" name="Relation"/>
+                <Option value="false" type="bool" name="ShowForm"/>
+                <Option value="true" type="bool" name="ShowOpenFormButton"/>
+              </Option>
             </config>
           </editWidget>
         </field>
         <field name="parent_pubchannelitem">
-          <editWidget type="">
+          <editWidget type="RelationReference">
             <config>
-              <Option/>
+              <Option type="Map">
+                <Option value="false" type="bool" name="AllowAddFeatures"/>
+                <Option value="true" type="bool" name="AllowNULL"/>
+                <Option value="false" type="bool" name="MapIdentification"/>
+                <Option value="false" type="bool" name="OrderByValue"/>
+                <Option value="false" type="bool" name="ReadOnly"/>
+                <Option value="assetkinditem_parent_pubchannelitem_pubchannelitem_T_Id" type="QString" name="Relation"/>
+                <Option value="false" type="bool" name="ShowForm"/>
+                <Option value="true" type="bool" name="ShowOpenFormButton"/>
+              </Option>
             </config>
           </editWidget>
         </field>
         <field name="parent_assetformatitem">
-          <editWidget type="">
+          <editWidget type="RelationReference">
             <config>
-              <Option/>
+              <Option type="Map">
+                <Option value="false" type="bool" name="AllowAddFeatures"/>
+                <Option value="true" type="bool" name="AllowNULL"/>
+                <Option value="false" type="bool" name="MapIdentification"/>
+                <Option value="false" type="bool" name="OrderByValue"/>
+                <Option value="false" type="bool" name="ReadOnly"/>
+                <Option value="assetkinditem_parent_assetformatitem_assetformatitem_T_Id" type="QString" name="Relation"/>
+                <Option value="false" type="bool" name="ShowForm"/>
+                <Option value="true" type="bool" name="ShowOpenFormButton"/>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -1290,7 +1366,23 @@ def my_form_open(dialog, layer, feature):
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
-      <editforminitcode><![CDATA[]]></editforminitcode>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
@@ -1326,10 +1418,71 @@ def my_form_open(dialog, layer, feature):
           <attributeEditorRelation showLinkButton="1" showUnlinkButton="1" relation="pubchannelitem_parent_assetkinditem_assetkinditem_T_Id" name="pubchannelitem_parent_assetkinditem_assetkinditem_T_Id" showLabel="1"/>
         </attributeEditorContainer>
       </attributeEditorForm>
-      <editable/>
-      <labelOnTop/>
-      <widgets/>
-      <previewExpression>aname</previewExpression>
+      <editable>
+        <field editable="1" name="T_Id"/>
+        <field editable="1" name="T_Ili_Tid"/>
+        <field editable="1" name="adescription"/>
+        <field editable="1" name="adescription_de"/>
+        <field editable="1" name="adescription_en"/>
+        <field editable="1" name="adescription_fr"/>
+        <field editable="1" name="adescription_it"/>
+        <field editable="1" name="adescription_rm"/>
+        <field editable="1" name="aname"/>
+        <field editable="1" name="aname_de"/>
+        <field editable="1" name="aname_en"/>
+        <field editable="1" name="aname_fr"/>
+        <field editable="1" name="aname_it"/>
+        <field editable="1" name="aname_rm"/>
+        <field editable="1" name="issuperitem"/>
+        <field editable="1" name="isuseable"/>
+        <field editable="1" name="parent_assetformatitem"/>
+        <field editable="1" name="parent_assetkinditem"/>
+        <field editable="1" name="parent_pubchannelitem"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="T_Id"/>
+        <field labelOnTop="0" name="T_Ili_Tid"/>
+        <field labelOnTop="0" name="adescription"/>
+        <field labelOnTop="0" name="adescription_de"/>
+        <field labelOnTop="0" name="adescription_en"/>
+        <field labelOnTop="0" name="adescription_fr"/>
+        <field labelOnTop="0" name="adescription_it"/>
+        <field labelOnTop="0" name="adescription_rm"/>
+        <field labelOnTop="0" name="aname"/>
+        <field labelOnTop="0" name="aname_de"/>
+        <field labelOnTop="0" name="aname_en"/>
+        <field labelOnTop="0" name="aname_fr"/>
+        <field labelOnTop="0" name="aname_it"/>
+        <field labelOnTop="0" name="aname_rm"/>
+        <field labelOnTop="0" name="issuperitem"/>
+        <field labelOnTop="0" name="isuseable"/>
+        <field labelOnTop="0" name="parent_assetformatitem"/>
+        <field labelOnTop="0" name="parent_assetkinditem"/>
+        <field labelOnTop="0" name="parent_pubchannelitem"/>
+      </labelOnTop>
+      <widgets>
+        <widget name="assetformatitem_parent_assetkinditem_assetkinditem_T_Id">
+          <config type="Map">
+            <Option value="" type="QString" name="nm-rel"/>
+          </config>
+        </widget>
+        <widget name="assetkinditem_parent_assetkinditem_assetkinditem_T_Id">
+          <config type="Map">
+            <Option value="" type="QString" name="nm-rel"/>
+          </config>
+        </widget>
+        <widget name="assetkindref_areference_assetkinditem_T_Id">
+          <config type="Map">
+            <Option value="" type="QString" name="nm-rel"/>
+          </config>
+        </widget>
+        <widget name="pubchannelitem_parent_assetkinditem_assetkinditem_T_Id">
+          <config type="Map">
+            <Option value="" type="QString" name="nm-rel"/>
+          </config>
+        </widget>
+      </widgets>
+      <previewExpression>"aname"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer hasScaleBasedVisibilityFlag="0" refreshOnNotifyMessage="" wkbType="NoGeometry" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyEnabled="0" minScale="1e+08" geometry="No geometry" styleCategories="AllStyleCategories" type="vector" autoRefreshTime="0" readOnly="0">
@@ -1543,7 +1696,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
@@ -1981,7 +2136,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
@@ -2419,7 +2576,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
@@ -3614,7 +3773,7 @@ def my_form_open(dialog, layer, feature):
         <columns>
           <column width="-1" hidden="0" type="field" name="T_Id"/>
           <column width="-1" hidden="0" type="field" name="T_Ili_Tid"/>
-          <column width="-1" hidden="0" type="field" name="aname"/>
+          <column width="144" hidden="0" type="field" name="aname"/>
           <column width="-1" hidden="0" type="field" name="aname_de"/>
           <column width="-1" hidden="0" type="field" name="aname_fr"/>
           <column width="-1" hidden="0" type="field" name="aname_rm"/>
@@ -4118,7 +4277,9 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
       </customproperties>
       <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
         <activeChecks type="StringList">
@@ -4300,7 +4461,7 @@ def my_form_open(dialog, layer, feature):
         <columns>
           <column width="-1" hidden="0" type="field" name="T_Id"/>
           <column width="-1" hidden="0" type="field" name="T_Ili_Tid"/>
-          <column width="-1" hidden="0" type="field" name="aname"/>
+          <column width="130" hidden="0" type="field" name="aname"/>
           <column width="-1" hidden="0" type="field" name="aname_de"/>
           <column width="-1" hidden="0" type="field" name="aname_fr"/>
           <column width="-1" hidden="0" type="field" name="aname_rm"/>
@@ -4576,6 +4737,7 @@ def my_form_open(dialog, layer, feature):
         <property key="dualview/previewExpressions">
           <value>aname</value>
           <value>"aname"</value>
+          <value>aname</value>
         </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames"/>
@@ -5582,7 +5744,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip></mapTip>
     </maplayer>
   </projectlayers>
-  <layerorder/>
+  <layerorder>
+    <layer id="AssetKindItem_52ffca1d_c8dc_456b_b476_bb0739302f18"/>
+    <layer id="LanguageCode_ISO639_1_9875ec90_360f_426d_9026_3afb8749e92c"/>
+    <layer id="ManCatLabelItem_7939c3bd_69b6_491c_a4c6_fa075e0b6938"/>
+    <layer id="AutoCatLabelItem_ec30eda9_5b02_4cc0_afd6_ddb79324d352"/>
+    <layer id="AutoObjectCatItem_f54adb98_b51a_4adb_a701_b912b393e025"/>
+    <layer id="AssetFormatItem_c81b45fd_288e_4466_8e9c_182ee53ffe26"/>
+    <layer id="NatRelItem_178c8e67_e0b7_4ec6_99a1_f9f7cc3e1e2f"/>
+    <layer id="PubChannelItem_47cfc986_382c_4e38_98d8_e8dbd264b65c"/>
+    <layer id="ContactKindItem_4a5b6179_1278_4bd5_9268_2491df45f7b4"/>
+    <layer id="StatusWorkItem_666fa0f4_2957_4c39_bae9_9f41ce0e2f5c"/>
+  </layerorder>
   <properties>
     <Gui>
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
