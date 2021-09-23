@@ -6,7 +6,7 @@ INTERLIS 2.3;
 !!****************************************
 MODEL DMGeolAssets (de)
 AT "mailto:U80773132@localhost"
-VERSION "2021-09-06"  =
+VERSION "2021-09-16"  =
 
 
 !!****************************************
@@ -26,8 +26,9 @@ VERSION "2021-09-06"  =
 
     !! Seitenzahlen eines Dokuments
     PageNums = 1 .. 10000;
+	
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
-    ObjectCoord = COORD 0 .. 10000, 0 .. 10000;
+    ObjectCoord = TEXT*254;
 
     !!Strukur für die Modellierung von Adressen
     STRUCTURE Adress =
@@ -38,23 +39,31 @@ VERSION "2021-09-06"  =
       Country : MANDATORY TEXT*20;
     END Adress;
 
+    !! Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
     STRUCTURE StID =
       ID : TEXT*50;
     END StID;
 
-    !!Strukur für die Modellierung von mehrfachen IDs
-    STRUCTURE StMulitID =
-      MID : BAG {0..*} OF StID;
-    END StMulitID;
-
+    !! Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
     STRUCTURE StTextDescr =
-      TextDescrAtt : TEXT*255;
+      TextDescrAtt : TEXT*254;
     END StTextDescr;
-
-    !!Strukur für die Modellierung von mehrfachen Texten
-    STRUCTURE StMultiText =
-      MultiTextDescrAtt : BAG {0..*} OF StTextDescr;
-    END StMultiText;
+	
+	!! Struktur zur Definition der rechtilich verbindlichen Dokumente, wie Einwilligiungsformulare oder Vertäge
+	STRUCTURE LegalDoc =
+	  Titel : TEXT*20;
+	  Type : MANDATORY (
+        !! Einwilligungsformular
+        permissionForm,
+        !! Vertrga
+        contract,
+        !! Anderer Typ
+        other
+      );
+	  !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
+      RelativePathAdmin : TEXT*20;
+	  
+	END LegalDoc;
 
 
 !!****************************************
@@ -63,18 +72,23 @@ VERSION "2021-09-06"  =
   TOPIC CoreGeolAsset =
     OID AS INTERLIS.UUIDOID;
   DEPENDS ON DMAssetsCatalogues.Catalogues; 
-  
+    
+	!! Structure für die Beschreiubung eines AssetParts
     STRUCTURE AssetPartInfo =
+      !! Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
       ObjectClass : MANDATORY DMAssetsCatalogues.Catalogues.AutoObjectCatRef;
+	  !! Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
 	  ObjectPage : MANDATORY DMGeolAssets.PageNums;
-	  ObjectBBox : SURFACE WITH (STRAIGHTS) VERTEX DMGeolAssets.ObjectCoord WITHOUT OVERLAPS > 1;
+	  !! Boundingbox des Objekts
+	  ObjectBBox : ObjectCoord;
+	  !! Score der Vorhersage des Algorithmus
 	  ObjectScore : 0 .. 1;
     END AssetPartInfo;
   
 !!****************************************
 !! CLASSES
 !!****************************************
-    !! CLASS
+    !! Basisklasse für die administratischen Metadaten eines assets oder Assetpackages 
     CLASS AdminAssetBase (ABSTRACT) =
 
       !! Angabe, ob das Asset frei verfügbar (no) oder der Zugang eingeschränkt (yes) ist
@@ -85,9 +99,12 @@ VERSION "2021-09-06"  =
 
       !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
       RelativePath : MANDATORY TEXT*254;
+	  
+      !! Pfad zu einer Online-Ressource des Files vom RelativePfad
+      URL : TEXT*254;
 
       !! UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
-      UsedBy : StMultiText;
+      UsedBy : BAG {0..*} OF StTextDescr;
   
       !! Bearbeitungsstatus
       StatusWork : MANDATORY DMAssetsCatalogues.Catalogues.StatusWorkRef;
@@ -105,31 +122,47 @@ VERSION "2021-09-06"  =
         !! nicht einer Kategorie zugeordnet
         notAssigned
       );
-
+      !! Grund der Zuweisung der nationalen Bedeutung
       TypeNationalRelevance : BAG {1..*} OF DMAssetsCatalogues.Catalogues.NatRelRef;
 
+      !! Rechtliche Dokumente 
+	  LegalDoc : LegalDoc;
+	  
       !! Eingangsdatum des Assets
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  
+	  !!Bearbeiter: Mitarbeiter-Nr. Identifikator des User im System
+	  Processor : TEXT;
+	  
+	  !! Letztes Bearbeitungsdatum
+	  DateLastProcessed : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
+	  
+	  !! Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
+	  InfogeolData : TEXT;
+	  
+	  !! Contaktinformationen aus Altdaten
+	  InfogeolContactData : TEXT;
+	  
       !! Bemerkungen
       Remark : MTEXT*1800;
-
+	
+	!! ----------
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
 
-!! ----------
     MANDATORY CONSTRAINT
 	  (NationalRelevance <> #prio1 
 	   AND NationalRelevance <> #prio2
 	   AND NationalRelevance <> #prio3)
 	   OR DEFINED (TypeNationalRelevance);
-!! ----------
+    !! ----------
 
 
     END AdminAssetBase;
 
 
-    !! CLASS
+    !! Admiinistrative Metadaten eines Assetitems
     CLASS AdminAssetItem
     EXTENDS AdminAssetBase =
       !! Liegt im Asset Texterkennung vor?
@@ -145,16 +178,15 @@ VERSION "2021-09-06"  =
       !! Physischer Standort des analogen Dokuments
       LocationAnalog : TEXT*20;
 
-      !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
-      RelativePathAdmin : TEXT*20;
-
+    !! ----------
     MANDATORY CONSTRAINT
       OCR <> #true OR DEFINED (OCRQuality);
-
+	!! ----------
+	
     END AdminAssetItem;
 
 
-    !! CLASS
+    !! Administrative Metadaten eines AssetPackages
     CLASS AdminAssetPackage
     EXTENDS AdminAssetBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
@@ -168,39 +200,46 @@ VERSION "2021-09-06"  =
       );
 
       !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
-      Project : TEXT*80;
+      Project : TEXT*254;
     
     END AdminAssetPackage;
 
 
-    !! CLASS
+    !! Baisklasse der Metadaten eines Assets oder Assetpackages
     CLASS AssetBase (ABSTRACT) =
-      TitlePublic : MANDATORY TEXT*80;
+      !! Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
+	  TitlePublic : MANDATORY TEXT*80;
+	  
+      !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+      TitleOriginal : TEXT*254;
+      
+	  !! Datum des Erstellung des Assets.
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  
+      !! Bemerkung zum Asset
+      Remark : TEXT*254;
+	  
     END AssetBase;
 
 
-    !! CLASS
+    !! Klasse der Meatdaten einers AssetItems
     CLASS AssetItem
     EXTENDS AssetBase =
       !! Art des Dokuments
       Kind : MANDATORY DMAssetsCatalogues.Catalogues.AssetKindRef;
 
       !! Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
-	  ManCatLabel : BAG {0 .. *} OF DMAssetsCatalogues.Catalogues.ManCatLabelRef;
+	  ManCatLabel : BAG {1 .. *} OF DMAssetsCatalogues.Catalogues.ManCatLabelRef;
 
       !! Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
-	  AutoCatLabel : MANDATORY DMAssetsCatalogues.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : DMAssetsCatalogues.Catalogues.AutoCatLabelRef;
 
 
     !! Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
-    IDAlternate : StMulitID;
+    IDAlternate : BAG {0 .. *} OF StID;
 
     !! ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
     IDSGS : 0 .. 1000000000;
-
-    !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-    TitleOriginal : TEXT*80;
 
     !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
     Language : MANDATORY (
@@ -218,46 +257,47 @@ VERSION "2021-09-06"  =
       other
     );
 
-    !! Pfad zu einer Online-Ressource des Files vom RelativePfad
-    URL : TEXT*254;
-
     !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
-    !! TODO: MINE-Types definieren
-
     Format : MANDATORY DMAssetsCatalogues.Catalogues.AssetFormatRef;
 
     !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
     AuthorBiblio : TEXT*254;
+    
+	!! Zusammensetzung eines assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
+    AssetComposition : BAG {0..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
 
-    AssetComposition : BAG {1..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
-	  
+    !! Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
+	TextBody : TEXT;
+	
+	!! Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
     IsPart : MANDATORY BOOLEAN;
-	  AssetPartInfo : DMGeolAssets.CoreGeolAsset.AssetPartInfo;
+	
+	!! Beschreiubung eines AssetParts (s. STRUCTURE AssetPartInfo)
+	AssetPartInfo : DMGeolAssets.CoreGeolAsset.AssetPartInfo;
 
-      !! CONSTRAINTS
+	!! ----------
     MANDATORY CONSTRAINT
     Kind->Reference->Name->LocalisedText->Text=="report" OR DEFINED (TitlePublic);
 
     MANDATORY CONSTRAINT
     NOT(IsPart) OR DEFINED (AssetPartInfo);
-
-!! Hier CONSTRAINT einfügen, der prüft, ob es sich um ein AssetPart handelt (Rolle AssetPart der rekursiven Beziehung) und wenn ja sicherstellt, dass das Attribut AssetPartInfo ausgefüllt wird.
+	!! ----------
 
     END AssetItem;
 
 
-    !! CLASS
+    !!  Klasse für die Meatdaten eines AssetPackages
     CLASS AssetPackage
     EXTENDS AssetBase =
 
     END AssetPackage;
 
 
-    !! CLASS
+    !! Basisklasse für die Beschreibung der Geomerien
     CLASS GeometryOfInterest (ABSTRACT)=
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       GeomQuality : MANDATORY (
-        !! Stellvertretergeometie allgeimein, ohne eine konkret definierte Grösse
+        !! Stellvertretergeometie allgemein, ohne eine konkret definierte Grösse
         placeholder,
         !! Stellvertretergeometrie grösser 100x100 km
         placeholder100x100,
@@ -268,11 +308,10 @@ VERSION "2021-09-06"  =
         !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
         simplification,
         !! so digitalisiert, wie die Geometrie voliegt
-        orginal
+        orginal,
+		!! Stellvertretergeometrie angepasst
+		revised
       );
-
-      !! Bemerkung zur Geometry
-      Remark : TEXT*254;
 
     END GeometryOfInterest;
 
@@ -285,10 +324,10 @@ VERSION "2021-09-06"  =
 
 
     !! CLASS Liniengeometrien
-    CLASS StudySection
+    CLASS StudyTrace
     EXTENDS GeometryOfInterest =
       Geometry : Line;
-    END StudySection;
+    END StudyTrace;
 
 
     !! CLASS Polygongeometrien
@@ -305,31 +344,12 @@ VERSION "2021-09-06"  =
 
       !! Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
       Channel : DMAssetsCatalogues.Catalogues.PubChannelRef;
-/**
-      Channel : MANDATORY (
-        !! Konferenz
-        conference,
-        !! Fachzeitschrift
-        professionalJournal,
-        !! Monografie, z.B. Buch, Lehrbuch etc.
-        monograph,
-        !! Internet
-        internet(
-          !! Geoportal des Bundes: map.geo.admin.ch
-          mapGeoAdmin,
-          !! OpenData-Portal: https://opendata.swiss
-          openData,
-          !! nicht spezifizierte Website
-          undiff
-        )
-      );
-*/
 
       !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
-      Description : TEXT*20;
+      Description : TEXT*80;
 
       !! URL oder DOI etc. zur jeweilgen Publikation
-      Link : TEXT*20;
+      Link : TEXT*254;
 
     END Publication;
 
@@ -339,21 +359,13 @@ VERSION "2021-09-06"  =
       !! Referenz auf einen Eintrag inder zentralen Adress-Datenbank (ZAD)
       IDZAD : TEXT*20;
 
-      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.
-      Kind : MANDATORY (
-        Bundesbehoerde,
-        Andere,
-        Uni_Fachhochschule,
-        Gemeinde,
-        Kantonale_Bewilligungsbehoerde,
-        swisstopo
-      );
+      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
+	  Kind : MANDATORY DMAssetsCatalogues.Catalogues.ContactKindRef;
 
       !! Name des Kontakts
       Name : MANDATORY TEXT*20;
 
       !! Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
-      !!Adress : STRUCTURE RESTRICTION ( DMGeolAssets.CoreGeolAsset.Adress ); Kann man das nicht wie in der Linie untern modellieren? Syntaktisch scheint das ok zu sein.
 	  Adress : Adress;
 
       !! Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
@@ -384,14 +396,18 @@ VERSION "2021-09-06"  =
       !! AssetPart
       AssetItemPart -- {0..*} AssetItem;
       !! Ein AssetPart kann keine weiteren Parts enthalten.
+
+	  !! ----------
       MANDATORY CONSTRAINT
-        AssetItemPart->IsPart AND NOT (AssetItemMain->IsPart);
+        AssetItemPart->IsPart AND NOT (AssetItemMain->IsPart);	
+	  !! ----------
+	  
     END AssetItemMain_AssetItemPart; 
 
     !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
     ASSOCIATION AssetItem_AssetPackage =
       AssetItem -- {0..*} AssetItem;
-      AssetPackage -- {1} AssetPackage;
+      AssetPackage -- {0..1} AssetPackage;
     END AssetItem_AssetPackage;
 
 
@@ -430,7 +446,7 @@ VERSION "2021-09-06"  =
       AdminAssetItem -- {1} AdminAssetItem;
     END AssetItem_AdminAssetItem;
 
-
+    !! Beziehung Assetitem um AssetPackahge
     ASSOCIATION AssetPackage_AdminAssetPackage =
       AssetPackage -- {1} AssetPackage;
       AdminAssetPackage -- {1} AdminAssetPackage;
