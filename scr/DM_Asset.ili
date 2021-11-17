@@ -6,7 +6,7 @@ INTERLIS 2.3;
 !!****************************************
 MODEL DMGeolAssets (de)
 AT "mailto:U80773132@localhost"
-VERSION "2021-09-16"  =
+VERSION "2021-11-17"  =
 
 
 !!****************************************
@@ -52,6 +52,8 @@ VERSION "2021-09-16"  =
 	!! Struktur zur Definition der rechtilich verbindlichen Dokumente, wie Einwilligiungsformulare oder Vertäge
 	STRUCTURE LegalDoc =
 	  Titel : TEXT*20;
+	  
+	  !! --> ENUM ersetzen
 	  Type : MANDATORY (
         !! Einwilligungsformular
         permissionForm,
@@ -110,7 +112,8 @@ VERSION "2021-09-16"  =
       StatusWork : MANDATORY DMAssetsCatalogues.Catalogues.StatusWorkRef;
 
       !! Nationale Relevanz des Assets
-      NationalRelevance : MANDATORY (
+	  !! --> ENUM ersetzen      
+	  NationalRelevance : MANDATORY (
         !! nicht von nationaler Bedeutung
         notRelevant,
         !! 3. Priorität
@@ -150,7 +153,7 @@ VERSION "2021-09-16"  =
 	!! ----------
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
-
+	  !! --> CONSTRAINT anpassen
     MANDATORY CONSTRAINT
 	  (NationalRelevance <> #prio1 
 	   AND NationalRelevance <> #prio2
@@ -169,6 +172,7 @@ VERSION "2021-09-16"  =
       OCR : MANDATORY BOOLEAN;
 
       !! Qualität der Texterkennung
+	  !! --> ENUM ersetzen
       OCRQuality : (
         high,
         low,
@@ -179,6 +183,7 @@ VERSION "2021-09-16"  =
       LocationAnalog : TEXT*20;
 
     !! ----------
+	  !! --> CONSTRAINT anpassen
     MANDATORY CONSTRAINT
       OCR <> #true OR DEFINED (OCRQuality);
 	!! ----------
@@ -190,7 +195,8 @@ VERSION "2021-09-16"  =
     CLASS AdminAssetPackage
     EXTENDS AdminAssetBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
-      StatusRestriction : MANDATORY (
+	  !! --> ENUM ersetzen
+	  StatusRestriction : MANDATORY (
         !! Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
         differentStati,
         !! Berechtigungsstatus offen (Prüfung erforderlich)
@@ -242,7 +248,8 @@ VERSION "2021-09-16"  =
     IDSGS : 0 .. 1000000000;
 
     !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
-    Language : MANDATORY (
+ 	  !! --> ENUM ersetzen   
+	Language : MANDATORY (
       !! Englisch
       EN,
       !! Italienisch
@@ -296,6 +303,7 @@ VERSION "2021-09-16"  =
     !! Basisklasse für die Beschreibung der Geomerien
     CLASS GeometryOfInterest (ABSTRACT)=
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
+ 	  !! --> ENUM ersetzen
       GeomQuality : MANDATORY (
         !! Stellvertretergeometie allgemein, ohne eine konkret definierte Grösse
         placeholder,

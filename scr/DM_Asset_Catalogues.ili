@@ -5,7 +5,7 @@ INTERLIS 2.3;
 !!****************************************
 MODEL DMAssetsCatalogues (en) 
 AT "mailto:U80773132@localhost" 
-VERSION "2021-09-06" =
+VERSION "2021-11-17" =
 
 
 !!****************************************
@@ -178,6 +178,24 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
     END StatusWorkRef;
+
+
+    !! Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
+	CLASS LegalDocItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END LegalDocItem;
+
+    STRUCTURE LegalDocRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
+    END LegalDocRef;
+
+
+!! HIER weitere Referenzen einfügen
+
 
   END Catalogues;
   
