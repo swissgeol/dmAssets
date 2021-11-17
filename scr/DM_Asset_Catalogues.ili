@@ -208,7 +208,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END NatRelCatRef;
 	
 
-!! Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	!! Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
 	CLASS OCRQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -222,6 +222,48 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END OCRQualityRef;
 	
 
+	!! Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
+	CLASS StatusRestrictionItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END StatusRestrictionItem;
+
+    STRUCTURE StatusRestrictionRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusRestrictionItem;
+    END StatusRestrictionRef;
+		
+	
+	!! Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
+	CLASS LanguageItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END LanguageItem;
+
+    STRUCTURE LanguageRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LanguageItem;
+    END LanguageRef;
+	
+	
+	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	CLASS GeomQualityItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END GeomQualityItem;
+
+    STRUCTURE GeomQualityRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
+    END GeomQualityRef;
+	
+	
   END Catalogues;
   
 END DMAssetsCatalogues.

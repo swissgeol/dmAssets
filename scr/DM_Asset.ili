@@ -165,7 +165,7 @@ VERSION "2021-11-17"  =
     END AdminAssetBase;
 
 
-    !! Admiinistrative Metadaten eines Assetitems
+    !! Administrative Metadaten eines Assetitems
     CLASS AdminAssetItem
     EXTENDS AdminAssetBase =
       !! Liegt im Asset Texterkennung vor?
@@ -194,7 +194,7 @@ VERSION "2021-11-17"  =
     !! Administrative Metadaten eines AssetPackages
     CLASS AdminAssetPackage
     EXTENDS AdminAssetBase =
-      !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteitl werden.
+      !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
 	  !! --> ENUM ersetzen
 	  StatusRestriction : MANDATORY (
         !! Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
@@ -211,7 +211,7 @@ VERSION "2021-11-17"  =
     END AdminAssetPackage;
 
 
-    !! Baisklasse der Metadaten eines Assets oder Assetpackages
+    !! Basisklasse der Metadaten eines Assets oder Assetpackages
     CLASS AssetBase (ABSTRACT) =
       !! Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
 	  TitlePublic : MANDATORY TEXT*80;
@@ -228,7 +228,7 @@ VERSION "2021-11-17"  =
     END AssetBase;
 
 
-    !! Klasse der Meatdaten einers AssetItems
+    !! Klasse der Metadaten eines AssetItems
     CLASS AssetItem
     EXTENDS AssetBase =
       !! Art des Dokuments
@@ -293,7 +293,7 @@ VERSION "2021-11-17"  =
     END AssetItem;
 
 
-    !!  Klasse für die Meatdaten eines AssetPackages
+    !!  Klasse für die Metadaten eines AssetPackages
     CLASS AssetPackage
     EXTENDS AssetBase =
 
@@ -315,7 +315,7 @@ VERSION "2021-11-17"  =
         placeholder1x1,
         !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
         simplification,
-        !! so digitalisiert, wie die Geometrie voliegt
+        !! so digitalisiert, wie die Geometrie vorliegt
         orginal,
 		!! Stellvertretergeometrie angepasst
 		revised
