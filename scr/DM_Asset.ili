@@ -30,7 +30,7 @@ VERSION "2021-11-17"  =
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
     ObjectCoord = TEXT*254;
 
-    !!Strukur für die Modellierung von Adressen
+    !!Struktur für die Modellierung von Adressen
     STRUCTURE Adress =
       Street : TEXT*20;
       Housenumber : TEXT*5;
@@ -54,6 +54,7 @@ VERSION "2021-11-17"  =
 	  Titel : TEXT*20;
 	  
 	  !! --> ENUM ersetzen
+/**
 	  Type : MANDATORY (
         !! Einwilligungsformular
         permissionForm,
@@ -62,6 +63,9 @@ VERSION "2021-11-17"  =
         !! Anderer Typ
         other
       );
+*/
+
+	Type : MANDATORY DMAssetsCatalogues.Catalogues.LegalDocRef;
 	  !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
       RelativePathAdmin : TEXT*20;
 	  
@@ -90,7 +94,7 @@ VERSION "2021-11-17"  =
 !!****************************************
 !! CLASSES
 !!****************************************
-    !! Basisklasse für die administratischen Metadaten eines assets oder Assetpackages 
+    !! Basisklasse für die administratischen Metadaten eines Assets oder Assetpackages 
     CLASS AdminAssetBase (ABSTRACT) =
 
       !! Angabe, ob das Asset frei verfügbar (no) oder der Zugang eingeschränkt (yes) ist
@@ -113,7 +117,9 @@ VERSION "2021-11-17"  =
 
       !! Nationale Relevanz des Assets
 	  !! --> ENUM ersetzen      
-	  NationalRelevance : MANDATORY (
+
+/**	 
+	 NationalRelevance : MANDATORY (
         !! nicht von nationaler Bedeutung
         notRelevant,
         !! 3. Priorität
@@ -125,6 +131,10 @@ VERSION "2021-11-17"  =
         !! nicht einer Kategorie zugeordnet
         notAssigned
       );
+*/
+
+	  NationalRelevance : MANDATORY DMAssetsCatalogues.Catalogues.NatRelCatRef;
+
       !! Grund der Zuweisung der nationalen Bedeutung
       TypeNationalRelevance : BAG {1..*} OF DMAssetsCatalogues.Catalogues.NatRelRef;
 
@@ -140,7 +150,6 @@ VERSION "2021-11-17"  =
 	  !! Letztes Bearbeitungsdatum
 	  DateLastProcessed : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
-	  
 	  !! Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
 	  InfogeolData : TEXT;
 	  
@@ -154,13 +163,18 @@ VERSION "2021-11-17"  =
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
 	  !! --> CONSTRAINT anpassen
+ /**
     MANDATORY CONSTRAINT
 	  (NationalRelevance <> #prio1 
 	   AND NationalRelevance <> #prio2
 	   AND NationalRelevance <> #prio3)
 	   OR DEFINED (TypeNationalRelevance);
     !! ----------
+*/
 
+/**    MANDATORY CONSTRAINT
+    NationalRelevance->Reference->Name->LocalisedText->Text <> #prio1 AND NationalRelevance->Reference->Name->LocalisedText->Text <> #prio2 AND NationalRelevance->Reference->Name->LocalisedText->Text <> #prio3 OR DEFINED (TypeNationalRelevance);
+*/
 
     END AdminAssetBase;
 
@@ -173,19 +187,24 @@ VERSION "2021-11-17"  =
 
       !! Qualität der Texterkennung
 	  !! --> ENUM ersetzen
-      OCRQuality : (
+/**    
+	OCRQuality : (
         high,
         low,
         medium
       );
+*/
+	  OCRQuality : MANDATORY DMAssetsCatalogues.Catalogues.OCRQualityRef;
 
       !! Physischer Standort des analogen Dokuments
       LocationAnalog : TEXT*20;
 
     !! ----------
 	  !! --> CONSTRAINT anpassen
+/**
     MANDATORY CONSTRAINT
       OCR <> #true OR DEFINED (OCRQuality);
+*/
 	!! ----------
 	
     END AdminAssetItem;
@@ -196,6 +215,7 @@ VERSION "2021-11-17"  =
     EXTENDS AdminAssetBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
 	  !! --> ENUM ersetzen
+/**
 	  StatusRestriction : MANDATORY (
         !! Asset beinhaltet verschiedene Berechtigungsstufen. Assetteile trennen und separat erfassen
         differentStati,
@@ -204,8 +224,10 @@ VERSION "2021-11-17"  =
         !! Berechtigungsstatus geklärt
         final
       );
-
-      !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
+*/
+      StatusRestriction : MANDATORY DMAssetsCatalogues.Catalogues.StatusRestrictionRef;
+	  
+	  !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
       Project : TEXT*254;
     
     END AdminAssetPackage;
@@ -249,6 +271,7 @@ VERSION "2021-11-17"  =
 
     !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
  	  !! --> ENUM ersetzen   
+/**
 	Language : MANDATORY (
       !! Englisch
       EN,
@@ -263,14 +286,17 @@ VERSION "2021-11-17"  =
       !! andere Sprachen
       other
     );
+*/
 
-    !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+	Language : MANDATORY DMAssetsCatalogues.Catalogues.LanguageRef;
+    
+	!! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
     Format : MANDATORY DMAssetsCatalogues.Catalogues.AssetFormatRef;
 
     !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
     AuthorBiblio : TEXT*254;
     
-	!! Zusammensetzung eines assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
+	!! Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
     AssetComposition : BAG {0..*} OF DMAssetsCatalogues.Catalogues.AssetKindRef;
 
     !! Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
@@ -300,10 +326,11 @@ VERSION "2021-11-17"  =
     END AssetPackage;
 
 
-    !! Basisklasse für die Beschreibung der Geomerien
+    !! Basisklasse für die Beschreibung der Geometrien
     CLASS GeometryOfInterest (ABSTRACT)=
       !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
  	  !! --> ENUM ersetzen
+/**	  
       GeomQuality : MANDATORY (
         !! Stellvertretergeometie allgemein, ohne eine konkret definierte Grösse
         placeholder,
@@ -313,15 +340,17 @@ VERSION "2021-11-17"  =
         placeholder10x10,
         !! Stellverteretergeometrie 1x1 km
         placeholder1x1,
-        !! Der tatsächlichen Geometrie angenähert (Vereinfachung)
+        !! Der tatsächliche Geometrie angenähert (Vereinfachung)
         simplification,
         !! so digitalisiert, wie die Geometrie vorliegt
         orginal,
 		!! Stellvertretergeometrie angepasst
 		revised
       );
-
-    END GeometryOfInterest;
+*/
+      GeomQuality : MANDATORY DMAssetsCatalogues.Catalogues.GeomQualityRef;
+	
+	END GeometryOfInterest;
 
 
     !! CLASS Punktgeometrien
@@ -364,7 +393,7 @@ VERSION "2021-11-17"  =
 
     !! CLASS
     CLASS Contact =
-      !! Referenz auf einen Eintrag inder zentralen Adress-Datenbank (ZAD)
+      !! Referenz auf einen Eintrag in der zentralen Adress-Datenbank (ZAD)
       IDZAD : TEXT*20;
 
       !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  

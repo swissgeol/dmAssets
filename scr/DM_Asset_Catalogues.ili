@@ -180,6 +180,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END StatusWorkRef;
 
 
+
     !! Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
 	CLASS LegalDocItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
@@ -220,7 +221,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) OCRQualityItem;
     END OCRQualityRef;
-	
+
 
 	!! Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
 	CLASS StatusRestrictionItem
@@ -235,7 +236,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusRestrictionItem;
     END StatusRestrictionRef;
 		
-	
+		
 	!! Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
 	CLASS LanguageItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
@@ -249,7 +250,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LanguageItem;
     END LanguageRef;
 	
-	
+
 	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
 	CLASS GeomQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
@@ -263,7 +264,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
     END GeomQualityRef;
 	
-	
+
   END Catalogues;
   
 END DMAssetsCatalogues.
