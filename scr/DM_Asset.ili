@@ -57,7 +57,7 @@ VERSION "2021-11-17"  =
 	  Type : MANDATORY (
         !! Einwilligungsformular
         permissionForm,
-        !! Vertrga
+        !! Vertrag
         contract,
         !! Anderer Typ
         other

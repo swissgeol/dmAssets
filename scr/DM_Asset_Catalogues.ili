@@ -194,8 +194,33 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END LegalDocRef;
 
 
-!! HIER weitere Referenzen einfügen
+    !! Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
+	CLASS NatRelCatItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END NatRelCatItem;
 
+    STRUCTURE NatRelCatRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelCatItem;
+    END NatRelCatRef;
+	
+
+!! Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	CLASS OCRQualityItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END OCRQualityItem;
+
+    STRUCTURE OCRQualityRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) OCRQualityItem;
+    END OCRQualityRef;
+	
 
   END Catalogues;
   
