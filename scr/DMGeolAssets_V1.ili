@@ -30,30 +30,30 @@ VERSION "2021-11-19"  =
     PageNums = 1 .. 10000;
 	
 	!! Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
-    ObjectCoord = TEXT*254;
+    ObjectCoord = TEXT;
 
     !!Struktur für die Modellierung von Adressen
     STRUCTURE Adress =
-      Street : TEXT*20;
-      Housenumber : TEXT*5;
-      PLZ : TEXT*5;
-      Locality : MANDATORY TEXT*20;
-      Country : MANDATORY TEXT*20;
+      Street : TEXT;
+      Housenumber : TEXT;
+      PLZ : TEXT;
+      Locality : MANDATORY TEXT;
+      Country : MANDATORY TEXT;
     END Adress;
 
     !! Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
     STRUCTURE StID =
-      ID : TEXT*50;
+      ID : TEXT;
     END StID;
 
     !! Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
     STRUCTURE StTextDescr =
-      TextDescrAtt : TEXT*254;
+      TextDescrAtt : TEXT;
     END StTextDescr;
 	
 	!! Struktur zur Definition der rechtilich verbindlichen Dokumente, wie Einwilligiungsformulare oder Vertäge
 	STRUCTURE LegalDoc =
-	  Titel : TEXT*20;
+	  Titel : TEXT;
 	  
 	  !! --> ENUM ersetzen
 /**
@@ -69,7 +69,7 @@ VERSION "2021-11-19"  =
 
 	Type : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.LegalDocRef;
 	  !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
-      RelativePathAdmin : TEXT*20;
+      RelativePathAdmin : TEXT;
 	  
 	END LegalDoc;
 
@@ -106,10 +106,10 @@ VERSION "2021-11-19"  =
       DateRestriction : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
       !! Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
-      RelativePath : MANDATORY TEXT*254;
-	  
+      RelativePath : MANDATORY TEXT;
+	 
       !! Pfad zu einer Online-Ressource des Files vom RelativePfad
-      URL : TEXT*254;
+      URL : TEXT;
 
       !! UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
       UsedBy : BAG {0..*} OF StTextDescr;
@@ -159,7 +159,7 @@ VERSION "2021-11-19"  =
 	  InfogeolContactData : TEXT;
 	  
       !! Bemerkungen
-      Remark : MTEXT*1800;
+      Remark : MTEXT;
 	
 	!! ----------
     MANDATORY CONSTRAINT
@@ -199,7 +199,7 @@ VERSION "2021-11-19"  =
 	  OCRQuality : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
 
       !! Physischer Standort des analogen Dokuments
-      LocationAnalog : TEXT*20;
+      LocationAnalog : TEXT;
 
     !! ----------
 	  !! --> CONSTRAINT anpassen
@@ -229,7 +229,7 @@ VERSION "2021-11-19"  =
       StatusRestriction : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.StatusRestrictionRef;
 	  
 	  !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
-      Project : TEXT*254;
+      Project : TEXT;
     
     END AdminAssetPackage;
 
@@ -237,16 +237,16 @@ VERSION "2021-11-19"  =
     !! Basisklasse der Metadaten eines Assets oder Assetpackages
     CLASS AssetBase (ABSTRACT) =
       !! Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
-	  TitlePublic : MANDATORY TEXT*80;
+	  TitlePublic : MANDATORY TEXT;
 	  
       !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-      TitleOriginal : TEXT*254;
+      TitleOriginal : TEXT;
       
 	  !! Datum des Erstellung des Assets.
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 	  
       !! Bemerkung zum Asset
-      Remark : TEXT*254;
+      Remark : TEXT;
 	  
     END AssetBase;
 
@@ -295,7 +295,7 @@ VERSION "2021-11-19"  =
     Format : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetFormatRef;
 
     !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
-    AuthorBiblio : TEXT*254;
+    AuthorBiblio : TEXT;
     
 	!! Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
     AssetComposition : BAG {0..*} OF DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
@@ -384,10 +384,10 @@ VERSION "2021-11-19"  =
       Channel : DMGeolAssetsCatalogues_V1.Catalogues.PubChannelRef;
 
       !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
-      Description : TEXT*80;
+      Description : TEXT;
 
       !! URL oder DOI etc. zur jeweilgen Publikation
-      Link : TEXT*254;
+      Link : TEXT;
 
     END Publication;
 
@@ -395,19 +395,19 @@ VERSION "2021-11-19"  =
     !! CLASS
     CLASS Contact =
       !! Referenz auf einen Eintrag in der zentralen Adress-Datenbank (ZAD)
-      IDZAD : TEXT*20;
+      IDZAD : TEXT;
 
       !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
 	  Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.ContactKindRef;
 
       !! Name des Kontakts
-      Name : MANDATORY TEXT*20;
+      Name : MANDATORY TEXT
 
       !! Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
 	  Adress : Adress;
 
       !! Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
-      Telefon : TEXT*20;
+      Telefon : TEXT;
 
       !! e-mail-Adresse, gemäss definierter Struktur von e-mail-Adressen
       Email : URI;
