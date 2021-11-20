@@ -23,42 +23,6 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
 
 !!****************************************
-!! VORLAGEN Catalogue-Items
-!!****************************************
-/**
-!! ----------------------------
-!! VORLAGE Catalogue-TREE
-    !! Codelist für das Attribut KLASSE.ATTRIBUT = BEZEICHNUNG (Beispielwert, Beispielwert-y, ...)
-	CLASS KLASSENNAME-Item
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
-    END KLASSENNAME-Item;
-
-    STRUCTURE KLASSENNAME-Ref
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KLASSENNAME-Item;
-    END KLASSENNAME-Ref;
-	
-!! ----------------------------
-!! VORLAGE Catalogue-SINGLE
-    !! Codelist für das Attribut KLASSE.ATTRIBUT = BEZEICHNUNG (Beispielwert, Beispielwert-y, ...)
-	CLASS KLASSENNAME-Item
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
-    END KLASSENNAME-Item;
-
-    STRUCTURE KLASSENNAME-Ref
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KLASSENNAME-Item;
-    END KLASSENNAME-Ref;
-*/
-
-
-!!****************************************
 !! Catalogue-Items
 !!****************************************
 
@@ -263,7 +227,19 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
     END GeomQualityRef;
-	
+
+	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	CLASS AccessLevelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END AccessLevelItem;
+
+    STRUCTURE AccessLevelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AccessLevelItem;
+    END AccessLevelRef;	
 
   END Catalogues;
   
