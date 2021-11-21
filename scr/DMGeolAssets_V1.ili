@@ -129,20 +129,6 @@ VERSION "2021-11-19"  =
     END StudyArea;
 
 
-    !! CLASS Publikation des jeweiligen Assets
-    CLASS Publication =
-      !! Datum der Publikation
-      DatePublication : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      !! Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
-      Channel : DMGeolAssetsCatalogues_V1.Catalogues.PubChannelRef;
-      !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
-      Description : TEXT;
-      !! URL oder DOI etc. zur jeweilgen Publikation
-      Link : TEXT;
-
-    END Publication;
-
-
     !! CLASS
     CLASS Contact =
       !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
@@ -193,13 +179,6 @@ VERSION "2021-11-19"  =
 
     END AssetItem_AssetPackage;
 
-
-    !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
-    ASSOCIATION AssetBase_Publication =
-      AssetBase -- {1..*} AssetBase;
-      Publication -- {0..*} Publication;
-
-    END AssetBase_Publication;
 
     !! Untersuchungsgebiet zu einem Asset
     ASSOCIATION AssetBase_GeometryOfInterest =

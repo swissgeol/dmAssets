@@ -14,7 +14,7 @@ VERSION "2021-11-19"  =
 !!****************************************
   IMPORTS GeometryCHLV95_V1,Units;
   IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-  IMPORTS DMGeolAssets_V1,DMGeolAssetsCatalogues_V1;
+  IMPORTS DMGeolAssets_V1,LG_DMGeolAssetsCatalogues_V1;
 
 
 !!****************************************
@@ -30,7 +30,7 @@ VERSION "2021-11-19"  =
   !! Structure für die Beschreiubung eines AssetParts
   STRUCTURE AssetPartInfo =
     !! Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
-    ObjectClass : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AutoObjectCatRef;
+    ObjectClass : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoObjectCatRef;
     !! Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
     ObjectPage : MANDATORY PageNums;
     !! Boundingbox des Objekts
@@ -58,7 +58,7 @@ VERSION "2021-11-19"  =
     !! Titel des rechtlich verbindlichen Dokuments
     Titel : TEXT;
     !! Typ des rechtlich verbindlichen Dokuments
-    Type : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.LegalDocRef;
+    Type : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.LegalDocRef;
     !! Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
       RelativePathLegalDoc : TEXT;
 	  
@@ -70,7 +70,7 @@ VERSION "2021-11-19"  =
 !!****************************************
   TOPIC LGGeolAsset =
     OID AS INTERLIS.UUIDOID;
-    DEPENDS ON DMGeolAssets_V1.CoreGeolAssets,DMGeolAssetsCatalogues_V1.Catalogues;
+    DEPENDS ON DMGeolAssets_V1.CoreGeolAssets,LG_DMGeolAssetsCatalogues_V1.Catalogues;
 
 
 !!****************************************
@@ -97,13 +97,13 @@ VERSION "2021-11-19"  =
       !! UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
       UsedBy : BAG {0..*} OF TextDescr;
       !! Bearbeitungsstatus
-      StatusWork : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
+      StatusWork : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
       !! Nationale Relevanz des Assets
-      NationalRelevance : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.NatRelCatRef;
+      NationalRelevance : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelCatRef;
       !! Grund der Zuweisung der nationalen Bedeutung
-      TypeNationalRelevance : BAG {1..*} OF DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
+      TypeNationalRelevance : BAG {1..*} OF LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
       !! AccessLevel (A, B, C)SR 510.620 - Verordnung vom 21. Mai 2008 über Geoinformation (Geoinformationsverordnung, GeoIV) (admin.ch)   
-      AccessLevel : DMGeolAssetsCatalogues_V1.Catalogues.AccessLevelRef;
+      AccessLevel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AccessLevelRef;
       !! Rechtliche Dokumente 
       LegalDoc : LegalDoc;
       !! Eingangsdatum des Assets
@@ -140,11 +140,11 @@ VERSION "2021-11-19"  =
       !! Liegt im Asset Texterkennung vor?
       OCR : MANDATORY BOOLEAN;
       !! Qualität der Texterkennung
-      OCRQuality : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+      OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
       !! DateOCRProcessing
       DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
       !! Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
-      AutoCatLabel : DMGeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
+      AutoCatLabel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
       !! Beschreibung eines AssetParts (s. STRUCTURE AssetPartInfo)
       AssetPartInfo : AssetPartInfo;
       !! Physischer Standort des analogen Dokuments
@@ -159,8 +159,8 @@ VERSION "2021-11-19"  =
       DMGeolAssets_V1.CoreGeolAssets.IsPart <> #true OR DEFINED (AssetPartInfo);
       !! NOT(DMGeolAssets_V1.CoreGeolAssets.IsPart) OR DEFINED (AssetPartInfo);
 */
-	!! ----------
-	
+    !! ----------
+
     END LGAssetItem;
 
 
@@ -168,12 +168,25 @@ VERSION "2021-11-19"  =
     CLASS LGAssetPackage
     EXTENDS LGAssetBase =
       !! Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
-      StatusRestriction : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.StatusRestrictionRef;
-	  
-	  !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
+      StatusRestriction : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusRestrictionRef;
+      !! Projekt im Rahmen dessen das Assetpackage erstellt wurde
       Project : TEXT;
     
     END LGAssetPackage;
+
+
+    !! CLASS Publikation des jeweiligen Assets
+    CLASS Publication =
+      !! Datum der Publikation
+      DatePublication : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      !! Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
+      Channel : LG_DMGeolAssetsCatalogues_V1.Catalogues.PubChannelRef;
+      !! Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
+      Description : TEXT;
+      !! URL oder DOI etc. zur jeweilgen Publikation
+      Link : TEXT;
+
+    END Publication;
 
 
 !!****************************************
@@ -190,6 +203,13 @@ VERSION "2021-11-19"  =
       AssetPackage (EXTERNAL) -- {1} DMGeolAssets_V1.CoreGeolAssets.AssetPackage;
       LGAssetPackage -- {1} LGAssetPackage;
     END AssetPackage_LGAssetPackage;
+
+    !! Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
+    ASSOCIATION LGAssetBase_Publication =
+      LGAssetBase -- {1..*} LGAssetBase;
+      Publication -- {0..*} Publication;
+
+    END LGAssetBase_Publication;
 
   END LGGeolAsset;
 
