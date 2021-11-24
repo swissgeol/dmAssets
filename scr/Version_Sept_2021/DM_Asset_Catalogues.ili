@@ -1,0 +1,270 @@
+INTERLIS 2.3;
+
+!!****************************************
+!! MODEL
+!!****************************************
+MODEL DMAssetsCatalogues (en) 
+AT "mailto:U80773132@localhost" 
+VERSION "2021-11-17" =
+
+
+!!****************************************
+!! IMPORTS
+!!****************************************
+IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
+  TOPIC Catalogues =
+    !! Definition einer UUID für alles Klassen im Modell
+    OID AS INTERLIS.UUIDOID;
+
+
+!!****************************************
+!! VORLAGEN Catalogue-Items
+!!****************************************
+/**
+!! ----------------------------
+!! VORLAGE Catalogue-TREE
+    !! Codelist für das Attribut KLASSE.ATTRIBUT = BEZEICHNUNG (Beispielwert, Beispielwert-y, ...)
+	CLASS KLASSENNAME-Item
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END KLASSENNAME-Item;
+
+    STRUCTURE KLASSENNAME-Ref
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KLASSENNAME-Item;
+    END KLASSENNAME-Ref;
+	
+!! ----------------------------
+!! VORLAGE Catalogue-SINGLE
+    !! Codelist für das Attribut KLASSE.ATTRIBUT = BEZEICHNUNG (Beispielwert, Beispielwert-y, ...)
+	CLASS KLASSENNAME-Item
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END KLASSENNAME-Item;
+
+    STRUCTURE KLASSENNAME-Ref
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) KLASSENNAME-Item;
+    END KLASSENNAME-Ref;
+*/
+
+
+!!****************************************
+!! Catalogue-Items
+!!****************************************
+
+    !! Codelist für das Attribut Asset.Kind = Type des Assets (Bericht, Bohrprofil, ...)
+    CLASS AssetKindItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END AssetKindItem;
+
+    STRUCTURE AssetKindRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetKindItem;
+    END AssetKindRef;
+
+
+	!! Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
+    CLASS ManCatLabelItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END ManCatLabelItem;
+
+    STRUCTURE ManCatLabelRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ManCatLabelItem;
+    END ManCatLabelRef;
+
+
+	!! Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
+    CLASS AutoCatLabelItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END AutoCatLabelItem;
+
+    STRUCTURE AutoCatLabelRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
+    END AutoCatLabelRef;
+
+
+	!! Codelist für das Attribut Asset.AutoCatLabel = Typ eine AssetParts (Objekt-Extraks) (Bohrprofil, Karte ...). Klasse durch GAIA zugewiesen
+    CLASS AutoObjectCatItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+    END AutoObjectCatItem;
+
+    STRUCTURE AutoObjectCatRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoObjectCatItem;
+    END AutoObjectCatRef;
+
+
+    !! Codelist für das Attribut AdminAssetBase.TypeNationalRelevance = Begründung der Vergabe der nationalen Relevanz (Bohrung > 100m, Projekt bundesnaher Betriebe, ...).
+	CLASS NatRelItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END NatRelItem;
+
+    STRUCTURE NatRelRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
+    END NatRelRef;
+
+
+    !! Codelist für das Attribut AssetItem.Format = Format des Assets (pdf, seg-y, ...)
+	CLASS AssetFormatItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      MIME : TEXT*50;
+    END AssetFormatItem;
+
+    STRUCTURE AssetFormatRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetFormatItem;
+    END AssetFormatRef;
+
+
+    !! Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
+	CLASS ContactKindItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END ContactKindItem;
+
+    STRUCTURE ContactKindRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ContactKindItem;
+    END ContactKindRef;	
+
+
+    !! Codelist für das Attribut Publication.Channel = Publikationskanal (internet, conference, ...)
+	CLASS PubChannelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END PubChannelItem;
+
+    STRUCTURE PubChannelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PubChannelItem;
+    END PubChannelRef;
+
+
+    !! Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
+    CLASS StatusWorkItem
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+    END StatusWorkItem;
+
+    STRUCTURE StatusWorkRef
+    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
+    END StatusWorkRef;
+
+
+
+    !! Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
+	CLASS LegalDocItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END LegalDocItem;
+
+    STRUCTURE LegalDocRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
+    END LegalDocRef;
+
+
+    !! Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
+	CLASS NatRelCatItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END NatRelCatItem;
+
+    STRUCTURE NatRelCatRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelCatItem;
+    END NatRelCatRef;
+	
+
+	!! Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	CLASS OCRQualityItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END OCRQualityItem;
+
+    STRUCTURE OCRQualityRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) OCRQualityItem;
+    END OCRQualityRef;
+
+
+	!! Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
+	CLASS StatusRestrictionItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END StatusRestrictionItem;
+
+    STRUCTURE StatusRestrictionRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusRestrictionItem;
+    END StatusRestrictionRef;
+		
+		
+	!! Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
+	CLASS LanguageItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END LanguageItem;
+
+    STRUCTURE LanguageRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LanguageItem;
+    END LanguageRef;
+	
+
+	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	CLASS GeomQualityItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+      !! WEITERE ATTIRBUTE : DTYPE;
+    END GeomQualityItem;
+
+    STRUCTURE GeomQualityRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
+    END GeomQualityRef;
+	
+
+  END Catalogues;
+  
+END DMAssetsCatalogues.
