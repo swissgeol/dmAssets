@@ -3,6 +3,8 @@ INTERLIS 2.3;
 !!****************************************
 !! MODEL
 !!****************************************
+/** Datenmodell für die Beschreibung der WErtetabelle (Kataloge) des DMGeolAssets
+*/
 MODEL DMGeolAssetsCatalogues_V1 (en) 
 AT "mailto:U80773132@localhost" 
 VERSION "2021-11-17" =
@@ -26,8 +28,9 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 !! Catalogue-Items
 !!****************************************
 
-    !! Codelist für das Attribut Asset.Kind = Type des Assets (Bericht, Bohrprofil, ...)
-    CLASS AssetKindItem
+    /** Codelist für das Attribut Asset.Kind = Type des Assets (Bericht, Bohrprofil, ...)
+    */
+	CLASS AssetKindItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
@@ -39,8 +42,9 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END AssetKindRef;
 
 
-	!! Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
-    CLASS ManCatLabelItem
+	/** Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
+    */
+	CLASS ManCatLabelItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
@@ -53,7 +57,8 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
 
 
-    !! Codelist für das Attribut AssetItem.Format = Format des Assets (pdf, seg-y, ...)
+    /** Codelist für das Attribut AssetItem.Format = Format des Assets (pdf, seg-y, ...)
+	*/
 	CLASS AssetFormatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -67,7 +72,8 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END AssetFormatRef;
 
 
-    !! Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
+    /** Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
+	*/
 	CLASS ContactKindItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -81,12 +87,12 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
 
 
-	!! Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
+	/** Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
+	*/
 	CLASS LanguageItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END LanguageItem;
 
     STRUCTURE LanguageRef
@@ -95,12 +101,12 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END LanguageRef;
 	
 
-	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	/** Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	*/
 	CLASS GeomQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END GeomQualityItem;
 
     STRUCTURE GeomQualityRef

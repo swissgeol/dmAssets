@@ -3,6 +3,8 @@ INTERLIS 2.3;
 !!****************************************
 !! MODEL
 !!****************************************
+/** Erweiterung des DMGeolAssetsCatalogies für die Beschreibung der Wertelisten (Kataloge) für die Langesgeologie
+*/
 MODEL LG_DMGeolAssetsCatalogues_V1 (en) 
 AT "mailto:U80773132@localhost" 
 VERSION "2021-11-17" =
@@ -27,10 +29,9 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 !!****************************************
 
 
-
-
-	!! Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
-    CLASS AutoCatLabelItem
+	/** Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
+    */
+	CLASS AutoCatLabelItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
@@ -42,9 +43,9 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END AutoCatLabelRef;
 
 
-
-	!! Codelist für das Attribut Asset.AutoCatLabel = Typ eine AssetParts (Objekt-Extraks) (Bohrprofil, Karte ...). Klasse durch GAIA zugewiesen
-    CLASS AutoObjectCatItem
+	/** Codelist für das Attribut Asset.AutoCatLabel = Typ eine AssetParts (Objekt-Extraks) (Bohrprofil, Karte ...). Klasse durch GAIA zugewiesen
+    */
+	CLASS AutoObjectCatItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
@@ -56,8 +57,8 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END AutoObjectCatRef;
 
 
-
-    !! Codelist für das Attribut AdminAssetBase.TypeNationalRelevance = Begründung der Vergabe der nationalen Relevanz (Bohrung > 100m, Projekt bundesnaher Betriebe, ...).
+    /** Codelist für das Attribut AdminAssetBase.TypeNationalRelevance = Begründung der Vergabe der nationalen Relevanz (Bohrung > 100m, Projekt bundesnaher Betriebe, ...).
+	*/
 	CLASS NatRelItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -70,10 +71,8 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END NatRelRef;
 
 
-
-
-
-    !! Codelist für das Attribut Publication.Channel = Publikationskanal (internet, conference, ...)
+    /** Codelist für das Attribut Publication.Channel = Publikationskanal (internet, conference, ...)
+	*/
 	CLASS PubChannelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -86,9 +85,9 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END PubChannelRef;
 
 
-
-    !! Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
-    CLASS StatusWorkItem
+    /** Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
+    */
+	CLASS StatusWorkItem
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
@@ -100,13 +99,12 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END StatusWorkRef;
 
 
-
-    !! Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
+    /** Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
+	*/
 	CLASS LegalDocItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END LegalDocItem;
 
     STRUCTURE LegalDocRef
@@ -115,28 +113,25 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END LegalDocRef;
 
 
-
-    !! Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
+    /** Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
+	*/
 	CLASS NatRelCatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END NatRelCatItem;
 
     STRUCTURE NatRelCatRef
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelCatItem;
     END NatRelCatRef;
-	
 
 
-	!! Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	/** Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	*/
 	CLASS OCRQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END OCRQualityItem;
 
     STRUCTURE OCRQualityRef
@@ -145,13 +140,12 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END OCRQualityRef;
 
 
-
-	!! Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
+	/** Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
+	*/
 	CLASS StatusRestrictionItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END StatusRestrictionItem;
 
     STRUCTURE StatusRestrictionRef
@@ -160,13 +154,12 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     END StatusRestrictionRef;
 
 
-
-	!! Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	/** Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
+	*/
 	CLASS AccessLevelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      !! WEITERE ATTIRBUTE : DTYPE;
     END AccessLevelItem;
 
     STRUCTURE AccessLevelRef

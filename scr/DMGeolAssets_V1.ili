@@ -4,6 +4,7 @@ INTERLIS 2.3;
 !!****************************************
 !! MODEL
 !!****************************************
+/** Datenmodell Geologische Assets zue Beschreibung der Metadaten von geologischen Assets*/
 MODEL DMGeolAssets_V1 (en)
 AT "mailto:U80773132@localhost"
 VERSION "2021-11-19"  =
@@ -20,11 +21,13 @@ VERSION "2021-11-19"  =
 !! DOMAINES
 !!****************************************
   DOMAIN
-  !! Definition of line and surface
+  /** Definition of line and surface
+  */
   Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
   Surface = SURFACE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2 WITHOUT OVERLAPS > 0.005;
 
-  !!Struktur für die Modellierung von Adressen
+  /**Struktur für die Modellierung von Adressen
+  */
   STRUCTURE Adress =
     Street : TEXT;
     Housenumber : TEXT;
@@ -37,6 +40,8 @@ VERSION "2021-11-19"  =
 !!****************************************
 !! TOPIC 
 !!****************************************
+  /** Topic für das Kernmodell es ist zurzeit kein weiteres Topic definiert
+  */
   TOPIC CoreGeolAssets =
     OID AS INTERLIS.UUIDOID;
   DEPENDS ON DMGeolAssetsCatalogues_V1.Catalogues; 
@@ -47,39 +52,53 @@ VERSION "2021-11-19"  =
 !!****************************************
 
 
-    !! Basisklasse der Metadaten eines Assets oder Assetpackages
+    /** Basisklasse der Metadaten eines Assets oder Assetpackages
+    */
     CLASS AssetBase (ABSTRACT) =
-      !! Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
-      TitlePublic : MANDATORY TEXT;
-      !! Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
-      TitleOriginal : TEXT;
-      !! Datum des Erstellung des Assets.
-      DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      !! Bemerkung zum Asset
-      Remark : TEXT;
+      /** Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
+      */
+	  TitlePublic : MANDATORY TEXT;
+      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+      */
+	  TitleOriginal : TEXT;
+       /** Datum des Erstellung des Assets.
+      */
+	  DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Beschreibung des Assets oder des Assetpackages
+      */
+	  Description : TEXT;
 
     END AssetBase;
 
 
-    !! Klasse der Metadaten eines AssetItems
-    CLASS AssetItem
+    /** Klasse der Metadaten eines AssetItems
+    */
+	CLASS AssetItem
     EXTENDS AssetBase =
-      !! Art des Dokuments
-      Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
-      !! Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
-      ManCatLabel : BAG {1 .. *} OF DMGeolAssetsCatalogues_V1.Catalogues.ManCatLabelRef;
-    !! Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
-    Language : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.LanguageRef;
-    !! Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
-    Format : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetFormatRef;
-    !! Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
-    AuthorBiblio : TEXT;
-    !! Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
-    AssetComposition : BAG {0..*} OF DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
-    !! Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
-    TextBody : TEXT;
-    !! Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
-    IsPart : MANDATORY BOOLEAN;
+      /** Art des Dokuments
+      */
+	  Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
+      /** Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
+      */
+	  ManCatLabel : BAG {1 .. *} OF DMGeolAssetsCatalogues_V1.Catalogues.ManCatLabelRef;
+      /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
+      */
+	  Language : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.LanguageRef;
+      /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+      */
+	  Format : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetFormatRef;
+      /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
+      */
+	  AuthorBiblio : TEXT;
+      /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
+      */
+	  AssetComposition : BAG {0..*} OF DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
+      /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
+      */
+	  TextBody : TEXT;
+      /** Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
+      */
+	  IsPart : MANDATORY BOOLEAN;
 
     !! ----------
     MANDATORY CONSTRAINT
@@ -90,59 +109,72 @@ VERSION "2021-11-19"  =
     END AssetItem;
 
 
-    !!  Klasse für die Metadaten eines AssetPackages
-    CLASS AssetPackage
+    /**  Klasse für die Metadaten eines AssetPackages
+    */
+	CLASS AssetPackage
     EXTENDS AssetBase =
 
     END AssetPackage;
 
 
-    !! Basisklasse für die Beschreibung der Geometrien
-    CLASS GeometryOfInterest (ABSTRACT)=
-      !! Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
-      GeomQuality : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.GeomQualityRef;
+    /** Basisklasse für die Beschreibung der Geometrien
+    */
+	CLASS GeometryOfInterest (ABSTRACT)=
+      /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
+      */
+	  GeomQuality : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.GeomQualityRef;
 
     END GeometryOfInterest;
 
 
-    !! CLASS Punktgeometrien
-    CLASS StudyLocation
+    /** CLASS Punktgeometrien
+    */
+	CLASS StudyLocation
     EXTENDS GeometryOfInterest =
       Geometry : GeometryCHLV95_V1.Coord2;
     
     END StudyLocation;
 
 
-    !! CLASS Liniengeometrien
-    CLASS StudyTrace
+    /** CLASS Liniengeometrien
+    */
+	CLASS StudyTrace
     EXTENDS GeometryOfInterest =
       Geometry : Line;
 
     END StudyTrace;
 
 
-    !! CLASS Polygongeometrien
-    CLASS StudyArea
+    /** CLASS Polygongeometrien
+    */
+	CLASS StudyArea
     EXTENDS GeometryOfInterest =
       Geometry : Surface;
 
     END StudyArea;
 
 
-    !! CLASS
-    CLASS Contact =
-      !! Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
-      Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.ContactKindRef;
-      !! Name des Kontakts
-      Name : MANDATORY TEXT;
-      !! Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
-      Adress : Adress;
-      !! Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
-      Telefon : TEXT;
-      !! e-mail-Adresse, gemäss definierter Struktur von e-mail-Adressen
-      Email : URI;
-      !! URL von Websites, gemäss definierter Struktur von URLs
-      Website : URI;
+    /** CLASS
+    */
+	CLASS Contact =
+      /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
+      */
+	  Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.ContactKindRef;
+      /** Name des Kontakts
+      */
+	  Name : MANDATORY TEXT;
+      /** Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
+      */
+	  Adress : Adress;
+      /** Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
+      */
+	  Telefon : TEXT;
+      /** e-mail-Adresse, gemäss definierter Struktur von e-mail-Adressen
+      */
+	  Email : URI;
+      /** URL von Websites, gemäss definierter Struktur von URLs
+      */
+	  Website : URI;
 
     END Contact;
 
@@ -150,21 +182,27 @@ VERSION "2021-11-19"  =
 !!****************************************
 !! ASSOCIATIONS
 !!****************************************
-    !! Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
-    ASSOCIATION AssetItemX_AssetItemY =
+    /** Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
+    */
+	ASSOCIATION AssetItemX_AssetItemY =
       AssetItemX -- {0..*} AssetItem;
       AssetItemY -- {0..*} AssetItem;
     END AssetItemX_AssetItemY;
 
-    !! Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
-    ASSOCIATION AssetItemMain_AssetItemPart =
-      !! Asset aus dem der AssetPart extrahiert wurde
-      AssetItemMain -- {0..1} AssetItem;
-      !! AssetPart
-      AssetItemPart -- {0..*} AssetItem;
-      !! Ein AssetPart kann keine weiteren Parts enthalten.
+    /** Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
+    */
+	ASSOCIATION AssetItemMain_AssetItemPart =
+      /** Asset aus dem der AssetPart extrahiert wurde
+      */
+	  AssetItemMain -- {0..1} AssetItem;
+      /** AssetPart
+      */
+	  AssetItemPart -- {0..*} AssetItem;
+
 
       !! ----------
+	  /** Ein AssetPart kann keine weiteren Parts enthalten.
+      */
       MANDATORY CONSTRAINT
         AssetItemPart->IsPart AND NOT (AssetItemMain->IsPart);	
 
@@ -172,37 +210,42 @@ VERSION "2021-11-19"  =
   
     END AssetItemMain_AssetItemPart; 
 
-    !! Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
-    ASSOCIATION AssetItem_AssetPackage =
+    /** Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
+    */
+	ASSOCIATION AssetItem_AssetPackage =
       AssetItem -- {0..*} AssetItem;
       AssetPackage -- {0..1} AssetPackage;
 
     END AssetItem_AssetPackage;
 
 
-    !! Untersuchungsgebiet zu einem Asset
-    ASSOCIATION AssetBase_GeometryOfInterest =
+    /** Untersuchungsgebiet zu einem Asset
+    */
+	ASSOCIATION AssetBase_GeometryOfInterest =
       AssetBase -<#> {1} AssetBase;
       GeometryOfInterest -- {0..*} GeometryOfInterest;
 
     END AssetBase_GeometryOfInterest;
 
-    !! Autor
-    ASSOCIATION AssetBase_Contact_Author =
+    /** Autor
+    */
+	ASSOCIATION AssetBase_Contact_Author =
       AuthoredAssetBase -- {1..*} AssetBase;
       Author -- {0..*} Contact;
 
     END AssetBase_Contact_Author;
 
-    !! Auftraggeber und/oder Rechteinhaber 
-    ASSOCIATION AssetBase_Contact_Initiator =
+    /** Auftraggeber und/oder Rechteinhaber 
+    */
+	ASSOCIATION AssetBase_Contact_Initiator =
       InitiatedAssetBase -- {1..*} AssetBase;
       Initiator -- {0..*} Contact;
 
     END AssetBase_Contact_Initiator;
 
-    !!  Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
-    ASSOCIATION AssetBase_Contact_Supplier =
+    /**  Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
+    */
+	ASSOCIATION AssetBase_Contact_Supplier =
       SuppliedAssetBase -- {1..*} AssetBase;
       Supplier -- {0..*} Contact;
 
