@@ -45,13 +45,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 	/** Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
     */
 	CLASS ManCatLabelItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
     END ManCatLabelItem;
 
     STRUCTURE ManCatLabelRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ManCatLabelItem;
     END ManCatLabelRef;
 
@@ -75,13 +75,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     /** Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
 	*/
 	CLASS ContactKindItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
     END ContactKindItem;
 
     STRUCTURE ContactKindRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ContactKindItem;
     END ContactKindRef;	
 

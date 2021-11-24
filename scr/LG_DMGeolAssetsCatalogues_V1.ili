@@ -32,13 +32,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 	/** Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
     */
 	CLASS AutoCatLabelItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
     END AutoCatLabelItem;
 
     STRUCTURE AutoCatLabelRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
     END AutoCatLabelRef;
 
@@ -46,13 +46,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 	/** Codelist für das Attribut Asset.AutoCatLabel = Typ eine AssetParts (Objekt-Extraks) (Bohrprofil, Karte ...). Klasse durch GAIA zugewiesen
     */
 	CLASS AutoObjectCatItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
     END AutoObjectCatItem;
 
     STRUCTURE AutoObjectCatRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoObjectCatItem;
     END AutoObjectCatRef;
 
@@ -60,13 +60,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     /** Codelist für das Attribut AdminAssetBase.TypeNationalRelevance = Begründung der Vergabe der nationalen Relevanz (Bohrung > 100m, Projekt bundesnaher Betriebe, ...).
 	*/
 	CLASS NatRelItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
     END NatRelItem;
 
     STRUCTURE NatRelRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
     END NatRelRef;
 
@@ -88,13 +88,13 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     /** Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
     */
 	CLASS StatusWorkItem
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
     END StatusWorkItem;
 
     STRUCTURE StatusWorkRef
-    EXTENDS CatalogueObjects_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
     END StatusWorkRef;
 
@@ -118,6 +118,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 	CLASS NatRelCatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
+	  Description : LocalisationCH_V1.MultilingualMText;
     END NatRelCatItem;
 
     STRUCTURE NatRelCatRef
