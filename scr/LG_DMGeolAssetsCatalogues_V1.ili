@@ -112,9 +112,10 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
     END LegalDocRef;
 
-
+!! ####>>>>
     /** Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
 	*/
+/**
 	CLASS NatRelCatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
@@ -125,7 +126,8 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelCatItem;
     END NatRelCatRef;
-
+*/
+!! ####>>>>
 
 	/** Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
 	*/

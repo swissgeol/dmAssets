@@ -50,6 +50,23 @@ VERSION "2021-11-19"  =
 
   END AssetPartInfo;
 
+
+!! ####>>>>
+  /** Struktur für die Angabe in welchen Projekten das jeweilige Asset verwendet wurde. 
+  */
+  STRUCTURE UsedBy =
+    /**  Name des Projekts
+	*/
+	Name : TEXT;
+	/** Beschreibung des Projekts
+	*/
+	Description : TEXT;
+	/** Datum der Abgabe des Assets an das jeweilige Projekt
+	*/
+	DateDeliverd : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+  END UsedBy;
+!! ####>>>>
+
   /** Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
   */
   STRUCTURE ID =
@@ -123,19 +140,27 @@ VERSION "2021-11-19"  =
 	  URL : TEXT;
       /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
       */
-	  UsedBy : BAG {0..*} OF TextDescr;
+	  UsedBy : BAG {0..*} OF UsedBy;
       /** Bearbeitungsstatus
       */
 	  StatusWork : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
+
+!! ####>>>>
       /** Nationale Relevanz des Assets
       */
-	  NationalRelevance : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelCatRef;
+!!	  NationalRelevance : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelCatRef;
+!! ####>>>>
+
       /** Grund der Zuweisung der nationalen Bedeutung
       */
-	  TypeNationalRelevance : BAG {1..*} OF LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
+	  NationalRelevance : BAG {1..*} OF LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
+
+!! ####>>>>
       /** AccessLevel (A, B, C)SR 510.620 - Verordnung vom 21. Mai 2008 über Geoinformation (Geoinformationsverordnung, GeoIV) (admin.ch)   
       */
-	  AccessLevel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AccessLevelRef;
+!!	  AccessLevel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AccessLevelRef;
+!! ####>>>>
+
       /** Rechtliche Dokumente 
       */
 	  LegalDoc : LegalDoc;
@@ -156,15 +181,22 @@ VERSION "2021-11-19"  =
 	  InfogeolContactData : TEXT;
       /** Bemerkungen
       */
+	  
+!! ####>>>>
+	  /** Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB */
+	  InfogeolAuxData : TEXT;
+!! ####>>>>
+	  
 	  Remark : MTEXT;
 
     !! ----------
     MANDATORY CONSTRAINT
       Restriction <> #true OR DEFINED (DateRestriction);
 
+/**
     MANDATORY CONSTRAINT
     NationalRelevance->Reference->Name->LocalisedText->Text <> "prio1" AND NationalRelevance->Reference->Name->LocalisedText->Text <> "prio2" AND NationalRelevance->Reference->Name->LocalisedText->Text <> "prio3" OR DEFINED (TypeNationalRelevance);
-
+*/
     !! ----------
     END LGAssetBase;
 
@@ -184,7 +216,8 @@ VERSION "2021-11-19"  =
 	  OCR : MANDATORY BOOLEAN;
       /** Qualität der Texterkennung
       */
-	  OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+!!	  OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+	  OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
       /** DateOCRProcessing
       */
 	  DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
@@ -254,7 +287,6 @@ VERSION "2021-11-19"  =
       AssetItem (EXTERNAL) -- {1} DMGeolAssets_V1.CoreGeolAssets.AssetItem;
       LGAssetItem -- {1} LGAssetItem;
     
-	
     MANDATORY CONSTRAINT
       NOT (AssetItem->IsPart) OR DEFINED (LGAssetItem->AssetPartInfo);
 
