@@ -63,7 +63,7 @@ VERSION "2021-11-19"  =
 	Description : TEXT;
 	/** Datum der Abgabe des Assets an das jeweilige Projekt
 	*/
-	DateDeliverd : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END UsedBy;
 !! ####>>>>
 
@@ -128,7 +128,7 @@ VERSION "2021-11-19"  =
 	CLASS LGAssetBase (ABSTRACT) =
       /** Angabe, ob das Asset frei verfügbar (no) oder der Zugang eingeschränkt (yes) ist
       */
-	  Restriction : MANDATORY BOOLEAN;
+	  isRestricted : MANDATORY BOOLEAN;
       /** Ablaufdatum der Zugriffsbeschränkung (Format: dd.mm.yyyy) Bemerkung: Wenn Restrict = yes, muss dieses Attribut ausgefüllt werden. Ist die Beschränkungsdauer unendlich bzw. unbestimmt, gilt: 31.12.9999. Für frei verfügbare Assets kann 01.01.1111 gesetzt werden.
       */
 	  DateRestriction : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
@@ -191,7 +191,7 @@ VERSION "2021-11-19"  =
 
     !! ----------
     MANDATORY CONSTRAINT
-      Restriction <> #true OR DEFINED (DateRestriction);
+      isRestricted <> #true OR DEFINED (DateRestriction);
 
 /**
     MANDATORY CONSTRAINT
@@ -213,7 +213,7 @@ VERSION "2021-11-19"  =
 	  IDSGS : 0 .. 1000000000;
       /** Liegt im Asset Texterkennung vor?
       */
-	  OCR : MANDATORY BOOLEAN;
+	  isOCR : MANDATORY BOOLEAN;
       /** Qualität der Texterkennung
       */
 !!	  OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
@@ -233,7 +233,7 @@ VERSION "2021-11-19"  =
 
     !! ----------
     MANDATORY CONSTRAINT
-      OCR <> #true OR DEFINED (OCRQuality);
+      isOCR <> #true OR DEFINED (OCRQuality);
 
 /**
     MANDATORY CONSTRAINT
@@ -289,6 +289,9 @@ VERSION "2021-11-19"  =
     
     MANDATORY CONSTRAINT
       NOT (AssetItem->IsPart) OR DEFINED (LGAssetItem->AssetPartInfo);
+
+    MANDATORY CONSTRAINT
+      (AssetItem->Format->Reference->Name->LocalisedText->Text=="textAnalog") OR DEFINED (LGAssetItem->LocationAnalog);
 
     END AssetItem_LGAssetItem;
 
