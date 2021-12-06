@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.16.6-Hannover" saveUser="U80773132" projectname="" saveDateTime="2021-11-24T19:48:51" saveUserFull="Oesterling Nils swisstopo">
+<qgis version="3.16.6-Hannover" saveUser="U80773132" projectname="" saveDateTime="2021-11-24T19:54:42" saveUserFull="Oesterling Nils swisstopo">
   <homePath path=""/>
   <title></title>
   <autotransaction active="0"/>
@@ -1358,7 +1358,9 @@ def my_form_open(dialog, layer, feature):
       </temporal>
       <customproperties>
         <property key="dualview/previewExpressions">
+          <value>aname</value>
           <value>"aname"</value>
+          <value>aname</value>
         </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property value="interlis_topic" key="variableNames"/>
@@ -2902,6 +2904,10 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+          <value>"aname"</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property value="interlis_topic" key="variableNames"/>
         <property value="DMGeolAssetsCatalogues_V1.Catalogues" key="variableValues"/>
@@ -3386,7 +3392,7 @@ def my_form_open(dialog, layer, feature):
       </labelOnTop>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression>"aname"</previewExpression>
+      <previewExpression>aname</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshTime="0" autoRefreshEnabled="0" refreshOnNotifyEnabled="0" wkbType="NoGeometry" geometry="No geometry" styleCategories="AllStyleCategories" type="vector" maxScale="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" minScale="1e+08" readOnly="0">
@@ -3893,6 +3899,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property value="interlis_topic" key="variableNames"/>
         <property value="DMGeolAssetsCatalogues_V1.Catalogues" key="variableValues"/>
@@ -5092,6 +5101,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property value="0" key="embeddedWidgets/count"/>
         <property value="interlis_topic" key="variableNames"/>
         <property value="DMGeolAssetsCatalogues_V1.Catalogues" key="variableValues"/>
