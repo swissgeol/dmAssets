@@ -67,15 +67,6 @@ VERSION "2021-11-19"  =
   END UsedBy;
 !! ####>>>>
 
-  /** Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
-  */
-  STRUCTURE ID =
-    /** Identifikator
-    */
-	ID : TEXT;
-
-  END ID;
-
   /** Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
   */
   STRUCTURE TextDescr =
@@ -98,6 +89,29 @@ VERSION "2021-11-19"  =
 	  
 	END LegalDoc;
 
+
+  STRUCTURE OCRInfo =
+    /** Liegt im Asset Texterkennung vor?
+    */
+    isOCR : MANDATORY BOOLEAN;
+    /** Qualität der Texterkennung
+    */
+    OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+    /** DateOCRProcessing
+    */
+    DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	
+    !! ----------
+	MANDATORY CONSTRAINT
+      isOCR <> #true OR DEFINED (OCRQuality);
+	  
+	MANDATORY CONSTRAINT
+      OCRQuality->Reference->Name->LocalisedText->Text=="low" OR DEFINED (DateOCRProcessing);
+	  !! ocrProcessed
+	
+    !! ----------
+	
+  END OCRInfo;
 
 !!****************************************
 !! TOPIC 
@@ -187,6 +201,10 @@ VERSION "2021-11-19"  =
 	  InfogeolAuxData : TEXT;
 !! ####>>>>
 	  
+	  /** Gemeinde in dem das Asset liegt. Dieses Attribut dient dazu eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
+	  */
+	  Municipality : TEXT;
+	  
 	  Remark : MTEXT;
 
     !! ----------
@@ -205,22 +223,23 @@ VERSION "2021-11-19"  =
     */
 	CLASS LGAssetItem
     EXTENDS LGAssetBase =
-      /** Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
-      */
-	  IDAlternate : BAG {0 .. *} OF ID;
       /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
       */
 	  IDSGS : 0 .. 1000000000;
+!! ####>>>>
+
       /** Liegt im Asset Texterkennung vor?
       */
-	  isOCR : MANDATORY BOOLEAN;
+!!	  isOCR : MANDATORY BOOLEAN;
       /** Qualität der Texterkennung
       */
 !!	  OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
-	  OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+!!	  OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
       /** DateOCRProcessing
       */
-	  DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+!!	  DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+
+!! ####>>>>
       /** Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
       */
 	  AutoCatLabel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
@@ -232,8 +251,14 @@ VERSION "2021-11-19"  =
 	  LocationAnalog : TEXT;
 
     !! ----------
+/**
     MANDATORY CONSTRAINT
       isOCR <> #true OR DEFINED (OCRQuality);
+	  
+	MANDATORY CONSTRAINT
+      OCRQuality->Reference->Name->LocalisedText->Text=="low" OR DEFINED (DateOCRProcessing);
+	  !! ocrProcessed
+*/
 
 /**
     MANDATORY CONSTRAINT
