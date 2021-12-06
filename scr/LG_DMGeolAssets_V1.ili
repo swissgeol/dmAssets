@@ -158,23 +158,9 @@ VERSION "2021-11-19"  =
       /** Bearbeitungsstatus
       */
 	  StatusWork : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
-
-!! ####>>>>
-      /** Nationale Relevanz des Assets
-      */
-!!	  NationalRelevance : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelCatRef;
-!! ####>>>>
-
       /** Grund der Zuweisung der nationalen Bedeutung
       */
 	  NationalRelevance : BAG {1..*} OF LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
-
-!! ####>>>>
-      /** AccessLevel (A, B, C)SR 510.620 - Verordnung vom 21. Mai 2008 über Geoinformation (Geoinformationsverordnung, GeoIV) (admin.ch)   
-      */
-!!	  AccessLevel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AccessLevelRef;
-!! ####>>>>
-
       /** Rechtliche Dokumente 
       */
 	  LegalDoc : LegalDoc;
@@ -195,12 +181,8 @@ VERSION "2021-11-19"  =
 	  InfogeolContactData : TEXT;
       /** Bemerkungen
       */
-	  
-!! ####>>>>
 	  /** Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB */
 	  InfogeolAuxData : TEXT;
-!! ####>>>>
-	  
 	  /** Gemeinde in dem das Asset liegt. Dieses Attribut dient dazu eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
 	  */
 	  Municipality : TEXT;
@@ -211,10 +193,6 @@ VERSION "2021-11-19"  =
     MANDATORY CONSTRAINT
       isRestricted <> #true OR DEFINED (DateRestriction);
 
-/**
-    MANDATORY CONSTRAINT
-    NationalRelevance->Reference->Name->LocalisedText->Text <> "prio1" AND NationalRelevance->Reference->Name->LocalisedText->Text <> "prio2" AND NationalRelevance->Reference->Name->LocalisedText->Text <> "prio3" OR DEFINED (TypeNationalRelevance);
-*/
     !! ----------
     END LGAssetBase;
 
@@ -226,20 +204,6 @@ VERSION "2021-11-19"  =
       /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
       */
 	  IDSGS : 0 .. 1000000000;
-!! ####>>>>
-
-      /** Liegt im Asset Texterkennung vor?
-      */
-!!	  isOCR : MANDATORY BOOLEAN;
-      /** Qualität der Texterkennung
-      */
-!!	  OCRQuality : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
-!!	  OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
-      /** DateOCRProcessing
-      */
-!!	  DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-
-!! ####>>>>
       /** Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
       */
 	  AutoCatLabel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
@@ -249,23 +213,6 @@ VERSION "2021-11-19"  =
       /** Physischer Standort des analogen Dokuments
       */
 	  LocationAnalog : TEXT;
-
-    !! ----------
-/**
-    MANDATORY CONSTRAINT
-      isOCR <> #true OR DEFINED (OCRQuality);
-	  
-	MANDATORY CONSTRAINT
-      OCRQuality->Reference->Name->LocalisedText->Text=="low" OR DEFINED (DateOCRProcessing);
-	  !! ocrProcessed
-*/
-
-/**
-    MANDATORY CONSTRAINT
-      DMGeolAssets_V1.CoreGeolAssets.AssetItem.IsPart <> #true OR DEFINED (AssetPartInfo);
-      !! NOT(DMGeolAssets_V1.CoreGeolAssets.IsPart) OR DEFINED (AssetPartInfo);
-*/
-    !! ----------
 
     END LGAssetItem;
 

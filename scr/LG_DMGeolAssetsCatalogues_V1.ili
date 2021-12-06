@@ -112,22 +112,6 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
     END LegalDocRef;
 
-!! ####>>>>
-    /** Codelist für das Attribut AdminAssetBase.NationalRelevance = Kategorien der nationalen Relevanz des Assets
-	*/
-/**
-	CLASS NatRelCatItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-	  Description : LocalisationCH_V1.MultilingualMText;
-    END NatRelCatItem;
-
-    STRUCTURE NatRelCatRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelCatItem;
-    END NatRelCatRef;
-*/
-!! ####>>>>
 
 	/** Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
 	*/
@@ -156,22 +140,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusRestrictionItem;
     END StatusRestrictionRef;
 
-!! ####>>>>
-	/** Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
-	*/
-/**
-	CLASS AccessLevelItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-    END AccessLevelItem;
 
-    STRUCTURE AccessLevelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AccessLevelItem;
-    END AccessLevelRef;	
-*/
-!! ####>>>>
   END Catalogues;
   
 END LG_DMGeolAssetsCatalogues_V1.
