@@ -9,7 +9,7 @@ INTERLIS 2.3;
 
 MODEL LG_DMGeolAssets (en)
 AT "mailto:U80773132@localhost"
-VERSION "2021-11-19"  =
+VERSION "2021-12-08" =
 
 
 !!****************************************
@@ -17,7 +17,7 @@ VERSION "2021-11-19"  =
 !!****************************************
   IMPORTS GeometryCHLV95_V1,Units;
   IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-  IMPORTS DMGeolAssets_V1,LG_DMGeolAssetsCatalogues_V1;
+  IMPORTS GeolAssets_V1,LG_GeolAssetsCatalogues_V1;
 
 
 !!****************************************
@@ -37,7 +37,7 @@ VERSION "2021-11-19"  =
   STRUCTURE AssetPartInfo =
     /** Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
     */
-	ObjectClass : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoObjectCatRef;
+	ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V1.Catalogues.AutoObjectCatRef;
     /** Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
     */
 	ObjectPage : MANDATORY PageNums;
@@ -82,7 +82,7 @@ VERSION "2021-11-19"  =
 	Titel : TEXT;
     /** Typ des rechtlich verbindlichen Dokuments
     */
-	Type : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.LegalDocRef;
+	Type : MANDATORY LG_GeolAssetsCatalogues_V1.Catalogues.LegalDocRef;
     /** Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
     */
 	RelativePathLegalDoc : TEXT;
@@ -96,7 +96,7 @@ VERSION "2021-11-19"  =
     isOCR : MANDATORY BOOLEAN;
     /** Qualität der Texterkennung
     */
-    OCRQuality : LG_DMGeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
+    OCRQuality : LG_GeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
     /** DateOCRProcessing
     */
     DateOCRProcessing : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
@@ -120,7 +120,7 @@ VERSION "2021-11-19"  =
   */
   TOPIC LGGeolAsset =
     OID AS INTERLIS.UUIDOID;
-    DEPENDS ON DMGeolAssets_V1.CoreGeolAssets,LG_DMGeolAssetsCatalogues_V1.Catalogues;
+    DEPENDS ON GeolAssets_V1.CoreGeolAssets,LG_GeolAssetsCatalogues_V1.Catalogues;
 
 
 !!****************************************
@@ -129,7 +129,7 @@ VERSION "2021-11-19"  =
     /** Erweiterung der CLASS Contact aud dem DMGeolAssets
 	*/
 	CLASS LGContact
-    EXTENDS DMGeolAssets_V1.CoreGeolAssets.Contact =
+    EXTENDS GeolAssets_V1.CoreGeolAssets.Contact =
       /** Referenz auf einen Eintrag in der zentralen Adress-Datenbank (ZAD)
       */
 	  IDZAD : TEXT;
@@ -157,10 +157,10 @@ VERSION "2021-11-19"  =
 	  UsedBy : BAG {0..*} OF UsedBy;
       /** Bearbeitungsstatus
       */
-	  StatusWork : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
+	  StatusWork : MANDATORY LG_GeolAssetsCatalogues_V1.Catalogues.StatusWorkRef;
       /** Grund der Zuweisung der nationalen Bedeutung
       */
-	  NationalRelevance : BAG {1..*} OF LG_DMGeolAssetsCatalogues_V1.Catalogues.NatRelRef;
+	  NationalRelevance : BAG {1..*} OF LG_GeolAssetsCatalogues_V1.Catalogues.NatRelRef;
       /** Rechtliche Dokumente 
       */
 	  LegalDoc : LegalDoc;
@@ -186,7 +186,8 @@ VERSION "2021-11-19"  =
 	  /** Gemeinde in dem das Asset liegt. Dieses Attribut dient dazu eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
 	  */
 	  Municipality : TEXT;
-	  
+	  /** Bemerkungen zum Asset für besondere Informationen, die nicht mit den Attributen abgebildet werden können
+	  */
 	  Remark : MTEXT;
 
     !! ----------
@@ -204,9 +205,12 @@ VERSION "2021-11-19"  =
       /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
       */
 	  IDSGS : 0 .. 1000000000;
+	  /** Information zur Texterkennung
+	  */
+	  OCRInfo : MANDATORY OCRInfo;
       /** Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
       */
-	  AutoCatLabel : LG_DMGeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : LG_GeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
       /** Beschreibung eines AssetParts (s. STRUCTURE AssetPartInfo)
       */
 	  AssetPartInfo : AssetPartInfo;
@@ -223,7 +227,7 @@ VERSION "2021-11-19"  =
     EXTENDS LGAssetBase =
       /** Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
       */
-	  StatusRestriction : MANDATORY LG_DMGeolAssetsCatalogues_V1.Catalogues.StatusRestrictionRef;
+	  StatusRestriction : MANDATORY LG_GeolAssetsCatalogues_V1.Catalogues.StatusRestrictionRef;
       /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
       */
 	  Project : TEXT;
@@ -239,7 +243,7 @@ VERSION "2021-11-19"  =
 	  DatePublication : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
       /** Publikationskanal, z.B.: Publikation auf verschiedenen Kanälen: map.geo.admin.ch, Zeitschrift, Konferenz (Abstract, Präsentation), etc.
       */
-	  Channel : LG_DMGeolAssetsCatalogues_V1.Catalogues.PubChannelRef;
+	  Channel : LG_GeolAssetsCatalogues_V1.Catalogues.PubChannelRef;
       /** Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
       */
 	  Description : TEXT;
@@ -256,7 +260,7 @@ VERSION "2021-11-19"  =
     /** Beziehung Assetitem und LGAssetItem
     */
     ASSOCIATION AssetItem_LGAssetItem =
-      AssetItem (EXTERNAL) -- {1} DMGeolAssets_V1.CoreGeolAssets.AssetItem;
+      AssetItem (EXTERNAL) -- {1} GeolAssets_V1.CoreGeolAssets.AssetItem;
       LGAssetItem -- {1} LGAssetItem;
     
     MANDATORY CONSTRAINT
@@ -270,7 +274,7 @@ VERSION "2021-11-19"  =
     /** Beziehung AssetPackage um LGAssetPackage
     */
 	ASSOCIATION AssetPackage_LGAssetPackage =
-      AssetPackage (EXTERNAL) -- {1} DMGeolAssets_V1.CoreGeolAssets.AssetPackage;
+      AssetPackage (EXTERNAL) -- {1} GeolAssets_V1.CoreGeolAssets.AssetPackage;
       LGAssetPackage -- {1} LGAssetPackage;
     END AssetPackage_LGAssetPackage;
 

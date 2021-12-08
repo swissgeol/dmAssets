@@ -5,9 +5,9 @@ INTERLIS 2.3;
 !!****************************************
 /** Erweiterung des DMGeolAssetsCatalogies für die Beschreibung der Wertelisten (Kataloge) für die Langesgeologie
 */
-MODEL LG_DMGeolAssetsCatalogues_V1 (en) 
+MODEL LG_GeolAssetsCatalogues_V1 (en) 
 AT "mailto:U80773132@localhost" 
-VERSION "2021-11-17" =
+VERSION "2021-12-08" =
 
 
 !!****************************************
@@ -143,4 +143,4 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
   END Catalogues;
   
-END LG_DMGeolAssetsCatalogues_V1.
+END LG_GeolAssetsCatalogues_V1.

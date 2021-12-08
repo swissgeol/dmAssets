@@ -5,9 +5,9 @@ INTERLIS 2.3;
 !!****************************************
 /** Datenmodell für die Beschreibung der WErtetabelle (Kataloge) des DMGeolAssets
 */
-MODEL DMGeolAssetsCatalogues_V1 (en) 
+MODEL GeolAssetsCatalogues_V1 (en) 
 AT "mailto:U80773132@localhost" 
-VERSION "2021-11-17" =
+VERSION "2021-12-08" =
 
 
 !!****************************************
@@ -117,4 +117,4 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 
   END Catalogues;
   
-END DMGeolAssetsCatalogues_V1.
+END GeolAssetsCatalogues_V1.

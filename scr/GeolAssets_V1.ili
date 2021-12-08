@@ -5,9 +5,9 @@ INTERLIS 2.3;
 !! MODEL
 !!****************************************
 /** Datenmodell Geologische Assets zue Beschreibung der Metadaten von geologischen Assets*/
-MODEL DMGeolAssets_V1 (en)
+MODEL GeolAssets_V1 (en)
 AT "mailto:U80773132@localhost"
-VERSION "2021-11-19"  =
+VERSION "2021-12-08"  =
 
 
 !!****************************************
@@ -15,7 +15,7 @@ VERSION "2021-11-19"  =
 !!****************************************
   IMPORTS GeometryCHLV95_V1,Units;
   IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
-  IMPORTS DMGeolAssetsCatalogues_V1;
+  IMPORTS GeolAssetsCatalogues_V1;
 
 !!****************************************
 !! DOMAINES
@@ -36,7 +36,7 @@ VERSION "2021-11-19"  =
     Country : MANDATORY TEXT;
   END Adress;
 
-  /** Struktur für die Definition einer ID, di ein einem BAG {0..*} verwendet werden kann
+  /** Struktur für die Definition einer ID, die in einem BAG {0..*} verwendet werden kann
   */
   STRUCTURE ID =
     /** Identifikator
@@ -56,7 +56,7 @@ VERSION "2021-11-19"  =
   */
   TOPIC CoreGeolAssets =
     OID AS INTERLIS.UUIDOID;
-  DEPENDS ON DMGeolAssetsCatalogues_V1.Catalogues; 
+  DEPENDS ON GeolAssetsCatalogues_V1.Catalogues; 
  
 
 !!****************************************
@@ -92,22 +92,22 @@ VERSION "2021-11-19"  =
     EXTENDS AssetBase =
       /** Art des Dokuments
       */
-	  Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
+	  Kind : MANDATORY GeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
       /** Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
       */
-	  ManCatLabel : BAG {1 .. *} OF DMGeolAssetsCatalogues_V1.Catalogues.ManCatLabelRef;
+	  ManCatLabel : BAG {1 .. *} OF GeolAssetsCatalogues_V1.Catalogues.ManCatLabelRef;
       /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
       */
-	  Language : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.LanguageRef;
+	  Language : MANDATORY GeolAssetsCatalogues_V1.Catalogues.LanguageRef;
       /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
       */
-	  Format : BAG {1..*} OF  DMGeolAssetsCatalogues_V1.Catalogues.AssetFormatRef;
+	  Format : BAG {1..*} OF  GeolAssetsCatalogues_V1.Catalogues.AssetFormatRef;
       /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
       */
 	  AuthorBiblio : TEXT;
       /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
       */
-	  AssetComposition : BAG {0..*} OF DMGeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
+	  AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
       /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
       */
 	  TextBody : TEXT;
@@ -137,7 +137,7 @@ VERSION "2021-11-19"  =
 	CLASS GeometryOfInterest (ABSTRACT)=
       /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
       */
-	  GeomQuality : DMGeolAssetsCatalogues_V1.Catalogues.GeomQualityRef;
+	  GeomQuality : GeolAssetsCatalogues_V1.Catalogues.GeomQualityRef;
 
     END GeometryOfInterest;
 
@@ -174,7 +174,7 @@ VERSION "2021-11-19"  =
 	CLASS Contact =
       /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.  
       */
-	  Kind : MANDATORY DMGeolAssetsCatalogues_V1.Catalogues.ContactKindRef;
+	  Kind : MANDATORY GeolAssetsCatalogues_V1.Catalogues.ContactKindRef;
       /** Name des Kontakts
       */
 	  Name : MANDATORY TEXT;
@@ -270,4 +270,4 @@ VERSION "2021-11-19"  =
   END CoreGeolAssets;
 
 
-END DMGeolAssets_V1.
+END GeolAssets_V1.
