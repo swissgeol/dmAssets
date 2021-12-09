@@ -20,7 +20,7 @@ IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
 !! TOPIC 
 !!****************************************
   TOPIC Catalogues =
-    !! Definition einer UUID für alles Klassen im Modell
+    !! Definition einer UUID für alle Klassen im Modell
     OID AS INTERLIS.UUIDOID;
 
 
