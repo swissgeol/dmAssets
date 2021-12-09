@@ -64,7 +64,6 @@ VERSION "2021-12-08" =
 	*/
 	DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END UsedBy;
-!! ####>>>>
 
   /** Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
   */
