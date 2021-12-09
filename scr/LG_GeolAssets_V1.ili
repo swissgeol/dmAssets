@@ -51,7 +51,6 @@ VERSION "2021-12-08" =
   END AssetPartInfo;
 
 
-!! ####>>>>
   /** Struktur für die Angabe in welchen Projekten das jeweilige Asset verwendet wurde. 
   */
   STRUCTURE UsedBy =
