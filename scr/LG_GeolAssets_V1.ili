@@ -91,7 +91,7 @@ VERSION "2021-12-08" =
   STRUCTURE OCRInfo =
     /** Liegt im Asset Texterkennung vor?
     */
-    isOCR : MANDATORY BOOLEAN;
+    IsOCR : MANDATORY BOOLEAN;
     /** Qualität der Texterkennung
     */
     OCRQuality : LG_GeolAssetsCatalogues_V1.Catalogues.OCRQualityRef;
