@@ -6,7 +6,7 @@ INTERLIS 2.3;
 /** Erweiterung des DMGeolAssetsCatalogies für die Beschreibung der Wertelisten (Kataloge) für die Langesgeologie
 */
 MODEL LG_GeolAssetsCatalogues_V1 (en) 
-AT "mailto:U80773132@localhost" 
+AT "https://www.swisstopo.ch" 
 VERSION "2021-12-08" =
 
 
