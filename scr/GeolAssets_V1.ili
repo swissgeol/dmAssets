@@ -180,7 +180,7 @@ VERSION "2021-12-08"  =
 	  Name : MANDATORY TEXT;
       /** Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
       */
-	  Adress : Adress;
+	  Address : Address;
       /** Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
       */
 	  Telefon : TEXT;
