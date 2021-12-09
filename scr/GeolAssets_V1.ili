@@ -34,7 +34,7 @@ VERSION "2021-12-08"  =
     PLZ : TEXT;
     Locality : MANDATORY TEXT;
     Country : MANDATORY TEXT;
-  END Adress;
+  END Address;
 
   /** Struktur für die Definition einer ID, die in einem BAG {0..*} verwendet werden kann
   */
