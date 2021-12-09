@@ -6,7 +6,7 @@ INTERLIS 2.3;
 !!****************************************
 /** Datenmodell Geologische Assets zur Beschreibung der Metadaten von geologischen Assets*/
 MODEL GeolAssets_V1 (en)
-AT "mailto:U80773132@localhost"
+AT "https://www.swisstopo.ch"
 VERSION "2021-12-08"  =
 
 
