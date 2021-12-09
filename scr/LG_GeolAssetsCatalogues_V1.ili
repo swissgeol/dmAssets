@@ -13,7 +13,8 @@ VERSION "2021-12-08" =
 !!****************************************
 !! IMPORTS
 !!****************************************
-IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
+IMPORTS GeolAssetsCatalogues_V1;
 
 
 !!****************************************
