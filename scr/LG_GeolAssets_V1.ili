@@ -99,7 +99,7 @@ VERSION "2021-12-08" =
 	
     !! ----------
 	MANDATORY CONSTRAINT
-      isOCR <> #true OR DEFINED (OCRQuality);
+      IsOCR <> #true OR DEFINED (OCRQuality);
 	  
 	MANDATORY CONSTRAINT
       OCRQuality->Reference->Name->LocalisedText->Text=="low" OR DEFINED (DateOCRProcessing);
@@ -188,7 +188,7 @@ VERSION "2021-12-08" =
 
     !! ----------
     MANDATORY CONSTRAINT
-      isRestricted <> #true OR DEFINED (DateRestriction);
+      IsRestricted <> #true OR DEFINED (DateRestriction);
 
     !! ----------
     END LGAssetBase;
