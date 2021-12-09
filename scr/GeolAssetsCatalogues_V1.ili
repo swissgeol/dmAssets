@@ -3,7 +3,7 @@ INTERLIS 2.3;
 !!****************************************
 !! MODEL
 !!****************************************
-/** Datenmodell für die Beschreibung der WErtetabelle (Kataloge) des DMGeolAssets
+/** Datenmodell für die Beschreibung der Wertetabelle (Kataloge) des DMGeolAssets
 */
 MODEL GeolAssetsCatalogues_V1 (en) 
 AT "mailto:U80773132@localhost" 
