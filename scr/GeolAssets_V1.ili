@@ -13,8 +13,7 @@ VERSION "2021-12-08"  =
 !!****************************************
 !! IMPORTS
 !!****************************************
-  IMPORTS GeometryCHLV95_V1,Units;
-  IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+  IMPORTS GeometryCHLV95_V1;
   IMPORTS GeolAssetsCatalogues_V1;
 
 !!****************************************
