@@ -13,8 +13,7 @@ VERSION "2021-12-08"  =
 !!****************************************
 !! IMPORTS
 !!****************************************
-  IMPORTS GeometryCHLV95_V1,Units;
-  IMPORTS CatalogueObjects_V1,CatalogueObjectTrees_V1,LocalisationCH_V1;
+  IMPORTS GeometryCHLV95_V1;
   IMPORTS GeolAssetsCatalogues_V1;
 
 !!****************************************
@@ -28,13 +27,13 @@ VERSION "2021-12-08"  =
 
   /**Struktur für die Modellierung von Adressen
   */
-  STRUCTURE Address =
+  STRUCTURE Adress =
     Street : TEXT;
     Housenumber : TEXT;
     PLZ : TEXT;
     Locality : MANDATORY TEXT;
     Country : MANDATORY TEXT;
-  END Address;
+  END Adress;
 
   /** Struktur für die Definition einer ID, die in einem BAG {0..*} verwendet werden kann
   */
@@ -180,7 +179,7 @@ VERSION "2021-12-08"  =
 	  Name : MANDATORY TEXT;
       /** Adresse: die Struktur dieses Attributes ist in der Struktur "Adress" beschrieben
       */
-	  Address : Address;
+	  Adress : Adress;
       /** Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
       */
 	  Telefon : TEXT;
