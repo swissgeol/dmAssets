@@ -51,7 +51,7 @@ VERSION "2021-12-08"  =
 !!****************************************
 !! TOPIC 
 !!****************************************
-  /** Topic des Kernmodells  (zurzeit ist kein weiteres Topic definiert)
+  /** Topic für das Kernmodell es ist zurzeit kein weiteres Topic definiert
   */
   TOPIC CoreGeolAssets =
     OID AS INTERLIS.UUIDOID;
@@ -75,7 +75,7 @@ VERSION "2021-12-08"  =
       /** Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
       */
 	  IDAlternate : BAG {0 .. *} OF ID;
-       /** Datum der Erstellung des Assets.
+       /** Datum des Erstellung des Assets.
       */
 	  DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
       /** Beschreibung des Assets oder des Assetpackages
@@ -104,7 +104,7 @@ VERSION "2021-12-08"  =
       /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/ 
       */
 	  AuthorBiblio : TEXT;
-      /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die Werte entsprechen denen des AssetKinds
+      /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die werte entsprechen denen des AssetKinds
       */
 	  AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V1.Catalogues.AssetKindRef;
       /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann. 
