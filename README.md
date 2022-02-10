@@ -33,7 +33,7 @@ Das Topic LGGeolAsset versteht sich als Erweiterung des Kernmodells GeolAsset. E
 
 -Publication- beschreibt Zeitpunkt und Medienkanal der Veröffentlichung des Asset-Objekts. Publikationen können mit Asset-Objekten durch die Assoziation "LGAssetBase_Publication" verbunden werden. 
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # dmAsset
 Asset data model for describing the metadata of geological assets
