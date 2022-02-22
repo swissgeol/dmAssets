@@ -49,7 +49,7 @@ VERSION "2021-12-08" =
   END AssetPartInfo;
 
 
-  /** Struktur für die Angabe in welchen Projekten das jeweilige Asset verwendet wurde. 
+  /** Struktur für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde. 
   */
   STRUCTURE UsedBy =
     /**  Name des Projekts
@@ -70,7 +70,7 @@ VERSION "2021-12-08" =
 
   END TextDescr;
 
-  /** Struktur zur Definition der rechtilich verbindlichen Dokumente, wie Einwilligiungsformulare oder Vertäge
+  /** Struktur zur Definition der rechtlich verbindlichen Dokumente, wie Einwilligiungsformulare oder Verträge
   */
   STRUCTURE LegalDoc =
     /** Titel des rechtlich verbindlichen Dokuments
@@ -112,7 +112,7 @@ VERSION "2021-12-08" =
 !!****************************************
 !! TOPIC 
 !!****************************************
-  /** Topic für die Erweitereung des DMGeolAssets
+  /** Topic für die Erweiterung des DM GeolAssets
   */
   TOPIC LGGeolAsset =
     OID AS INTERLIS.UUIDOID;
@@ -148,7 +148,7 @@ VERSION "2021-12-08" =
       /** Pfad zu einer Online-Ressource des Files vom RelativePfad
       */
 	  URL : TEXT;
-      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde)ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
+      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
       */
 	  UsedBy : BAG {0..*} OF UsedBy;
       /** Bearbeitungsstatus
@@ -163,7 +163,7 @@ VERSION "2021-12-08" =
       /** Eingangsdatum des Assets
       */
 	  DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /**Bearbeiter: Mitarbeiter-Nr. Identifikator des User im System
+      /**Bearbeiter: Mitarbeiter-Nr. Identifikator des Users im System
       */
 	  Processor : TEXT;
       /** Letztes Bearbeitungsdatum
@@ -172,14 +172,14 @@ VERSION "2021-12-08" =
       /** Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
       */
 	  InfogeolData : TEXT;
-      /** Contaktinformationen aus Altdaten
+      /** Kontaktinformationen aus Altdaten
       */
 	  InfogeolContactData : TEXT;
       /** Bemerkungen
       */
 	  /** Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB */
 	  InfogeolAuxData : TEXT;
-	  /** Gemeinde in dem das Asset liegt. Dieses Attribut dient dazu eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
+	  /** Gemeinde, in der das Asset liegt. Dieses Attribut dient dazu, eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
 	  */
 	  Municipality : TEXT;
 	  /** Bemerkungen zum Asset für besondere Informationen, die nicht mit den Attributen abgebildet werden können
@@ -204,7 +204,7 @@ VERSION "2021-12-08" =
 	  /** Information zur Texterkennung
 	  */
 	  OCRInfo : MANDATORY OCRInfo;
-      /** Automatisch für die im Rahmen von GAIA entwickelten Algortythmen zugewiesene Klasse
+      /** Automatisch für die im Rahmen von GAIA entwickelten Algorhythmen zugewiesene Klasse
       */
 	  AutoCatLabel : LG_GeolAssetsCatalogues_V1.Catalogues.AutoCatLabelRef;
       /** Beschreibung eines AssetParts (s. STRUCTURE AssetPartInfo)
@@ -276,7 +276,7 @@ VERSION "2021-12-08" =
 
     /** Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
     */
-	ASSOCIATION LGAssetBase_Publication =
+	ASSOCIATION LGAssetBase_Publication = 
       LGAssetBase -- {1..*} LGAssetBase;
       Publication -- {0..*} Publication;
 
