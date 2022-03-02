@@ -1,0 +1,179 @@
+INTERLIS 2.3;
+
+!!****************************************
+!! MODEL
+!!****************************************
+/** Erweiterung des DMGeolAssetsCatalogies für die Beschreibung der Wertelisten (Kataloge) für die Langesgeologie
+*/
+MODEL LG_GeolAssetsCatalogues_V2 (en) 
+AT "https://www.swisstopo.ch" 
+VERSION "2022-03-01" =
+
+
+!!****************************************
+!! IMPORTS
+!!****************************************
+IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
+IMPORTS GeolAssetsCatalogues_V1;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
+  TOPIC Catalogues EXTENDS GeolAssetsCatalogues_V1.Catalogues =
+    !! Definition einer UUID für alles Klassen im Modell
+    OID AS INTERLIS.UUIDOID;
+
+
+!!****************************************
+!! Catalogue-Items
+!!****************************************
+
+
+	/** Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
+    */
+	CLASS AutoCatLabelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+	UNIQUE GeolCode;
+    END AutoCatLabelItem;
+
+    STRUCTURE AutoCatLabelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
+    END AutoCatLabelRef;
+
+
+	/** Codelist für das Attribut Asset.AutoCatLabel = Typ eine AssetParts (Objekt-Extraks) (Bohrprofil, Karte ...). Klasse durch GAIA zugewiesen
+    */
+	CLASS AutoObjectCatItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualText;
+	UNIQUE GeolCode;
+    END AutoObjectCatItem;
+
+    STRUCTURE AutoObjectCatRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoObjectCatItem;
+    END AutoObjectCatRef;
+
+
+    /** Codelist für das Attribut AdminAssetBase.TypeNationalRelevance = Begründung der Vergabe der nationalen Relevanz (Bohrung > 100m, Projekt bundesnaher Betriebe, ...).
+	*/
+	CLASS NatRelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END NatRelItem;
+
+    STRUCTURE NatRelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
+    END NatRelRef;
+
+
+    /** Codelist für das Attribut Publication.Channel = Publikationskanal (internet, conference, ...)
+	*/
+	CLASS PubChannelItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END PubChannelItem;
+
+    STRUCTURE PubChannelRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PubChannelItem;
+    END PubChannelRef;
+
+
+    /** Codelist für das AdminAssetBase.Statuswork  = Bearbeitungsstatus (toBeControled, inProgress, ...)
+    */
+	CLASS StatusWorkItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END StatusWorkItem;
+
+    STRUCTURE StatusWorkRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
+    END StatusWorkRef;
+
+
+    /** Codelist für das Attribut LegalDoc.Type = Typ des rechtlichen Dokuments (Einwilligungsformular, Vertrag, ...)
+	*/
+	CLASS LegalDocItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END LegalDocItem;
+
+    STRUCTURE LegalDocRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
+    END LegalDocRef;
+
+
+	/** Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung 
+	*/
+	CLASS OCRQualityItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END OCRQualityItem;
+
+    STRUCTURE OCRQualityRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) OCRQualityItem;
+    END OCRQualityRef;
+
+
+	/** Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
+	*/
+	CLASS StatusPackageUseItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END StatusPackageUseItem;
+
+    STRUCTURE StatusPackageUseRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusPackageUseItem;
+    END StatusPackageUseRef;
+
+!! ##########
+	/** Codelist für das Attribut LGAssetBase.StatusRestriction
+	*/
+	CLASS StatusAssetUseItem
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+	  GeolCode : MANDATORY TEXT;
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      Description : LocalisationCH_V1.MultilingualMText;
+	UNIQUE GeolCode;
+    END StatusAssetUseItem;
+
+    STRUCTURE StatusAssetUseRef
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusAssetUseItem;
+    END StatusAssetUseRef;
+
+
+  END Catalogues;
+  
+END LG_GeolAssetsCatalogues_V2.
