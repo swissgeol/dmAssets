@@ -14,13 +14,13 @@ VERSION "2022-03-01" =
 !! IMPORTS
 !!****************************************
 IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
-IMPORTS GeolAssetsCatalogues_V1;
+IMPORTS GeolAssetsCatalogues_V2;
 
 
 !!****************************************
 !! TOPIC 
 !!****************************************
-  TOPIC Catalogues EXTENDS GeolAssetsCatalogues_V1.Catalogues =
+  TOPIC Catalogues EXTENDS GeolAssetsCatalogues_V2.Catalogues =
     !! Definition einer UUID für alles Klassen im Modell
     OID AS INTERLIS.UUIDOID;
 
