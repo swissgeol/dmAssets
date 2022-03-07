@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-04"  =
+VERSION "2022-03-07"  =
   IMPORTS GeometryCHLV95_V1,GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -88,15 +88,25 @@ VERSION "2022-03-04"  =
        */
 	  IsExtract : MANDATORY BOOLEAN;
 
-	  
-	 
-      MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR DEFINED (TitlePublic);
-	  
-!!	  MANDATORY CONSTRAINT IsExtract AND NOT (Kind IN ("package", "report")) OR NOT (IsExtract)
+	  /** wenn Kind == report, dann muss TitlePublic gesetzt sein.
+	  */
+      MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR 
+	  DEFINED (TitlePublic);
+	  /** Wenn IsExptract gesetzt (Es handelt sich um ein extrahiertes Obejkt, z.B. Bohrprfil aus einem Bericht), dann darf Kind kein "report" oder "package" sein. Sonst muss IsExptract gesetzt sein.
+	  */
 	  MANDATORY CONSTRAINT IsExtract AND 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "report") OR 
 	  NOT (IsExtract);
+	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
+	  */
+	  MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "package" AND 
+	  Format->Reference->Name-> LocalisedText->Text == "zip" OR 
+	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
+	  NOT (Format->Reference->Name-> LocalisedText->Text == "zip");
+	  /**FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
+	  */
+	  MANDATORY CONSTRAINT (DEFINED (FormatComposition->Reference->Name->LocalisedText->Text)) AND Format->Reference->Name->LocalisedText->Text == "zip" OR NOT (DEFINED (FormatComposition));
 
     END AssetItem;
 
@@ -163,20 +173,20 @@ VERSION "2022-03-04"  =
     /** Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
      */
     ASSOCIATION AssetItemMain_AssetItemPart =
-      /** Asset aus dem der AssetPart extrahiert wurde
+      /** Asset aus dem AssetParts enthält
        */
       AssetItemMain -- {0..1} AssetItem;
       /** AssetPart
        */
       AssetItemPart -- {0..*} AssetItem;
-      /** Ein AssetPart kann keine weiteren Parts enthalten.
+      /** Wenn das AssetPart ein Extrakt ist, darf es kein übergeordnetes AsstMain besitzen, da selber ein Extrakte ist.
        */
       MANDATORY CONSTRAINT AssetItemPart->IsExtract AND NOT (AssetItemMain->IsExtract);
-	  
+	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es das kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
+	  */
 	  MANDATORY CONSTRAINT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report") OR 
 	  NOT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package");
 	  
-	  !!
     END AssetItemMain_AssetItemPart;
 
     /** Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets

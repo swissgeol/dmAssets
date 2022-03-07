@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-04"  =
+VERSION "2022-03-07"  =
   IMPORTS GeolAssets_V2,LG_GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -12,6 +12,12 @@ VERSION "2022-03-04"  =
     /** Seitenzahlen eines Dokuments
      */
     PageNums = 1 .. 10000;
+    /** Score der Objectextraktion 0.000000 ..1.000000
+     */
+    Score = 0.000000 .. 1.000000;
+    /** Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
+     */
+    ObjectCoord = TEXT;
 
   /** Struktur zur Beschreibung der Beschreibung der "Nationalen Relevanz" eines Assets
    */
@@ -19,36 +25,77 @@ VERSION "2022-03-04"  =
     /** Bestimmung ,ob Nationales Relevanz vorliegt
      */
     IsNatRel : MANDATORY BOOLEAN;
+	  /**
+	  */
     TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
   END NationalRelevance;
 
+  /** 
+  */
   STRUCTURE StatusWork =
+	  /**
+	  */
     StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
+	  /**
+	  */
     StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
-  DOMAIN
-
-    /** Score 0.000000 ..1.000000
-     */
-    Score = 0.000000 .. 1.000000;
-
-    /** Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
-     */
-    ObjectCoord = TEXT;
-
+  /**
+   */
   STRUCTURE AutoCat =
+	  /**
+	  */
     AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
+	  /**
+	  */
     AutoCatLabelScore : Score;
   END AutoCat;
 
+  /**
+   */
   STRUCTURE InternalUse =
+	  /**
+	  */
     IsInternalUse : MANDATORY BOOLEAN;
+	  /**
+	  */
     StatusIsInternalUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+	  /**
+	  */
     DateExpireIsInternalUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	
+	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
+	*/
+    MANDATORY CONSTRAINT IsInternalUse OR DEFINED (DateExpireIsInternalUse); 
+	
   END InternalUse;
+  
+    /**
+   */
+  STRUCTURE PublicUse =
+	  /**
+	  */
+    IsPublicUse : MANDATORY BOOLEAN;
+	  /**
+	  */
+    StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+	  /**
+	  */
+    DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	
+	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
+	*/
+    MANDATORY CONSTRAINT IsPublicUse OR DEFINED (DateExpireIsPublicUse); 
 
+	
+  END PublicUse;
+
+  /**
+   */
   STRUCTURE PathtoFile =
+	  /**
+	  */
     RelativePath : TEXT;
   END PathtoFile;
 
@@ -67,14 +114,10 @@ VERSION "2022-03-04"  =
     /** Score der Vorhersage des Algorithmus
      */
     ObjectScore : Score;
+	  /**
+	  */
     PathtoImage : BAG {0..*} OF LG_GeolAssets_V2.PathtoFile;
   END AssetObjectInfo;
-
-  STRUCTURE PublicUse =
-    IsPublicUsee : MANDATORY BOOLEAN;
-    StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-    DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-  END PublicUse;
 
   /** Struktur für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
    */
@@ -93,6 +136,8 @@ VERSION "2022-03-04"  =
   /** Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
    */
   STRUCTURE TextDescr =
+	  /**
+	  */
     TextDescrAtt : TEXT;
   END TextDescr;
 
@@ -129,35 +174,67 @@ VERSION "2022-03-04"  =
      */
     CLASS LGAssetItem
     EXTENDS GeolAssets_V2.CoreGeolAssets.AssetItem =
-      InternalUse : MANDATORY LG_GeolAssets_V2.InternalUse;
-      PublicUse : MANDATORY LG_GeolAssets_V2.PublicUse;
-      /** Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
-       */
-      RelativePath : MANDATORY TEXT;
-      /** Pfad zu einer Online-Ressource des Files vom RelativePfad
-       */
-      URL : TEXT;
-      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
-       */
-      UsedBy : BAG {0..*} OF LG_GeolAssets_V2.UsedBy;
-      /** Bearbeitungsstatus
-       */
-      StatusWork : BAG {1..*} OF LG_GeolAssets_V2.StatusWork;
+
       /** Grund der Zuweisung der nationalen Bedeutung
        */
-      NationalRelevance : MANDATORY LG_GeolAssets_V2.NationalRelevance;
-      /** Rechtliche Dokumente
+      NationalRelevance : MANDATORY NationalRelevance;
+	  /**
+	  */
+      InternalUse : MANDATORY InternalUse;
+	  /**
+	  */
+      PublicUse : MANDATORY PublicUse;
+      /** Administrative Metadaten eines AssetPackages
+       * Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
        */
-      LegalDoc : LG_GeolAssets_V2.LegalDoc;
+      StatusUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusPackageUseRef;
+      /** Bearbeitungsstatus
+       */
+      StatusWork : BAG {1..*} OF StatusWork;
       /** Eingangsdatum des Assets
        */
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
+       */
+      UsedBy : BAG {0..*} OF UsedBy;
+      /** Gemeinde, in der das Asset liegt. Dieses Attribut dient dazu, eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
+       */
+      Municipality : TEXT;
+      /** Pfad zu einer Online-Ressource des Files vom RelativePfad
+       */
+      URL : TEXT;
+      /** Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx; http://www.meine- Domaene.ch/geothermie/tiefbohrungen.pdf; \\servername\meine-ablage\bohrprofil_01.jpg
+       */
+      RelativePath : MANDATORY TEXT;
+      /** Physischer Standort des analogen Dokuments
+       */
+      LocationAnalog : TEXT;
+
+      /** Rechtliche Dokumente
+       */
+      LegalDoc : LegalDoc;
       /** Bearbeiter: Mitarbeiter-Nr. Identifikator des Users im System
        */
       Processor : TEXT;
       /** Letztes Bearbeitungsdatum
        */
       DateLastProcessed : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+      /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann.
+       */
+      TextBody : TEXT;
+      /** Automatisch für die im Rahmen von GAIA entwickelten Algorhythmen zugewiesene Klasse
+       */
+      AutoCatLabel : AutoCat;
+      /** Beschreibung eines AssetParts (s. STRUCTURE AssetObjectInfo)
+       */
+      AssetObjectInfo : AssetObjectInfo;
+      /** Bemerkungen zum Asset für besondere Informationen, die nicht mit den Attributen abgebildet werden können
+       */
+      Remark : MTEXT;
+      /** Administrative Metadaten eines Assetitems
+       * ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
+       */
+      IDSGS : 0 .. 1000000000;
       /** Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
        */
       InfogeolData : TEXT;
@@ -168,32 +245,18 @@ VERSION "2022-03-04"  =
        * Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB
        */
       InfogeolAuxData : TEXT;
-      /** Gemeinde, in der das Asset liegt. Dieses Attribut dient dazu, eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
-       */
-      Municipality : TEXT;
-      /** Bemerkungen zum Asset für besondere Informationen, die nicht mit den Attributen abgebildet werden können
-       */
-      Remark : MTEXT;
-      /** Administrative Metadaten eines Assetitems
-       * ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
-       */
-      IDSGS : 0 .. 1000000000;
-      /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann.
-       */
-      TextBody : TEXT;
-      /** Automatisch für die im Rahmen von GAIA entwickelten Algorhythmen zugewiesene Klasse
-       */
-      AutoCatLabel : LG_GeolAssets_V2.AutoCat;
-      /** Beschreibung eines AssetParts (s. STRUCTURE AssetObjectInfo)
-       */
-      AssetObjectInfo : LG_GeolAssets_V2.AssetObjectInfo;
-      /** Physischer Standort des analogen Dokuments
-       */
-      LocationAnalog : TEXT;
-      /** Administrative Metadaten eines AssetPackages
-       * Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
-       */
-      StatusUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusPackageUseRef;
+	  /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
+	  */
+	  MANDATORY CONSTRAINT PublicUse->IsPublicUse AND InternalUse->IsInternalUse OR NOT (PublicUse->IsPublicUse) AND NOT (InternalUse->IsInternalUse);
+	  /**
+	  */
+	  MANDATORY CONSTRAINT InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
+	  /** Wenn DateExpireIsPublicUse geetzt, dann muss auch DateExpireIsInternalUse gesetzt sein.
+	  */
+	  MANDATORY CONSTRAINT (DEFINED (PublicUse->DateExpireIsPublicUse)) AND (DEFINED (InternalUse->DateExpireIsInternalUse)) OR NOT (DEFINED (PublicUse->DateExpireIsPublicUse));
+	  /**
+	  */
+!!	  MANDATORY CONSTRAINT
 
     END LGAssetItem;
 
@@ -214,13 +277,15 @@ VERSION "2022-03-04"  =
       Link : TEXT;
     END Publication;
 
-    /** Beziehung Assetitem und LGAssetItem
-     * Beziehung AssetPackage um LGAssetPackage
-     * Beziehung von der Abstracten Klasse AssetBase zur Klasse Publikation
+    /** Beziehung von zwischen der Klasse AssetItem und Klasse Publikation
      */
     ASSOCIATION LGAssetItem_Publication =
+	  /**
+	  */
       LGAssetItem -- {1..*} LGAssetItem;
-      Publication -- {0..*} Publication;
+	  /**
+	  */
+	  Publication -- {0..*} Publication;
     END LGAssetItem_Publication;
 
   END LGGeolAsset;
