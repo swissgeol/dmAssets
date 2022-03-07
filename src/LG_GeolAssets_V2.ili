@@ -1,6 +1,6 @@
 INTERLIS 2.3;
 
-/** Erweiterung des DMGeolAssets für die Landesgeologie
+/** Erweiterung des DMGeolAssets für die Bedürfnisse der Landesgeologie
  */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
@@ -12,56 +12,56 @@ VERSION "2022-03-07"  =
     /** Seitenzahlen eines Dokuments
      */
     PageNums = 1 .. 10000;
-    /** Score der Objectextraktion 0.000000 ..1.000000
+    /** Score der Objectextraktion in Dezimalzahlen zwischen 0.000000 ..1.000000
      */
     Score = 0.000000 .. 1.000000;
     /** Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
      */
     ObjectCoord = TEXT;
 
-  /** Struktur zur Beschreibung der Beschreibung der "Nationalen Relevanz" eines Assets
+  /** Struktur zur Beschreibung der "Nationalen Relevanz" eines Assets
    */
   STRUCTURE NationalRelevance =
-    /** Bestimmung ,ob Nationales Relevanz vorliegt
+    /** Flag ,ob Nationales Relevanz vorliegt
      */
     IsNatRel : MANDATORY BOOLEAN;
-	  /**
+	  /** Typ der Nationalen Relevanz, gemäss LGeolV
 	  */
     TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
   END NationalRelevance;
 
-  /** 
+  /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
   */
   STRUCTURE StatusWork =
-	  /**
+	  /** Kategorie des Bearbeitungsstands
 	  */
     StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
-	  /**
+	  /** Datum derVergabe des Bearbeitungsstands
 	  */
     StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
-  /**
+  /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
    */
   STRUCTURE AutoCat =
-	  /**
+	  /** Label 
 	  */
     AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
-	  /**
+	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
 	  */
     AutoCatLabelScore : Score;
   END AutoCat;
 
-  /**
+  /** Struktur zu Angabe der Nutzungsrechte swisstopo intern
    */
   STRUCTURE InternalUse =
-	  /**
+	  /** Flag, ob das Asset swisstopo-intern genutzt werden darf
 	  */
     IsInternalUse : MANDATORY BOOLEAN;
-	  /**
+	  /** Kategorie des swisstopo-internen Nutzungsrechte
 	  */
     StatusIsInternalUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-	  /**
+	  /** Ablaufdatum einer allfälligen Beschränkung der swisstopo-internen Nutzungsrechte
 	  */
     DateExpireIsInternalUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 	
@@ -71,16 +71,16 @@ VERSION "2022-03-07"  =
 	
   END InternalUse;
   
-    /**
+    /** Struktur zur Beschreibung der öffentlichen Nutzungsrechte
    */
   STRUCTURE PublicUse =
-	  /**
+	  /** Flag, ob das Asset öffentlich genutzt werden darf
 	  */
     IsPublicUse : MANDATORY BOOLEAN;
-	  /**
+	  /** Kategorie des öffetnlichen Nutzungsrechte
 	  */
     StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-	  /**
+	  /** Ablaufdatum einer allfälligen Beschränkung der öffentlichen Nutzungsrechte
 	  */
     DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 	
@@ -91,15 +91,15 @@ VERSION "2022-03-07"  =
 	
   END PublicUse;
 
-  /**
+  /** Struktur zur Beschreibung des Pfads zu einem Asset für die Nutzung in einem BAG OF
    */
   STRUCTURE PathtoFile =
-	  /**
+	  /** Angabe des File-Pfads
 	  */
     RelativePath : TEXT;
   END PathtoFile;
 
-  /** Structure für die Beschreiubung eines AssetParts
+  /** Structure für die Beschreiubung eines Extrakts aus einem Asset (Basierend auf GAIA)
    */
   STRUCTURE AssetObjectInfo =
     /** Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
@@ -114,7 +114,7 @@ VERSION "2022-03-07"  =
     /** Score der Vorhersage des Algorithmus
      */
     ObjectScore : Score;
-	  /**
+	  /** Pfad zu den Bildern der extrahierten Objekte
 	  */
     PathtoImage : BAG {0..*} OF LG_GeolAssets_V2.PathtoFile;
   END AssetObjectInfo;
@@ -133,7 +133,7 @@ VERSION "2022-03-07"  =
     DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END UsedBy;
 
-  /** Struktur zur Definition eines Textes, der in einem BAG {0..*} genutzt werden kann
+  /** Struktur zur Definition eines Textes, der in einem BAG {0..*} OF genutzt werden kann
    */
   STRUCTURE TextDescr =
 	  /**
@@ -150,12 +150,12 @@ VERSION "2022-03-07"  =
     /** Typ des rechtlich verbindlichen Dokuments
      */
     Type : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.LegalDocRef;
-    /** Pfad zur Ablage des Administrativen Dokuments (z.B. Einwilligungsformular)
+    /** Pfad zur Ablage des rechtlich verbindlichen Dokuments (z.B. Einwilligungsformular)
      */
     RelativePathLegalDoc : LG_GeolAssets_V2.PathtoFile;
   END LegalDoc;
 
-  /** Topic für die Erweiterung des DM GeolAssets
+  /** Topic für die Erweiterung des DM GeolAssets für die Bedürfnisse der Landesgeologie
    */
   TOPIC LGGeolAsset =
     OID AS INTERLIS.UUIDOID;
@@ -170,31 +170,27 @@ VERSION "2022-03-07"  =
       IDZAD : TEXT;
     END LGContact;
 
-    /** Basisklasse für die administratischen Metadaten eines Assets oder Assetpackages
+    /** Basisklasse für die administratischen Metadaten eines Assets
      */
     CLASS LGAssetItem
     EXTENDS GeolAssets_V2.CoreGeolAssets.AssetItem =
 
-      /** Grund der Zuweisung der nationalen Bedeutung
+      /** Angabe, ob ein Asset von nationaler Bedeutung ist und wenn ja aus welchem Grund
        */
       NationalRelevance : MANDATORY NationalRelevance;
-	  /**
+	  /** swisstopo-interner Nutzungsstatus
 	  */
       InternalUse : MANDATORY InternalUse;
-	  /**
+	  /** Öffentlicher Nutzungsstatus
 	  */
       PublicUse : MANDATORY PublicUse;
-      /** Administrative Metadaten eines AssetPackages
-       * Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
-       */
-      StatusUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusPackageUseRef;
-      /** Bearbeitungsstatus
+      /** Bearbeitungsstatus des Assets
        */
       StatusWork : BAG {1..*} OF StatusWork;
-      /** Eingangsdatum des Assets
+      /** Eingangsdatum des Assets bei swisstopo
        */
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) ERSETZT Attribut "Source" (In welchem Rahmen (z.B. in Projekt xy) wurde das Asset an die LG abgegeben?)
+      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) 
        */
       UsedBy : BAG {0..*} OF UsedBy;
       /** Gemeinde, in der das Asset liegt. Dieses Attribut dient dazu, eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
@@ -209,7 +205,6 @@ VERSION "2022-03-07"  =
       /** Physischer Standort des analogen Dokuments
        */
       LocationAnalog : TEXT;
-
       /** Rechtliche Dokumente
        */
       LegalDoc : LegalDoc;
@@ -231,8 +226,7 @@ VERSION "2022-03-07"  =
       /** Bemerkungen zum Asset für besondere Informationen, die nicht mit den Attributen abgebildet werden können
        */
       Remark : MTEXT;
-      /** Administrative Metadaten eines Assetitems
-       * ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
+      /** ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
        */
       IDSGS : 0 .. 1000000000;
       /** Daten aus bestehender InfoGeol-DB, die nicht mit dem hier vorliegenden DM abgebildet werden können.
@@ -241,8 +235,7 @@ VERSION "2022-03-07"  =
       /** Kontaktinformationen aus Altdaten
        */
       InfogeolContactData : TEXT;
-      /** Bemerkungen
-       * Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB
+      /** Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB
        */
       InfogeolAuxData : TEXT;
 	  /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
@@ -280,10 +273,10 @@ VERSION "2022-03-07"  =
     /** Beziehung von zwischen der Klasse AssetItem und Klasse Publikation
      */
     ASSOCIATION LGAssetItem_Publication =
-	  /**
+	  /** Asset zu dem Publikationen bestehen
 	  */
       LGAssetItem -- {1..*} LGAssetItem;
-	  /**
+	  /** Publikationen zu einem Asset
 	  */
 	  Publication -- {0..*} Publication;
     END LGAssetItem_Publication;

@@ -9,7 +9,7 @@ VERSION "2022-03-07"  =
 
   DOMAIN
 
-    /** Definition of line and surface
+    /** Definition of line and surface geometry
      */
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
 
@@ -31,68 +31,68 @@ VERSION "2022-03-07"  =
     /** Identifikator
      */
     ID : MANDATORY TEXT;
-    /** Beschreibung woher die jeweilige ID stammt, bzw. wann/von wem sie vergeben wurde
+    /** Beschreibung woher die jeweilige ID stammt (z.B. aus einem kantonalen Archiv), bzw. wann/von wem sie vergeben wurde
      */
     Descritption : TEXT;
   END ID;
 
-  /** Topic des Kernmodells  (zurzeit ist kein weiteres Topic definiert)
+  /** Topic des Kernmodells
    */
   TOPIC CoreGeolAssets =
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON GeolAssetsCatalogues_V2.Catalogues;
 
-    /** Basisklasse der Metadaten eines Assets oder Assetpackages
+    /** Klasse der Metadaten eines Assets
      */
     CLASS AssetItem =
-      /** Öffentlicher Titel des Assets. Dieser enthält keiner sensiblen Angaben
+      /** Öffentlicher Titel des Assets. Dieser enthält keine sensiblen Angaben
        */
       TitlePublic : MANDATORY TEXT;
-      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden.
+      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden. Falls der Originaltitel sensibleDaten enthält, kann hier ein öffetnlich nutzbarer titel vergeben werden.
        */
       TitleOriginal : TEXT;
-      /** Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
+      /** Identifikator(en) (ID) des Assets. Wenn möglich soll die Original-ID verwendet werden.
        */
       IDAlternate : BAG {0..*} OF GeolAssets_V2.ID;
-      /** Klasse der Metadaten eines AssetItems Art des Dokuments
+      /** Art des Assets
        */
       Kind : MANDATORY GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
-      /** Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
+      /** Manuell vergebe Label für das Thema oder den Zweck des Dokuments
        */
       ManCatLabel : BAG {1..*} OF GeolAssetsCatalogues_V2.Catalogues.ManCatLabelRef;
       /** Datum der Erstellung des Assets.
        */
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
+      /** Sprachversion in der das Asset vorliegt. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
        */
       Language : MANDATORY GeolAssetsCatalogues_V2.Catalogues.LanguageRef;
-      /** Formate des Assets. Bei identischem Inhalt kann das selbe Asset in verschiedenen Formaten vorliegen.
+      /** Formate des Assets.
        */
       Format : MANDATORY GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
       /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/
        */
       AuthorBiblio : TEXT;
-      /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
+      /** Projekt im Rahmen dessen das Asset erstellt wurde
        */
       Project : TEXT;
-      /** Beschreibung des Assets oder des Assetpackages
+      /** Beschreibung des Assets
        */
       Description : TEXT;
       /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die Werte entsprechen denen des AssetKinds
        */
       AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
-      /** Formate in einem Package
+      /** Formate in einem Asset, sofern es sich um ein Package handelt
 	  */
       FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
-      /** Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
+      /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default sollte "false" sein
        */
 	  IsExtract : MANDATORY BOOLEAN;
 
-	  /** wenn Kind == report, dann muss TitlePublic gesetzt sein.
+	  /** Wenn Kind == report, dann muss TitlePublic gesetzt sein.
 	  */
       MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR 
 	  DEFINED (TitlePublic);
-	  /** Wenn IsExptract gesetzt (Es handelt sich um ein extrahiertes Obejkt, z.B. Bohrprfil aus einem Bericht), dann darf Kind kein "report" oder "package" sein. Sonst muss IsExptract gesetzt sein.
+	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
 	  */
 	  MANDATORY CONSTRAINT IsExtract AND 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
@@ -110,8 +110,7 @@ VERSION "2022-03-07"  =
 
     END AssetItem;
 
-    /** Klasse für die Metadaten eines AssetPackages
-     * Basisklasse für die Beschreibung der Geometrien
+    /** Basisklasse für die Beschreibung der Geometrien
      */
     CLASS GeometryOfInterest (ABSTRACT) =
       /** Qualität der Geometrie (korrekte Geometrie oder Platzhaltergeometrie)
@@ -119,28 +118,28 @@ VERSION "2022-03-07"  =
       GeomQuality : GeolAssetsCatalogues_V2.Catalogues.GeomQualityRef;
     END GeometryOfInterest;
 
-    /** CLASS Punktgeometrien
+    /** Klasse für Punktgeometrien
      */
     CLASS StudyLocation
     EXTENDS GeometryOfInterest =
       Geometry : GeometryCHLV95_V1.Coord2;
     END StudyLocation;
 
-    /** CLASS Liniengeometrien
+    /** Klasse für Liniengeometrien
      */
     CLASS StudyTrace
     EXTENDS GeometryOfInterest =
-      Geometry : GeolAssets_V2.Line;
+      Geometry : Line;
     END StudyTrace;
 
-    /** CLASS Polygongeometrien
+    /** Klasse für Polygongeometrien
      */
     CLASS StudyArea
     EXTENDS GeometryOfInterest =
-      Geometry : GeolAssets_V2.Surface;
+      Geometry : Surface;
     END StudyArea;
 
-    /** CLASS
+    /** Klasse für die Beschreibung der Kontakte (Autor, Auftragnehmer (Contractor) oder Auftraggeber/Rechteinhaber (Initiator))
      */
     CLASS Contact =
       /** Information zur Art des Kontaktes (z.B. kantonale Bewilligungsbehörde, Bundesbehörde, Privatwirtschaft: begleitendes Fachbüro, etc.). Mindestkontakt ist nach Möglichkeit immer die Bewilligungsbehörde.
@@ -149,9 +148,9 @@ VERSION "2022-03-07"  =
       /** Name des Kontakts
        */
       Name : MANDATORY TEXT;
-      /** Adresse: die Struktur dieses Attributes ist in der Struktur "Address" beschrieben
+      /** Adresse des Kontakts
        */
-      Address : GeolAssets_V2.Address;
+      Address : Address;
       /** Telefon-Nr., gemäss definierter Struktur von Tel. Nummern
        */
       Telefon : TEXT;
@@ -166,52 +165,55 @@ VERSION "2022-03-07"  =
     /** Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
      */
     ASSOCIATION AssetItemX_AssetItemY =
+	  /** Asset X aud der Klasse AssetItem
+	  */
       AssetItemX -- {0..*} AssetItem;
+	  /** Asset Y aud der Klasse AssetItem
+	  */
       AssetItemY -- {0..*} AssetItem;
     END AssetItemX_AssetItemY;
 
-    /** Ein Asset kann beliebig viele Teile (AssetParts) enthalten. Ein AssetPart gehört zu einem Asset
+    /** Ein Asset kann beliebig viele Assets oder Teile (Extracts) (AssetParts) enthalten. Ein AssetPart gehört zu einem AssetMain
      */
     ASSOCIATION AssetItemMain_AssetItemPart =
-      /** Asset aus dem AssetParts enthält
+      /** Asset, dass andere Assets oder Teile davon enthält
        */
       AssetItemMain -- {0..1} AssetItem;
-      /** AssetPart
+      /** Asset oder Teil eines Assets, dass in einem anderen Asset enthlten ist
        */
       AssetItemPart -- {0..*} AssetItem;
-      /** Wenn das AssetPart ein Extrakt ist, darf es kein übergeordnetes AsstMain besitzen, da selber ein Extrakte ist.
+      /** Wenn das AssetPart ein Extrakt ist, darf es kein übergeordnetes AssetMain besitzen, da selber ein Extrakte ist.
        */
       MANDATORY CONSTRAINT AssetItemPart->IsExtract AND NOT (AssetItemMain->IsExtract);
-	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es das kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
+	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es darf kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
 	  */
 	  MANDATORY CONSTRAINT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report") OR 
 	  NOT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package");
 	  
     END AssetItemMain_AssetItemPart;
 
-    /** Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets
-     * Untersuchungsgebiet zu einem Asset
+    /** Ein Asset kann 0 ..** Untersuchungsgebiete haben
      */
     ASSOCIATION AssetItem_GeometryOfInterest =
       AssetItem -<#> {1} AssetItem;
       GeometryOfInterest -- {0..*} GeometryOfInterest;
     END AssetItem_GeometryOfInterest;
 
-    /** Autor
+    /** Ein Asset hate 1..* Autoren
      */
     ASSOCIATION AssetItem_Contact_Author =
       AuthoredAssetItem -- {1..*} AssetItem;
       Author -- {0..*} Contact;
     END AssetItem_Contact_Author;
 
-    /** Auftraggeber und/oder Rechteinhaber
+    /** Ein Asset hat 1..* Auftraggeber und/oder Rechteinhaber
      */
     ASSOCIATION AssetItem_Contact_Initiator =
       InitiatedAssetItem -- {1..*} AssetItem;
       Initiator -- {0..*} Contact;
     END AssetItem_Contact_Initiator;
 
-    /** Einlieferer des Assets: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
+    /** EinAsset hat 1..* Einlieferer: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
      */
     ASSOCIATION AssetItem_Contact_Supplier =
       SuppliedAssetItem -- {1..*} AssetItem;
