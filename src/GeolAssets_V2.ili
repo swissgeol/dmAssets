@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2021-12-08"  =
+VERSION "2022-03-04"  =
   IMPORTS GeometryCHLV95_V1,GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -54,19 +54,15 @@ VERSION "2021-12-08"  =
       /** Identifikator(en) (ID) des Asset. Wenn möglich soll die Original-ID verwendet werden.
        */
       IDAlternate : BAG {0..*} OF GeolAssets_V2.ID;
-      /** Datum der Erstellung des Assets.
-       */
-      DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Beschreibung des Assets oder des Assetpackages
-       */
-      Description : TEXT;
-      /** Klasse der Metadaten eines AssetItems
-       * Art des Dokuments
+      /** Klasse der Metadaten eines AssetItems Art des Dokuments
        */
       Kind : MANDATORY GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
       /** Manuell vergebe Labels für das Thema oder den Zweck des Dokuments
        */
       ManCatLabel : BAG {1..*} OF GeolAssetsCatalogues_V2.Catalogues.ManCatLabelRef;
+      /** Datum der Erstellung des Assets.
+       */
+      DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
       /** Sprachversionen in denen das Asset vorliegt. Bei identischem Inhalt können mehrere Sprachversionen des selben Assets vorliegen. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
        */
       Language : MANDATORY GeolAssetsCatalogues_V2.Catalogues.LanguageRef;
@@ -76,17 +72,32 @@ VERSION "2021-12-08"  =
       /** Autoren des Dokuments. Insbesondere für wissenschaftliche Publikationen. Wenn kein Autor über die Klasse Contact abgebildet werden kann/soll. Beispiel: Müller Maja, Meier Hans / Müller M. et.al/
        */
       AuthorBiblio : TEXT;
+      /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
+       */
+      Project : TEXT;
+      /** Beschreibung des Assets oder des Assetpackages
+       */
+      Description : TEXT;
       /** Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die Werte entsprechen denen des AssetKinds
        */
       AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
-      /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann.
-       */
-      TextBody : TEXT;
+      /** Formate in einem Package
+	  */
+      FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
       /** Flag zur Anzeige, dass es sich bei diesem Asset um ein AssetPart handelt: default sollte "false" sein
        */
-      IsPart : MANDATORY BOOLEAN;
-      FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
+	  IsExtract : MANDATORY BOOLEAN;
+
+	  
+	 
       MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR DEFINED (TitlePublic);
+	  
+!!	  MANDATORY CONSTRAINT IsExtract AND NOT (Kind IN ("package", "report")) OR NOT (IsExtract)
+	  MANDATORY CONSTRAINT IsExtract AND 
+	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
+	  NOT (Kind->Reference->Name->LocalisedText->Text == "report") OR 
+	  NOT (IsExtract);
+
     END AssetItem;
 
     /** Klasse für die Metadaten eines AssetPackages
@@ -160,9 +171,12 @@ VERSION "2021-12-08"  =
       AssetItemPart -- {0..*} AssetItem;
       /** Ein AssetPart kann keine weiteren Parts enthalten.
        */
-      /** Ein AssetPart kann keine weiteren Parts enthalten.
-       */
-      MANDATORY CONSTRAINT AssetItemPart->IsPart AND NOT (AssetItemMain->IsPart);
+      MANDATORY CONSTRAINT AssetItemPart->IsExtract AND NOT (AssetItemMain->IsExtract);
+	  
+	  MANDATORY CONSTRAINT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report") OR 
+	  NOT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package");
+	  
+	  !!
     END AssetItemMain_AssetItemPart;
 
     /** Ein Asset ist Teil eines AssetPackages. Ein AssetPackage beinhaltet 0..* Assets

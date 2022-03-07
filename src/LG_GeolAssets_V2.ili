@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-01"  =
+VERSION "2022-03-04"  =
   IMPORTS GeolAssets_V2,LG_GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -54,7 +54,7 @@ VERSION "2022-03-01"  =
 
   /** Structure für die Beschreiubung eines AssetParts
    */
-  STRUCTURE AssetPartInfo =
+  STRUCTURE AssetObjectInfo =
     /** Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
      */
     ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoObjectCatRef;
@@ -68,7 +68,7 @@ VERSION "2022-03-01"  =
      */
     ObjectScore : Score;
     PathtoImage : BAG {0..*} OF LG_GeolAssets_V2.PathtoFile;
-  END AssetPartInfo;
+  END AssetObjectInfo;
 
   STRUCTURE PublicUse =
     IsPublicUsee : MANDATORY BOOLEAN;
@@ -145,7 +145,7 @@ VERSION "2022-03-01"  =
       StatusWork : BAG {1..*} OF LG_GeolAssets_V2.StatusWork;
       /** Grund der Zuweisung der nationalen Bedeutung
        */
-      NationalRelevance : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+      NationalRelevance : MANDATORY LG_GeolAssets_V2.NationalRelevance;
       /** Rechtliche Dokumente
        */
       LegalDoc : LG_GeolAssets_V2.LegalDoc;
@@ -178,12 +178,15 @@ VERSION "2022-03-01"  =
        * ID, die von der LG vergeben wird (InfoGeol-Nr. oder Nachfolger)
        */
       IDSGS : 0 .. 1000000000;
+      /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann.
+       */
+      TextBody : TEXT;
       /** Automatisch für die im Rahmen von GAIA entwickelten Algorhythmen zugewiesene Klasse
        */
       AutoCatLabel : LG_GeolAssets_V2.AutoCat;
-      /** Beschreibung eines AssetParts (s. STRUCTURE AssetPartInfo)
+      /** Beschreibung eines AssetParts (s. STRUCTURE AssetObjectInfo)
        */
-      AssetPartInfo : LG_GeolAssets_V2.AssetPartInfo;
+      AssetObjectInfo : LG_GeolAssets_V2.AssetObjectInfo;
       /** Physischer Standort des analogen Dokuments
        */
       LocationAnalog : TEXT;
@@ -191,9 +194,7 @@ VERSION "2022-03-01"  =
        * Berechtigungsstatus. Ist der Berechtigungsstatus des Assets geklärt oder müssen Abklärungen getroffen werden. Muss das Asset evtl. aufgeteilt werden.
        */
       StatusUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusPackageUseRef;
-      /** Projekt im Rahmen dessen das Assetpackage erstellt wurde
-       */
-      Project : TEXT;
+
     END LGAssetItem;
 
     /** CLASS Publikation des jeweiligen Assets
