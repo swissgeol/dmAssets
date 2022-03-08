@@ -67,8 +67,12 @@ VERSION "2022-03-07"  =
 	
 	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
 	*/
-    MANDATORY CONSTRAINT IsInternalUse OR DEFINED (DateExpireIsInternalUse); 
-	
+!!    MANDATORY CONSTRAINT IsInternalUse OR DEFINED (DateExpireIsInternalUse);
+!! ######## >>>
+	SET CONSTRAINT WHERE DEFINED (DateExpireIsInternalUse):
+	NOT (IsInternalUse);
+!! ######## <<<
+
   END InternalUse;
   
     /** Struktur zur Beschreibung der öffentlichen Nutzungsrechte
@@ -86,8 +90,11 @@ VERSION "2022-03-07"  =
 	
 	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
 	*/
-    MANDATORY CONSTRAINT IsPublicUse OR DEFINED (DateExpireIsPublicUse); 
-
+!!    MANDATORY CONSTRAINT IsPublicUse OR DEFINED (DateExpireIsPublicUse); 
+!! ######## >>>
+	SET CONSTRAINT WHERE DEFINED (DateExpireIsPublicUse):
+	NOT (IsPublicUse);
+!! ######## <<<
 	
   END PublicUse;
 
@@ -240,13 +247,25 @@ VERSION "2022-03-07"  =
       InfogeolAuxData : TEXT;
 	  /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
 	  */
-	  MANDATORY CONSTRAINT PublicUse->IsPublicUse AND InternalUse->IsInternalUse OR NOT (PublicUse->IsPublicUse) AND NOT (InternalUse->IsInternalUse);
-	  /**
+!!	  MANDATORY CONSTRAINT PublicUse->IsPublicUse AND InternalUse->IsInternalUse OR NOT (PublicUse->IsPublicUse) AND NOT (InternalUse->IsInternalUse);
+!! ######## >>>
+	  SET CONSTRAINT WHERE NOT (InternalUse->IsInternalUse):
+	     NOT (PublicUse->IsPublicUselUse);
+!! ######## <<<
+	  /** DateExpireIsInternalUse muss kleiner oder gleich DateExpireIsPublicUse sein
 	  */
-	  MANDATORY CONSTRAINT InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
+!!	  MANDATORY CONSTRAINT InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
+	  
+!! ######## >>>
+	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateExpireIsPublicUse): 
+	  DEFINED(InternalUse->DateExpireIsInternalUse) AND 
+	  InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
+!! ######## <<<
+	  
 	  /** Wenn DateExpireIsPublicUse geetzt, dann muss auch DateExpireIsInternalUse gesetzt sein.
 	  */
-	  MANDATORY CONSTRAINT (DEFINED (PublicUse->DateExpireIsPublicUse)) AND (DEFINED (InternalUse->DateExpireIsInternalUse)) OR NOT (DEFINED (PublicUse->DateExpireIsPublicUse));
+!! ######## Löschen
+!!	  MANDATORY CONSTRAINT (DEFINED (PublicUse->DateExpireIsPublicUse)) AND (DEFINED (InternalUse->DateExpireIsInternalUse)) OR NOT (DEFINED (PublicUse->DateExpireIsPublicUse));
 	  /**
 	  */
 !!	  MANDATORY CONSTRAINT

@@ -90,23 +90,46 @@ VERSION "2022-03-07"  =
 
 	  /** Wenn Kind == report, dann muss TitlePublic gesetzt sein.
 	  */
-      MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR 
-	  DEFINED (TitlePublic);
+!!      MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "report" OR 
+!!	  DEFINED (TitlePublic);
+!! ######## >>>
+	   SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "report": 
+	   DEFINED (TitlePublic);
+!! ######## <<<
 	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
 	  */
-	  MANDATORY CONSTRAINT IsExtract AND 
+!!	  MANDATORY CONSTRAINT IsExtract AND 
+!!	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
+!!	  NOT (Kind->Reference->Name->LocalisedText->Text == "report") OR 
+!!	  NOT (IsExtract);
+!! ######## >>>
+	  SET CONSTRAINT WHERE IsExtract: 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "report") OR 
-	  NOT (IsExtract);
+	  NOT (Kind->Reference->Name->LocalisedText->Text == "report");
+!! ######## <<<
 	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
 	  */
-	  MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "package" AND 
-	  Format->Reference->Name-> LocalisedText->Text == "zip" OR 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
-	  NOT (Format->Reference->Name-> LocalisedText->Text == "zip");
+!!	  MANDATORY CONSTRAINT Kind->Reference->Name->LocalisedText->Text == "package" AND 
+!!	  Format->Reference->Name-> LocalisedText->Text == "zip" OR 
+!!	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
+!!	  NOT (Format->Reference->Name-> LocalisedText->Text == "zip");
+!! ######## >>>
+	  SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "package": 
+	  Format->Reference->Name-> LocalisedText->Text == "zip";
+!! IST das erforderlich?
+	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
+	  Kind->Reference->Name->LocalisedText->Text == "package";
+!! ######## <<<
 	  /**FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
 	  */
-	  MANDATORY CONSTRAINT (DEFINED (FormatComposition->Reference->Name->LocalisedText->Text)) AND Format->Reference->Name->LocalisedText->Text == "zip" OR NOT (DEFINED (FormatComposition));
+!!	  MANDATORY CONSTRAINT (DEFINED (FormatComposition->Reference->Name->LocalisedText->Text)) AND Format->Reference->Name->LocalisedText->Text == "zip" OR NOT (DEFINED (FormatComposition));
+!! ######## >>>
+	  SET CONSTRAINT WHERE DEFINED (FormatComposition): 
+	  Format->Reference->Name-> LocalisedText->Text == "zip";
+!! IST das erforderlich?
+	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
+	  DEFINED (FormatComposition);
+!! ######## <<<
 
     END AssetItem;
 
@@ -182,14 +205,27 @@ VERSION "2022-03-07"  =
       /** Asset oder Teil eines Assets, dass in einem anderen Asset enthlten ist
        */
       AssetItemPart -- {0..*} AssetItem;
+	  
+!! ######## >>> Löschen
       /** Wenn das AssetPart ein Extrakt ist, darf es kein übergeordnetes AssetMain besitzen, da selber ein Extrakte ist.
        */
-      MANDATORY CONSTRAINT AssetItemPart->IsExtract AND NOT (AssetItemMain->IsExtract);
+!!      MANDATORY CONSTRAINT AssetItemPart->IsExtract AND NOT (AssetItemMain->IsExtract);
+	  
+!! ######## <<<
+	  
 	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es darf kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
 	  */
-	  MANDATORY CONSTRAINT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report") OR 
-	  NOT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package");
+!!	  MANDATORY CONSTRAINT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report") OR 
+!!	  NOT (AssetItemPart->IsExtract AND AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package");
+
+!! ######## >>>
+	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: 
+	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report";
 	  
+	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): 
+	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package";
+!! ######## <<<
+
     END AssetItemMain_AssetItemPart;
 
     /** Ein Asset kann 0 ..** Untersuchungsgebiete haben
