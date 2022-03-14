@@ -1,41 +1,23 @@
 INTERLIS 2.3;
 
-!!****************************************
-!! MODEL
-!!****************************************
 /** Datenmodell für die Beschreibung der Wertetabelle (Kataloge) des DMGeolAssets
-*/
-MODEL GeolAssetsCatalogues_V2 (en) 
-AT "https://www.swisstopo.ch" 
-VERSION "2022-03-01" =
+ */
+MODEL GeolAssetsCatalogues_V2 (en)
+AT "https://www.swisstopo.ch"
+VERSION "2022-03-01"  =
+  IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
 
-
-!!****************************************
-!! IMPORTS
-!!****************************************
-IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
-
-
-!!****************************************
-!! TOPIC 
-!!****************************************
   TOPIC Catalogues =
-    !! Definition einer UUID für alle Klassen im Modell
     OID AS INTERLIS.UUIDOID;
 
-
-!!****************************************
-!! Catalogue-Items
-!!****************************************
-
     /** Codelist für das Attribut Asset.Kind = Type des Assets (Bericht, Bohrprofil, ...)
-    */
-	CLASS AssetKindItem
+     */
+    CLASS AssetKindItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END AssetKindItem;
 
     STRUCTURE AssetKindRef
@@ -43,15 +25,14 @@ IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetKindItem;
     END AssetKindRef;
 
-
-	/** Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
-    */
-	CLASS ManCatLabelItem
+    /** Codelist für das Attribut Asset.ManCatLabel = Manuell vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Ersetzt die Attribute Topic und Purpose
+     */
+    CLASS ManCatLabelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END ManCatLabelItem;
 
     STRUCTURE ManCatLabelRef
@@ -59,17 +40,15 @@ IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ManCatLabelItem;
     END ManCatLabelRef;
 
-
-
     /** Codelist für das Attribut AssetItem.Format = Format des Assets (pdf, seg-y, ...)
-	*/
-	CLASS AssetFormatItem
+     */
+    CLASS AssetFormatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
       MIME : TEXT*50;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END AssetFormatItem;
 
     STRUCTURE AssetFormatRef
@@ -77,48 +56,44 @@ IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetFormatItem;
     END AssetFormatRef;
 
-
     /** Codelist für das Attribut Contact.Kind = Art des Kontakts (Bundesbehörde, Kantonale Bewilliungsbehörde, ...)
-	*/
-	CLASS ContactKindItem
+     */
+    CLASS ContactKindItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END ContactKindItem;
 
     STRUCTURE ContactKindRef
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ContactKindItem;
-    END ContactKindRef;	
+    END ContactKindRef;
 
-
-
-	/** Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
-	*/
-	CLASS LanguageItem
+    /** Codelist für das Attribut AssetItem.Language = Sprachversionen des Assets
+     */
+    CLASS LanguageItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END LanguageItem;
 
     STRUCTURE LanguageRef
     EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LanguageItem;
     END LanguageRef;
-	
 
-	/** Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie 
-	*/
-	CLASS GeomQualityItem
+    /** Codelist für das Attribut GeometryOfInterest.GeomQuality = Qualität der Geometrie
+     */
+    CLASS GeomQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-	  GeolCode : MANDATORY TEXT;
+      GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-	UNIQUE GeolCode;
+      UNIQUE GeolCode;
     END GeomQualityItem;
 
     STRUCTURE GeomQualityRef
@@ -126,7 +101,6 @@ IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
     END GeomQualityRef;
 
-
   END Catalogues;
-  
+
 END GeolAssetsCatalogues_V2.
