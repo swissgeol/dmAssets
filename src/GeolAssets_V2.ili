@@ -9,7 +9,7 @@ VERSION "2022-03-07"  =
 
   DOMAIN
 
-    /** Definition of line and surface geometry
+    /** Definition von Linien- und Polygongeometrien
      */
     Line = POLYLINE WITH (STRAIGHTS) VERTEX GeometryCHLV95_V1.Coord2;
 
@@ -48,7 +48,7 @@ VERSION "2022-03-07"  =
       /** Öffentlicher Titel des Assets. Dieser enthält keine sensiblen Angaben
        */
       TitlePublic : MANDATORY TEXT;
-      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden. Falls der Originaltitel sensible Daten enthält, kann hier ein öffentlichnutzbarer Titel vergeben werden.
+      /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden. Falls der Originaltitel sensible Daten enthält, kann hier ein öffentlich nutzbarer Titel vergeben werden.
        */
       TitleOriginal : TEXT;
       /** Identifikator(en) (ID) des Assets. Wenn möglich soll die Original-ID verwendet werden.
@@ -63,7 +63,7 @@ VERSION "2022-03-07"  =
       /** Datum der Erstellung des Assets.
        */
       DateCreation : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** Sprachversion in der das Asset vorliegt. Bei gemischtsprachlichen Assets gilt die Sprache des Titels.
+      /** Sprachversion in der das Asset vorliegt. Bei gemischt sprachlichen Assets gilt die Sprache des Titels.
        */
       Language : MANDATORY GeolAssetsCatalogues_V2.Catalogues.LanguageRef;
       /** Formate des Assets.
@@ -84,7 +84,7 @@ VERSION "2022-03-07"  =
       /** Formate in einem Asset, sofern es sich um ein Package handelt
 	  */
       FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
-      /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default sollte "false" sein
+      /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen Extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default ist "False" sein
        */
 	  IsExtract : MANDATORY BOOLEAN;
 
@@ -97,19 +97,24 @@ VERSION "2022-03-07"  =
 	  SET CONSTRAINT WHERE IsExtract: 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
 	  NOT (Kind->Reference->Name->LocalisedText->Text == "report");
-	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
+
+	  /** Wenn Kind == Package, dann muss Format == Archiv (zip) sein
 	  */
 	  SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "package": 
 	  Format->Reference->Name-> LocalisedText->Text == "zip";
-!! IST das erforderlich?
+
+	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
+	  */
 	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
 	  Kind->Reference->Name->LocalisedText->Text == "package";
 
-	  /**FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
+	  /** FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
 	  */
 	  SET CONSTRAINT WHERE DEFINED (FormatComposition): 
 	  Format->Reference->Name-> LocalisedText->Text == "zip";
-!! IST das erforderlich?
+
+	  /** Wenn FormatComposition ausgefüllt ist, muss für das Format "zip" gewählt werden
+	  */
 	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
 	  DEFINED (FormatComposition);
 
@@ -184,7 +189,7 @@ VERSION "2022-03-07"  =
       /** Asset, dass andere Assets oder Teile davon enthält
        */
       AssetItemMain -- {0..1} AssetItem;
-      /** Asset oder Teil eines Assets, dass in einem anderen Asset enthlten ist
+      /** Asset oder Teil eines Assets, dass in einem anderen Asset enthalten ist
        */
       AssetItemPart -- {0..*} AssetItem;
 	  
@@ -192,7 +197,9 @@ VERSION "2022-03-07"  =
 	  */
 	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: 
 	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report";
-	  
+
+	  /** Wenn AssetItemPart->IsExtract == True, dann muss Kind == "package" sein
+	  */
 	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): 
 	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package";
 

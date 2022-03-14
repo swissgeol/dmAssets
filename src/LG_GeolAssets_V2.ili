@@ -12,7 +12,7 @@ VERSION "2022-03-07"  =
     /** Seitenzahlen eines Dokuments
      */
     PageNums = 1 .. 10000;
-    /** Score der Objectextraktion in Dezimalzahlen zwischen 0.000000 ..1.000000
+    /** Score der Objektextraktion in Dezimalzahlen zwischen 0.000000 ..1.000000
      */
     Score = 0.000000 .. 1.000000;
     /** Lokale Koordinaten der BBOX eines extrahierten Objektes auf einer Seite eines AssetMains
@@ -24,10 +24,10 @@ VERSION "2022-03-07"  =
   STRUCTURE NationalRelevance =
     /** Flag ,ob Nationales Relevanz vorliegt
      */
-    IsNatRel : MANDATORY BOOLEAN;
+	  IsNatRel : MANDATORY BOOLEAN;
 	  /** Typ der Nationalen Relevanz, gemäss LGeolV
 	  */
-    TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+	  TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
   END NationalRelevance;
 
   /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
@@ -35,10 +35,10 @@ VERSION "2022-03-07"  =
   STRUCTURE StatusWork =
 	  /** Kategorie des Bearbeitungsstands
 	  */
-    StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
+	  StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
 	  /** Datum derVergabe des Bearbeitungsstands
 	  */
-    StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
   /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
@@ -46,10 +46,10 @@ VERSION "2022-03-07"  =
   STRUCTURE AutoCat =
 	  /** Label 
 	  */
-    AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
 	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
 	  */
-    AutoCatLabelScore : Score;
+	  AutoCatLabelScore : Score;
   END AutoCat;
 
   /** Struktur zu Angabe der Nutzungsrechte swisstopo intern
@@ -57,7 +57,7 @@ VERSION "2022-03-07"  =
   STRUCTURE InternalUse =
 	  /** Flag, ob das Asset swisstopo-intern genutzt werden darf
 	  */
-    IsAvailable : MANDATORY BOOLEAN;
+	  IsAvailable : MANDATORY BOOLEAN;
 	  /** Kategorie des swisstopo-internen Nutzungsrechte
 	  */
     Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
@@ -72,15 +72,13 @@ VERSION "2022-03-07"  =
   STRUCTURE PublicUse =
 	  /** Flag, ob das Asset öffentlich genutzt werden darf
 	  */
-    IsAvailable : MANDATORY BOOLEAN;
-	  /** Kategorie des öffetnlichen Nutzungsrechte
+	  IsAvailable : MANDATORY BOOLEAN;
+	  /** Kategorie des öffentlichen Nutzungsrechte
 	  */
-!!    StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-    Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+	  Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
 	  /** Ablaufdatum einer allfälligen Beschränkung der öffentlichen Nutzungsrechte
 	  */
-!!	DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-    DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 	
   END PublicUse;
 
@@ -89,7 +87,7 @@ VERSION "2022-03-07"  =
   STRUCTURE PathtoFile =
 	  /** Angabe des File-Pfads
 	  */
-    RelativePath : TEXT;
+	  RelativePath : TEXT;
   END PathtoFile;
 
   /** Structure für die Beschreiubung eines Extrakts aus einem Asset (Basierend auf GAIA)
@@ -97,13 +95,13 @@ VERSION "2022-03-07"  =
   STRUCTURE AssetObjectInfo =
     /** Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
      */
-    ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoObjectCatRef;
+	  ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoObjectCatRef;
     /** Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
      */
-    ObjectPage : MANDATORY PageNums;
+	  ObjectPage : MANDATORY PageNums;
     /** Boundingbox des Objekts
      */
-    ObjectBBox : ObjectCoord;
+	  ObjectBBox : ObjectCoord;
     /** Score der Vorhersage des Algorithmus
      */
     ObjectScore : Score;
@@ -154,7 +152,7 @@ VERSION "2022-03-07"  =
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON GeolAssets_V2.CoreGeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
 
-    /** Erweiterung der CLASS Contact aud dem DMGeolAssets
+    /** Erweiterung der CLASS Contact aus dem DMGeolAssets
      */
     CLASS LGContact
     EXTENDS GeolAssets_V2.CoreGeolAssets.Contact =
@@ -163,7 +161,7 @@ VERSION "2022-03-07"  =
       IDZAD : TEXT;
     END LGContact;
 
-    /** Basisklasse für die administratischen Metadaten eines Assets
+    /** Basisklasse für die administrativen Metadaten eines Assets
      */
     CLASS LGAssetItem
     EXTENDS GeolAssets_V2.CoreGeolAssets.AssetItem =
@@ -210,7 +208,7 @@ VERSION "2022-03-07"  =
       /** Textkörper aus OCR-Erkennung und GAIA-Algorithmen. Der Textkörper hat keine Längenbegrenzung, da er unterschiedlich lang sein kann.
        */
       TextBody : TEXT;
-      /** Automatisch für die im Rahmen von GAIA entwickelten Algorhythmen zugewiesene Klasse
+      /** Automatisch für die im Rahmen von GAIA entwickelten Algorithmen zugewiesene Klasse
        */
       AutoCatLabel : AutoCat;
       /** Beschreibung eines AssetParts (s. STRUCTURE AssetObjectInfo)
@@ -265,7 +263,7 @@ VERSION "2022-03-07"  =
       /** Konkreter Name des Kanals. Z.B. Layer xyz auf map.geo.admin.ch, Bulletin der angewandten Geowissenschaften, SGM 2019 - Session Geoscience and Geoinformation , etc.
        */
       Description : TEXT;
-      /** URL oder DOI etc. zur jeweilgen Publikation
+      /** URL oder DOI etc. zur jeweiligen Publikation
        */
       Link : TEXT;
     END Publication;
