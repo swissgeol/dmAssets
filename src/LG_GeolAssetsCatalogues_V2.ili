@@ -15,10 +15,12 @@ VERSION "2022-03-01"  =
      */
     CLASS AutoCatLabelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END AutoCatLabelItem;
 
     STRUCTURE AutoCatLabelRef
@@ -30,10 +32,12 @@ VERSION "2022-03-01"  =
      */
     CLASS AutoObjectCatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END AutoObjectCatItem;
 
     STRUCTURE AutoObjectCatRef
@@ -45,10 +49,12 @@ VERSION "2022-03-01"  =
      */
     CLASS NatRelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END NatRelItem;
 
     STRUCTURE NatRelRef
@@ -60,10 +66,12 @@ VERSION "2022-03-01"  =
      */
     CLASS PubChannelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END PubChannelItem;
 
     STRUCTURE PubChannelRef
@@ -75,10 +83,12 @@ VERSION "2022-03-01"  =
      */
     CLASS StatusWorkItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END StatusWorkItem;
 
     STRUCTURE StatusWorkRef
@@ -90,10 +100,12 @@ VERSION "2022-03-01"  =
      */
     CLASS LegalDocItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END LegalDocItem;
 
     STRUCTURE LegalDocRef
@@ -101,44 +113,16 @@ VERSION "2022-03-01"  =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
     END LegalDocRef;
 
-    /** Codelist für das Attribut AdminAssetItem.OCRQuality = Qualität der Asset Texterkennung
-     */
-    CLASS OCRQualityItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
-    END OCRQualityItem;
-
-    STRUCTURE OCRQualityRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) OCRQualityItem;
-    END OCRQualityRef;
-
-    /** Codelist für das Attribut AdminAssetPackage.StatusRestriction = Berechtigungsstatus vom Asset
-     */
-    CLASS StatusPackageUseItem
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
-    END StatusPackageUseItem;
-
-    STRUCTURE StatusPackageUseRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
-      Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusPackageUseItem;
-    END StatusPackageUseRef;
-
     /** Codelist für das Attribut LGAssetBase.StatusRestriction
      */
     CLASS StatusAssetUseItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
+      Code : MANDATORY TEXT;
       GeolCode : MANDATORY TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END StatusAssetUseItem;
 
     STRUCTURE StatusAssetUseRef

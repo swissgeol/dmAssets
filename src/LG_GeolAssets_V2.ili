@@ -44,7 +44,7 @@ VERSION "2022-03-07"  =
   /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
    */
   STRUCTURE AutoCat =
-	  /** Label 
+	  /** Automatisch zugewieser Label des Dokuments
 	  */
 	  AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
 	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
