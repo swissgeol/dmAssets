@@ -212,7 +212,7 @@ VERSION "2022-03-07"  =
       GeometryOfInterest -- {0..*} GeometryOfInterest;
     END AssetItem_GeometryOfInterest;
 
-    /** Ein Asset hate 1..* Autoren
+    /** Ein Asset hat 1..* Autoren
      */
     ASSOCIATION AssetItem_Contact_Author =
       AuthoredAssetItem -- {1..*} AssetItem;
