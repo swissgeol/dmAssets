@@ -57,21 +57,13 @@ VERSION "2022-03-07"  =
   STRUCTURE InternalUse =
 	  /** Flag, ob das Asset swisstopo-intern genutzt werden darf
 	  */
-    IsInternalUse : MANDATORY BOOLEAN;
+    IsAvailable : MANDATORY BOOLEAN;
 	  /** Kategorie des swisstopo-internen Nutzungsrechte
 	  */
-    StatusIsInternalUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+    Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
 	  /** Ablaufdatum einer allfälligen Beschränkung der swisstopo-internen Nutzungsrechte
 	  */
-    DateExpireIsInternalUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-	
-	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
-	*/
-!!    MANDATORY CONSTRAINT IsInternalUse OR DEFINED (DateExpireIsInternalUse);
-!! ######## >>>
-	SET CONSTRAINT WHERE DEFINED (DateExpireIsInternalUse):
-	NOT (IsInternalUse);
-!! ######## <<<
+    DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
   END InternalUse;
   
@@ -80,21 +72,15 @@ VERSION "2022-03-07"  =
   STRUCTURE PublicUse =
 	  /** Flag, ob das Asset öffentlich genutzt werden darf
 	  */
-    IsPublicUse : MANDATORY BOOLEAN;
+    IsAvailable : MANDATORY BOOLEAN;
 	  /** Kategorie des öffetnlichen Nutzungsrechte
 	  */
-    StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+!!    StatusIsPublicUse : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+    Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
 	  /** Ablaufdatum einer allfälligen Beschränkung der öffentlichen Nutzungsrechte
 	  */
-    DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-	
-	/** DateExpireIsInternalUse darf nur ausgefüllt werden, wenn IsInternalUse == True
-	*/
-!!    MANDATORY CONSTRAINT IsPublicUse OR DEFINED (DateExpireIsPublicUse); 
-!! ######## >>>
-	SET CONSTRAINT WHERE DEFINED (DateExpireIsPublicUse):
-	NOT (IsPublicUse);
-!! ######## <<<
+!!	DateExpireIsPublicUse : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+    DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 	
   END PublicUse;
 
@@ -245,30 +231,25 @@ VERSION "2022-03-07"  =
       /** Daten aus dem Feld "Auxiliary Information" der bestehenden InfoGeol-DB
        */
       InfogeolAuxData : TEXT;
+
 	  /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
 	  */
-!!	  MANDATORY CONSTRAINT PublicUse->IsPublicUse AND InternalUse->IsInternalUse OR NOT (PublicUse->IsPublicUse) AND NOT (InternalUse->IsInternalUse);
-!! ######## >>>
-	  SET CONSTRAINT WHERE NOT (InternalUse->IsInternalUse):
-	     NOT (PublicUse->IsPublicUselUse);
-!! ######## <<<
+	  SET CONSTRAINT WHERE NOT (InternalUse->IsAvailable):
+	     NOT (PublicUse->IsAvailable);
 	  /** DateExpireIsInternalUse muss kleiner oder gleich DateExpireIsPublicUse sein
 	  */
-!!	  MANDATORY CONSTRAINT InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
-	  
-!! ######## >>>
-	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateExpireIsPublicUse): 
-	  DEFINED(InternalUse->DateExpireIsInternalUse) AND 
-	  InternalUse->DateExpireIsInternalUse <= PublicUse->DateExpireIsPublicUse;
-!! ######## <<<
-	  
-	  /** Wenn DateExpireIsPublicUse geetzt, dann muss auch DateExpireIsInternalUse gesetzt sein.
+	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability): 
+	  DEFINED(InternalUse->DateStartAvailability) AND 
+	  (InternalUse->DateStartAvailability <= PublicUse->DateStartAvailability);
+	  /** Wenn PublicUse->DateStartAvailability ausgefüllt ist, dann darf PublicUse nicht == True sein
 	  */
-!! ######## Löschen
-!!	  MANDATORY CONSTRAINT (DEFINED (PublicUse->DateExpireIsPublicUse)) AND (DEFINED (InternalUse->DateExpireIsInternalUse)) OR NOT (DEFINED (PublicUse->DateExpireIsPublicUse));
-	  /**
+	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability):
+	  NOT (PublicUse->IsAvailable);
+	  /** Wenn InternalUse->DateStartAvailability ausgefüllt ist, dann darf PublicUse nicht == True sein
 	  */
-!!	  MANDATORY CONSTRAINT
+	  SET CONSTRAINT WHERE DEFINED (InternalUse->DateStartAvailability):
+	  NOT (InternalUse->IsAvailable);
+
 
     END LGAssetItem;
 
