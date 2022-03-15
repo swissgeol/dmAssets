@@ -19,7 +19,6 @@
 				<IsUseable>true</IsUseable>
 				<Code>test1234</Code>
 				<GeolCode>test1234</GeolCode>
-				<GeolCode>test1234</GeolCode>
 				<Name>
 					<LocalisationCH_V1.MultilingualText>
 						<LocalisedText>
@@ -42,7 +41,6 @@
 				<IsSuperItem>false</IsSuperItem>
 				<IsUseable>true</IsUseable>
 				<Code>test1234</Code>
-				<GeolCode>test1234</GeolCode>
 				<GeolCode>test1234</GeolCode>
 				<Name>
 					<LocalisationCH_V1.MultilingualText>

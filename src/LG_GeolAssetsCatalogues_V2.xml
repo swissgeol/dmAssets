@@ -13,14 +13,12 @@
 		</MODELS>
 	</HEADERSECTION>
 	<DATASECTION>
-		<LG_GeolAssetsCatalogues_V2.Catalogues BID="3">
+		<LG_GeolAssetsCatalogues_V2.Catalogues BID="4">
 			<LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelItem TID="8dc7f9ae-64c8-4ca8-8be2-650b837cee38">
 				<IsSuperItem>false</IsSuperItem>
 				<IsUseable>true</IsUseable>
 				<Code>test1234</Code>
-				<GeolCode>test1234</GeolCode>
-				<Code>test1234</Code>
-				<GeolCode>test1234</GeolCode>
+				<GeolCode>test123</GeolCode>
 				<Name>
 					<LocalisationCH_V1.MultilingualText>
 						<LocalisedText>
