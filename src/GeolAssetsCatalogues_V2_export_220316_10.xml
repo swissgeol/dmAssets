@@ -6,7 +6,7 @@
 		</MODELS>
 	</HEADERSECTION>
 	<DATASECTION>
-			<GeolAssetsCatalogues_V2.Catalogues BID="d1fb2287-f490-4483-8154-3cc3113bcdee">
+		<GeolAssetsCatalogues_V2.Catalogues BID="d1fb2287-f490-4483-8154-3cc3113bcdee">
 			<GeolAssetsCatalogues_V2.Catalogues.AssetKindItem TID="4f090761-aa69-40bb-89f7-14aa4f8cd71d">
 				<IsSuperItem>false</IsSuperItem>
 				<IsUseable>true</IsUseable>
