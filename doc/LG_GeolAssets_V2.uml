@@ -13225,8 +13225,8 @@
 <Width>31</Width>
 <Height>28</Height>
 <Documentation>3144</Documentation>
-<East>1534</East>
-<South>447</South>
+<East>1583</East>
+<South>446</South>
 </ch.ehi.umleditor.umlpresentation.Note>
 <ch.ehi.basics.types.NlsString TID="3141">
 <Entry TID="3145" language="de" translation="&lt;...&gt;"/>
