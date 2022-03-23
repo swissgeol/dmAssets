@@ -47,7 +47,7 @@ VERSION "2022-03-07"  =
 	  StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
 	  /** Datum derVergabe des Bearbeitungsstands
 	  */
-	  StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  StatusWorkDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
   /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
@@ -55,10 +55,10 @@ VERSION "2022-03-07"  =
   STRUCTURE AutoCat =
 	  /** Automatisch zugewieser Label des Dokuments
 	  */
-	  AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
 	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
 	  */
-	  AutoCatLabelScore : Score;
+	  AutoCatLabelScore : MANDATORY Score;
   END AutoCat;
 
   /** Struktur zu Angabe der Nutzungsrechte swisstopo intern
@@ -91,14 +91,6 @@ VERSION "2022-03-07"  =
 	
   END PublicUse;
 
-  /** Struktur zur Beschreibung des Pfads zu einem Asset für die Nutzung in einem BAG OF
-   */
-  STRUCTURE PathtoFile =
-	  /** Angabe des File-Pfads
-	  */
-	  RelativePath : TEXT;
-  END PathtoFile;
-
   /** Structure für die Beschreiubung eines Extrakts aus einem Asset (Basierend auf GAIA)
    */
   STRUCTURE AssetObjectInfo =
@@ -116,7 +108,7 @@ VERSION "2022-03-07"  =
     ObjectScore : Score;
 	  /** Pfad zu den Bildern der extrahierten Objekte
 	  */
-    PathtoImage : BAG {0..*} OF LG_GeolAssets_V2.PathtoFile;
+    PathtoImage : MANDATORY TEXT;
   END AssetObjectInfo;
 
   /** Struktur für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
@@ -152,7 +144,7 @@ VERSION "2022-03-07"  =
     Type : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.LegalDocRef;
     /** Pfad zur Ablage des rechtlich verbindlichen Dokuments (z.B. Einwilligungsformular)
      */
-    RelativePathLegalDoc : LG_GeolAssets_V2.PathtoFile;
+    RelativePathLegalDoc : MANDATORY TEXT;
   END LegalDoc;
 
   /** Topic für die Erweiterung des DM GeolAssets für die Bedürfnisse der Landesgeologie
