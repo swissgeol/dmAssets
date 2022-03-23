@@ -19,6 +19,15 @@ VERSION "2022-03-07"  =
      */
     ObjectCoord = TEXT;
 
+  /** Struktur zur Beschreibung des Typs der "Nationalen Relevanz"  eines Assets für die Nutzung in einem BAG OF
+  */
+  STRUCTURE TypeNatRel =
+    /**
+	*/
+	TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+  END TypeNatRel;
+
+
   /** Struktur zur Beschreibung der "Nationalen Relevanz" eines Assets
    */
   STRUCTURE NationalRelevance =
@@ -27,7 +36,7 @@ VERSION "2022-03-07"  =
 	  IsNatRel : MANDATORY BOOLEAN;
 	  /** Typ der Nationalen Relevanz, gemäss LGeolV
 	  */
-	  TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+	  TypeNatRel : BAG {0 .. *} OF TypeNatRel;
   END NationalRelevance;
 
   /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
