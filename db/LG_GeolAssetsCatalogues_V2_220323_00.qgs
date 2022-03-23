@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUserFull="Oesterling Nils swisstopo" version="3.16.6-Hannover" projectname="" saveUser="U80773132" saveDateTime="2022-03-23T15:26:48">
+<qgis saveUserFull="Oesterling Nils swisstopo" version="3.16.6-Hannover" projectname="" saveUser="U80773132" saveDateTime="2022-03-23T15:56:22">
   <homePath path=""/>
   <title></title>
   <autotransaction active="1"/>
@@ -181,7 +181,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group expanded="0" name="System" checked="Qt::Checked">
+    <layer-tree-group expanded="1" name="System" checked="Qt::Checked">
       <customproperties/>
       <layer-tree-layer providerKey="ogr" expanded="1" legend_split_behavior="0" legend_exp="" name="T_ILI2DB_DATASET" id="T_ILI2DB_DATASET_a990c721_f818_4dfb_9831_5d8186f9e677" checked="Qt::Checked" source="./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=T_ILI2DB_DATASET" patch_size="-1,-1">
         <customproperties>
@@ -785,7 +785,7 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup open="false" name="System" checked="Qt::Checked">
+    <legendgroup open="true" name="System" checked="Qt::Checked">
       <legendlayer drawingOrder="-1" showFeatureCount="0" open="true" name="T_ILI2DB_DATASET" checked="Qt::Checked">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" visible="1" layerid="T_ILI2DB_DATASET_a990c721_f818_4dfb_9831_5d8186f9e677"/>
@@ -2286,6 +2286,9 @@
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
@@ -3170,6 +3173,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
@@ -11052,7 +11058,11 @@ def my_form_open(dialog, layer, feature):
           <end></end>
         </fixedRange>
       </temporal>
-      <customproperties/>
+      <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>coalesce(attribute(get_feature('T_ILI2DB_DATASET', 'T_Id', dataset), 'datasetname') || ' (' || topic || ') ', coalesce( attribute(get_feature('T_ILI2DB_DATASET', 'T_Id', dataset), 'datasetname'), T_Ili_Tid))</value>
+        </property>
+      </customproperties>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks type="StringList">
           <Option value="" type="QString"/>
@@ -11157,7 +11167,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" type="field" name="T_Id" width="-1"/>
           <column hidden="0" type="field" name="dataset" width="-1"/>
           <column hidden="0" type="field" name="topic" width="376"/>
-          <column hidden="0" type="field" name="T_Ili_Tid" width="-1"/>
+          <column hidden="0" type="field" name="T_Ili_Tid" width="451"/>
           <column hidden="0" type="field" name="attachmentKey" width="-1"/>
           <column hidden="0" type="field" name="domains" width="-1"/>
           <column hidden="1" type="actions" width="-1"/>
