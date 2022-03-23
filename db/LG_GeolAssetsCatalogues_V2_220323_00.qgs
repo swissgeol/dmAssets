@@ -883,7 +883,7 @@
     <layerOpacity>1</layerOpacity>
   </main-annotation-layer>
   <projectlayers>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>AssetFormatItem_1a3ebb81_8567_43a0_a9ec_a155b5a4bb53</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=assetformatitem</datasource>
       <keywordList>
@@ -1551,7 +1551,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>AssetKindItem_9e6bb35a_d557_4ff2_850e_1d41cb81314c</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=assetkinditem</datasource>
       <keywordList>
@@ -2239,7 +2239,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>AutoCatLabelItem_110aa829_cec7_46e9_9f12_b46d70ac1c93</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=autocatlabelitem</datasource>
       <keywordList>
@@ -2913,7 +2913,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>AutoObjectCatItem_0e058455_fa9a_4847_b0e2_65be53a27f8c</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=autoobjectcatitem</datasource>
       <keywordList>
@@ -3587,7 +3587,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>ContactKindItem_eb1eb651_88e4_490a_ad18_b0ddf7b0ed10</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=contactkinditem</datasource>
       <keywordList>
@@ -4243,7 +4243,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>GeomQualityItem_6ff210ce_566d_424d_b606_95a2bcb70a58</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=geomqualityitem</datasource>
       <keywordList>
@@ -5124,7 +5124,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>LanguageItem_5ddd8ec0_8f50_41db_95b5_5a168df50d6d</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=languageitem</datasource>
       <keywordList>
@@ -5780,7 +5780,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>LegalDocItem_28fde981_8701_4b4b_811e_6bf2feb66531</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=legaldocitem</datasource>
       <keywordList>
@@ -6906,7 +6906,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>ManCatLabelItem_9790a597_2225_4907_9d92_926f5579d24c</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=mancatlabelitem</datasource>
       <keywordList>
@@ -7908,7 +7908,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>NatRelItem_e19e4094_b854_4b72_99ab_5871810531db</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=natrelitem</datasource>
       <keywordList>
@@ -8582,7 +8582,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>PubChannelItem_e60aa760_dc9e_4e26_96cc_754e507e9c46</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=pubchannelitem</datasource>
       <keywordList>
@@ -9256,7 +9256,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>StatusAssetUseItem_cd1a8869_79c6_46b4_8d4f_6a70aff1e5ec</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=statusassetuseitem</datasource>
       <keywordList>
@@ -9930,7 +9930,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="1" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
+    <maplayer styleCategories="AllStyleCategories" autoRefreshTime="0" wkbType="NoGeometry" refreshOnNotifyMessage="" type="vector" readOnly="0" refreshOnNotifyEnabled="0" geometry="No geometry" minScale="1e+08" maxScale="0" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="0">
       <id>StatusWorkItem_44f9e15e_c4a5_4ad7_856a_9d7ab6e17738</id>
       <datasource>./LG_GeolAssetsCatalogues_V2_220323_00.gpkg|layername=statusworkitem</datasource>
       <keywordList>
