@@ -189,15 +189,17 @@ VERSION "2022-03-07"  =
        */
       AssetItemPart -- {0..*} AssetItem;
 	  
-	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es darf kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
+	  /** Ein "AssetPart" darf nur ein "Extract" sein, wenn das zugehörige "AssetMain" selber kein "Extract" ist und es selber (das "AssetMain") nicht vom "Kind" == "package" ist. Ein Package darf kein Extract enhalten
 	  */
-	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: 
-	  AssetItemMain->Kind->Reference->Code =="report";
+	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: NOT(AssetItemMain->IsExtract) AND NOT(AssetItemMain->Kind->Reference->Code == "package");
+	  /** Wenn ein "AssetPart" kein "Extract" ist, dann muss das zugehörige "AssetMain" ein "Kind" == "package" sein
+	  */
+	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): AssetItemMain->Kind->Reference->Code == "package";
+	  /**Ein "AssetPart" darf selber nicht vom "Kind" == "package" sein
 
-	  /** Wenn AssetItemPart->IsExtract == True, dann muss Kind == "package" sein
 	  */
-	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): 
-	  AssetItemMain->Kind->Reference->Code == "package";
+	  MANDATORY CONSTRAINT NOT(AssetItemPart->Kind->Reference->Code == "package");
+
 
     END AssetItemMain_AssetItemPart;
 
