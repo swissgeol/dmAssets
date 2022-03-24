@@ -47,10 +47,10 @@ VERSION "2022-03-07"  =
     CLASS AssetItem =
       /** Öffentlicher Titel des Assets. Dieser enthält keine sensiblen Angaben
        */
-      TitlePublic : MANDATORY TEXT;
+      TitlePublic : TEXT;
       /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden. Falls der Originaltitel sensible Daten enthält, kann hier ein öffentlich nutzbarer Titel vergeben werden.
        */
-      TitleOriginal : TEXT;
+      TitleOriginal : MANDATORY TEXT;
       /** Identifikator(en) (ID) des Assets. Wenn möglich soll die Original-ID verwendet werden.
        */
       IDAlternate : BAG {0..*} OF GeolAssets_V2.ID;
@@ -88,10 +88,6 @@ VERSION "2022-03-07"  =
        */
 	  IsExtract : MANDATORY BOOLEAN;
 
-	  /** Wenn Kind == report, dann muss TitlePublic gesetzt sein.
-	  */
-	   SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "report": 
-	   DEFINED (TitlePublic);
 	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
 	  */
 	  SET CONSTRAINT WHERE IsExtract: 
