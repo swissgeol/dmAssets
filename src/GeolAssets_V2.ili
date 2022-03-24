@@ -91,18 +91,18 @@ VERSION "2022-03-07"  =
 	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
 	  */
 	  SET CONSTRAINT WHERE IsExtract: 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "report");
+	  NOT (Kind->Reference->Code == "package") AND 
+	  NOT (Kind->Reference->Code == "report");
 
 	  /** Wenn Kind == Package, dann muss Format == Archiv (zip) sein
 	  */
-	  SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "package": 
-	  Format->Reference->Name-> LocalisedText->Text == "zip";
+	  SET CONSTRAINT WHERE Kind->Reference->Code == "package": 
+	  Format->Reference->Code == "zip";
 
 	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
 	  */
-	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
-	  Kind->Reference->Name->LocalisedText->Text == "package";
+	  SET CONSTRAINT WHERE Format->Reference->Code == "zip": 
+	  Kind->Reference->Code == "package";
 
 	  /** FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
 	  */
@@ -192,12 +192,12 @@ VERSION "2022-03-07"  =
 	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es darf kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
 	  */
 	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: 
-	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report";
+	  AssetItemMain->Kind->Reference->Code =="report";
 
 	  /** Wenn AssetItemPart->IsExtract == True, dann muss Kind == "package" sein
 	  */
 	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): 
-	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package";
+	  AssetItemMain->Kind->Reference->Code == "package";
 
     END AssetItemMain_AssetItemPart;
 
