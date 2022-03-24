@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="3.16.6-Hannover" saveUserFull="Oesterling Nils swisstopo" saveDateTime="2022-03-23T16:46:21" saveUser="U80773132">
+<qgis projectname="" version="3.16.6-Hannover" saveUserFull="Oesterling Nils swisstopo" saveDateTime="2022-03-23T16:53:16" saveUser="U80773132">
   <homePath path=""/>
   <title></title>
   <autotransaction active="1"/>
@@ -1616,7 +1616,9 @@
         </fixedRange>
       </temporal>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -2319,7 +2321,10 @@
         </fixedRange>
       </temporal>
       <customproperties>
-        <property key="dualview/previewExpressions" value="&quot;aname&quot;"/>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+          <value>"aname"</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
@@ -3204,7 +3209,10 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
-        <property key="dualview/previewExpressions" value="aname"/>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+          <value>aname</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
@@ -4069,6 +4077,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -4397,9 +4408,38 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_languageitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetformatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_geomqualityitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_contactkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_mancatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_languageitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -4462,7 +4502,7 @@ def my_form_open(dialog, layer, feature):
       <labelOnTop/>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"aname"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer minScale="1e+08" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" readOnly="0" type="vector" maxScale="0" wkbType="NoGeometry" autoRefreshTime="0" geometry="No geometry" autoRefreshEnabled="0">
@@ -4725,6 +4765,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -5053,9 +5096,38 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_languageitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="238" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetformatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_geomqualityitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_contactkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_mancatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_languageitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -5118,7 +5190,7 @@ def my_form_open(dialog, layer, feature):
       <labelOnTop/>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"aname"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer minScale="1e+08" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" readOnly="0" type="vector" maxScale="0" wkbType="NoGeometry" autoRefreshTime="0" geometry="No geometry" autoRefreshEnabled="0">
@@ -5606,6 +5678,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -5934,9 +6009,38 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_languageitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetformatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_geomqualityitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_contactkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_mancatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_languageitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -5999,7 +6103,7 @@ def my_form_open(dialog, layer, feature):
       <labelOnTop/>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"aname"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer minScale="1e+08" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" readOnly="0" type="vector" maxScale="0" wkbType="NoGeometry" autoRefreshTime="0" geometry="No geometry" autoRefreshEnabled="0">
@@ -6262,6 +6366,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -6604,9 +6711,39 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_statusassetuseitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_autoobjectcatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_natrelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_legaldocitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_autocatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_pubchannelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusworkitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusassetuseitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -7388,6 +7525,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aname"</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -7716,9 +7856,38 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_languageitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_assetformatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_geomqualityitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_contactkinditem" width="-1" type="field" hidden="0"/>
+          <column name="parent_mancatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_languageitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -7781,7 +7950,7 @@ def my_form_open(dialog, layer, feature):
       <labelOnTop/>
       <dataDefinedFieldProperties/>
       <widgets/>
-      <previewExpression></previewExpression>
+      <previewExpression>"aname"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
     <maplayer minScale="1e+08" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" readOnly="0" type="vector" maxScale="0" wkbType="NoGeometry" autoRefreshTime="0" geometry="No geometry" autoRefreshEnabled="0">
@@ -8390,6 +8559,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -8732,9 +8904,39 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_statusassetuseitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_autoobjectcatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_natrelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_legaldocitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_autocatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_pubchannelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusworkitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusassetuseitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -9064,6 +9266,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -9406,9 +9611,39 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_statusassetuseitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_autoobjectcatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_natrelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_legaldocitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_autocatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_pubchannelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusworkitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusassetuseitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -9738,6 +9973,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -10080,9 +10318,39 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_statusassetuseitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_autoobjectcatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_natrelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_legaldocitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_autocatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_pubchannelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusworkitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusassetuseitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -10414,6 +10682,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="LG_GeolAssetsCatalogues_V2.Catalogues"/>
       </customproperties>
@@ -10756,9 +11027,39 @@ def my_form_open(dialog, layer, feature):
         <constraint field="parent_statusassetuseitem" desc="" exp=""/>
       </constraintExpressions>
       <expressionfields/>
-      <attributeactions/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
       <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
-        <columns/>
+        <columns>
+          <column name="T_Id" width="-1" type="field" hidden="0"/>
+          <column name="T_basket" width="-1" type="field" hidden="0"/>
+          <column name="T_Ili_Tid" width="-1" type="field" hidden="0"/>
+          <column name="acode" width="-1" type="field" hidden="0"/>
+          <column name="geolcode" width="-1" type="field" hidden="0"/>
+          <column name="aname" width="-1" type="field" hidden="0"/>
+          <column name="aname_de" width="-1" type="field" hidden="0"/>
+          <column name="aname_fr" width="-1" type="field" hidden="0"/>
+          <column name="aname_rm" width="-1" type="field" hidden="0"/>
+          <column name="aname_it" width="-1" type="field" hidden="0"/>
+          <column name="aname_en" width="-1" type="field" hidden="0"/>
+          <column name="adescription" width="-1" type="field" hidden="0"/>
+          <column name="adescription_de" width="-1" type="field" hidden="0"/>
+          <column name="adescription_fr" width="-1" type="field" hidden="0"/>
+          <column name="adescription_rm" width="-1" type="field" hidden="0"/>
+          <column name="adescription_it" width="-1" type="field" hidden="0"/>
+          <column name="adescription_en" width="-1" type="field" hidden="0"/>
+          <column name="issuperitem" width="-1" type="field" hidden="0"/>
+          <column name="isuseable" width="-1" type="field" hidden="0"/>
+          <column name="parent_autoobjectcatitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_natrelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_legaldocitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_autocatlabelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_pubchannelitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusworkitem" width="-1" type="field" hidden="0"/>
+          <column name="parent_statusassetuseitem" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
       </attributetableconfig>
       <conditionalstyles>
         <rowstyles/>
@@ -11473,7 +11774,7 @@ def my_form_open(dialog, layer, feature):
       <variableValues type="QStringList">
         <value></value>
         <value>3</value>
-        <value></value>
+        <value>4</value>
       </variableValues>
     </Variables>
   </properties>
