@@ -5,10 +5,11 @@ INTERLIS 2.3;
 MODEL LG_GeolAssetsCatalogues_V2 (en)
 AT "https://www.swisstopo.ch"
 VERSION "2022-03-01"  =
-  IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1,GeolAssetsCatalogues_V2;
+!!  IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1,GeolAssetsCatalogues_V2;
+  IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
 
-  TOPIC Catalogues 
-  EXTENDS GeolAssetsCatalogues_V2.Catalogues =
+  TOPIC Catalogues =
+!!  EXTENDS GeolAssetsCatalogues_V2.Catalogues =
     OID AS INTERLIS.UUIDOID;
 
     /** Codelist für das Attribut Asset.AutoCatLabel = vergebene Themen-Kategorie (Hydrogeologie, Geophysik, ...). Klasse durch GAIA zugewiesen
