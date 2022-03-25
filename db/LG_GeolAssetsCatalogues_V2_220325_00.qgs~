@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.16.6-Hannover" saveUserFull="Oesterling Nils swisstopo" saveDateTime="2022-03-25T09:59:51" projectname="" saveUser="U80773132">
+<qgis version="3.16.6-Hannover" saveUserFull="Oesterling Nils swisstopo" saveDateTime="2022-03-25T10:01:46" projectname="" saveUser="U80773132">
   <homePath path=""/>
   <title></title>
   <autotransaction active="1"/>
@@ -6922,7 +6922,9 @@ def my_form_open(dialog, layer, feature):
         </fixedRange>
       </temporal>
       <customproperties>
-        <property key="dualview/previewExpressions" value="aname"/>
+        <property key="dualview/previewExpressions">
+          <value>aname</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"/>
         <property key="variableNames" value="interlis_topic"/>
         <property key="variableValues" value="GeolAssetsCatalogues_V2.Catalogues"/>
