@@ -14,10 +14,12 @@ VERSION "2022-03-01"  =
      */
     CLASS AssetKindItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code : MANDATORY TEXT;
+	  GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END AssetKindItem;
 
     STRUCTURE AssetKindRef
@@ -29,10 +31,12 @@ VERSION "2022-03-01"  =
      */
     CLASS ManCatLabelItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code :  MANDATORY TEXT; 
+	  GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END ManCatLabelItem;
 
     STRUCTURE ManCatLabelRef
@@ -44,11 +48,13 @@ VERSION "2022-03-01"  =
      */
     CLASS AssetFormatItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code :  MANDATORY TEXT;
+      GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
       MIME : TEXT*50;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END AssetFormatItem;
 
     STRUCTURE AssetFormatRef
@@ -60,10 +66,12 @@ VERSION "2022-03-01"  =
      */
     CLASS ContactKindItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code :  MANDATORY TEXT;
+      GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END ContactKindItem;
 
     STRUCTURE ContactKindRef
@@ -75,10 +83,12 @@ VERSION "2022-03-01"  =
      */
     CLASS LanguageItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code :  MANDATORY TEXT;
+      GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END LanguageItem;
 
     STRUCTURE LanguageRef
@@ -90,10 +100,12 @@ VERSION "2022-03-01"  =
      */
     CLASS GeomQualityItem
     EXTENDS CatalogueObjectTrees_V1.Catalogues.Item =
-      GeolCode : MANDATORY TEXT;
+      Code :  MANDATORY TEXT;
+      GeolCode : TEXT;
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       Description : LocalisationCH_V1.MultilingualMText;
-      UNIQUE GeolCode;
+!!    UNIQUE Code;
+!!	  UNIQUE GeolCode;
     END GeomQualityItem;
 
     STRUCTURE GeomQualityRef

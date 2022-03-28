@@ -19,6 +19,15 @@ VERSION "2022-03-07"  =
      */
     ObjectCoord = TEXT;
 
+  /** Struktur zur Beschreibung des Typs der "Nationalen Relevanz"  eines Assets für die Nutzung in einem BAG OF
+  */
+  STRUCTURE TypeNatRel =
+    /**
+	*/
+	TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+  END TypeNatRel;
+
+
   /** Struktur zur Beschreibung der "Nationalen Relevanz" eines Assets
    */
   STRUCTURE NationalRelevance =
@@ -27,7 +36,7 @@ VERSION "2022-03-07"  =
 	  IsNatRel : MANDATORY BOOLEAN;
 	  /** Typ der Nationalen Relevanz, gemäss LGeolV
 	  */
-	  TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+	  TypeNatRel : BAG {0 .. *} OF TypeNatRel;
   END NationalRelevance;
 
   /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
@@ -38,18 +47,18 @@ VERSION "2022-03-07"  =
 	  StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
 	  /** Datum derVergabe des Bearbeitungsstands
 	  */
-	  StatusWorkDate : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+	  StatusWorkDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
   /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
    */
   STRUCTURE AutoCat =
-	  /** Label 
+	  /** Automatisch zugewieser Label des Dokuments
 	  */
-	  AutoCatLabel : LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
+	  AutoCatLabel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
 	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
 	  */
-	  AutoCatLabelScore : Score;
+	  AutoCatLabelScore : MANDATORY Score;
   END AutoCat;
 
   /** Struktur zu Angabe der Nutzungsrechte swisstopo intern
@@ -82,14 +91,6 @@ VERSION "2022-03-07"  =
 	
   END PublicUse;
 
-  /** Struktur zur Beschreibung des Pfads zu einem Asset für die Nutzung in einem BAG OF
-   */
-  STRUCTURE PathtoFile =
-	  /** Angabe des File-Pfads
-	  */
-	  RelativePath : TEXT;
-  END PathtoFile;
-
   /** Structure für die Beschreiubung eines Extrakts aus einem Asset (Basierend auf GAIA)
    */
   STRUCTURE AssetObjectInfo =
@@ -107,7 +108,7 @@ VERSION "2022-03-07"  =
     ObjectScore : Score;
 	  /** Pfad zu den Bildern der extrahierten Objekte
 	  */
-    PathtoImage : BAG {0..*} OF LG_GeolAssets_V2.PathtoFile;
+    PathtoImage : MANDATORY TEXT;
   END AssetObjectInfo;
 
   /** Struktur für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
@@ -124,14 +125,6 @@ VERSION "2022-03-07"  =
     DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END UsedBy;
 
-  /** Struktur zur Definition eines Textes, der in einem BAG {0..*} OF genutzt werden kann
-   */
-  STRUCTURE TextDescr =
-	  /**
-	  */
-    TextDescrAtt : TEXT;
-  END TextDescr;
-
   /** Struktur zur Definition der rechtlich verbindlichen Dokumente, wie Einwilligiungsformulare oder Verträge
    */
   STRUCTURE LegalDoc =
@@ -143,7 +136,7 @@ VERSION "2022-03-07"  =
     Type : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.LegalDocRef;
     /** Pfad zur Ablage des rechtlich verbindlichen Dokuments (z.B. Einwilligungsformular)
      */
-    RelativePathLegalDoc : LG_GeolAssets_V2.PathtoFile;
+    RelativePathLegalDoc : MANDATORY TEXT;
   END LegalDoc;
 
   /** Topic für die Erweiterung des DM GeolAssets für die Bedürfnisse der Landesgeologie
@@ -234,16 +227,16 @@ VERSION "2022-03-07"  =
 	  */
 	  SET CONSTRAINT WHERE NOT (InternalUse->IsAvailable):
 	     NOT (PublicUse->IsAvailable);
-	  /** DateExpireIsInternalUse muss kleiner oder gleich DateExpireIsPublicUse sein
+	  /** Wenn das Startdatum der Öffentichennutzung gesetzt ist, dann muss auch das Startdatum der Internennutzung gesetzt sein und das interne Startdatum muss kleiner oder gleich dem öffentlichen sein.
 	  */
 	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability): 
 	  DEFINED(InternalUse->DateStartAvailability) AND 
 	  (InternalUse->DateStartAvailability <= PublicUse->DateStartAvailability);
-	  /** Wenn PublicUse->DateStartAvailability ausgefüllt ist, dann darf PublicUse nicht == True sein
+	  /** Wenn das öffentliche Startdatum gesetzt ist, dann darf der öffentliche Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
 	  */
 	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability):
 	  NOT (PublicUse->IsAvailable);
-	  /** Wenn InternalUse->DateStartAvailability ausgefüllt ist, dann darf PublicUse nicht == True sein
+	  /** Wenn das interne Startdatum gesetzt ist, dann darf der interne Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
 	  */
 	  SET CONSTRAINT WHERE DEFINED (InternalUse->DateStartAvailability):
 	  NOT (InternalUse->IsAvailable);

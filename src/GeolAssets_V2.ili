@@ -47,10 +47,10 @@ VERSION "2022-03-07"  =
     CLASS AssetItem =
       /** Öffentlicher Titel des Assets. Dieser enthält keine sensiblen Angaben
        */
-      TitlePublic : MANDATORY TEXT;
+      TitlePublic : TEXT;
       /** Titel des Assets. Wenn möglich soll der Originaltitel verwendet werden. Falls der Originaltitel sensible Daten enthält, kann hier ein öffentlich nutzbarer Titel vergeben werden.
        */
-      TitleOriginal : TEXT;
+      TitleOriginal : MANDATORY TEXT;
       /** Identifikator(en) (ID) des Assets. Wenn möglich soll die Original-ID verwendet werden.
        */
       IDAlternate : BAG {0..*} OF GeolAssets_V2.ID;
@@ -88,25 +88,21 @@ VERSION "2022-03-07"  =
        */
 	  IsExtract : MANDATORY BOOLEAN;
 
-	  /** Wenn Kind == report, dann muss TitlePublic gesetzt sein.
-	  */
-	   SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "report": 
-	   DEFINED (TitlePublic);
 	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
 	  */
 	  SET CONSTRAINT WHERE IsExtract: 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "package") AND 
-	  NOT (Kind->Reference->Name->LocalisedText->Text == "report");
+	  NOT (Kind->Reference->Code == "package") AND 
+	  NOT (Kind->Reference->Code == "report");
 
 	  /** Wenn Kind == Package, dann muss Format == Archiv (zip) sein
 	  */
-	  SET CONSTRAINT WHERE Kind->Reference->Name->LocalisedText->Text == "package": 
-	  Format->Reference->Name-> LocalisedText->Text == "zip";
+	  SET CONSTRAINT WHERE Kind->Reference->Code == "package": 
+	  Format->Reference->Code == "zip";
 
 	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
 	  */
-	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
-	  Kind->Reference->Name->LocalisedText->Text == "package";
+	  SET CONSTRAINT WHERE Format->Reference->Code == "zip": 
+	  Kind->Reference->Code == "package";
 
 	  /** FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
 	  */
@@ -193,15 +189,17 @@ VERSION "2022-03-07"  =
        */
       AssetItemPart -- {0..*} AssetItem;
 	  
-	  /** Wenn das AssetPart ein Extrakt ist, muss das übergeordnete AssetMain das Kind == "report" haben oder es darf kein Extrakt sein und das übergeordnete AssetMain ist ein "package" 
+	  /** Ein "AssetPart" darf nur ein "Extract" sein, wenn das zugehörige "AssetMain" selber kein "Extract" ist und es selber (das "AssetMain") nicht vom "Kind" == "package" ist. Ein Package darf kein Extract enhalten
 	  */
-	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: 
-	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text =="report";
+	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: NOT(AssetItemMain->IsExtract) AND NOT(AssetItemMain->Kind->Reference->Code == "package");
+	  /** Wenn ein "AssetPart" kein "Extract" ist, dann muss das zugehörige "AssetMain" ein "Kind" == "package" sein
+	  */
+	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): AssetItemMain->Kind->Reference->Code == "package";
+	  /**Ein "AssetPart" darf selber nicht vom "Kind" == "package" sein
 
-	  /** Wenn AssetItemPart->IsExtract == True, dann muss Kind == "package" sein
 	  */
-	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): 
-	  AssetItemMain->Kind->Reference->Name->LocalisedText->Text == "package";
+	  MANDATORY CONSTRAINT NOT(AssetItemPart->Kind->Reference->Code == "package");
+
 
     END AssetItemMain_AssetItemPart;
 
