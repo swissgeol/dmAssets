@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-07"  =
+VERSION "2022-03-28"  =
   IMPORTS GeolAssets_V2,LG_GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -22,22 +22,10 @@ VERSION "2022-03-07"  =
   /** Struktur zur Beschreibung des Typs der "Nationalen Relevanz"  eines Assets für die Nutzung in einem BAG OF
   */
   STRUCTURE TypeNatRel =
-    /**
+    /**Typ der Nationalen Referenz
 	*/
 	TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
   END TypeNatRel;
-
-
-  /** Struktur zur Beschreibung der "Nationalen Relevanz" eines Assets
-   */
-  STRUCTURE NationalRelevance =
-    /** Flag ,ob Nationales Relevanz vorliegt
-     */
-	  IsNatRel : MANDATORY BOOLEAN;
-	  /** Typ der Nationalen Relevanz, gemäss LGeolV
-	  */
-	  TypeNatRel : BAG {0 .. *} OF TypeNatRel;
-  END NationalRelevance;
 
   /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
   */
@@ -158,10 +146,12 @@ VERSION "2022-03-07"  =
      */
     CLASS LGAssetItem
     EXTENDS GeolAssets_V2.CoreGeolAssets.AssetItem =
-
-      /** Angabe, ob ein Asset von nationaler Bedeutung ist und wenn ja aus welchem Grund
-       */
-      NationalRelevance : MANDATORY NationalRelevance;
+    /** Flag ,ob Nationales Relevanz vorliegt
+     */
+	  IsNatRel : MANDATORY BOOLEAN;
+	  /** Typ der Nationalen Relevanz, gemäss LGeolV
+	  */
+	  TypeNatRel : BAG {0 .. *} OF TypeNatRel;
 	  /** swisstopo-interner Nutzungsstatus
 	  */
       InternalUse : MANDATORY InternalUse;
@@ -240,6 +230,14 @@ VERSION "2022-03-07"  =
 	  */
 	  SET CONSTRAINT WHERE DEFINED (InternalUse->DateStartAvailability):
 	  NOT (InternalUse->IsAvailable);
+	  /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
+	  */
+	  SET CONSTRAINT WHERE NOT(IsNatRel):
+	  NOT (DEFINED (TypeNatRel));
+	  /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
+	  */
+	  SET CONSTRAINT WHERE (IsNatRel):
+	  DEFINED(TypeNatRel);
 
 
     END LGAssetItem;
