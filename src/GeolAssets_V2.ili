@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-07"  =
+VERSION "2022-03-28"  =
   IMPORTS GeometryCHLV95_V1,GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -196,10 +196,11 @@ VERSION "2022-03-07"  =
 	  */
 	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): AssetItemMain->Kind->Reference->Code == "package";
 	  /**Ein "AssetPart" darf selber nicht vom "Kind" == "package" sein
-
 	  */
 	  MANDATORY CONSTRAINT NOT(AssetItemPart->Kind->Reference->Code == "package");
-
+	  /** Jedes AssetPart, dass ein Extract ist, muss ein Main besitzen
+	  */
+	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: DEFINED (AssetItemMain);
 
     END AssetItemMain_AssetItemPart;
 
