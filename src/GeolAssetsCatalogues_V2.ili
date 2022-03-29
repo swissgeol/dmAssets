@@ -23,7 +23,7 @@ VERSION "2022-03-01"  =
     END AssetKindItem;
 
     STRUCTURE AssetKindRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetKindItem;
     END AssetKindRef;
 
@@ -40,7 +40,7 @@ VERSION "2022-03-01"  =
     END ManCatLabelItem;
 
     STRUCTURE ManCatLabelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ManCatLabelItem;
     END ManCatLabelRef;
 
@@ -58,7 +58,7 @@ VERSION "2022-03-01"  =
     END AssetFormatItem;
 
     STRUCTURE AssetFormatRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AssetFormatItem;
     END AssetFormatRef;
 
@@ -75,7 +75,7 @@ VERSION "2022-03-01"  =
     END ContactKindItem;
 
     STRUCTURE ContactKindRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) ContactKindItem;
     END ContactKindRef;
 
@@ -92,7 +92,7 @@ VERSION "2022-03-01"  =
     END LanguageItem;
 
     STRUCTURE LanguageRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LanguageItem;
     END LanguageRef;
 
@@ -109,7 +109,7 @@ VERSION "2022-03-01"  =
     END GeomQualityItem;
 
     STRUCTURE GeomQualityRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) GeomQualityItem;
     END GeomQualityRef;
 

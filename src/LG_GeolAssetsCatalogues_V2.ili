@@ -23,7 +23,7 @@ VERSION "2022-03-01"  =
     END AutoCatLabelItem;
 
     STRUCTURE AutoCatLabelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
     END AutoCatLabelRef;
 
