@@ -1,7 +1,7 @@
 INTERLIS 2.3;
 
 /** Erweiterung des DMGeolAssets für die Bedürfnisse der Landesgeologie
- */
+*/
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
 VERSION "2022-04-06"  =
@@ -23,43 +23,43 @@ VERSION "2022-04-06"  =
   */
   STRUCTURE TypeNatRel =
     /**Typ der Nationalen Referenz
-	*/
-	TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
+    */
+    TypeNatRel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.NatRelRef;
   END TypeNatRel;
 
   /** Struktur zur Beschreibung des Bearbeitungsstandes des Assets
   */
   STRUCTURE StatusWork =
-	  /** Kategorie des Bearbeitungsstands
-	  */
-	  StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
-	  /** Datum derVergabe des Bearbeitungsstands
-	  */
-	  StatusWorkDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+    /** Kategorie des Bearbeitungsstands
+    */
+    StatusWorkDesc : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusWorkRef;
+    /** Datum derVergabe des Bearbeitungsstands
+    */
+    StatusWorkDate : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
   END StatusWork;
 
   /** Struktur zur Beschreibung des automatisch vergebenen Labels für das Thema des Assets (Output Projekt Gaia)
    */
   STRUCTURE AutoCat =
-	  /** Automatisch zugewieser Label des Dokuments
-	  */
-	  AutoCatLabel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
-	  /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
-	  */
-	  AutoCatLabelScore : MANDATORY Score;
+    /** Automatisch zugewieser Label des Dokuments
+    */
+    AutoCatLabel : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoCatLabelRef;
+    /** Score des Labels, gibt an mit welcher Sicherheit das Label automatisch vergeben wurde
+    */
+    AutoCatLabelScore : MANDATORY Score;
   END AutoCat;
 
   /** Struktur zu Angabe der Nutzungsrechte swisstopo intern
    */
   STRUCTURE InternalUse =
-	  /** Flag, ob das Asset swisstopo-intern genutzt werden darf
-	  */
-	  IsAvailable : MANDATORY BOOLEAN;
-	  /** Kategorie des swisstopo-internen Nutzungsrechte
-	  */
+    /** Flag, ob das Asset swisstopo-intern genutzt werden darf
+    */
+    IsAvailable : MANDATORY BOOLEAN;
+    /** Kategorie des swisstopo-internen Nutzungsrechte
+      */
     Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-	  /** Ablaufdatum einer allfälligen Beschränkung der swisstopo-internen Nutzungsrechte
-	  */
+    /** Ablaufdatum einer allfälligen Beschränkung der swisstopo-internen Nutzungsrechte
+    */
     DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
 
   END InternalUse;
@@ -67,51 +67,38 @@ VERSION "2022-04-06"  =
     /** Struktur zur Beschreibung der öffentlichen Nutzungsrechte
    */
   STRUCTURE PublicUse =
-	  /** Flag, ob das Asset öffentlich genutzt werden darf
-	  */
-	  IsAvailable : MANDATORY BOOLEAN;
-	  /** Kategorie des öffentlichen Nutzungsrechte
-	  */
-	  Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
-	  /** Ablaufdatum einer allfälligen Beschränkung der öffentlichen Nutzungsrechte
-	  */
-	  DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-	
+      /** Flag, ob das Asset öffentlich genutzt werden darf
+      */
+      IsAvailable : MANDATORY BOOLEAN;
+      /** Kategorie des öffentlichen Nutzungsrechte
+      */
+      Status : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.StatusAssetUseRef;
+      /** Ablaufdatum einer allfälligen Beschränkung der öffentlichen Nutzungsrechte
+      */
+      DateStartAvailability : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+    
   END PublicUse;
 
-  /** Structure für die Beschreiubung eines Extrakts aus einem Asset (Basierend auf GAIA)
+  /** Structur für die Beschreibung eines Extrakts aus einem Asset (Basierend auf GAIA)
    */
   STRUCTURE AssetObjectInfo =
     /** Objektklasse, die von dem GAIA-Algorithmus automatisch zugewiesen wurde (z.B. Bohrprofil, Karte ...)
      */
-	  ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoObjectCatRef;
+      ObjectClass : MANDATORY LG_GeolAssetsCatalogues_V2.Catalogues.AutoObjectCatRef;
     /** Seitennummer auf der das Objekt vom GAIA-Algorithmus gefunden wurde
      */
-	  ObjectPage : MANDATORY PageNums;
+      ObjectPage : MANDATORY PageNums;
     /** Boundingbox des Objekts
      */
-	  ObjectBBox : ObjectCoord;
+      ObjectBBox : ObjectCoord;
     /** Score der Vorhersage des Algorithmus
      */
     ObjectScore : Score;
-	  /** Pfad zu den Bildern der extrahierten Objekte
-	  */
+      /** Pfad zu den Bildern der extrahierten Objekte
+      */
     PathtoImage : MANDATORY TEXT;
   END AssetObjectInfo;
 
-  /** Struktur für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
-   */
-  STRUCTURE UsedBy =
-    /** Name des Projekts
-     */
-    Name : MANDATORY TEXT;
-    /** Beschreibung des Projekts
-     */
-    Description : TEXT;
-    /** Datum der Abgabe des Assets an das jeweilige Projekt
-     */
-    DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-  END UsedBy;
 
   /** Struktur zur Definition der rechtlich verbindlichen Dokumente, wie Einwilligiungsformulare oder Verträge
    */
@@ -129,23 +116,16 @@ VERSION "2022-04-06"  =
 
   /** Topic für die Erweiterung des DM GeolAssets für die Bedürfnisse der Landesgeologie
    */
-!!  TOPIC LGGeolAsset =
-!!    OID AS INTERLIS.UUIDOID;
-!!    DEPENDS ON GeolAssets_V2.CoreGeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
-
   TOPIC GeolAssets 
     EXTENDS GeolAssets_V2.GeolAssets =
     OID AS INTERLIS.UUIDOID;
-    DEPENDS ON GeolAssets_V2.GeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
+!!    DEPENDS ON GeolAssets_V2.GeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
+    DEPENDS ON LG_GeolAssetsCatalogues_V2.Catalogues;
 
 
-    /** Erweiterung der CLASS Contact aus dem DMGeolAssets
+    /** Erweiterung der CLASS Contact aus dem DM GeolAssets
      */
-!!    CLASS LGContact
-!!    EXTENDS GeolAssets_V2.CoreGeolAssets.Contact =
-
-    CLASS Contact !!(EXTENDED) =
-    EXTENDS GeolAssets_V2.GeolAssets.Contact =
+    CLASS Contact (EXTENDED) =
       /** Referenz auf einen Eintrag in der zentralen Adress-Datenbank (ZAD)
        */
       IDZAD : TEXT;
@@ -153,19 +133,18 @@ VERSION "2022-04-06"  =
 
     /** Basisklasse für die administrativen Metadaten eines Assets
      */
-    CLASS AssetItem
-    EXTENDS GeolAssets_V2.GeolAssets.AssetItem =
-    /** Flag ,ob Nationales Relevanz vorliegt
-     */
-	  IsNatRel : MANDATORY BOOLEAN;
-	  /** Typ der Nationalen Relevanz, gemäss LGeolV
-	  */
-	  TypeNatRel : BAG {0 .. *} OF TypeNatRel;
-	  /** swisstopo-interner Nutzungsstatus
-	  */
+    CLASS AssetItem (EXTENDED) =
+      /** Flag ,ob Nationales Relevanz vorliegt
+      */
+      IsNatRel : MANDATORY BOOLEAN;
+      /** Typ der Nationalen Relevanz, gemäss LGeolV
+      */
+      TypeNatRel : BAG {0 .. *} OF TypeNatRel;
+      /** swisstopo-interner Nutzungsstatus
+      */
       InternalUse : MANDATORY InternalUse;
-	  /** Öffentlicher Nutzungsstatus
-	  */
+      /** Öffentlicher Nutzungsstatus
+      */
       PublicUse : MANDATORY PublicUse;
       /** Bearbeitungsstatus des Assets
        */
@@ -173,9 +152,6 @@ VERSION "2022-04-06"  =
       /** Eingangsdatum des Assets bei swisstopo
        */
       DateReceipt : MANDATORY FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-      /** UsedBy (Angabe der Projekte in den das Asset genutzt wurde) 
-       */
-      UsedBy : BAG {0..*} OF UsedBy;
       /** Gemeinde, in der das Asset liegt. Dieses Attribut dient dazu, eine Gemeinde zu erfassen, falls keine Geometrie vorliegt
        */
       Municipality : TEXT;
@@ -222,32 +198,31 @@ VERSION "2022-04-06"  =
        */
       InfogeolAuxData : TEXT;
 
-	  /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
-	  */
-	  SET CONSTRAINT WHERE NOT (InternalUse->IsAvailable):
-	     NOT (PublicUse->IsAvailable);
-	  /** Wenn das Startdatum der Öffentichennutzung gesetzt ist, dann muss auch das Startdatum der Internennutzung gesetzt sein und das interne Startdatum muss kleiner oder gleich dem öffentlichen sein.
-	  */
-	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability): 
-	  DEFINED(InternalUse->DateStartAvailability) AND 
-	  (InternalUse->DateStartAvailability <= PublicUse->DateStartAvailability);
-	  /** Wenn das öffentliche Startdatum gesetzt ist, dann darf der öffentliche Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
-	  */
-	  SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability):
-	  NOT (PublicUse->IsAvailable);
-	  /** Wenn das interne Startdatum gesetzt ist, dann darf der interne Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
-	  */
-	  SET CONSTRAINT WHERE DEFINED (InternalUse->DateStartAvailability):
-	  NOT (InternalUse->IsAvailable);
-	  /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
-	  */
-	  SET CONSTRAINT WHERE NOT(IsNatRel):
-	  NOT (DEFINED (TypeNatRel));
-	  /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
-	  */
-	  SET CONSTRAINT WHERE (IsNatRel):
-	  DEFINED(TypeNatRel);
-
+      /** Wenn IsInternalUse == False, dann muss IsPublicUse auch == False sein.
+      */
+      SET CONSTRAINT WHERE NOT (InternalUse->IsAvailable):
+         NOT (PublicUse->IsAvailable);
+      /** Wenn das Startdatum der Öffentichennutzung gesetzt ist, dann muss auch das Startdatum der Internennutzung gesetzt sein und das interne Startdatum muss kleiner oder gleich dem öffentlichen sein.
+      */
+      SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability): 
+      DEFINED(InternalUse->DateStartAvailability) AND 
+      (InternalUse->DateStartAvailability <= PublicUse->DateStartAvailability);
+      /** Wenn das öffentliche Startdatum gesetzt ist, dann darf der öffentliche Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
+      */
+      SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability):
+      NOT (PublicUse->IsAvailable);
+      /** Wenn das interne Startdatum gesetzt ist, dann darf der interne Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
+      */
+      SET CONSTRAINT WHERE DEFINED (InternalUse->DateStartAvailability):
+      NOT (InternalUse->IsAvailable);
+      /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
+      */
+      SET CONSTRAINT WHERE NOT(IsNatRel):
+      NOT (DEFINED (TypeNatRel));
+      /** Wenn das Asset nicht von nationaler Relevanz ist, muss dein Typ definiert werden
+      */
+      SET CONSTRAINT WHERE (IsNatRel):
+      DEFINED(TypeNatRel);
 
     END AssetItem;
 
@@ -268,15 +243,34 @@ VERSION "2022-04-06"  =
       Link : TEXT;
     END Publication;
 
+  /** CLASS für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
+   */
+  CLASS UsedBy =
+    /** Name des Projekts
+     */
+    Name : MANDATORY TEXT;
+    /** Beschreibung des Projekts
+     */
+    Description : TEXT;
+    /** Datum der Abgabe des Assets an das jeweilige Projekt
+     */
+    DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
+  END UsedBy;
+
+    ASSOCIATION AssetItem_UsedBy =
+      AssetItem -- {1..*} AssetItem;
+      UsedBy -- {0..*} UsedBy;
+    END AssetItem_UsedBy;
+
     /** Beziehung von zwischen der Klasse AssetItem und Klasse Publikation
      */
     ASSOCIATION AssetItem_Publication =
-	  /** Asset zu dem Publikationen bestehen
-	  */
+      /** Asset zu dem Publikationen bestehen
+      */
       AssetItem -- {1..*} AssetItem;
-	  /** Publikationen zu einem Asset
-	  */
-	  Publication -- {0..*} Publication;
+      /** Publikationen zu einem Asset
+      */
+      Publication -- {0..*} Publication;
     END AssetItem_Publication;
 
   END GeolAssets;
