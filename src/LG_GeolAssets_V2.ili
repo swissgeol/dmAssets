@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-28"  =
+VERSION "2022-04-06"  =
   IMPORTS GeolAssets_V2,LG_GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -129,23 +129,32 @@ VERSION "2022-03-28"  =
 
   /** Topic für die Erweiterung des DM GeolAssets für die Bedürfnisse der Landesgeologie
    */
-  TOPIC LGGeolAsset =
+!!  TOPIC LGGeolAsset =
+!!    OID AS INTERLIS.UUIDOID;
+!!    DEPENDS ON GeolAssets_V2.CoreGeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
+
+  TOPIC GeolAssets 
+    EXTENDS GeolAssets_V2.GeolAssets =
     OID AS INTERLIS.UUIDOID;
-    DEPENDS ON GeolAssets_V2.CoreGeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
+    DEPENDS ON GeolAssets_V2.GeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
+
 
     /** Erweiterung der CLASS Contact aus dem DMGeolAssets
      */
-    CLASS LGContact
-    EXTENDS GeolAssets_V2.CoreGeolAssets.Contact =
+!!    CLASS LGContact
+!!    EXTENDS GeolAssets_V2.CoreGeolAssets.Contact =
+
+    CLASS Contact !!(EXTENDED) =
+    EXTENDS GeolAssets_V2.GeolAssets.Contact =
       /** Referenz auf einen Eintrag in der zentralen Adress-Datenbank (ZAD)
        */
       IDZAD : TEXT;
-    END LGContact;
+    END Contact;
 
     /** Basisklasse für die administrativen Metadaten eines Assets
      */
-    CLASS LGAssetItem
-    EXTENDS GeolAssets_V2.CoreGeolAssets.AssetItem =
+    CLASS AssetItem
+    EXTENDS GeolAssets_V2.GeolAssets.AssetItem =
     /** Flag ,ob Nationales Relevanz vorliegt
      */
 	  IsNatRel : MANDATORY BOOLEAN;
@@ -240,7 +249,7 @@ VERSION "2022-03-28"  =
 	  DEFINED(TypeNatRel);
 
 
-    END LGAssetItem;
+    END AssetItem;
 
     /** CLASS Publikation des jeweiligen Assets
      */
@@ -261,15 +270,15 @@ VERSION "2022-03-28"  =
 
     /** Beziehung von zwischen der Klasse AssetItem und Klasse Publikation
      */
-    ASSOCIATION LGAssetItem_Publication =
+    ASSOCIATION AssetItem_Publication =
 	  /** Asset zu dem Publikationen bestehen
 	  */
-      LGAssetItem -- {1..*} LGAssetItem;
+      AssetItem -- {1..*} AssetItem;
 	  /** Publikationen zu einem Asset
 	  */
 	  Publication -- {0..*} Publication;
-    END LGAssetItem_Publication;
+    END AssetItem_Publication;
 
-  END LGGeolAsset;
+  END GeolAssets;
 
 END LG_GeolAssets_V2.
