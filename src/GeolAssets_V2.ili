@@ -1,10 +1,10 @@
 INTERLIS 2.3;
 
 /** Datenmodell Geologische Assets zur Beschreibung der Metadaten von geologischen Assets
- */
+*/
 MODEL GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-28"  =
+VERSION "2022-04-06" =
   IMPORTS GeometryCHLV95_V1,GeolAssetsCatalogues_V2;
 
   DOMAIN
@@ -38,7 +38,7 @@ VERSION "2022-03-28"  =
 
   /** Topic des Kernmodells
    */
-  TOPIC CoreGeolAssets =
+  TOPIC GeolAssets =
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON GeolAssetsCatalogues_V2.Catalogues;
 
@@ -74,7 +74,7 @@ VERSION "2022-03-28"  =
       AuthorBiblio : TEXT;
       /** Projekt im Rahmen dessen das Asset erstellt wurde
        */
-      Project : TEXT;
+      SourceProject : TEXT;
       /** Beschreibung des Assets
        */
       Description : TEXT;
@@ -82,38 +82,37 @@ VERSION "2022-03-28"  =
        */
       AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
       /** Formate in einem Asset, sofern es sich um ein Package handelt
-	  */
+      */
       FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
-      /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen Extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default ist "False" sein
+      /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen Extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default ist "False"
        */
-	  IsExtract : MANDATORY BOOLEAN;
+      IsExtract : MANDATORY BOOLEAN;
 
-	  /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
-	  */
-	  SET CONSTRAINT WHERE IsExtract: 
-	  NOT (Kind->Reference->Code == "package") AND 
-	  NOT (Kind->Reference->Code == "report");
+      /** Wenn IsExtract gesetzt (es handelt sich dann um ein extrahiertes Objekt, z.B. Bohrprofil aus einem Bericht), dann darf Kind nicht "report" oder "package" sein. Sonst darf IsExtract nicht gesetzt sein.
+      */
+      SET CONSTRAINT WHERE IsExtract: 
+      NOT (Kind->Reference->Code == "package") AND 
+      NOT (Kind->Reference->Code == "report");
 
-	  /** Wenn Kind == Package, dann muss Format == Archiv (zip) sein
-	  */
-	  SET CONSTRAINT WHERE Kind->Reference->Code == "package": 
-	  Format->Reference->Code == "zip";
+      /** Wenn Kind == Package, dann muss Format == Archiv (zip) sein
+      */
+      SET CONSTRAINT WHERE Kind->Reference->Code == "package": 
+      Format->Reference->Code == "zip";
 
-	  /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
-	  */
-	  SET CONSTRAINT WHERE Format->Reference->Code == "zip": 
-	  Kind->Reference->Code == "package";
+      /** Wenn Format == Archiv (zip), dann muss Kind == Package sein
+      */
+      SET CONSTRAINT WHERE Format->Reference->Code == "zip": 
+      Kind->Reference->Code == "package";
 
-	  /** FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
-	  */
-	  SET CONSTRAINT WHERE DEFINED (FormatComposition): 
-	  Format->Reference->Name-> LocalisedText->Text == "zip";
+      /** FormatComposition darf nur ausgefüllt sein, wenn für das Format "zip" gewählt wurde
+      */
+      SET CONSTRAINT WHERE DEFINED (FormatComposition): 
+      Format->Reference->Code == "zip";
 
-	  /** Wenn FormatComposition ausgefüllt ist, muss für das Format "zip" gewählt werden
-	  */
-	  SET CONSTRAINT WHERE Format->Reference->Name-> LocalisedText->Text == "zip": 
-	  DEFINED (FormatComposition);
-
+      /** Wenn FormatComposition ausgefüllt ist, muss für das Format "zip" gewählt werden
+      */
+      SET CONSTRAINT WHERE Format->Reference->Code == "zip": 
+      DEFINED (FormatComposition);
     END AssetItem;
 
     /** Basisklasse für die Beschreibung der Geometrien
@@ -171,11 +170,11 @@ VERSION "2022-03-28"  =
     /** Jedes Objekt kann mit einem anderen in Beziehung stehen. Z.B.: Mehrere Dokumente zu einem Projekt; Objekte gleicher Stufe können in Beziehung stehen (Bericht - Bericht)
      */
     ASSOCIATION AssetItemX_AssetItemY =
-	  /** Asset X aud der Klasse AssetItem
-	  */
+      /** Asset X aud der Klasse AssetItem
+      */
       AssetItemX -- {0..*} AssetItem;
-	  /** Asset Y aud der Klasse AssetItem
-	  */
+      /** Asset Y aud der Klasse AssetItem
+      */
       AssetItemY -- {0..*} AssetItem;
     END AssetItemX_AssetItemY;
 
@@ -188,22 +187,26 @@ VERSION "2022-03-28"  =
       /** Asset oder Teil eines Assets, dass in einem anderen Asset enthalten ist
        */
       AssetItemPart -- {0..*} AssetItem;
-	  
-	  /** Ein "AssetPart" darf nur ein "Extract" sein, wenn das zugehörige "AssetMain" selber kein "Extract" ist und es selber (das "AssetMain") nicht vom "Kind" == "package" ist. Ein Package darf kein Extract enhalten
-	  */
-	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: NOT(AssetItemMain->IsExtract) AND NOT(AssetItemMain->Kind->Reference->Code == "package");
-	  /** Wenn ein "AssetPart" kein "Extract" ist, dann muss das zugehörige "AssetMain" ein "Kind" == "package" sein
-	  */
-	  SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): AssetItemMain->Kind->Reference->Code == "package";
-	  /**Ein "AssetPart" darf selber nicht vom "Kind" == "package" sein
-	  */
-	  MANDATORY CONSTRAINT NOT(AssetItemPart->Kind->Reference->Code == "package");
-	  /** Jedes AssetPart, dass ein Extract ist, muss ein Main besitzen
-	  */
-	  SET CONSTRAINT WHERE AssetItemPart->IsExtract: DEFINED (AssetItemMain);
+      
+      /** Ein "AssetPart" darf nur ein "Extract" sein, wenn das zugehörige "AssetMain" selber kein "Extract" ist und es selber (das "AssetMain") nicht vom "Kind" == "package" ist. Ein Package darf kein Extract enhalten
+      */
+      SET CONSTRAINT WHERE AssetItemPart->IsExtract: NOT(AssetItemMain->IsExtract) AND NOT(AssetItemMain->Kind->Reference->Code == "package");
+      /** Wenn ein "AssetPart" kein "Extract" ist, dann muss das zugehörige "AssetMain" ein "Kind" == "package" sein
+      */
+      SET CONSTRAINT WHERE NOT( AssetItemPart->IsExtract): AssetItemMain->Kind->Reference->Code == "package";
+      /**Ein "AssetPart" darf selber nicht vom "Kind" == "package" sein
+      */
+      MANDATORY CONSTRAINT NOT(AssetItemPart->Kind->Reference->Code == "package");
+
 
     END AssetItemMain_AssetItemPart;
 
+    /**Jedes AssetPart, dass ein Extract ist, muss ein Main besitzen*/
+    CONSTRAINTS OF AssetItem =
+      SET CONSTRAINT WHERE IsExtract:
+        DEFINED(\AssetItemMain);
+    END;
+        
     /** Ein Asset kann 0 ..** Untersuchungsgebiete haben
      */
     ASSOCIATION AssetItem_GeometryOfInterest =
@@ -232,6 +235,6 @@ VERSION "2022-03-28"  =
       Supplier -- {0..*} Contact;
     END AssetItem_Contact_Supplier;
 
-  END CoreGeolAssets;
+  END GeolAssets;
 
 END GeolAssets_V2.

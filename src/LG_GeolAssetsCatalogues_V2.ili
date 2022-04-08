@@ -4,7 +4,7 @@ INTERLIS 2.3;
  */
 MODEL LG_GeolAssetsCatalogues_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-03-01"  =
+VERSION "2022-03-28"  =
   IMPORTS CatalogueObjectTrees_V1,LocalisationCH_V1;
 
   TOPIC Catalogues =
@@ -23,7 +23,7 @@ VERSION "2022-03-01"  =
     END AutoCatLabelItem;
 
     STRUCTURE AutoCatLabelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoCatLabelItem;
     END AutoCatLabelRef;
 
@@ -40,7 +40,7 @@ VERSION "2022-03-01"  =
     END AutoObjectCatItem;
 
     STRUCTURE AutoObjectCatRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) AutoObjectCatItem;
     END AutoObjectCatRef;
 
@@ -57,7 +57,7 @@ VERSION "2022-03-01"  =
     END NatRelItem;
 
     STRUCTURE NatRelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) NatRelItem;
     END NatRelRef;
 
@@ -74,7 +74,7 @@ VERSION "2022-03-01"  =
     END PubChannelItem;
 
     STRUCTURE PubChannelRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) PubChannelItem;
     END PubChannelRef;
 
@@ -91,7 +91,7 @@ VERSION "2022-03-01"  =
     END StatusWorkItem;
 
     STRUCTURE StatusWorkRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusWorkItem;
     END StatusWorkRef;
 
@@ -108,7 +108,7 @@ VERSION "2022-03-01"  =
     END LegalDocItem;
 
     STRUCTURE LegalDocRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) LegalDocItem;
     END LegalDocRef;
 
@@ -125,7 +125,7 @@ VERSION "2022-03-01"  =
     END StatusAssetUseItem;
 
     STRUCTURE StatusAssetUseRef
-    EXTENDS CatalogueObjectTrees_V1.Catalogues.CatalogueReference =
+    EXTENDS CatalogueObjectTrees_V1.Catalogues.MandatoryCatalogueReference =
       Reference (EXTENDED) : REFERENCE TO (EXTERNAL) StatusAssetUseItem;
     END StatusAssetUseRef;
 
