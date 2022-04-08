@@ -217,21 +217,21 @@ VERSION "2022-04-06" =
     /** Ein Asset hat 0..* Autoren
      */
     ASSOCIATION AssetItem_Contact_Author =
-      AuthoredAssetItem -- {0..*} AssetItem;
+      AuthoredAssetItem -- {1..*} AssetItem;
       Author -- {0..*} Contact;
     END AssetItem_Contact_Author;
 
     /** Ein Asset hat 0..* Auftraggeber und/oder Rechteinhaber
      */
     ASSOCIATION AssetItem_Contact_Initiator =
-      InitiatedAssetItem -- {0..*} AssetItem;
+      InitiatedAssetItem -- {1..*} AssetItem;
       Initiator -- {0..*} Contact;
     END AssetItem_Contact_Initiator;
 
     /** EinAsset hat 0..* Einlieferer: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
      */
     ASSOCIATION AssetItem_Contact_Supplier =
-      SuppliedAssetItem -- {0..*} AssetItem;
+      SuppliedAssetItem -- {1..*} AssetItem;
       Supplier -- {0..*} Contact;
     END AssetItem_Contact_Supplier;
 
