@@ -119,9 +119,7 @@ VERSION "2022-04-06"  =
   TOPIC GeolAssets 
     EXTENDS GeolAssets_V2.GeolAssets =
     OID AS INTERLIS.UUIDOID;
-!!    DEPENDS ON GeolAssets_V2.GeolAssets,LG_GeolAssetsCatalogues_V2.Catalogues;
     DEPENDS ON LG_GeolAssetsCatalogues_V2.Catalogues;
-
 
     /** Erweiterung der CLASS Contact aus dem DM GeolAssets
      */
@@ -245,7 +243,7 @@ VERSION "2022-04-06"  =
 
   /** CLASS für die Angabe, in welchen Projekten das jeweilige Asset verwendet wurde.
    */
-  CLASS UsedBy =
+  CLASS InternalProject =
     /** Name des Projekts
      */
     Name : MANDATORY TEXT;
@@ -255,11 +253,11 @@ VERSION "2022-04-06"  =
     /** Datum der Abgabe des Assets an das jeweilige Projekt
      */
     DateDelivered : FORMAT INTERLIS.XMLDate "1582-1-1" .. "2222-12-31";
-  END UsedBy;
+  END InternalProject;
 
     ASSOCIATION AssetItem_UsedBy =
       AssetItem -- {1..*} AssetItem;
-      UsedBy -- {0..*} UsedBy;
+      UsedBy -- {0..*} InternalProject;
     END AssetItem_UsedBy;
 
     /** Beziehung von zwischen der Klasse AssetItem und Klasse Publikation
