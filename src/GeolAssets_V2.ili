@@ -83,7 +83,7 @@ VERSION "2022-04-06" =
       AssetComposition : BAG {0..*} OF GeolAssetsCatalogues_V2.Catalogues.AssetKindRef;
       /** Formate in einem Asset, sofern es sich um ein Package handelt
       */
-      FormatComposition : GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
+      FormatComposition : BAG {0..*} OF GeolAssetsCatalogues_V2.Catalogues.AssetFormatRef;
       /** Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen Extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default ist "False"
        */
       IsExtract : MANDATORY BOOLEAN;
