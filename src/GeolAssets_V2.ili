@@ -217,24 +217,29 @@ VERSION "2022-04-06" =
     /** Ein Asset hat 0..* Autoren
      */
     ASSOCIATION AssetItem_Contact_Author =
-      AuthoredAssetItem -- {1..*} AssetItem;
+      AuthoredAssetItem -- {0..*} AssetItem;
       Author -- {0..*} Contact;
     END AssetItem_Contact_Author;
 
     /** Ein Asset hat 0..* Auftraggeber und/oder Rechteinhaber
      */
     ASSOCIATION AssetItem_Contact_Initiator =
-      InitiatedAssetItem -- {1..*} AssetItem;
+      InitiatedAssetItem -- {0..*} AssetItem;
       Initiator -- {0..*} Contact;
     END AssetItem_Contact_Initiator;
 
     /** EinAsset hat 0..* Einlieferer: Wenn nicht angegeben, dann entspricht der Einlieferer dem Autor.
      */
     ASSOCIATION AssetItem_Contact_Supplier =
-      SuppliedAssetItem -- {1..*} AssetItem;
+      SuppliedAssetItem -- {0..*} AssetItem;
       Supplier -- {0..*} Contact;
     END AssetItem_Contact_Supplier;
 
+    /** Ein Contact muss in mindestens einer Beziehung mit dem AssetItem verknüpft sein.
+    */
+    CONSTRAINTS OF Contact =
+      MANDATORY CONSTRAINT DEFINED(\AuthoredAssetItem) OR DEFINED(\InitiatedAssetItem) OR DEFINED(\SuppliedAssetItem);
+    END;
   END GeolAssets;
 
 END GeolAssets_V2.
