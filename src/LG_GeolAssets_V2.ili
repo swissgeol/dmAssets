@@ -200,9 +200,10 @@ VERSION "2022-04-06"  =
       */
       SET CONSTRAINT WHERE NOT (InternalUse->IsAvailable):
          NOT (PublicUse->IsAvailable);
-      /** Wenn das Startdatum der Öffentichennutzung gesetzt ist, dann muss auch das Startdatum der Internennutzung gesetzt sein und das interne Startdatum muss kleiner oder gleich dem öffentlichen sein.
+      /** Wenn das Startdatum der Öffentichennutzung gesetzt ist, dann muss der Status der Internennutzung entweder auf TRUE (= nutzbar) stehen oder auch das Startdatum der Internennutzung gesetzt sein und das interne Startdatum muss kleiner oder gleich dem öffentlichen sein.
       */
       SET CONSTRAINT WHERE DEFINED (PublicUse->DateStartAvailability): 
+      (InternalUse->IsAvailable) OR 
       DEFINED(InternalUse->DateStartAvailability) AND 
       (InternalUse->DateStartAvailability <= PublicUse->DateStartAvailability);
       /** Wenn das öffentliche Startdatum gesetzt ist, dann darf der öffentliche Nutzungsstatus nicht auf TRUE (= nutzbar) stehen
