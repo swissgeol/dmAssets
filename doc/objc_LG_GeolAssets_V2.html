@@ -1,11 +1,11 @@
 <HTML>
 <HEAD>
-<TITLE>Objektkatalog des Paketes VERSION &quot;2022-04-06&quot;</TITLE>
+<TITLE>Objektkatalog des Paketes VERSION 27.04.2022</TITLE>
 <STYLE TYPE='text/css'>A {text-decoration: none }TD{border-bottom: solid black; border-bottom-width: 1px}</STYLE></HEAD>
 <body link="#000000" vlink="#000000" alink="#000000">
 <font face="Arial">
 <H1>Inhalt</H1>
-<p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#1_VERSION &quot;2022-04-06&quot;">1 VERSION &quot;2022-04-06&quot;</a></p>
+<p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#1_VERSION 27.04.2022">1 VERSION 27.04.2022</a></p>
 <p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#1.1_Packages">1.1 Pakete</a></p>
 <p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#2_GeolAssetsCatalogues_V2.ili">2 GeolAssetsCatalogues_V2.ili</a></p>
 <p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#2.1_Packages">2.1 Pakete</a></p>
@@ -81,7 +81,7 @@
 </font>
 <font face="Arial">
 <H1>Paketstruktur</H1>
-<p style="text-indent:0.0cm; line-height: 15%; margin-left: 0"><a href="#1_VERSION &quot;2022-04-06&quot;">1 VERSION &quot;2022-04-06&quot;</a></p>
+<p style="text-indent:0.0cm; line-height: 15%; margin-left: 0"><a href="#1_VERSION 27.04.2022">1 VERSION 27.04.2022</a></p>
 <p style="text-indent:0.5cm; line-height: 15%; margin-left: 0"><a href="#2_GeolAssetsCatalogues_V2.ili">2 GeolAssetsCatalogues_V2.ili</a></p>
 <p style="text-indent:1.0cm; line-height: 15%; margin-left: 0"><a href="#6_GeolAssetsCatalogues_V2">6 GeolAssetsCatalogues_V2</a></p>
 <p style="text-indent:1.5cm; line-height: 15%; margin-left: 0"><a href="#10_Catalogues">10 Catalogues</a></p>
@@ -141,7 +141,7 @@
 <p style="text-indent:1.5cm; line-height: 15%; margin-left: 0"><a href="#9.9_TypeNatRel">9.9 TypeNatRel</a></p>
 </font>
 <font face="Arial">
-<H1><a name="1_VERSION &quot;2022-04-06&quot;">1 VERSION &quot;2022-04-06&quot;</a></H1>
+<H1><a name="1_VERSION 27.04.2022">1 VERSION 27.04.2022</a></H1>
 
 <H2><a name="1.1_Packages">1.1 Pakete</a></H2>
 <UL>
@@ -579,7 +579,7 @@
 <TR><TD >SourceProject</TD><TD >0..1</TD><TD >Zeichenkette</TD><TD ><P>Projekt im Rahmen dessen das Asset erstellt wurde</P></TD></TR>
 <TR><TD >Description</TD><TD >0..1</TD><TD >Zeichenkette</TD><TD ><P>Beschreibung des Assets</P></TD></TR>
 <TR><TD >AssetComposition</TD><TD >0..n</TD><TD ></TD><TD ><P>Zusammensetzung eines Assets, sofern es sich um AssetMain handelt. Die Werte entsprechen denen des AssetKinds</P></TD></TR>
-<TR><TD >FormatComposition</TD><TD >0..1</TD><TD ></TD><TD ><P>Formate in einem Asset, sofern es sich um ein Package handelt</P></TD></TR>
+<TR><TD >FormatComposition</TD><TD >0..n</TD><TD ></TD><TD ><P>Formate in einem Asset, sofern es sich um ein Package handelt</P></TD></TR>
 <TR><TD >IsExtract</TD><TD >1</TD><TD >Boolean</TD><TD ><P>Flag zur Anzeige, dass es sich bei dem vorliegenden Asset um einen Extrakt aus einem Asset handelt, z.B. Bohrprofil aus einem Bericht: default ist &quot;False&quot;</P></TD></TR>
 <TR><TD STYLE="border-top: solid black; border-top-width: 2px">AssetItemMain</TD><TD STYLE="border-top: solid black; border-top-width: 2px">0..1</TD><TD STYLE="border-top: solid black; border-top-width: 2px">AssetItem</TD><TD STYLE="border-top: solid black; border-top-width: 2px"><P>Asset, dass andere Assets oder Teile davon enth&auml;lt</P></TD></TR>
 <TR><TD>AssetItemPart</TD><TD>0..n</TD><TD>AssetItem</TD><TD><P>Asset oder Teil eines Assets, dass in einem anderen Asset enthalten ist</P></TD></TR>
@@ -607,9 +607,9 @@
 <TR><TD >Telefon</TD><TD >0..1</TD><TD >Zeichenkette</TD><TD ><P>Telefon-Nr., gem&auml;ss definierter Struktur von Tel. Nummern</P></TD></TR>
 <TR><TD >Email</TD><TD >0..1</TD><TD >Zeichenkette</TD><TD ><P>e-mail-Adresse, gem&auml;ss definierter Struktur von e-mail-Adressen</P></TD></TR>
 <TR><TD >Website</TD><TD >0..1</TD><TD >Zeichenkette</TD><TD ><P>URL von Websites, gem&auml;ss definierter Struktur von URLs</P></TD></TR>
-<TR><TD STYLE="border-top: solid black; border-top-width: 2px">AuthoredAssetItem</TD><TD STYLE="border-top: solid black; border-top-width: 2px">1..n</TD><TD STYLE="border-top: solid black; border-top-width: 2px">AssetItem</TD><TD STYLE="border-top: solid black; border-top-width: 2px"></TD></TR>
-<TR><TD>InitiatedAssetItem</TD><TD>1..n</TD><TD>AssetItem</TD><TD></TD></TR>
-<TR><TD>SuppliedAssetItem</TD><TD>1..n</TD><TD>AssetItem</TD><TD></TD></TR>
+<TR><TD STYLE="border-top: solid black; border-top-width: 2px">AuthoredAssetItem</TD><TD STYLE="border-top: solid black; border-top-width: 2px">0..n</TD><TD STYLE="border-top: solid black; border-top-width: 2px">AssetItem</TD><TD STYLE="border-top: solid black; border-top-width: 2px"></TD></TR>
+<TR><TD>InitiatedAssetItem</TD><TD>0..n</TD><TD>AssetItem</TD><TD></TD></TR>
+<TR><TD>SuppliedAssetItem</TD><TD>0..n</TD><TD>AssetItem</TD><TD></TD></TR>
 </TABLE>
 <H2><a name="11.4_GeometryOfInterest">11.4 GeometryOfInterest</a></H2>
 <P>Basisklasse f&uuml;r die Beschreibung der Geometrien</P>
@@ -1009,7 +1009,7 @@
   <a href="#StatusAssetUseItem"><u>S&nbsp;</u></a>
   <a href="#TypeNatRel"><u>T&nbsp;</u></a>
   U&nbsp;
-  <a href="#VERSION "2022-04-06""><u>V&nbsp;</u></a>
+  <a href="#VERSION 27.04.2022"><u>V&nbsp;</u></a>
   W&nbsp;
   X&nbsp;
   Y&nbsp;
@@ -1073,7 +1073,7 @@
 </p><p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#11.6_StudyLocation" name="StudyLocation">StudyLocation 11.6</a>
 </p><p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#11.7_StudyTrace" name="StudyTrace">StudyTrace 11.7</a>
 </p><p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#9.9_TypeNatRel" name="TypeNatRel">TypeNatRel 9.9</a>
-</p><p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#1_VERSION &quot;2022-04-06&quot;" name="VERSION "2022-04-06"">VERSION &quot;2022-04-06&quot; 1</a>
+</p><p style="text-indent: 0; line-height: 15%; margin-left: 0"><a href="#1_VERSION 27.04.2022" name="VERSION 27.04.2022">VERSION 27.04.2022 1</a>
 </font>
 </BODY>
 </HTML>
