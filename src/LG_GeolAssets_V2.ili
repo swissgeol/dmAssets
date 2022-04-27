@@ -4,7 +4,7 @@ INTERLIS 2.3;
 */
 MODEL LG_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-04-06"  =
+VERSION "2022-04-27"  =
   IMPORTS GeolAssets_V2,LG_GeolAssetsCatalogues_V2;
 
   DOMAIN
