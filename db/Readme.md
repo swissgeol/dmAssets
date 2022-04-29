@@ -1,3 +1,3 @@
-# Model baser database and project
+# Database and QGIS-project
 
-**Info: No database created yet**
+**Info: Database and project not yet created**
