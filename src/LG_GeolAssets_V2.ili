@@ -164,7 +164,7 @@ VERSION "2022-04-27"  =
       LocationAnalog : TEXT;
       /** Rechtliche Dokumente
        */
-      LegalDoc : BAG {1..*} OF LegalDoc;
+      LegalDoc : BAG {0..*} OF LegalDoc;
       /** Bearbeiter: Mitarbeiter-Nr. Identifikator des Users im System
        */
       Processor : TEXT;
