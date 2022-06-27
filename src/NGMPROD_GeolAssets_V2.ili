@@ -1,0 +1,160 @@
+INTERLIS 2.3;
+
+
+!!****************************************
+!! MODEL
+!!****************************************
+/** Erweitereung für das PRojekte NGM-PROD-Pilotregion zum Datenmodell Geologische Assets zur Beschreibung der Metadaten von geologischen Assets*/
+MODEL NGMPROD_GeolAssets_V2 (en)
+AT "https://www.swisstopo.ch"
+VERSION "2022-06-24"  =
+
+
+!!****************************************
+!! IMPORTS
+!!****************************************
+    IMPORTS GeolAssets_V2;
+
+!!****************************************
+!! DOMAINES
+!!****************************************
+  STRUCTURE Scope =
+    /** Scope of application*/
+	Scope : MANDATORY (
+	  /** */
+	  directInputData,
+	  /** */
+	  geologicalInterpretation,
+	  /** */
+	  auxiliaryModellingHorizon,
+	  /** */
+	  thicknessInformation,
+	  /** */
+	  none
+	);
+  END Scope;
+
+
+!!****************************************
+!! TOPIC 
+!!****************************************
+  /** Topic für die Erweiterung für NGM_PROD-Pilotregion des das Kernmodells*/
+  TOPIC NGMPRODGeolAssets =
+    OID AS INTERLIS.UUIDOID;
+  DEPENDS ON GeolAssets_V2.GeolAssets; 
+ 
+
+!!****************************************
+!! CLASSES
+!!****************************************
+
+    /** Klasse der Metadaten eines AssetItems für NGM-PROD-Pilotregion*/
+	CLASS NGMPRODAssetItem
+    EXTENDS GeolAssets_V2.GeolAssets.AssetItem =
+      /** Massstabb des Dokuments*/
+	  Scale : MANDATORY (
+	    /** 1:10'000*/
+		a10000,
+	    /** 1:25'000*/
+	    a25000,
+	    /** 1:50'000*/
+	    a50000,
+	    /** 1:100'000*/
+	    a100000,
+	    /** 1:200'000*/
+	    a200000,
+	    /** 1:500'000*/
+	    a500000, 
+	    /** anderer Massstab*/
+	    other,
+	    /** unbekannter Massstab*/
+	    unknown
+	  );
+      /** Data quality regarding Jura3D*/
+	  DataQuality : MANDATORY (
+	    good,
+	    medium,
+	    poor,
+	    other,
+	    unknown
+	  );
+	  
+      /** Consistency with tectonic concept*/
+	  ConsistencyTecto : MANDATORY (
+	    good,
+	    medium,
+	    poor,
+	    other,
+	    unknown
+	  );
+	  
+      /** Scope of application*/
+	  Scope : BAG {1 .. *} OF Scope;
+
+      /** Priority*/
+	  Priority : MANDATORY (
+	    /** 1. Priorität*/
+	    a1,
+		/** 2. Priorität*/
+	    a2,
+		/** 3. Priorität*/
+	    a3,
+		/** Andere Priorität*/
+	    other,
+		/** Unbekannte Priorität*/
+	    unknown
+	  );
+
+      /**Tiefe (MD, TVD oder TVSS) der Bohrung (im Meter)*/
+	  Depth : MANDATORY 0.000 .. 9999.999 [INTERLIS.m];
+
+      /** Actual status*/
+	  ActualStatus : (
+	    georeferenced,
+		georeferencedDigitised,
+		georeferencedDigitisedAttributed,
+		digitised,
+		digitisedAttributed,
+	    other,
+	    unknown
+	  );
+
+      /** Target status*/
+	  TargetStatus : (
+	    georeferenced,
+		georeferencedDigitised,
+		georeferencedDigitisedAttributed,
+		digitised,
+		digitisedAttributed,
+	    other,
+	    unknown
+	  );
+
+      /** Status updated*/
+	  StatusUpdated : (
+	    yes,
+		no,
+		inProcess,
+	    other,
+	    unknown
+	  );
+	  
+	  /** Beschreibung des Assets oder des Assetpackages*/
+	  Comment : TEXT;
+
+    !! ----------
+
+	/** Wenn es sich um eine Bohrung handelt (Kind im GeolAssets) muss die Tiefe angegeben werden*/
+	SET CONSTRAINT WHERE (Kind->Reference->Name->LocalisedText->Text=="boreholeProfile"):
+	  DEFINED (Depth);
+
+    !! ----------
+
+
+    END NGMPRODAssetItem;
+
+
+  END NGMPRODGeolAssets;
+
+
+END NGMPROD_GeolAssets_V2.
