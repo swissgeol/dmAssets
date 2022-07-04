@@ -4,10 +4,10 @@ INTERLIS 2.3;
 !!****************************************
 !! MODEL
 !!****************************************
-/** Erweitereung für das PRojekte NGM-PROD-Pilotregion zum Datenmodell Geologische Assets zur Beschreibung der Metadaten von geologischen Assets*/
+/** Extension for the NGM-PROD pilot region project to the Geological Assets data model for describing the metadata of geological assets*/
 MODEL NGMPROD_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-06-24"  =
+VERSION "2022-07-04"  =
 
 
 !!****************************************
@@ -38,7 +38,7 @@ VERSION "2022-06-24"  =
 !!****************************************
 !! TOPIC 
 !!****************************************
-  /** Topic für die Erweiterung für NGM_PROD-Pilotregion des das Kernmodells*/
+  /** Topic for the extension for NGM_PROD pilot region of the core model GeolAssets_V2*/
   TOPIC NGMPRODGeolAssets EXTENDS GeolAssets_V2.GeolAssets =
     OID AS INTERLIS.UUIDOID;
  
@@ -47,9 +47,9 @@ VERSION "2022-06-24"  =
 !! CLASSES
 !!****************************************
 
-    /** Klasse der Metadaten eines AssetItems für NGM-PROD-Pilotregion*/
+    /** Class of metadata of an AssetItem for the NGM-PROD Pilot Region*/
 	CLASS AssetItem (EXTENDED) =
-      /** Massstabb des Dokuments*/
+      /** Scale of the data set, i.e the asset*/
 	  Scale : MANDATORY (
 	    /** 1:10'000*/
 		a10000,
@@ -63,12 +63,12 @@ VERSION "2022-06-24"  =
 	    a200000,
 	    /** 1:500'000*/
 	    a500000, 
-	    /** anderer Massstab*/
+	    /** Different scale*/
 	    other,
-	    /** unbekannter Massstab*/
+	    /** Unknown scale*/
 	    unknown
 	  );
-      /** Data quality regarding Jura3D*/
+      /** Data quality regarding Jura3D: Assessment of the quality of the data set. For the evaluation of the data, a rough estimate of the quality of the data set with regard to its use for Jura3D is given. The division into three categories (good, medium, poor) gives a simple overview of the general quality of the data. */
 	  DataQuality : MANDATORY (
 	    good,
 	    medium,
@@ -77,7 +77,7 @@ VERSION "2022-06-24"  =
 	    unknown
 	  );
 	  
-      /** Consistency with tectonic concept*/
+      /** Consistency with tectonic concept: The conformity of the data set with the tectonic concept of Jura3D. The subdivision into three categories (good, medi-um, poor) provides an initial assessment of the further possible uses of the input data. */
 	  ConsistencyTecto : MANDATORY (
 	    good,
 	    medium,
@@ -85,11 +85,8 @@ VERSION "2022-06-24"  =
 	    other,
 	    unknown
 	  );
-	  
-      /** Scope of application*/
-	  Scope : BAG {1 .. *} OF Scope;
 
-      /** Priority for 3D modelling*/
+      /**Priority of the data set. The three-level priority weighting of the data gives an overview of the importance of the data for the 3D modelling of Jura3D. */
 	  Priority : MANDATORY (
 	    /** 1. Priorität*/
 	    a1,
@@ -102,11 +99,14 @@ VERSION "2022-06-24"  =
 		/** Unbekannte Priorität*/
 	    unknown
 	  );
+	  
+      /** Scope of application: Scope of application of the dataset for Ju-ra3D. The dataset can be used as direct input data, as support for geological interpretation, as modelled auxiliary surfaces (e.g. isohype maps) or for thickness information of lithostratigraphic model units. If the dataset cannot be further used for the 3D modelling of Jura3D, the attribute value "none" is specified.*/
+	  Scope : BAG {1 .. *} OF Scope;
 
       /**Tiefe (MD, TVD oder TVSS) der Bohrung (im Meter)*/
 	  Depth : 0.000 .. 9999.999 [INTERLIS.m];
 
-      /** Actual status*/
+      /** Actual status: Current and target status of the data set. The current status of the available data or the target status with regard to data preparation depends on the application area of the data. For certain data it makes sense to have them completely vectorised, for others the georeferencing of a raster dataset is completely sufficient. Here, the contractor must decide for himself what level of effort is appropriate for data preparation. Data that flow into the 3D modelling as direct input data must be vectorised and described with the attributes for Jura3D. For data that are mainly used for geological interpretation, georeferencing is already sufficient.*/
 	  ActualStatus : (
 	    georeferenced,
 		georeferencedDigitised,
@@ -117,7 +117,7 @@ VERSION "2022-06-24"  =
 	    unknown
 	  );
 
-      /** Target status*/
+      /** Target status: Current and target status of the data set. The current status of the available data or the target status with regard to data preparation depends on the application area of the data. For certain data it makes sense to have them completely vectorised, for others the georeferencing of a raster dataset is completely sufficient. Here, the contractor must decide for himself what level of effort is appropriate for data preparation. Data that flow into the 3D modelling as direct input data must be vectorised and described with the attributes for Jura3D. For data that are mainly used for geological interpretation, georeferencing is already sufficient.*/
 	  TargetStatus : (
 	    georeferenced,
 		georeferencedDigitised,
@@ -128,7 +128,7 @@ VERSION "2022-06-24"  =
 	    unknown
 	  );
 
-      /** Status updated*/
+      /** Status updated: Status of the data set has been updated and is now final. This attribute helps the contractor to keep track of the further processing steps. As long as a record is being processed, further data preparation steps must be completed. As soon as the desired target status of a data set is reached, the attribute value can be set to "yes". These attributes are optional and serve to organise the data preparation.*/
 	  StatusUpdated : (
 	    yes,
 		no,
@@ -137,15 +137,15 @@ VERSION "2022-06-24"  =
 	    unknown
 	  );
       
-	  /** Link und Name des zugehörigen Files, inkl. Dateiendung (zur Kennzeichnung des Formats). Beispiel: tiefbohrung_abc.xlsx)*/
+	  /** Link and name of the corresponding file, incl. file extension (to identify the format). Example: tiefbohrung_abc.xlsx)*/
       Path : MANDATORY TEXT;
 	  
-	  /** Beschreibung des Assets oder des Assetpackages*/
+	  /** Comment for the editor of the asset*/
 	  Comment : TEXT;
 
     !! ----------
 
-	/** Wenn es sich um eine Bohrung handelt (Kind im GeolAssets) muss die Tiefe angegeben werden*/
+	/** If it is a borehole (child in GeolAssets) the depth must be specified*/
 	SET CONSTRAINT WHERE (Kind->Reference->Name->LocalisedText->Text=="boreholeProfile"):
 	  DEFINED (Depth);
 
