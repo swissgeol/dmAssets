@@ -103,9 +103,6 @@ VERSION "2022-07-04"  =
       /** Scope of application: Scope of application of the dataset for Ju-ra3D. The dataset can be used as direct input data, as support for geological interpretation, as modelled auxiliary surfaces (e.g. isohype maps) or for thickness information of lithostratigraphic model units. If the dataset cannot be further used for the 3D modelling of Jura3D, the attribute value "none" is specified.*/
 	  Scope : BAG {1 .. *} OF Scope;
 
-      /**Tiefe (MD, TVD oder TVSS) der Bohrung (im Meter)*/
-	  Depth : 0.000 .. 9999.999 [INTERLIS.m];
-
       /** Actual status: Current and target status of the data set. The current status of the available data or the target status with regard to data preparation depends on the application area of the data. For certain data it makes sense to have them completely vectorised, for others the georeferencing of a raster dataset is completely sufficient. Here, the contractor must decide for himself what level of effort is appropriate for data preparation. Data that flow into the 3D modelling as direct input data must be vectorised and described with the attributes for Jura3D. For data that are mainly used for geological interpretation, georeferencing is already sufficient.*/
 	  ActualStatus : (
 	    georeferenced,
@@ -142,14 +139,6 @@ VERSION "2022-07-04"  =
 	  
 	  /** With this attribute, a comment on the record can be entered in a free text field.*/
 	  Comment : TEXT;
-
-    !! ----------
-
-	/** If it is a borehole (child in GeolAssets) the depth must be specified*/
-	SET CONSTRAINT WHERE (Kind->Reference->Name->LocalisedText->Text=="boreholeProfile"):
-	  DEFINED (Depth);
-
-    !! ----------
 
 
     END AssetItem;
