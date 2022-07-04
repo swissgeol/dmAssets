@@ -140,7 +140,7 @@ VERSION "2022-07-04"  =
 	  /** Link and name of the corresponding file, incl. file extension (to identify the format). Example: tiefbohrung_abc.xlsx)*/
       Path : MANDATORY TEXT;
 	  
-	  /** Comment for the editor of the asset*/
+	  /** With this attribute, a comment on the record can be entered in a free text field.*/
 	  Comment : TEXT;
 
     !! ----------
