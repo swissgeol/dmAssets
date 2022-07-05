@@ -39,7 +39,7 @@ VERSION "2022-07-04"  =
 !! TOPIC 
 !!****************************************
   /** Topic for the extension for NGM_PROD pilot region of the core model GeolAssets_V2*/
-  TOPIC NGMPRODGeolAssets EXTENDS GeolAssets_V2.GeolAssets =
+  TOPIC GeolAssets EXTENDS GeolAssets_V2.GeolAssets =
     OID AS INTERLIS.UUIDOID;
  
 
