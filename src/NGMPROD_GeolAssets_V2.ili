@@ -88,7 +88,7 @@ VERSION "2022-07-04"  =
 
       /**Priority of the data set. The three-level priority weighting of the data gives an overview of the importance of the data for the 3D modelling of Jura3D. */
 	  Priority : MANDATORY (
-	    /** 1. Priorität*/
+	    /** Highest priority */
 	    a1,
 		/** 2. Priorität*/
 	    a2,
