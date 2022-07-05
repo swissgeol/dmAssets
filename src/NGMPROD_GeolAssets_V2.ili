@@ -7,7 +7,7 @@ INTERLIS 2.3;
 /** Extension for the NGM-PROD pilot region project to the Geological Assets data model for describing the metadata of geological assets*/
 MODEL NGMPROD_GeolAssets_V2 (en)
 AT "https://www.swisstopo.ch"
-VERSION "2022-07-04"  =
+VERSION "2022-07-05"  =
 
 
 !!****************************************
@@ -70,19 +70,29 @@ VERSION "2022-07-04"  =
 	  );
       /** Data quality regarding Jura3D: Assessment of the quality of the data set. For the evaluation of the data, a rough estimate of the quality of the data set with regard to its use for Jura3D is given. The division into three categories (good, medium, poor) gives a simple overview of the general quality of the data. */
 	  DataQuality : MANDATORY (
-	    good,
-	    medium,
-	    poor,
+	    /** */
+		good,
+	    /** */
+		medium,
+	    /** */
+		poor,
+		/** */
 	    other,
+		/** */
 	    unknown
 	  );
 	  
       /** Consistency with tectonic concept: The conformity of the data set with the tectonic concept of Jura3D. The subdivision into three categories (good, medi-um, poor) provides an initial assessment of the further possible uses of the input data. */
 	  ConsistencyTecto : MANDATORY (
-	    good,
+	    /** */
+		good,
+		/** */
 	    medium,
+		/** */
 	    poor,
+		/** */
 	    other,
+		/** */
 	    unknown
 	  );
 
@@ -105,32 +115,51 @@ VERSION "2022-07-04"  =
 
       /** Actual status: Current and target status of the data set. The current status of the available data or the target status with regard to data preparation depends on the application area of the data. For certain data it makes sense to have them completely vectorised, for others the georeferencing of a raster dataset is completely sufficient. Here, the contractor must decide for himself what level of effort is appropriate for data preparation. Data that flow into the 3D modelling as direct input data must be vectorised and described with the attributes for Jura3D. For data that are mainly used for geological interpretation, georeferencing is already sufficient.*/
 	  ActualStatus : (
-	    georeferenced,
+	    /** */
+		georeferenced,
+		/** */
 		georeferencedDigitised,
+		/** */
 		georeferencedDigitisedAttributed,
+		/** */
 		digitised,
+		/** */
 		digitisedAttributed,
+		/** */
 	    other,
+		/** */
 	    unknown
 	  );
 
       /** Target status: Current and target status of the data set. The current status of the available data or the target status with regard to data preparation depends on the application area of the data. For certain data it makes sense to have them completely vectorised, for others the georeferencing of a raster dataset is completely sufficient. Here, the contractor must decide for himself what level of effort is appropriate for data preparation. Data that flow into the 3D modelling as direct input data must be vectorised and described with the attributes for Jura3D. For data that are mainly used for geological interpretation, georeferencing is already sufficient.*/
 	  TargetStatus : (
-	    georeferenced,
+	    /** */
+		georeferenced,
+		/** */
 		georeferencedDigitised,
+		/** */
 		georeferencedDigitisedAttributed,
+		/** */
 		digitised,
+		/** */
 		digitisedAttributed,
+		/** */
 	    other,
+		/** */
 	    unknown
 	  );
 
       /** Status updated: Status of the data set has been updated and is now final. This attribute helps the contractor to keep track of the further processing steps. As long as a record is being processed, further data preparation steps must be completed. As soon as the desired target status of a data set is reached, the attribute value can be set to "yes". These attributes are optional and serve to organise the data preparation.*/
 	  StatusUpdated : (
+		/** */
 		yes,
+		/** */
 		no,
+		/** */
 		inProcess,
+		/** */
 		other,
+		/** */
 		unknown
 	  );
       
