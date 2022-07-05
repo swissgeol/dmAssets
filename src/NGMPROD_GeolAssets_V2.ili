@@ -90,13 +90,13 @@ VERSION "2022-07-04"  =
 	  Priority : MANDATORY (
 	    /** Highest priority */
 	    a1,
-		/** 2. Priorität*/
+		/** Medium priority*/
 	    a2,
-		/** 3. Priorität*/
+		/** Lowest priority*/
 	    a3,
-		/** Andere Priorität*/
+		/** Other Priorität*/
 	    other,
-		/** Unbekannte Priorität*/
+		/** Unknown Priorität*/
 	    unknown
 	  );
 	  
@@ -127,11 +127,11 @@ VERSION "2022-07-04"  =
 
       /** Status updated: Status of the data set has been updated and is now final. This attribute helps the contractor to keep track of the further processing steps. As long as a record is being processed, further data preparation steps must be completed. As soon as the desired target status of a data set is reached, the attribute value can be set to "yes". These attributes are optional and serve to organise the data preparation.*/
 	  StatusUpdated : (
-	    yes,
+		yes,
 		no,
 		inProcess,
-	    other,
-	    unknown
+		other,
+		unknown
 	  );
       
 	  /** Link and name of the corresponding file, incl. file extension (to identify the format). Example: tiefbohrung_abc.xlsx)*/
