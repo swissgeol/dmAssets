@@ -144,7 +144,7 @@ VERSION "2022-07-04"  =
     END AssetItem;
 
 
-  END NGMPRODGeolAssets;
+  END GeolAssets;
 
 
 END NGMPROD_GeolAssets_V2.
