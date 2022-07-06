@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.3">
+<HEADERSECTION SENDER="ili2gpkg-4.6.1-63db90def1260a503f0f2d4cb846686cd4851184" VERSION="2.3"><MODELS><MODEL NAME="GeolAssetsCatalogues_V2" VERSION="2022-03-28" URI="https://www.swisstopo.ch"></MODEL><MODEL NAME="LG_GeolAssetsCatalogues_V2" VERSION="2022-03-28" URI="https://www.swisstopo.ch"></MODEL></MODELS></HEADERSECTION>
+<DATASECTION>
+<GeolAssetsCatalogues_V2.Catalogues BID="d1fb2287-f490-4483-8154-3cc3113bcdee">
+</GeolAssetsCatalogues_V2.Catalogues>
+<LG_GeolAssetsCatalogues_V2.Catalogues BID="d39d2719-e3d7-4792-a9c5-f40857415216">
+</LG_GeolAssetsCatalogues_V2.Catalogues>
+</DATASECTION>
+</TRANSFER>
